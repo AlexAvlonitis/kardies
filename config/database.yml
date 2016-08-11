@@ -7,6 +7,7 @@
 default: &default
   adapter: mysql2
   encoding: utf8
+  host: <%= ENV['HOST'] %>
   pool: 5
   timeout: 5000
   username: <%= ENV['DBUSER'] %>
