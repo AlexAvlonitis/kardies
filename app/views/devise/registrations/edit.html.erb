@@ -4,8 +4,18 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :first_name %> <br />
-    <%= f.text_field :first_name %>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
   </div>
 
   <div class="field">

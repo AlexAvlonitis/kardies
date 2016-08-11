@@ -9,8 +9,9 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
-  %body  
+  %body
     - if current_user
       = link_to "Sign out", destroy_user_session_path, method: :delete
+      = link_to "Edit your Details", edit_user_registration_path
 
     = yield
