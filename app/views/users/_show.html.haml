@@ -3,6 +3,6 @@
   %ul
   %li= "#{user.first_name} #{user.last_name} "
   %p future places to visit
-  - user.future_places.each do |places|
+  - user.future_places.each do |place|
     %ul
-    ="#{places.country} / #{places.city} on: #{places.visit_date}"
+    ="#{place.country} / #{place.city} on: #{place.visit_date}"

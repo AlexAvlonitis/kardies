@@ -1,5 +1,8 @@
 class PlacesController < ApplicationController
 
+  def index
+  end
+
   def create
     @place = current_user.places.new(place_params)
 
@@ -7,6 +10,7 @@ class PlacesController < ApplicationController
       flash[:notice] = "Place has been saved"
       redirect_to root_path
     else
+      flash[:notice] = "Place has not been saved"
       @users = User.all
       render 'home/index'
     end

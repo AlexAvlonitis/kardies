@@ -2,6 +2,7 @@
 %h1 Hello #{current_user.first_name}
 %h2 Welcome to travel hub
 
-= render "places/place_details"
+= link_to "travel details", places_path
+
 = render "places/form"
 = render "users/show"
