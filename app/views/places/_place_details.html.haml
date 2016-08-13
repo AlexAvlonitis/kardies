@@ -1,0 +1,6 @@
+%h1 Travel details
+%p You are visiting
+- current_user.places.each do |place|
+  = "#{place.country} / #{place.city} "
+  = "On #{place.visit_date}"
+  %br/
