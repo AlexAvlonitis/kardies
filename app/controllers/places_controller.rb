@@ -7,8 +7,8 @@ class PlacesController < ApplicationController
       flash[:notice] = "Place has been saved"
       redirect_to root_path
     else
-      flash.now[:alert] = "Place has not been saved"
-      render :new
+      @users = User.all
+      render 'home/index'
     end
 
   end

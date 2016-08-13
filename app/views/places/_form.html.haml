@@ -1,4 +1,11 @@
 = form_for @place do |f|
+  - if @place.errors.any?
+    %h2= "#{pluralize(@place.errors.count, "error")} prohibited this article from being saved:"
+
+    %ul
+    - @place.errors.full_messages.each do |msg|
+      %li= msg
+      
   = f.label :country, "Which country are you visiting?"
   = f.text_field :country
   = f.label :country, "And which city?"
