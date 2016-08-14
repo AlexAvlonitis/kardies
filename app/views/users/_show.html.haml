@@ -2,7 +2,11 @@
 - @users.each do |user|
   %ul
   %li= "#{user.first_name} #{user.last_name} "
-  %p future places to visit
+  %p Is going to visit:
   - user.future_places.each do |place|
     %ul
-    ="#{place.country} / #{place.city} on: #{place.visit_date}"
+      %li
+        =render_country(place.country)
+        =render_state(place.state)
+        =render_city(place.city)
+        on: #{place.visit_date}
