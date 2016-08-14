@@ -17,9 +17,17 @@ class PlacesController < ApplicationController
 
   end
 
+  def states
+    render json: CS.states(params[:country]).to_json
+  end
+
+  def cities
+    render json: CS.cities(params[:state]).to_json
+  end
+
   private
 
   def place_params
-    params.require(:place).permit(:country, :city, :visit_date)
+    params.require(:place).permit(:country, :state, :city, :visit_date)
   end
 end

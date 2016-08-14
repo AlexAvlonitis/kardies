@@ -1,7 +1,7 @@
 %h1 Travel Details
 %ul
   - current_user.places.each do |place|
-    %li= "#{place.country} / #{place.city} "
+    %li= "#{ CS.get[place.country.to_sym]} / #{ CS.get(place.country.to_sym)[place.state.to_sym] if place.state  } "
     = "On #{place.visit_date}"
 
 = link_to "Back", root_path

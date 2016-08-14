@@ -5,4 +5,7 @@ Rails.application.routes.draw do
 
   resources :places
   resources :users, only: [:index]
+
+  get 'countries/:country', to: 'places#states'
+  get 'cities/:state', to: 'places#cities'
 end
