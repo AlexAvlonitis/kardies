@@ -5,11 +5,16 @@
     %ul
     - @place.errors.full_messages.each do |msg|
       %li= msg
-      
+
   = f.label :country, "Which country are you visiting?"
-  = f.text_field :country
+  = f.select(:country, CS.get.collect { |c| c.last}, {include_blank: true, prompt: "Select a Country"})
+  %br/
+  = f.label :state, "Which state?"
+  = f.text_field :state
+  %br/
   = f.label :country, "And which city?"
   = f.text_field :city
+  %br/
   = f.label :visit_date, "On which Date?"
   = f.date_field :visit_date
 

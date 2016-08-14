@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'country_select'
+gem 'city-state'
 # HAML
 gem "haml-rails", "~> 0.9"
 # Devise

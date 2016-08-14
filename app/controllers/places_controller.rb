@@ -4,7 +4,7 @@ class PlacesController < ApplicationController
   end
 
   def create
-    @place = current_user.places.new(place_params)
+    @place = current_user.places.build(place_params)
 
     if @place.save
       flash[:notice] = "Place has been saved"
