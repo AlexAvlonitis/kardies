@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: 'registrations' }
+  devise_for :user, controllers: { registrations: 'registrations' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "home#index"
 
   resources :places
   resources :posts
-  resources :users, only: [:index]
+  resources :users, only: [:index, :show]
 
   get 'countries/:country', to: 'places#states'
   get 'cities/:state', to: 'places#cities'

@@ -1,7 +1,8 @@
 %h1 All users
 - @users.each do |user|
   %ul
-  %li= "#{user.first_name} #{user.last_name} "
+  %li
+    = link_to "#{user.first_name} #{user.last_name}", user_path(user)
   %p Is going to visit:
   - user.future_places.each do |place|
     %ul
