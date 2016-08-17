@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160814130256) do
+ActiveRecord::Schema.define(version: 20160817183803) do
 
   create_table "places", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "country",    null: false
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20160814130256) do
     t.integer  "user_id"
     t.string   "state"
     t.index ["user_id"], name: "index_places_on_user_id", using: :btree
+  end
+
+  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title",                    null: false
+    t.text     "body",       limit: 65535, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
