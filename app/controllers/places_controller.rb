@@ -11,8 +11,7 @@ class PlacesController < ApplicationController
       redirect_to root_path
     else
       flash[:notice] = "Place has not been saved"
-      @users = User.all
-      render 'home/index'
+      redirect_to root_path
     end
   end
 

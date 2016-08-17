@@ -8,8 +8,7 @@ class PostsController < ApplicationController
       redirect_to root_path
     else
       flash[:notice] = "Post has not been saved"
-      @users = User.all
-      render 'home/index'
+      redirect_to root_path
     end
   end
 

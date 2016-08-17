@@ -1,0 +1,6 @@
+%h1 Posts
+
+- @posts.each do |post|
+  %h3= post.title
+  %p= post.body
+  %p.small= "posted by: #{post.user.full_name}" 

@@ -1,4 +1,4 @@
-= form_for @post do |f|
+= form_for [current_user, @post] do |f|
   - if @post.errors.any?
     %h2= "#{pluralize(@post.errors.count, "error")} prohibited this article from being saved:"
 
