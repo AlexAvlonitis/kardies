@@ -1,0 +1,17 @@
+= form_for @post do |f|
+  - if @post.errors.any?
+    %h2= "#{pluralize(@post.errors.count, "error")} prohibited this article from being saved:"
+
+    %ul
+    - @post.errors.full_messages.each do |msg|
+      %li= msg
+
+  = f.label :title, "Enter a caption for your post"
+  = f.text_field :title
+
+  %br/
+  = f.label :body, "Enter your message"
+  = f.text_area :body
+  %br/
+
+  =f.submit "Save"

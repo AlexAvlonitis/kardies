@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :places
+  resources :posts
   resources :users, only: [:index]
 
   get 'countries/:country', to: 'places#states'

@@ -14,7 +14,6 @@ class PlacesController < ApplicationController
       @users = User.all
       render 'home/index'
     end
-
   end
 
   def states
