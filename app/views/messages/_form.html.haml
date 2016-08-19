@@ -1,0 +1,17 @@
+= form_for [user, message] do |f|
+  - if @message.errors.any?
+    %h2= "#{pluralize(@message.errors.count, "error")} prohibited this message from being sent:"
+
+    %ul
+    - @message.errors.full_messages.each do |msg|
+      %li= msg
+
+  = f.label :title, "Enter a title"
+  = f.text_field :title
+
+  %br/
+  = f.label :body, "Enter your message"
+  = f.text_area :body
+  %br/
+
+  =f.submit "Send"

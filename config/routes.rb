@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show] do
     resources :posts
+    resources :messages
   end
 
   get 'countries/:country', to: 'places#states'
