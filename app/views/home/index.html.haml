@@ -5,7 +5,7 @@
 = link_to "travel details", places_path
 = link_to "All users", users_path
 
-= render "new_post"
+= link_to "add a place", new_place_path
+= link_to "new post", new_user_post_path(current_user)
 
-= render "new_place"
 = render "all_posts"

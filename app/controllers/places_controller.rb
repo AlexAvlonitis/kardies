@@ -3,6 +3,10 @@ class PlacesController < ApplicationController
   def index
   end
 
+  def new
+    @place = current_user.places.new
+  end
+
   def create
     @place = current_user.places.build(place_params)
 
@@ -11,7 +15,7 @@ class PlacesController < ApplicationController
       redirect_to root_path
     else
       flash[:notice] = "Place has not been saved"
-      redirect_to root_path
+      render :new
     end
   end
 
