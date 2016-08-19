@@ -7,6 +7,7 @@ class User < ApplicationRecord
   # Relations
   has_many :places
   has_many :posts
+  has_many :messages
 
   # Validations
   has_attached_file :profile_picture, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
