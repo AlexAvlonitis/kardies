@@ -7,8 +7,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show] do
     resources :posts
-    resources :messages
+    resources :messages, only: [:new, :create]
   end
+
+  resources :messages, only: [:index]
 
   get 'countries/:country', to: 'places#states'
   get 'cities/:state', to: 'places#cities'

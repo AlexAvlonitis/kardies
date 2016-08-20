@@ -1,9 +1,8 @@
 class MessagesController < ApplicationController
-  before_action :set_user
+  before_action :set_user, except: [:index]
 
   def index
-    authorize @user
-    @messages = current_user.messages.all
+    @messages = policy_scope(Message)
   end
 
   def new
