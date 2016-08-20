@@ -1,0 +1,4 @@
+%ul
+  - current_user.messages.each do |message|
+    %li= message.title
+    %li= message.body
