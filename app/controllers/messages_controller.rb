@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   before_action :set_user
 
   def new
+    authorize @user
     @message = @user.messages.build
   end
 

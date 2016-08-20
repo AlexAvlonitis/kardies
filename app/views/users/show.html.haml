@@ -1,4 +1,4 @@
 %h1
   = @user.full_name
 
-= link_to 'Send message', new_user_message_path(@user)
+  = link_to 'Send message', new_user_message_path(@user) unless current_user == @user
