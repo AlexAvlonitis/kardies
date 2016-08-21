@@ -1,4 +1,5 @@
-%ul
-  - current_user.messages.each do |message|
-    %li= message.title
-    %li= message.body
+- current_user.messages.each do |message|
+  %ul
+    %li= "Title: #{message.title}"
+    %li= "Message: #{message.body}"
+    %li= "Message from: #{message.sent_by}"

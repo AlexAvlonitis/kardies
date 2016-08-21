@@ -13,5 +13,6 @@
   = f.label :body, "Enter your message"
   = f.text_area :body
   %br/
+  = f.hidden_field :posted_by, value: current_user.id
 
   =f.submit "Send"
