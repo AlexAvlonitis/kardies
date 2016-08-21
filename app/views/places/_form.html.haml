@@ -1,25 +1,16 @@
-= form_for @place do |f|
-  - if @place.errors.any?
-    %h2= "#{pluralize(@place.errors.count, "error")} prohibited this article from being saved:"
-
-    %ul
-    - @place.errors.full_messages.each do |msg|
-      %li= msg
-
-  = f.label :country, "Which country are you visiting?"
-  = f.select :country, options_for_select(CS.get.map{ |u| [u.last, u.first] }),
+= simple_form_for @place, class: "form-horizontal" do |f|
+  = f.input :country do
+    = f.select :country, options_for_select(CS.get.map{ |u| [u.last, u.first] }),
                        {include_blank: true, prompt: "Select a country"}
 
-  %br/
   .hidden_states
-    = f.label :state, "Which state?"
-    = f.select :state, %w(s1), {include_blank: true, prompt: "Select a state"}
-  %br/
-  .hidden_cities
-    = f.label :city, "And which city?"
-    = f.select :city, %w(c1), {include_blank: true, prompt: "Select a city"}
-  %br/
-  = f.label :visit_date, "On which Date?"
-  = f.date_field :visit_date
+    = f.input :state do
+      = f.select :state, %w(s1), {include_blank: true, prompt: "Select a state"}
 
-  =f.submit "Save"
+  .hidden_cities
+    = f.input :city do
+      = f.select :city, %w(c1), {include_blank: true, prompt: "Select a city"}
+
+  = f.input :visit_date
+
+  =f.submit "Save", class: "btn btn-primary"

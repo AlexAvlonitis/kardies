@@ -1,5 +1,5 @@
-= simple_form_for [user, message], html: { class: 'form-horizontal' } do |f|
-  = f.input_field :title
-  = f.input_field :body
+= simple_form_for [user, message], class: 'form-horizontal' do |f|
+  = f.input :title
+  = f.input :body
 
-  =f.submit "Send"
+  =f.submit "Send", class: "btn btn-primary"
