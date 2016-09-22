@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160821110448) do
     t.datetime "updated_at",               null: false
     t.integer  "user_id"
     t.integer  "posted_by",                null: false
+    t.index ["posted_by"], name: "index_messages_on_posted_by", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 

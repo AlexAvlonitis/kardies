@@ -1,6 +1,2 @@
-- current_user.messages.each do |message|
-  %ul
-    %li= "Title: #{message.title}"
-    %li= "Message: #{message.body}"
-    %li= "Message from: #{message.sent_by}"
-    = link_to "reply", new_user_message_path(message.posted_by)
+%h1 inbox
+= link_to 'inbox', messages_inbox_path

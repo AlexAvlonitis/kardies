@@ -10,7 +10,11 @@ Rails.application.routes.draw do
     resources :messages, only: [:new, :create]
   end
 
-  resources :messages, only: [:index]
+  get 'messages', to: 'messages#index', as: :messages
+
+  namespace :messages do
+    get 'inbox', to: 'messages#index', as: :inbox
+  end
 
   get 'countries/:country', to: 'places#states'
   get 'cities/:state', to: 'places#cities'

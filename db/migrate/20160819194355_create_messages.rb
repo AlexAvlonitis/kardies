@@ -5,6 +5,6 @@ class CreateMessages < ActiveRecord::Migration[5.0]
       t.text   :body, null: false
       t.timestamps
     end
-    add_reference :messages, :user
+    add_reference :messages, :user, index: true
   end
 end
