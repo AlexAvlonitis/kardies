@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   namespace :messages do
     get 'inbox', to: 'messages#index', as: :inbox
+    get 'sent', to: 'messages#sent', as: :sent
   end
 
   get 'countries/:country', to: 'places#states'

@@ -1,0 +1,9 @@
+%h1 SENT
+- if ! @messages.blank?
+  - @messages.each do |message|
+    %ul
+      %li= "Title: #{message.title}"
+      %li= "Message: #{message.body}"
+      %li= "Message to: #{message.receiver}"
+- else
+  %h3 no messages

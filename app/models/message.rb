@@ -4,10 +4,12 @@ class Message < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
-  def sent_by
-    posted_by = self.posted_by
-    User.find(posted_by).full_name unless posted_by == 0 || posted_by.nil?
+  def sender
+    User.find(self.posted_by).full_name unless posted_by.blank?
   end
 
-  private
+  def receiver
+    User.find(self.user_id).full_name unless user_id.blank?
+  end
+
 end
