@@ -5,8 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   # Relations
-  has_many :places
-  has_many :posts
   has_many :messages
 
   # Validations
@@ -21,10 +19,6 @@ class User < ApplicationRecord
 
   def full_name
     self.first_name + " " + self.last_name if full_name_exists?
-  end
-
-  def future_places
-    self.places.select { |place| place if Date.today < place.visit_date }
   end
 
   private

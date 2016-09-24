@@ -4,11 +4,3 @@
     - unless current_user == user
       %li
         = link_to "#{user.first_name} #{user.last_name}", user_path(user)
-      %p Is going to visit:
-      - user.future_places.each do |place|
-        %ul
-          %li
-            =render_country(place.country)
-            =render_state(place.state)
-            =render_city(place.city)
-            on: #{place.visit_date}

@@ -3,9 +3,6 @@
 %h1 Hello #{current_user.first_name}
 %h2 Welcome to travel hub
 
-= link_to "travel details", places_path
-= link_to "All users", users_path
-
-= link_to "add a place", new_place_path
-= link_to "new post", new_user_post_path(current_user)
-= link_to "my messages", '/messages'
+%ul
+  %li= link_to "All users", users_path
+  %li= link_to "my messages", '/messages'
