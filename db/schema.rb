@@ -34,15 +34,6 @@ ActiveRecord::Schema.define(version: 20160821110448) do
     t.index ["user_id"], name: "index_places_on_user_id", using: :btree
   end
 
-  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title",                    null: false
-    t.text     "body",       limit: 65535, null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "user_id"
-    t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
-  end
-
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                        default: "", null: false
     t.string   "encrypted_password",           default: "", null: false
