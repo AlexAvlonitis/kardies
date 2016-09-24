@@ -10,9 +10,18 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   %body
-
-    - if current_user
-      = link_to "Sign out", destroy_user_session_path, method: :delete
+    %nav.navbar.navbar-default
+      .container-fluid
+        %ul.nav.navbar-nav
+          %li= link_to 'Home', root_path
+          %li= link_to "My messages", messages_path
+          %li= link_to "All users", users_path
+        %p.navbar-text.navbar-right
+          - if current_user
+            = link_to current_user.full_name, edit_user_registration_path
+            = link_to "Sign out", destroy_user_session_path,
+                                  method: :delete,
+                                  class: "btn btn-primary"
 
     - flash.each do |key, message|
       = message
