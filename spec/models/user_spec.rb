@@ -9,11 +9,11 @@ RSpec.describe User do
   it { is_expected.to validate_presence_of(:email) }
 
   context 'methods' do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:user, first_name: 'alex', last_name: 'xela') }
 
     context "full name complete exists" do
       it "is expected to return the full name" do
-        expect(user.full_name).to eq 'Alex Avlonitis'
+        expect(user.full_name).to eq 'alex xela'
       end
     end
 
