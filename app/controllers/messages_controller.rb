@@ -33,7 +33,19 @@ class MessagesController < ApplicationController
       flash.now[:alert] = "Message has not been been deleted"
       render :new
     end
+  end
 
+  def delete_sent
+    message = Message.where(id: params[:id], posted_by: current_user.id).first
+    authorize message
+    message.deleted_sent = true
+    if message.save
+      flash[:notice] = "Message has been deleted"
+      redirect_to messages_sent_path
+    else
+      flash.now[:alert] = "Message has not been been deleted"
+      render :new
+    end
   end
 
   private

@@ -5,7 +5,7 @@ class Messages::MessagesController < ApplicationController
   end
 
   def sent
-    @messages = Message.where(posted_by: current_user.id).all
+    @messages = Message.where(posted_by: current_user.id, deleted_sent: nil).all
   end
 
 end

@@ -8,12 +8,20 @@ class MessagePolicy < ApplicationPolicy
   end
 
   def delete_received?
-    is_message_owner?
+    is_inbox_owner?
+  end
+
+  def delete_sent?
+    is_sent_owner?
   end
 
   private
 
-  def is_message_owner?
+  def is_inbox_owner?
     record.user_id == user.id
+  end
+
+  def is_sent_owner?
+    record.posted_by == user.id
   end
 end

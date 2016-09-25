@@ -5,9 +5,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show] do
     resources :messages, only: [:new, :create]
-    resources :messages, only: [:destroy],
-                         action: :delete_received,
-                         as: :messages_delete_received
+    delete 'messages/:id/inbox', controller: 'messages',
+                                 action: 'delete_received',
+                                 as: :messages_delete_received
+    delete 'messages/:id/sent', controller: 'messages',
+                                action: 'delete_sent',
+                                as: :messages_delete_sent
   end
 
   get 'messages', to: 'messages#index', as: :messages
