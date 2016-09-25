@@ -10,16 +10,29 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @user.messages.build(message_params)
-    @message.posted_by = current_user.id if current_user
+    message = @user.messages.build(message_params)
+    message.posted_by = current_user.id if current_user
 
-    if @message.save
+    if message.save
       flash[:notice] = "Message has been sent."
       redirect_to user_path(@user)
     else
       flash.now[:alert] = "Message has not been sent."
-      render 'new'
+      render :new
     end
+  end
+
+  def delete_received
+    message = Message.where(id: params[:id], user_id: current_user.id).first
+    message.deleted_inbox = true
+    if message.save
+      flash[:notice] = "Message has been deleted"
+      redirect_to messages_inbox_path
+    else
+      flash.now[:alert] = "Message has not been been deleted"
+      render :new
+    end
+
   end
 
   private

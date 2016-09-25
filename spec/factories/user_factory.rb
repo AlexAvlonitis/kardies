@@ -5,7 +5,7 @@ FactoryGirl.define do
     last_name  FFaker::Name.last_name
     username   FFaker::Internet.user_name
     email      FFaker::Internet.email
-    password   FFaker::Internet.password
+    password   'asdasdasd'
   end
 
 end

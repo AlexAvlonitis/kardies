@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show] do
     resources :messages, only: [:new, :create]
+    resources :messages, only: [:destroy],
+                         action: :delete_received,
+                         as: :messages_delete_received
   end
 
   get 'messages', to: 'messages#index', as: :messages
