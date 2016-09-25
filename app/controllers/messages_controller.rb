@@ -24,6 +24,7 @@ class MessagesController < ApplicationController
 
   def delete_received
     message = Message.where(id: params[:id], user_id: current_user.id).first
+    authorize message
     message.deleted_inbox = true
     if message.save
       flash[:notice] = "Message has been deleted"

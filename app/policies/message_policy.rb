@@ -6,4 +6,14 @@ class MessagePolicy < ApplicationPolicy
       end
     end
   end
+
+  def delete_received?
+    is_message_owner?
+  end
+
+  private
+
+  def is_message_owner?
+    record.user_id == user.id
+  end
 end
