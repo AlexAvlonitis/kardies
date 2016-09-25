@@ -7,6 +7,7 @@ RSpec.describe User do
   it { is_expected.to validate_uniqueness_of(:username) }
   it { is_expected.to validate_uniqueness_of(:email).ignoring_case_sensitivity }
   it { is_expected.to validate_presence_of(:email) }
+  it { should have_many(:messages) }
 
   context 'methods' do
     let(:user) { FactoryGirl.create(:user, first_name: 'alex', last_name: 'xela') }
