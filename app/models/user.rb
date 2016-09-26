@@ -21,6 +21,10 @@ class User < ApplicationRecord
     self.first_name + " " + self.last_name if full_name_exists?
   end
 
+  def to_param
+    username
+  end
+
   private
 
   def full_name_exists?

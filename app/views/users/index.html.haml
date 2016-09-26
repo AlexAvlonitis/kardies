@@ -3,4 +3,4 @@
   - @users.each do |user|
     - unless current_user == user
       %li
-        = link_to "#{user.first_name} #{user.last_name}", user_path(user)
+        = link_to "#{user.first_name} #{user.last_name}", user_path(user.username)

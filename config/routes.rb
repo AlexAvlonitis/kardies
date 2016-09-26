@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :users, only: [:index, :show] do
+  resources :users, param: :username, only: [:index, :show],
+                            constraints: { username: /[0-z\.]+/ } do
     resources :messages, only: [:new, :create]
     delete 'messages/:id/inbox', controller: 'messages',
                                  action: 'delete_received',
