@@ -6,7 +6,7 @@
       %li= "Message: #{message.body}"
       %li= "Message to: #{message.receiver}"
       %li
-        = link_to "delete", user_messages_delete_sent_path(current_user.id, message.id),
+        = link_to "delete", user_messages_delete_sent_path(current_user.username, message.id),
                             method: :delete,
                             data: {confirm: "This will permanenly delete it, are you sure?"}
 - else

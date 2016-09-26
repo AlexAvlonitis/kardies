@@ -24,29 +24,37 @@ class MessagesController < ApplicationController
 
   def delete_received
     @message = Message.where(id: params[:id], user_id: current_user.id).first
-    authorize @message
-    @message.deleted_inbox = true
-
-    if @message.save
-      flash[:notice] = "Message has been deleted"
-      redirect_to messages_inbox_path
+    unless @message
+      rescue_error
     else
-      flash.now[:alert] = "Message has not been been deleted"
-      render :new
+      authorize @message
+
+      if @message.save
+        @message.deleted_inbox = true
+        flash[:notice] = "Message has been deleted"
+        redirect_to messages_inbox_path
+      else
+        flash.now[:alert] = "Message has not been been deleted"
+        render :new
+      end
     end
   end
 
   def delete_sent
     @message = Message.where(id: params[:id], posted_by: current_user.id).first
-    authorize @message
-    @message.deleted_sent = true
-
-    if @message.save
-      flash[:notice] = "Message has been deleted"
-      redirect_to messages_sent_path
+    unless @message
+      rescue_error
     else
-      flash.now[:alert] = "Message has not been been deleted"
-      render :new
+      authorize @message
+
+      if @message.save
+        @message.deleted_sent = true
+        flash[:notice] = "Message has been deleted"
+        redirect_to messages_sent_path
+      else
+        flash.now[:alert] = "Message has not been been deleted"
+        render :new
+      end
     end
   end
 
@@ -58,6 +66,11 @@ class MessagesController < ApplicationController
 
   def set_user
     @user = User.find_by_username(params[:user_username])
+  end
+
+  def rescue_error
+    flash[:alert] = 'This message cannot be deleted'
+    redirect_to messages_path
   end
 
 end
