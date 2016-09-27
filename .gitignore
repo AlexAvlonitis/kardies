@@ -21,3 +21,4 @@
 .byebug_history
 .env
 .ruby-version
+/public/*

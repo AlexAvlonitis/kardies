@@ -1,45 +1,39 @@
 %h2
   Edit #{resource_name.to_s.humanize}
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = devise_error_messages!
 
-  .field
-    = f.label :username
-    %br/
-    = f.text_field :username
+  = f.simple_fields_for :user_detail do |d|
+    = d.input :profile_picture, as: :file, label: 'Profile Picture'
+    = d.input :first_name
+    = d.input :last_name
+    = d.input :city
+    = d.collection_radio_buttons :gender, [['male', 'Male'], ['female', 'Female']], :first, :last
+    = d.input :age, as: :date, start_year: Date.today.year - 90,
+                               end_year: Date.today.year - 12,
+                               order: [:day, :month, :year]
 
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email
+  = f.input :username
+  = f.input :email
 
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
 
-  .field
-    = f.label :password
-    %i (leave blank if you don't want to change it)
+  %i (leave blank if you don't want to change it)
+  = f.input :password
+  - if @minimum_password_length
     %br/
-    = f.password_field :password, autocomplete: "off"
-    - if @minimum_password_length
-      %br/
-      %em
-        = @minimum_password_length
-        characters minimum
+    %em
+      = @minimum_password_length
+      characters minimum
 
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
+  = f.input :password_confirmation
 
-  .field
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password, autocomplete: "off"
-  .actions
-    = f.submit "Update"
+  %i (we need your current password to confirm your changes)
+  = f.input :current_password
+
+  = f.submit "Update"
 %h3 Cancel my account
 %p
   Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}

@@ -7,6 +7,7 @@ class User < ApplicationRecord
   # Relations
   has_many :messages
   has_one :user_detail
+  accepts_nested_attributes_for :user_detail
 
   # Validations
   validates :username, presence: true, uniqueness: true
@@ -20,7 +21,7 @@ class User < ApplicationRecord
   end
 
   def profile_picture
-    self.profile_picture.url(:thumb) if self.user_detail
+    self.user_detail.profile_picture.url(:thumb) if self.user_detail
   end
 
   def to_param
@@ -30,6 +31,6 @@ class User < ApplicationRecord
   private
 
   def full_name_exists?
-    self.user_detail
+    self.user_detail && self.user_detail.first_name && self.user_detail.last_name
   end
 end
