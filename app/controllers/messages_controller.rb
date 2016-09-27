@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
     @message = @user.messages.build
   end
 
-  def create
+  def create    
     @message = @user.messages.build(message_params)
     @message.posted_by = current_user.id if current_user
 
@@ -23,7 +23,7 @@ class MessagesController < ApplicationController
   end
 
   def delete_received
-    @message = Message.where(id: params[:id], user_id: current_user.id).first
+    @message = Message.where(id: params[:id], user_id: @user.id).first
     unless @message
       rescue_error
     else
@@ -41,7 +41,7 @@ class MessagesController < ApplicationController
   end
 
   def delete_sent
-    @message = Message.where(id: params[:id], posted_by: current_user.id).first
+    @message = Message.where(id: params[:id], posted_by: @user.id).first
     unless @message
       rescue_error
     else

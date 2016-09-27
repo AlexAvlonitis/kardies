@@ -64,11 +64,12 @@ RSpec.describe MessagesController, type: :controller do
                                           user_id: user1.id,
                                           posted_by: user2.id) }
 
-      before { sign_in user1 }
-
       context 'When is deleted' do
-        before { delete :delete_received, params: { user_username: user1.username,
-                                                    id: message.id } }
+        before do
+          sign_in user1
+          delete :delete_received, params: { user_username: user1.username,
+                                                    id: message.id }
+        end
         it "assigns deleted_inbox to true for @message" do
           expect(assigns(:message).deleted_inbox).to eq true
         end
@@ -79,10 +80,18 @@ RSpec.describe MessagesController, type: :controller do
       end
 
       context 'When is not deleted' do
-        it "redirects to message index" do
+        it "redirects to message_index if the params don't exist" do
+          sign_in user1
           delete :delete_received, params: { user_username: user1.username,
                                              id: 123 }
           expect(response).to redirect_to(messages_path)
+        end
+
+        it "doesn't allow if the user doesn't own the message" do
+          sign_in user2
+          delete :delete_received, params: { user_username: user1.username,
+                                             id: message.id }
+          expect(assigns(:message).deleted_inbox).to be_nil
         end
       end
 
@@ -95,11 +104,12 @@ RSpec.describe MessagesController, type: :controller do
                                           user_id: user1.id,
                                           posted_by: user2.id) }
 
-      before { sign_in user2 }
-
       context 'When is deleted' do
-        before { delete :delete_sent, params: { user_username: user2.username,
-                                                id: message.id } }
+        before do
+          sign_in user2
+          delete :delete_sent, params: { user_username: user2.username,
+                                         id: message.id }
+        end
         it "assigns deleted_sent to true for @message" do
           expect(assigns(:message).deleted_sent).to eq true
         end
@@ -111,15 +121,21 @@ RSpec.describe MessagesController, type: :controller do
 
       context 'When is not deleted' do
         it "redirects to message index" do
+          sign_in user2
           delete :delete_sent, params: { user_username: user1.username,
-                                             id: 123 }
+                                         id: 123 }
           expect(response).to redirect_to(messages_path)
+        end
+
+        it "doesn't allow if the user didn't send the message" do
+          sign_in user1
+          delete :delete_sent, params: { user_username: user2.username,
+                                         id: message.id }
+          expect(response).to redirect_to(root_path)
+          expect(assigns(:message).deleted_sent).to be_nil
         end
       end
 
     end
-
-
-
 
 end
