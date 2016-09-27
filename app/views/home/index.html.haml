@@ -1,4 +1,4 @@
 %h1 Welcome to travel hub
-%h2 Hello #{current_user.first_name}
-
-%p= image_tag current_user.profile_picture.url(:thumb)
+- if current_user.profile_picture
+  %h2 Hello #{current_user.name}
+  %p= image_tag current_user.profile_picture

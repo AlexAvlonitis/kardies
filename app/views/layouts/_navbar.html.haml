@@ -6,7 +6,7 @@
       %li= link_to "All users", users_path
     %p.navbar-text.navbar-right
       - if current_user
-        = link_to current_user.full_name, edit_user_registration_path
+        = link_to current_user.username, edit_user_registration_path
         = link_to "Sign out", destroy_user_session_path,
                               method: :delete,
                               class: "btn btn-primary"

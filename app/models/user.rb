@@ -6,19 +6,21 @@ class User < ApplicationRecord
 
   # Relations
   has_many :messages
+  has_one :user_detail
 
   # Validations
-  has_attached_file :profile_picture, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-  validates_attachment_content_type :profile_picture, content_type: /\Aimage\/.*\Z/
-
   validates :username, presence: true, uniqueness: true
 
-  validates_attachment :profile_picture,
-    size:         { in: 0..10.megabytes },
-    content_type: { content_type: /^image\/(jpeg|png|gif|tiff)$/ }
-
   def full_name
-    self.first_name + " " + self.last_name if full_name_exists?
+    self.user_detail.first_name + " " + self.user_detail.last_name if full_name_exists?
+  end
+
+  def name
+    self.user_detail.first_name if self.user_detail
+  end
+
+  def profile_picture
+    self.profile_picture.url(:thumb) if self.user_detail
   end
 
   def to_param
@@ -28,6 +30,6 @@ class User < ApplicationRecord
   private
 
   def full_name_exists?
-    self.first_name && self.last_name
+    self.user_detail
   end
 end

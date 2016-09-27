@@ -1,0 +1,13 @@
+class CreateUserDetails < ActiveRecord::Migration[5.0]
+  def change
+    create_table :user_details do |t|
+      t.belongs_to :user, index: true, unique: true, foreign_key: true
+      t.string :first_name, null: false
+      t.string :last_name, null: false
+      t.string :city, null: false
+      t.string :gender, null: false
+      t.datetime :age, null: false
+      t.attachment :profile_picture
+    end
+  end
+end

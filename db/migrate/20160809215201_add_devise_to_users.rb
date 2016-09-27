@@ -2,6 +2,7 @@ class AddDeviseToUsers < ActiveRecord::Migration[5.0]
   def self.up
     create_table :users do |t|
       ## Database authenticatable
+      t.string :username,           null: false
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
@@ -37,6 +38,7 @@ class AddDeviseToUsers < ActiveRecord::Migration[5.0]
 
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
+    add_index :users, :username,             unique: true
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
   end
