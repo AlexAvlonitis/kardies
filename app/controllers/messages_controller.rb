@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
     @message = @user.messages.build
   end
 
-  def create    
+  def create
     @message = @user.messages.build(message_params)
     @message.posted_by = current_user.id if current_user
 
@@ -28,9 +28,9 @@ class MessagesController < ApplicationController
       rescue_error
     else
       authorize @message
+      @message.deleted_inbox = true
 
       if @message.save
-        @message.deleted_inbox = true
         flash[:notice] = "Message has been deleted"
         redirect_to messages_inbox_path
       else
@@ -46,9 +46,9 @@ class MessagesController < ApplicationController
       rescue_error
     else
       authorize @message
+      @message.deleted_sent = true
 
       if @message.save
-        @message.deleted_sent = true
         flash[:notice] = "Message has been deleted"
         redirect_to messages_sent_path
       else
