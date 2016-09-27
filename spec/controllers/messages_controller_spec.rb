@@ -92,6 +92,7 @@ RSpec.describe MessagesController, type: :controller do
           delete :delete_received, params: { user_username: user1.username,
                                              id: message.id }
           expect(assigns(:message).deleted_inbox).to be_nil
+          expect(response).to redirect_to(root_path)
         end
       end
 
