@@ -37,6 +37,7 @@ gem 'devise'
 gem "paperclip", "~> 5.0.0"
 gem "pundit"
 gem 'bootstrap-sass', '~> 3.3.6'
+gem "font-awesome-rails"
 gem 'simple_form'
 
 group :development, :test do

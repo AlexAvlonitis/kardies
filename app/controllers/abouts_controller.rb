@@ -5,9 +5,9 @@ class AboutsController < ApplicationController
   end
 
   def update
-    @about = current_user.build_about(abouts_params)
+    @about = current_user.build_about
 
-    if @about.save
+    if @about.update(abouts_params)
       flash[:success] = "Changes have been saved."
       redirect_to edit_about_path
     else
