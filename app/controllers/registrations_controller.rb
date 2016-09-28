@@ -1,18 +1,20 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  def new
+    super do
+      resource.build_user_detail
+    end
+  end
+
   def edit
     @user = User.find(current_user.id)
-    @user.build_user_detail
-    render :edit
+    @user.user_detail ? @user.user_detail : @user.build_user_detail
   end
 
   private
 
   def sign_up_params
-    params.require(:user).permit(:username,
-                                 :email,
-                                 :password,
-                                 :password_confirmation)
+    params.require(:user).permit(allow_params)
   end
 
   def account_update_params

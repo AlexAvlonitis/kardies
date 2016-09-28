@@ -17,11 +17,11 @@ class User < ApplicationRecord
   end
 
   def name
-    self.user_detail.first_name if self.user_detail
+    self.user_detail.first_name
   end
 
   def profile_picture
-    self.user_detail.profile_picture.url(:thumb) if self.user_detail
+    self.user_detail.profile_picture.url(:thumb)
   end
 
   def to_param
@@ -31,6 +31,6 @@ class User < ApplicationRecord
   private
 
   def full_name_exists?
-    self.user_detail && self.user_detail.first_name && self.user_detail.last_name
+    self.user_detail.first_name && self.user_detail.last_name
   end
 end
