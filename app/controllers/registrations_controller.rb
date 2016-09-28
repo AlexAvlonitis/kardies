@@ -2,6 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def edit
     @user = User.find(current_user.id)
+    @user.build_user_detail
     render :edit
   end
 
