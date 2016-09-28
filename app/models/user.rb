@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   # Relations
   has_many :messages
+  has_one :about, dependent: :destroy
   has_one :user_detail, dependent: :destroy
   accepts_nested_attributes_for :user_detail
 

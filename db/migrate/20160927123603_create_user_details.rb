@@ -6,7 +6,7 @@ class CreateUserDetails < ActiveRecord::Migration[5.0]
       t.string :last_name, null: false
       t.string :city, null: false
       t.string :gender, null: false
-      t.datetime :age, null: false
+      t.date   :age, null: false
       t.attachment :profile_picture
     end
   end

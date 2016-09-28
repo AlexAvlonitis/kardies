@@ -1,4 +1,4 @@
 %h1 Welcome to travel hub
 - if current_user.profile_picture
   %h2 Hello #{current_user.name}
-  = image_tag current_user.profile_picture
+  = image_tag current_user.profile_picture, class: "img-rounded"
