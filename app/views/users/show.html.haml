@@ -1,2 +1,8 @@
-%h1= @user.full_name
-%p= link_to 'Send message', new_user_message_path(@user)
+%h1
+  = @user.full_name
+  = link_to 'Send message', new_user_message_path(@user), class: "btn btn-success"
+= image_tag @user.profile_picture
+
+%ul
+  %li Lives in: #{@user.city}
+  %li Age: #{@user.age}

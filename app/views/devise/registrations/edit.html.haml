@@ -26,8 +26,11 @@
   %i (we need your current password to confirm your changes)
   = f.input :current_password
 
-  = f.submit "Update"
+  = f.submit "Update", class: "btn btn-lg btn-primary"
 %h3 Cancel my account
-%p
-  Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+%p Unhappy?
+= button_to "Cancel my account", registration_path(resource_name),
+                                            data: { confirm: "Are you sure?" },
+                                            method: :delete,
+                                            class: 'btn btn-md btn-danger'
 = link_to "Back", :back
