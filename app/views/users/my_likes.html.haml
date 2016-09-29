@@ -1,0 +1,8 @@
+%h2 Who likes me
+%h3 Number of likes: #{@likes.size}
+- @likes.each do |user|
+  = link_to user_path(user.username) do
+    = image_tag user.profile_picture
+  = link_to "Send a message", new_user_message_path(user.username),
+                              class: "btn btn-success"
+  %p= user.full_name

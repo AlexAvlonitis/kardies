@@ -19,6 +19,10 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def my_likes
+    @likes = current_user.votes_for.voters
+  end
+
   private
 
   def set_user

@@ -4,11 +4,11 @@ class UserPresenter < BasePresenter
   def like_status
     if ! h.current_user.voted_for? user
       h.link_to h.like_user_path(user), method: :put do
-        h.fa_icon "thumbs-o-up 2x", class: "pull-right"
+        h.fa_icon "heart-o 2x", class: "pull-right"
       end
     else
       h.link_to h.dislike_user_path(user), method: :put do
-        h.fa_icon "thumbs-down 2x", class: "pull-right"
+        h.fa_icon "heart 2x", class: "pull-right"
       end
     end
   end
@@ -19,9 +19,9 @@ class UserPresenter < BasePresenter
     end
   end
 
-  def profile_picture
+  def profile_picture_link(size = :thumb)
     h.link_to h.user_path(user.username) do
-      h.image_tag user.profile_picture
+      h.image_tag user.profile_picture(:medium)
     end
   end
 

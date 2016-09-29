@@ -4,7 +4,7 @@
     - present user do |user_presenter|
       .col-sm-5.col-md-3
         .thumbnail
-          = user_presenter.profile_picture
+          = user_presenter.profile_picture_link(:medium)
           .caption
             %p.card-description= user.full_name
             %p

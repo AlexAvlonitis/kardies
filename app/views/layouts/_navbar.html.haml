@@ -1,12 +1,12 @@
-%nav.navbar.navbar-default
-  .container-fluid
-    %ul.nav.navbar-nav
-      %li= link_to 'Home', root_path
-      - if user_signed_in?
+- if user_signed_in?
+  %nav.navbar.navbar-default
+    .container-fluid
+      %ul.nav.navbar-nav
+        %li= link_to 'Home', root_path
         %li= link_to "My messages", messages_path
         %li= link_to "All users", users_path
-    %p.navbar-text.navbar-right
-      - if user_signed_in?
+        %li= link_to "My likes", my_likes_user_path(current_user)
+      %p.navbar-text.navbar-right
         = link_to 'Edit my profile', edit_user_registration_path
         = link_to "Sign out", destroy_user_session_path,
                               method: :delete,
