@@ -6,7 +6,8 @@
         .thumbnail
           = user_presenter.profile_picture_link(:medium)
           .caption
-            %p.card-description= user.full_name
+            %span= user.full_name
+            %span.pull-right Age: #{user.age}
             %p
               = user_presenter.new_message
               = user_presenter.like_status
