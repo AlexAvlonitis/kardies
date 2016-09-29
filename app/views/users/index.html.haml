@@ -1,14 +1,12 @@
 .col-md-8.col-md-offset-2
   %h1 All users
   - @users.each do |user|
-    .col-sm-5.col-md-3
-      .thumbnail
-        = link_to user_path(user.username) do
-          = image_tag user.profile_picture
-        .caption
-          %p.card-description= user.full_name
-          %p
-            = link_to new_user_message_path(user) do
-              = fa_icon "envelope 2x"
-            = link_to new_user_message_path(user) do
-              = fa_icon "thumbs-o-up 2x", class: "pull-right"
+    - present user do |user_presenter|
+      .col-sm-5.col-md-3
+        .thumbnail
+          = user_presenter.profile_picture
+          .caption
+            %p.card-description= user.full_name
+            %p
+              = user_presenter.new_message
+              = user_presenter.like_status

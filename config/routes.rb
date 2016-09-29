@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     delete 'messages/:id/sent', controller: 'messages',
                                 action: 'delete_sent',
                                 as: :messages_delete_sent
+    member do
+      put "like", to: "users#like"
+      put "dislike", to: "users#unlike"
+    end
   end
 
   # about, removed IDs

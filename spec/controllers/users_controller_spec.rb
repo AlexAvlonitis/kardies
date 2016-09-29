@@ -4,6 +4,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'GET #index' do
     let(:user) { FactoryGirl.create(:user) }
+    let(:user2) { FactoryGirl.create(:user) }
 
     before do
       sign_in user
@@ -11,7 +12,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'populates an array of users' do
-      expect(assigns(:users)).to eq [user]
+      expect(assigns(:users)).to eq [user2]
     end
 
     it "renders the index template" do
