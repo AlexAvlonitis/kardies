@@ -8,7 +8,8 @@
       = d.input :profile_picture, as: :file, label: 'Profile Picture'
       = d.input :first_name
       = d.input :last_name
-      = d.input :city
+      = d.input :state, collection: GC.states
+      = d.input :city, collection: GC.cities('att')
       = d.collection_radio_buttons :gender, [['male', 'Male'], ['female', 'Female']], :first, :last
       = d.input :age, as: :date, start_year: Date.today.year - 90,
                                  end_year: Date.today.year - 12,
