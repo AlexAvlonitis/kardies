@@ -11,4 +11,14 @@ class UserDetail < ApplicationRecord
   validates_presence_of :first_name, :last_name, :city, :age, :gender, :state
   validates :gender, inclusion: { in: %w(male female),
     message: "%{value} is not a valid gender" }
+  validate :states_are_included_in_the_list
+
+  private
+
+  def states_are_included_in_the_list
+    if GC.states.select { |x| x.include?(state) }.empty?
+      errors.add(:state, "state is not valid")
+    end
+  end
+
 end
