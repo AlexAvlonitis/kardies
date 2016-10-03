@@ -9,4 +9,6 @@ class UserDetail < ApplicationRecord
     content_type: { content_type: /^image\/(jpeg|png|gif|tiff)$/ }
 
   validates_presence_of :first_name, :last_name, :city, :age, :gender, :state
+  validates :gender, inclusion: { in: %w(male female),
+    message: "%{value} is not a valid gender" }
 end
