@@ -20,6 +20,10 @@ class UsersController < ApplicationController
   end
 
   def my_likes
+    unless params[:username] == current_user.username
+      flash[:error] = "You are not allowed to view this page"
+      redirect_to users_path
+    end
     @likes = current_user.votes_for.voters
   end
 
