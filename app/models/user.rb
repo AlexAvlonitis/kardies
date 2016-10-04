@@ -50,6 +50,10 @@ class User < ApplicationRecord
     current_age(self.user_detail.age)
   end
 
+  def state
+    self.user_detail.state
+  end
+
   def profile_picture(size = :thumb)
     self.user_detail.profile_picture.url(size)
   end
