@@ -1,10 +1,15 @@
 class User < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   acts_as_votable
   acts_as_voter
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  scope :all_except, ->(user) { where.not(id: user) }
 
   # Relations
   has_many :messages
@@ -14,6 +19,16 @@ class User < ApplicationRecord
 
   # Validations
   validates :username, presence: true, uniqueness: true
+
+  def as_indexed_json(options={})
+    self.as_json(
+      include: {
+        user_detail: {
+          only: [:gender, :city, :state]
+        }
+      }
+    )
+  end
 
   def full_name
     self.user_detail.first_name + " " + self.user_detail.last_name if full_name_exists?
@@ -25,10 +40,6 @@ class User < ApplicationRecord
 
   def city
     self.user_detail.city
-  end
-
-  def gender
-    self.user_detail.gender
   end
 
   def gender

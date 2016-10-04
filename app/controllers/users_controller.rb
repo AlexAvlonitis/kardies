@@ -3,7 +3,11 @@ class UsersController < ApplicationController
   before_action :set_user, except: [:index]
 
   def index
-    @users = User.where.not(id: current_user.id)
+    if params[:q].present?
+      @users = User.search(params[:q]).records.all_except(current_user)
+    else
+      @users = User.all_except(current_user).order(is_signed_in: :desc)
+    end
   end
 
   def show

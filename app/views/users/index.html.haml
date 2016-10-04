@@ -1,5 +1,6 @@
 .col-md-8.col-md-offset-2
   %h1 All users
+
   - @users.each do |user|
     - present user do |user_presenter|
       .col-sm-5.col-md-3
