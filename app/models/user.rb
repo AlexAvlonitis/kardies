@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  include Searchable
 
   acts_as_votable
   acts_as_voter
