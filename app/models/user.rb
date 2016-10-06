@@ -20,15 +20,14 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   def self.search(query)
-    attr_ids = UsersIndex::User.query(
+    UsersIndex::User.query(
       multi_match: {
         query: query,
         fields: [ "city^10", :state, :is_signed_in ],
       }
-    ).map do |result|
-      result.attributes["id"]
-    end
-    self.find(attr_ids)
+    )
+    .order(is_signed_in: :desc)
+    .load
   end
 
   def full_name
