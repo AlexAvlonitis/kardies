@@ -10,14 +10,13 @@
 
   - @users.each do |user|
     - present user do |user_presenter|
-      .col-sm-5.col-md-3
-        .thumbnail
-          = user_presenter.profile_picture_link(:medium)
-          %span.pull-right
-            = "Online now" if user.is_signed_in
-          .caption
-            %span= user.username
-            %span.pull-right Age: #{user.age}
-            %p
-              = user_presenter.new_message
-              = user_presenter.like_status
+      .card
+        = user_presenter.profile_picture_link(:medium)
+        %span.pull-right
+          = "Online now" if user.is_signed_in
+      .card-block
+        %h4.card-title= user.username
+        %p.card-text Age: #{user.age}
+        %p
+          = user_presenter.new_message
+          = user_presenter.like_status

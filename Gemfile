@@ -35,7 +35,7 @@ gem "haml-rails", "~> 0.9"
 gem 'devise'
 gem "paperclip", "~> 5.0.0"
 gem "pundit"
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap', '~> 4.0.0.alpha4'
 gem "font-awesome-rails"
 gem 'simple_form'
 gem 'acts_as_votable', '~> 0.10.0'

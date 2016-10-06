@@ -42,7 +42,7 @@ GEM
     airbrussh (1.1.1)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (7.1.1)
-    autoprefixer-rails (6.4.0.2)
+    autoprefixer-rails (6.5.0.2)
       execjs
     aws-sdk (2.3.22)
       aws-sdk-resources (= 2.3.22)
@@ -51,9 +51,9 @@ GEM
     aws-sdk-resources (2.3.22)
       aws-sdk-core (= 2.3.22)
     bcrypt (3.1.11)
-    bootstrap-sass (3.3.7)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
+    bootstrap (4.0.0.alpha4)
+      autoprefixer-rails (>= 6.0.3)
+      sass (>= 3.4.19)
     builder (3.2.2)
     byebug (9.0.5)
     capistrano (3.6.1)
@@ -313,7 +313,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_votable (~> 0.10.0)
   aws-sdk
-  bootstrap-sass (~> 3.3.6)
+  bootstrap (~> 4.0.0.alpha4)
   byebug
   capistrano
   capistrano-nginx

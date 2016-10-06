@@ -21,7 +21,8 @@ class UserPresenter < BasePresenter
 
   def profile_picture_link(size = :thumb)
     h.link_to h.user_path(user.username) do
-      h.image_tag user.profile_picture(size)
+      h.image_tag user.profile_picture(size),
+      class: "card-img-top"
     end
   end
 

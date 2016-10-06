@@ -1,13 +1,12 @@
 - if user_signed_in?
-  %nav.navbar.navbar-default
-    .container-fluid
-      %ul.nav.navbar-nav
-        %li= link_to 'Home', root_path
-        %li= link_to "My messages", messages_path
-        %li= link_to "All users", users_path
-        %li= link_to "My likes", my_likes_user_path(current_user)
-      %p.navbar-text.navbar-right
-        = link_to 'Edit my profile', edit_user_registration_path
-        = link_to "Sign out", destroy_user_session_path,
-                              method: :delete,
-                              class: "btn btn-primary"
+  %nav.navbar.navbar-full.navbar-light.bg-faded
+    %ul.nav.navbar-nav
+      %li.nav-item= link_to 'Home', root_path, class: "nav-link active"
+      %li.nav-item= link_to "My messages", messages_path, class: "nav-link"
+      %li.nav-item= link_to "All users", users_path, class: "nav-link"
+      %li.nav-item= link_to "My likes", my_likes_user_path(current_user), class: "nav-link"
+    %p.pull-right
+      = link_to 'Edit my profile', edit_user_registration_path
+      = link_to "Sign out", destroy_user_session_path,
+                            method: :delete,
+                            class: "btn btn-primary"
