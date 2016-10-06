@@ -22,3 +22,5 @@
 .env
 .ruby-version
 /public/*
+/config/database.production.yml
+/config/secrets.production.yml
