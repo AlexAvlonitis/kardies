@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  include Searchable
+  update_index('users#user') { self }
 
   acts_as_votable
   acts_as_voter
@@ -19,14 +19,16 @@ class User < ApplicationRecord
   # Validations
   validates :username, presence: true, uniqueness: true
 
-  def as_indexed_json(options={})
-    self.as_json(
-      include: {
-        user_detail: {
-          only: [:gender, :city, :state]
-        }
+  def self.search(query)
+    attr_ids = UsersIndex::User.query(
+      multi_match: {
+        query: query,
+        fields: [ "city^10", :state, :is_signed_in ],
       }
-    )
+    ).map do |result|
+      result.attributes["id"]
+    end
+    self.find(attr_ids)
   end
 
   def full_name

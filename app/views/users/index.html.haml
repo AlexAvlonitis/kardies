@@ -1,7 +1,7 @@
 .pull-right
-  %p Ανα νομό
+  %p περιοχή
   = form_tag users_path, method: :get do
-    = select_tag "q", options_for_select(GC.states, current_user.state)
+    = select_tag "q", options_for_select(GC.cities('att'))
     = submit_tag 'Search'
 .col-md-8.col-md-offset-2
   %h1 All users

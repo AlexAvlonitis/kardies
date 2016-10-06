@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     if params[:q].present?
-      @users = User.search(params[:q]).records.all_except(current_user)
+      @users = User.search(params[:q])
     else
       @users = User.all_except(current_user).order(is_signed_in: :desc)
     end
@@ -32,6 +32,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def search_params
+
+  end
 
   def set_user
     @user = User.find_by_username(params[:username])

@@ -40,8 +40,7 @@ gem "font-awesome-rails"
 gem 'simple_form'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'greek-cities', '~> 0.0.1'
-gem 'elasticsearch-rails'
-gem 'elasticsearch-model'
+gem 'chewy'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
