@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   before_action :set_user, except: [:index]
 
   def index
-    if params[:q].present?
-      @users = User.search(params[:q])
+    if search_params.present?
+      @users = User.search(search_params)
     else
       @users = User.all_except(current_user).order(is_signed_in: :desc)
     end
@@ -34,7 +34,11 @@ class UsersController < ApplicationController
   private
 
   def search_params
-
+    all_params = []
+    all_params << params[:state] if params[:state]
+    all_params << params[:city] if params[:city]
+    all_params << params[:online] if params[:online]
+    all_params
   end
 
   def set_user

@@ -25,9 +25,7 @@ class User < ApplicationRecord
         query: query,
         fields: [ "city^10", :state, :is_signed_in ],
       }
-    )
-    .order(is_signed_in: :desc)
-    .load
+    ).load
   end
 
   def full_name
