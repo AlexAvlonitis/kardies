@@ -1,22 +1,20 @@
-.pull-right
-  %p περιοχή
-  = form_tag users_path, method: :get do
-    = select_tag "state", options_for_select(GC.states)
-    = select_tag "city", options_for_select(GC.cities('att'))
-    = check_box_tag :online
-    = submit_tag 'Search'
-.col-md-8.col-md-offset-2
-  %h1 All users
-
-  - @users.each do |user|
-    - present user do |user_presenter|
-      .card
-        = user_presenter.profile_picture_link(:medium)
+%p περιοχή
+= form_tag users_path, method: :get do
+  = select_tag "state", options_for_select(GC.states)
+  = select_tag "city", options_for_select(GC.cities('att'))
+  = check_box_tag :online
+  = submit_tag 'Search'
+%h1 All users
+- @users.each do |user|
+  - present user do |user_presenter|
+    .col-xs-8.col-sm-3
+      .card.effect5
+        = image_tag user.profile_picture(:medium)
         %span.pull-right
           = "Online now" if user.is_signed_in
-      .card-block
-        %h4.card-title= user.username
-        %p.card-text Age: #{user.age}
-        %p
-          = user_presenter.new_message
-          = user_presenter.like_status
+        .card-block
+          %h5.card-title= user.username
+          %p.card-text Age: #{user.age}
+          %p
+            = user_presenter.new_message
+            = user_presenter.like_status
