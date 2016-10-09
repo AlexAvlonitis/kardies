@@ -312,7 +312,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_votable (~> 0.10.0)
-  aws-sdk
+  aws-sdk (~> 2.3.0)
   bootstrap (~> 4.0.0.alpha4)
   byebug
   capistrano
