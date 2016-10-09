@@ -18,7 +18,7 @@ set :application, 'travelhub'
 set :rails_env, 'production'
 server 'vps193319.ovh.net', user: "#{fetch(:user)}", roles: %w{app db web}, primary: true
 set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
-set :deploy_via, :remote_cache
+# set :deploy_via, :remote_cache
 set :pty, true
 
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml', 'config/puma.rb')
