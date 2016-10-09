@@ -1,4 +1,12 @@
 class UsersIndex < Chewy::Index
+  settings analysis: {
+    analyzer: {
+      default: {
+        tokenizer: 'whitespace'
+      }
+    }
+  }
+
   define_type User.includes(:user_detail) do
     field :username, :email
     field :is_signed_in, type: :boolean

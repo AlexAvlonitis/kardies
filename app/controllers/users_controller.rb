@@ -35,8 +35,8 @@ class UsersController < ApplicationController
 
   def search_params
     all_params = []
-    all_params << params[:state] if params[:state]
-    all_params << params[:city] if params[:city]
+    all_params << params[:state] if params[:state] && !params[:state].blank?
+    all_params << params[:city] if params[:city] && !params[:city].blank?
     all_params << params[:online] if params[:online]
     all_params
   end

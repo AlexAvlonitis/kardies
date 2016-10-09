@@ -23,7 +23,7 @@ class User < ApplicationRecord
     UsersIndex::User.query(
       multi_match: {
         query: query,
-        fields: [ "city^10", :state, :is_signed_in ],
+        fields: [:city, :state]
       }
     ).load
   end
