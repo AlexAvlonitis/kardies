@@ -3,11 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .card {
   margin-top: 10px;
+  min-width: 200px;
+  text-align: center;
+
   img {
-    max-height: 200px;
+    margin: 0 auto;
+    margin-top: 5px;
+    max-height: 210px;
     max-width: 100%;
     display: block;
-    margin: 0 auto;
   }
 
   i.fa-heart-o {
@@ -15,6 +19,25 @@
   }
 
   i.fa-heart { color: $red; }
+
+  .card-top {
+    height: 220px;
+    border-bottom: 1px solid $whitesmoke;
+  }
+
+  span.vertical-border {
+    position: absolute;
+    height: 40px;
+    border-right: 1px solid $whitesmoke;
+  }
+
+  span.message {
+    margin-right: 20px;
+  }
+
+  span.like {
+    margin-left: 20px;
+  }
 
 }
 

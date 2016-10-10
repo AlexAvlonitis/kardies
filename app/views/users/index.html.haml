@@ -1,23 +1,26 @@
-%p Aναζήτηση
-= form_tag users_path, method: :get do
-  = select_tag :state, options_for_select(GC.states),
-                       include_blank: "select nomo",
-                       class: "btn btn-secondary btn-md dropdown-toggle"
-  = select_tag :city, options_for_select(GC.cities('att')),
-                      include_blank: 'select city',
-                      class: "btn btn-secondary btn-md dropdown-toggle"
+%h4 Aναζήτηση
+= form_tag users_path, method: :get, class: "form-inline" do
+  .form-group
+    = select_tag :state, options_for_select(GC.states),
+                         include_blank: "select nomo",
+                         class: "form-control"
+  .form-group
+    = select_tag :city, options_for_select(GC.cities('att')),
+                        include_blank: 'select city',
+                        class: "form-control"
   = submit_tag 'Search', class: "btn btn-success"
-%h1 All users
+
 - @users.each do |user|
   - present user do |user_presenter|
-    .col-xs-8.col-sm-3
+    .col-xs-8.col-sm-4
       .card.effect1
-        = image_tag user.profile_picture(:medium)
+        .card-top
+          = image_tag user.profile_picture(:medium)
         %span.pull-right
           = "Online now" if user.is_signed_in
         .card-block
           %h5.card-title= user.username
           %p.card-text Age: #{user.age}
-          %p
-            = user_presenter.new_message
-            = user_presenter.like_status
+          %span.message= user_presenter.new_message
+          %span.vertical-border
+          %span.like= user_presenter.like_status
