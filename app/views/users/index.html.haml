@@ -1,15 +1,4 @@
-%h4 Aναζήτηση
-= form_tag users_path, method: :get, class: "form-inline" do
-  .form-group
-    = select_tag :state, options_for_select(GC.states),
-                         include_blank: "select nomo",
-                         class: "form-control"
-  .form-group
-    = select_tag :city, options_for_select(GC.cities('att')),
-                        include_blank: 'select city',
-                        class: "form-control"
-  = submit_tag 'Search', class: "btn btn-success"
-
+= render 'search'
 - @users.each do |user|
   - present user do |user_presenter|
     .col-xs-8.col-sm-4
