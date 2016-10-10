@@ -1,5 +1,5 @@
 - if user_signed_in?
-  %nav.navbar.navbar-full.navbar-dark.bg-primary
+  %nav.navbar.navbar-full
     %ul.nav.navbar-nav
       %li.nav-item= link_to 'Home', root_path, class: "nav-link active"
       %li.nav-item= link_to "My messages", conversations_path(box: :inbox), class: "nav-link"

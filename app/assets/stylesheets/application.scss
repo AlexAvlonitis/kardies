@@ -13,15 +13,23 @@
  */
  @import "bootstrap";
  @import "font-awesome";
+ @import "chosen";
  @import "colors";
  @import "users";
 
+
 body {
-  background-color: #FDF3E7;
+  background-color: #EFEFEF;
 }
 
 .navbar {
   margin-bottom: 20px;
+  background-color: #4484CE;
+
+  li > a {
+    font-size: 1.2em;
+    color: $white;
+  }
 }
 
 .messages {
