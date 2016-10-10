@@ -1,8 +1,10 @@
-.col-sm-3
-  %ul.nav.nav-pills.nav-stacked
-    = mailbox_section 'inbox', @box
-    = mailbox_section 'sent', @box
-    = mailbox_section 'trash', @box
+.col-sm-2
+  .list-group
+    =link_to conversations_path(box: 'inbox'), class: "list-group-item list-group-item-action" do
+      %span.tag.tag-default.tag-pill.pull-xs-right= current_user.unread_inbox_count
+      Inbox
+    =link_to 'Sent', conversations_path(box: 'sent'), class: "list-group-item list-group-item-action"
+    =link_to 'Trash', conversations_path(box: 'trash'), class: "list-group-item list-group-item-action"
 
 .col-sm-9
   - if @box == 'trash'

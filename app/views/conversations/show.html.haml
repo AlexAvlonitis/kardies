@@ -1,25 +1,27 @@
-%p Chatting with
-= render 'conversations/participants', conversation: @conversation
+.col-sm-2
+  %p Chatting with
+  = render 'conversations/participants', conversation: @conversation
 
-.panel.panel-default
-  .panel-heading
-    = @conversation.subject
+.col-sm-9
+  .panel.panel-default
+    .panel-heading
+      = @conversation.subject
 
-  .panel-body
-    .messages
-      - @conversation.receipts_for(current_user).each do |receipt|
-        .media
-          - message = receipt.message
-          .media-left
-            = image_tag message.sender.profile_picture
-            = message.sender.full_name
+    .panel-body
+      .messages
+        - @conversation.receipts_for(current_user).each do |receipt|
+          .media
+            - message = receipt.message
+            .media-left
+              = image_tag message.sender.profile_picture
+              = message.sender.full_name
 
-          .media-body
-            %h6.media-heading= message.sender.name
-            %p says at: #{message.created_at.strftime("%-d %B %Y, %H:%M:%S")}
-            %p= message.body
+            .media-body
+              %p= message.body
+              %p.small= message.created_at.strftime("%-d %B %Y, %H:%M:%S")
+          %hr
 
-= form_tag reply_conversation_path(@conversation), method: :post do
-  .form-group
-    = text_area_tag 'body', nil, cols: 3, class: 'form-control', placeholder: 'Type something...', required: true
-  = submit_tag "Send Message", class: 'btn btn-primary'
+  = form_tag reply_conversation_path(@conversation), method: :post do
+    .form-group
+      = text_area_tag 'body', nil, cols: 3, class: 'form-control', placeholder: 'Type something...', required: true
+    = submit_tag "Send Message", class: 'btn btn-primary'

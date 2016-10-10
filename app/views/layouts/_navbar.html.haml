@@ -2,7 +2,7 @@
   %nav.navbar.navbar-full.navbar-dark.bg-primary
     %ul.nav.navbar-nav
       %li.nav-item= link_to 'Home', root_path, class: "nav-link active"
-      %li.nav-item= link_to "My messages", conversations_path, class: "nav-link"
+      %li.nav-item= link_to "My messages", conversations_path(box: :inbox), class: "nav-link"
       %li.nav-item= link_to "All users", users_path, class: "nav-link"
       %li.nav-item= link_to "My likes", my_likes_user_path(current_user), class: "nav-link"
     %p.pull-right
