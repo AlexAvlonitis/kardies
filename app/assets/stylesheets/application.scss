@@ -22,13 +22,32 @@ body {
   background-color: #EFEFEF;
 }
 
-.navbar {
+nav {
   margin-bottom: 20px;
   background-color: #4484CE;
 
   li > a {
-    font-size: 1.2em;
     color: $white;
+  }
+
+  .navbar-brand {
+    color: $black;
+  }
+
+  .navbar-login {
+    width: 305px;
+    padding: 10px;
+    padding-bottom: 0px;
+  }
+
+  .navbar-login-session {
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+  }
+
+  .icon-size {
+    font-size: 87px;
   }
 }
 

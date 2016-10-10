@@ -1,13 +1,36 @@
 - if user_signed_in?
-  %nav.navbar.navbar-full
-    %ul.nav.navbar-nav
-      %li.nav-item= link_to 'Home', root_path, class: "nav-link active"
-      %li.nav-item= link_to "My messages", conversations_path(box: :inbox), class: "nav-link"
-      %li.nav-item= link_to "All users", users_path, class: "nav-link"
-      %li.nav-item= link_to "My likes", my_likes_user_path(current_user), class: "nav-link"
-    %p.pull-right
-      = link_to 'Edit my profile', edit_user_registration_path,
-                                   class: "btn btn-sm btn-success"
-      = link_to "Sign out", destroy_user_session_path,
-                            method: :delete,
-                            class: "btn btn-danger"
+  %nav.navbar-full{"role" => 'navigation' }
+    .container
+      %button.navbar-toggler.hidden-sm-up{"aria-controls" => "exCollapsingNavbar2", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#exCollapsingNavbar2", "data-toggle" => "collapse", type: "button"}
+        &#9776;
+      #exCollapsingNavbar2.collapse.navbar-toggleable-xs
+        = link_to 'Etero Imisi', root_path, class: "navbar-brand"
+        %ul.nav.navbar-nav
+          %li.nav-item= link_to "My messages", conversations_path(box: :inbox), class: "nav-link"
+          %li.nav-item= link_to "All users", users_path, class: "nav-link"
+          %li.nav-item= link_to "My likes", my_likes_user_path(current_user), class: "nav-link"
+        .pull-right
+          .dropdown
+            %button.dropdownMenuButton.btn.btn-info.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
+              %strong Account
+            .dropdown-menu.dropdown-menu-right
+              .navbar-login
+                .row
+                  .col-lg-4
+                    %p.text-center
+                      = image_tag current_user.profile_picture(:thumb)
+                  .col-lg-8
+                    %p.text-left
+                      %strong= current_user.full_name
+                    %p.text-left.small= current_user.email
+                    %p.text-left
+                      = link_to 'Edit my profile', edit_user_registration_path,
+                                                   class: "btn btn-primary btn-block btn-sm"
+              .dropdown-divider
+              .navbar-login.navbar-login-session
+                .row
+                  .col-lg-12
+                    %p
+                      = link_to "Sign out", destroy_user_session_path,
+                                            method: :delete,
+                                            class: "btn btn-danger btn-block"
