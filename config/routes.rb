@@ -12,7 +12,17 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :conversations, only: [:index, :show, :destroy]
+  resources :conversations, only: [:index, :show, :destroy] do
+    member do
+      post :reply
+      post :restore
+      post :mark_as_read
+    end
+    collection do
+      delete :empty_trash
+    end
+  end
+
   get 'messages/:username/new', to: 'messages#new', as: :new_message
   post 'messages', to: 'messages#create', as: :messages
 
