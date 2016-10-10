@@ -5,6 +5,15 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  rescue_from ActiveRecord::RecordNotFound do
+    flash[:alert] = 'Resource not found.'
+    redirect_back_or root_path
+  end
+
+  def redirect_back_or(path)
+    redirect_to request.referer || path
+  end
+
   private
 
   def user_not_authorized

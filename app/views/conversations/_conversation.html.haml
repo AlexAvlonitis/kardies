@@ -1,0 +1,7 @@
+%li.list-group-item.clearfix
+  = link_to conversation.subject, conversation_path(conversation)
+  %p= render 'conversations/participants', conversation: conversation
+  %p= conversation.last_message.body
+  %small
+    %span.text-muted
+      = conversation.last_message.created_at.strftime("%-d %B %Y, %H:%M:%S")

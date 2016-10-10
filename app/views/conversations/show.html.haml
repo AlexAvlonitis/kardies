@@ -1,0 +1,20 @@
+%p Chatting with
+= render 'conversations/participants', conversation: @conversation
+
+.panel.panel-default
+  .panel-heading
+    = @conversation.subject
+
+  .panel-body
+    .messages
+      - @conversation.receipts_for(current_user).each do |receipt|
+        .media
+          - message = receipt.message
+          .media-left
+            = image_tag message.sender.profile_picture
+            = message.sender.full_name
+
+          .media-body
+            %h6.media-heading= message.sender.name
+            %p says at: #{message.created_at.strftime("%-d %B %Y, %H:%M:%S")}
+            %p= message.body

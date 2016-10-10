@@ -1,0 +1,3 @@
+- conversation.participants.each do |participant|
+  - unless participant == current_user
+    = image_tag participant.profile_picture(:thumb)

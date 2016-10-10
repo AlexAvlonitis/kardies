@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :conversations, only: [:index, :show, :destroy]
+  get 'messages/:username/new', to: 'messages#new', as: :new_message
+  post 'messages', to: 'messages#create', as: :messages
+
   # about, removed IDs
   get 'about/edit', to: 'abouts#edit',   as: :edit_about
   put 'about',      to: 'abouts#update', as: :about
