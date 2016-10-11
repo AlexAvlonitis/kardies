@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
 //= require chosen-jquery
+//= require bootstrap
 //= require users
 //= require_tree .
