@@ -1,0 +1,12 @@
+.col-xs-8.col-sm-4{"data-item-id" => "#{index}"}
+  .card.effect1
+    .card-top
+      = image_tag user.profile_picture(:medium)
+    %span.pull-right
+      = "Online now" if user.is_signed_in
+    .card-block
+      %h5.card-title= user.username
+      %p.card-text Age: #{user.age}
+      %span.message= user_presenter.new_message
+      %span.vertical-border
+      %span.like= user_presenter.like_status

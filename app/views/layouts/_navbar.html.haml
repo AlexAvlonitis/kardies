@@ -18,7 +18,7 @@
                 .row
                   .col-lg-4
                     %p.text-center
-                      = image_tag current_user.profile_picture(:thumb)
+                      = image_tag current_user.profile_picture(:thumb), class: "icon-size"
                   .col-lg-8
                     %p.text-left
                       %strong= current_user.full_name

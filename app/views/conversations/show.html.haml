@@ -13,7 +13,7 @@
           .media
             - message = receipt.message
             .media-left
-              = image_tag message.sender.profile_picture
+              = image_tag message.sender.profile_picture, class: "icon-size"
               = message.sender.full_name
 
             .media-body
