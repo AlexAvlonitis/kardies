@@ -14,13 +14,19 @@ class UsersController < ApplicationController
   end
 
   def like
-    @user.liked_by current_user
-    redirect_to users_path
+    if @user.liked_by current_user
+      render json: @user, status: 201
+    else
+      render json: { errors: @user.errors }, status: 422
+    end
   end
 
   def unlike
-    @user.unliked_by current_user
-    redirect_to users_path
+    if @user.unliked_by current_user
+      render json: @user, status: 201
+    else
+      render json: { errors: @user.errors }, status: 422
+    end
   end
 
   def my_likes

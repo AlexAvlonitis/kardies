@@ -6,3 +6,18 @@ $(document).ready ->
   $('.chosen-select').chosen
     allow_single_deselect: true
     no_results_text: 'No results matched'
+
+  $('.like-link').on("ajax:success", (e, data, status, xhr) ->
+    username  = this.id.split("_");
+    getID = this.id
+    url = this.href
+
+    if url.includes("dislike")
+      this.href = '/users/' + username[1] + "/like"
+      $('#'+getID).html('<i class="fa fa-heart-o fa-2x"></i>')
+    else
+      this.href = '/users/' + username[1] + "/dislike"
+      $('#'+getID).html('<i class="fa fa-heart fa-2x"></i>')
+  ).on "ajax:error", (e, xhr, status, error) ->
+    getID = this.id
+    $('#'+getID).append "<p>ERROR</p>" + error

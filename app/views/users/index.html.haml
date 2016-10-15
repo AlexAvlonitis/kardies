@@ -1,4 +1,4 @@
 = render 'search'
-- @users.each.with_index do |user, index|
+- @users.each do |user|
   - present user do |user_presenter|
-    = render 'users/card', {user: user, user_presenter: user_presenter, index: index}
+    = render 'users/card', {user: user, user_presenter: user_presenter}
