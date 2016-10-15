@@ -11,14 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
  */
+ @import "foundation_and_overrides";
  @import "font-awesome";
  @import "colors";
  @import "users";
 
-
-body {
-  background-color: #EFEFEF;
-}
 
 nav {
   margin-bottom: 20px;
