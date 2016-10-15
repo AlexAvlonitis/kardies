@@ -3,10 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
 
-  $('.chosen-select').chosen
-    allow_single_deselect: true
-    no_results_text: 'No results matched'
-
   $('.like-link').on("ajax:success", (e, data, status, xhr) ->
     username  = this.id.split("_");
     getID = this.id
