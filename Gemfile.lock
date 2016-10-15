@@ -93,10 +93,6 @@ GEM
     chewy (0.8.4)
       activesupport (>= 3.2)
       elasticsearch (>= 1.0.0)
-    chosen-rails (1.5.2)
-      coffee-rails (>= 3.2)
-      railties (>= 3.0)
-      sass-rails (>= 3.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -335,7 +331,6 @@ DEPENDENCIES
   capistrano-upload-config
   capistrano3-puma
   chewy
-  chosen-rails
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
@@ -367,4 +362,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.13.2
+   1.13.3
