@@ -5,8 +5,7 @@
     %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible", }
     %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}
 
-    %title
-      Dougrou
+    %title Dougrou
 
     = csrf_meta_tags
 
@@ -14,7 +13,7 @@
     = javascript_include_tag 'application', "data-turbolinks-track" => true
 
   %body
-    = flash_messages
     = render 'layouts/navbar'
-
-    = yield
+    = render 'layouts/flash_errors'
+    .row
+      = yield

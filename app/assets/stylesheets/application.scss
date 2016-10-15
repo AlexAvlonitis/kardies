@@ -16,35 +16,10 @@
  @import "colors";
  @import "users";
 
-
-nav {
-  margin-bottom: 20px;
-  background-color: #4484CE;
-
-  li > a {
-    color: $white;
+.menu {
+  .edit-profile {
+    margin-right: 1rem;
   }
-
-  .navbar-brand {
-    color: $black;
-  }
-
-  .navbar-login {
-    width: 305px;
-    padding: 10px;
-    padding-bottom: 0px;
-  }
-
-  .navbar-login-session {
-    padding: 10px;
-    padding-bottom: 0px;
-    padding-top: 0px;
-  }
-
-}
-
-.icon-size {
-  max-width: 100px;
 }
 
 .messages {
@@ -52,4 +27,43 @@ nav {
   overflow-y: auto;
   margin-bottom: 1em;
   margin-top: 1em;
+}
+
+.alert-box {
+  margin: 2rem;
+  padding: 1.5rem;
+  background: #f7f7f7;
+  color: #333;
+  border: none;
+  box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+
+  &.success {
+    border-left: 6px solid $success;
+    background: #f7f7f7;
+    color: #333;
+  }
+
+  &.alert {
+    border-left: 6px solid $alert;
+    background: #f7f7f7;
+    color: #333;
+  }
+
+  &.warning {
+    border-left: 6px solid $warning;
+    background: #f7f7f7;
+    color: #333;
+  }
+
+  &.info {
+    border-left: 6px solid $info;
+    background: #f7f7f7;
+    color: #333;
+  }
+
+  .close {
+    font-size: 2rem;
+    line-height: 1.25rem;
+    color: $aluminium;
+  }
 }

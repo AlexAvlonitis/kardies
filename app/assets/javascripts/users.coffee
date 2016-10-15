@@ -16,4 +16,4 @@ $(document).on 'turbolinks:load', ->
       $('#'+getID).html('<i class="fa fa-heart fa-2x"></i>')
   ).on "ajax:error", (e, xhr, status, error) ->
     getID = this.id
-    $('#'+getID).append "<p>ERROR</p>" + error
+    alert('Something went wrong, check your internet connection')
