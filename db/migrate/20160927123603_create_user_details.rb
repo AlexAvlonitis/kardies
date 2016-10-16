@@ -4,7 +4,7 @@ class CreateUserDetails < ActiveRecord::Migration[5.0]
       t.belongs_to :user, index: true, unique: true, foreign_key: true
       t.string :city, null: false
       t.string :gender, null: false
-      t.date   :age, null: false
+      t.string :age, null: false
       t.attachment :profile_picture
     end
   end

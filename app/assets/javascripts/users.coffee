@@ -4,6 +4,7 @@
 $(document).on 'turbolinks:load', ->
 
   $('.city-selection').hide()
+  $('.city-selection-label').hide()
 
   $('.like-link').on("ajax:success", (e, data, status, xhr) ->
     username  = this.id.split("_");
@@ -31,3 +32,4 @@ $(document).on 'turbolinks:load', ->
         $('.city-selection').append opt
         $('.city-selection-not-hidden').append opt
     $('.city-selection').show()
+    $('.city-selection-label').show()

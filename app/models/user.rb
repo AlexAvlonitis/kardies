@@ -37,7 +37,7 @@ class User < ApplicationRecord
   end
 
   def age
-    current_age(self.user_detail.age)
+    self.user_detail.age
   end
 
   def state
@@ -54,12 +54,5 @@ class User < ApplicationRecord
 
   def mailboxer_email(object)
     self.email
-  end
-
-  private
-
-  def current_age(dob)
-    now = Time.now.utc.to_date
-    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 end

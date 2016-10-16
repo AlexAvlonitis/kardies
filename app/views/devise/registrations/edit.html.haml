@@ -1,17 +1,16 @@
-.col-md-4.col-md-offset-4
+.small-12.columns
   %h2
     Edit #{resource_name.to_s.humanize}
     = link_to 'About me', edit_about_path
   = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
 
     = f.fields_for :user_detail do |d|
-      = d.file_field :profile_picture, as: :file, label: 'Profile Picture'
+      %label.button{"for" => "picUpload"} Upload Profile Picture
+      = d.file_field :profile_picture, as: :file, class: "show-for-sr", id: "picUpload"
       = d.select :state, GC.states, {selected: current_user.state}, {class: "state-selection"}
       = d.select :city,  GC.cities('att'), {selected: current_user.city}, {class: "city-selection-not-hidden"}
       = d.collection_radio_buttons :gender, [['male', 'Male'], ['female', 'Female']], :first, :last
-      = d.date_field :age, as: :date, start_year: Date.today.year - 90,
-                                 end_year: Date.today.year - 12,
-                                 order: [:day, :month, :year]
+      = d.select :age, options_for_select((16..99).step(1), current_user.age)
 
     = f.text_field :username
     = f.email_field :email
@@ -27,7 +26,8 @@
     %i (we need your current password to confirm your changes)
     = f.password_field :current_password
 
-    = f.submit "Update", class: "button primary"
+
+    = f.submit "Update", class: "button primary expanded"
   %h3 Cancel my account
   = button_to "Cancel my account", registration_path(resource_name),
                                               data: { confirm: "Προσοχή, ο λογαριασμός σας θα διαγραφεί ολοκληρωτικά" },

@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20161010143220) do
     t.integer  "user_id"
     t.string   "city",                         null: false
     t.string   "gender",                       null: false
-    t.date     "age",                          null: false
+    t.string   "age",                          null: false
     t.string   "profile_picture_file_name"
     t.string   "profile_picture_content_type"
     t.integer  "profile_picture_file_size"

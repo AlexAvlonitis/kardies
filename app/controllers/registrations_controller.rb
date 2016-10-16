@@ -25,7 +25,7 @@ class RegistrationsController < Devise::RegistrationsController
     [
       :username, :email, :password, :password_confirmation, :current_password,
       user_detail_attributes: [
-        :id, :city, :age, :state, :gender, :age, :profile_picture
+        :id, :city, :state, :gender, :age, :profile_picture
       ]
     ]
   end
