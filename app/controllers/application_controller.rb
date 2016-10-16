@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:cities]
   protect_from_forgery with: :exception
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized

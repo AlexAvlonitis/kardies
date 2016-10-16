@@ -6,8 +6,8 @@
 
     = f.fields_for :user_detail do |d|
       = d.file_field :profile_picture, as: :file, label: 'Profile Picture'
-      = d.select :state, GC.states, {}, {class: "state-selection"}
-      = d.select :city,  GC.cities('att'), {}, {class: "city-selection"}
+      = d.select :state, GC.states, {selected: current_user.state}, {class: "state-selection"}
+      = d.select :city,  GC.cities('att'), {selected: current_user.city}, {class: "city-selection-not-hidden"}
       = d.collection_radio_buttons :gender, [['male', 'Male'], ['female', 'Female']], :first, :last
       = d.date_field :age, as: :date, start_year: Date.today.year - 90,
                                  end_year: Date.today.year - 12,
