@@ -1,11 +1,11 @@
 .col-md-4.col-md-offset-4
   %h2 About Me
-  = simple_form_for @about, url: about_path, html: { method: :put } do |f|
+  = form_for @about, url: about_path, html: { method: :put } do |f|
 
-    = f.input :job
-    = f.input :hobby
-    = f.input :relationship_status
-    = f.input :looking_for
-    = f.input :description
+    = f.text_field :job
+    = f.text_field :hobby
+    = f.text_field :relationship_status
+    = f.text_field :looking_for
+    = f.text_field :description
 
     = f.submit "Save", class: "btn btn-lg btn-primary"

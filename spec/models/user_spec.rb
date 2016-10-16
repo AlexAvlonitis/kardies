@@ -12,21 +12,4 @@ RSpec.describe User do
   it { should have_one(:user_detail) }
   it { should have_one(:about) }
 
-  context 'methods' do
-    let(:user) { FactoryGirl.create(:user) }
-
-    context "full name complete exists" do
-      it "is expected to return the full name" do
-        expect(user.full_name).to eq "#{user.user_detail.first_name} #{user.user_detail.last_name}"
-      end
-    end
-
-    context "full name doesn't exist" do
-      it "is expected to return nothing" do
-        user.user_detail.first_name = nil
-        expect(user.full_name).to eq nil
-      end
-    end
-  end
-
 end

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'cities/:state', to: 'places#cities'
+
   get 'messages/:username/new', to: 'messages#new', as: :new_message
   post 'messages', to: 'messages#create', as: :messages
 

@@ -22,8 +22,11 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def allow_params
-    [ :username, :email, :password, :password_confirmation, :current_password,
-      user_detail_attributes: [ :id, :first_name, :last_name, :city, :age,
-                                :state, :gender, :age, :profile_picture ]]
+    [
+      :username, :email, :password, :password_confirmation, :current_password,
+      user_detail_attributes: [
+        :id, :city, :age, :state, :gender, :age, :profile_picture
+      ]
+    ]
   end
 end

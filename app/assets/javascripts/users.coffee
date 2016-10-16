@@ -3,11 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on 'turbolinks:load', ->
 
+  $('.city-selection').hide()
+
   $('.like-link').on("ajax:success", (e, data, status, xhr) ->
     username  = this.id.split("_");
     getID = this.id
     url = this.href
-
     if url.includes("dislike")
       this.href = '/users/' + username[1] + "/like"
       $('#'+getID).html('<i class="fa fa-heart-o fa-2x"></i>')
@@ -17,3 +18,14 @@ $(document).on 'turbolinks:load', ->
   ).on "ajax:error", (e, xhr, status, error) ->
     getID = this.id
     alert('Something went wrong, check your internet connection')
+
+
+  $('.state-selection').change ->
+
+    $.getJSON '/cities/' + $(this).val(), (data) ->
+
+      $('.city-selection').empty()
+      $.each data, (key, val) ->
+        opt = '<option value=' + val[1] + '>' + val[0] + '</option>'
+        $('.city-selection').append opt
+    $('.city-selection').show()

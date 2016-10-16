@@ -2,38 +2,35 @@
   %h2
     Edit #{resource_name.to_s.humanize}
     = link_to 'About me', edit_about_path
-  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
 
-    = f.simple_fields_for :user_detail do |d|
-      = d.input :profile_picture, as: :file, label: 'Profile Picture'
-      = d.input :first_name
-      = d.input :last_name
-      = d.input :state, collection: GC.states
-      = d.input :city, collection: GC.cities('att')
+    = f.fields_for :user_detail do |d|
+      = d.file_field :profile_picture, as: :file, label: 'Profile Picture'
+      = d.select :state, GC.states, {}, {class: "state-selection"}
+      = d.select :city,  GC.cities('att'), {}, {class: "city-selection"}
       = d.collection_radio_buttons :gender, [['male', 'Male'], ['female', 'Female']], :first, :last
-      = d.input :age, as: :date, start_year: Date.today.year - 90,
+      = d.date_field :age, as: :date, start_year: Date.today.year - 90,
                                  end_year: Date.today.year - 12,
                                  order: [:day, :month, :year]
 
-    = f.input :username
-    = f.input :email
+    = f.text_field :username
+    = f.email_field :email
 
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       %div
         Currently waiting confirmation for: #{resource.unconfirmed_email}
 
     %i (leave blank if you don't want to change it)
-    = f.input :password
-    = f.input :password_confirmation
+    = f.password_field :password
+    = f.password_field :password_confirmation
 
     %i (we need your current password to confirm your changes)
-    = f.input :current_password
+    = f.password_field :current_password
 
-    = f.submit "Update", class: "btn btn-lg btn-primary"
+    = f.submit "Update", class: "button primary"
   %h3 Cancel my account
-  %p Unhappy?
   = button_to "Cancel my account", registration_path(resource_name),
-                                              data: { confirm: "Are you sure?" },
+                                              data: { confirm: "Προσοχή, ο λογαριασμός σας θα διαγραφεί ολοκληρωτικά" },
                                               method: :delete,
-                                              class: 'btn btn-md btn-danger'
+                                              class: 'button alert'
   = link_to "Back", :back

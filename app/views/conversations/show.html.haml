@@ -14,7 +14,7 @@
             - message = receipt.message
             .media-left
               = image_tag message.sender.profile_picture, class: "icon-size"
-              = message.sender.full_name
+              = message.sender.username
 
             .media-body
               %p= message.body

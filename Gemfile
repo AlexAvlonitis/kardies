@@ -37,7 +37,6 @@ gem "paperclip", "~> 5.0.0"
 gem "pundit"
 gem 'foundation-rails'
 gem "font-awesome-rails"
-gem 'simple_form'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'greek-cities', '~> 0.0.1'
 gem 'chewy'

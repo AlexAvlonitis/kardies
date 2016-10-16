@@ -1,14 +1,12 @@
-.col-md-4.col-md-offset-4
+.medium-12.columns
   %h2 Log in
-  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    .field
-      = f.input :email, autofocus: true
-    .field
-      = f.input :password, autocomplete: "off"
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    = f.email_field :email, autofocus: true
+    = f.password_field :password, autocomplete: "off"
+    = f.submit "Log in", class: "button primary"
     - if devise_mapping.rememberable?
-      .field
+      .row
         = f.check_box :remember_me
         = f.label :remember_me
-    .actions
-      = f.submit "Log in"
-  = render "devise/shared/links"
+
+  .row= render "devise/shared/links"

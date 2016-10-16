@@ -13,7 +13,7 @@ class UserDetail < ApplicationRecord
     size:         { in: 0..5.megabytes },
     content_type: { content_type: /^image\/(jpeg|png|gif|tiff)$/ }
 
-  validates_presence_of :first_name, :last_name, :city, :age, :gender, :state
+  validates_presence_of :city, :age, :gender, :state
   validates :gender, inclusion: { in: %w(male female),
     message: "%{value} is not a valid gender" }
   validate :states_are_included_in_the_list

@@ -1,4 +1,4 @@
 - conversation.participants.each do |participant|
   - unless participant == current_user
     = image_tag participant.profile_picture, class: "icon-size"
-    %p= participant.full_name
+    %p= participant.username

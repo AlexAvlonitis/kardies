@@ -1,7 +1,7 @@
 - present @user do |user_presenter|
   .col-md-8
     %h1
-      = @user.full_name
+      = @user.username
     = image_tag @user.profile_picture(:medium), class: "img-rounded"
     %p= user_presenter.new_message
 

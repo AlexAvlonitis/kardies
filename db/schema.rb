@@ -79,8 +79,6 @@ ActiveRecord::Schema.define(version: 20161010143220) do
 
   create_table "user_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.string   "first_name",                   null: false
-    t.string   "last_name",                    null: false
     t.string   "city",                         null: false
     t.string   "gender",                       null: false
     t.date     "age",                          null: false
