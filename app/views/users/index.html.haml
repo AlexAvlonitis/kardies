@@ -1,4 +1,5 @@
 = render 'search'
-- @users.each do |user|
-  - present user do |user_presenter|
-    = render 'users/card', {user: user, user_presenter: user_presenter}
+.large-10.columns.all-users
+  - @users.each do |user|
+    - present user do |user_presenter|
+      = render 'users/card', {user: user, user_presenter: user_presenter}

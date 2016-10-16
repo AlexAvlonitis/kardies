@@ -1,11 +1,11 @@
-%h4 Aναζήτηση
-= form_tag users_path, method: :get, class: "form-inline" do
-  .form-group
-    = select_tag :state, options_for_select(GC.states),
-                         include_blank: "select nomo",
-                         class: "form-control"
-  .form-group
-    = select_tag :city, options_for_select(GC.cities('att')),
-                        include_blank: 'select city',
-                        class: "form-control"
-  = submit_tag 'Search', class: "btn btn-success"
+.large-2.medium-3.large-2.columns.side-search
+  %h4 Aναζήτηση
+  = form_tag users_path, method: :get, class: "form" do
+    .row
+      = select_tag :state, options_for_select(GC.states),
+                           include_blank: "select nomo"
+    .row
+      = select_tag :city, options_for_select(GC.cities('att')),
+                          include_blank: 'select city'
+    .row
+      = submit_tag 'Search', class: "button success expanded hollow"

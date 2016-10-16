@@ -16,10 +16,23 @@
  @import "colors";
  @import "users";
 
-.menu {
-  .edit-profile {
-    margin-right: 1rem;
+
+.edit-profile {
+  margin-right: 1rem;
+}
+
+.top-bar {
+  background-color: $fbblue;
+  margin-bottom: 2.5rem;
+
+  .top-bar-left a {
+    color: white;
   }
+
+  .top-bar-left li {
+    background-color: $fbblue;
+  }
+
 }
 
 .messages {
