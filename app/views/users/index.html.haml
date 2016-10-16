@@ -2,4 +2,6 @@
 .large-10.columns.all-users
   - @users.each do |user|
     - present user do |user_presenter|
-      = render 'users/card', {user: user, user_presenter: user_presenter}
+      = render partial: 'users/card', locals: {user: user, user_presenter: user_presenter}
+.row
+  = paginate @users

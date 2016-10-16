@@ -37,7 +37,9 @@ class User < ApplicationRecord
   end
 
   def age
-    self.user_detail.age
+    Rails.cache.fetch([:user_detail, user_detail.id, :age], expires_in: 30.minutes) do
+      self.user_detail.age
+    end
   end
 
   def state
@@ -45,7 +47,9 @@ class User < ApplicationRecord
   end
 
   def profile_picture(size = :thumb)
-    self.user_detail.profile_picture.url(size)
+    Rails.cache.fetch([:user_detail, user_detail.id, :profile_picture], expires_in: 30.minutes) do
+      self.user_detail.profile_picture.url(size)
+    end
   end
 
   def to_param

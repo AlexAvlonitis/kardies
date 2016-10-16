@@ -1,5 +1,6 @@
 class UserDetail < ApplicationRecord
   belongs_to :user, optional: true
+  after_update :flush_age_cache, :flush_profile_picture_cache
 
   update_index('users#user') { user }
 
@@ -27,6 +28,14 @@ class UserDetail < ApplicationRecord
   }
 
   private
+
+  def flush_age_cache
+    Rails.cache.delete([:user_detail, id, :age]) if age_changed?
+  end
+
+  def flush_profile_picture_cache
+    Rails.cache.delete([:user_detail, id, :profile_picture]) if profile_picture?
+  end
 
   def states_are_included_in_the_list
     if GC.states.select { |x| x.include?(state) }.empty?

@@ -7,7 +7,7 @@ $(document).on 'turbolinks:load', ->
   $('.city-selection-label').hide()
 
   $('.like-link').on("ajax:success", (e, data, status, xhr) ->
-    username  = this.id.split("_");
+    username  = this.id.split("__");
     getID = this.id
     url = this.href
     if url.includes("dislike")

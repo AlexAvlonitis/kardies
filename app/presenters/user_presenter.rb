@@ -3,11 +3,11 @@ class UserPresenter < BasePresenter
 
   def like_status
     if ! h.current_user.voted_for? user
-      h.link_to h.like_user_path(user), method: :put, remote: true, class: 'like-link', id: "like_#{user.username}" do
+      h.link_to h.like_user_path(user), method: :put, remote: true, class: 'like-link', id: "like__#{user.username}" do
         h.fa_icon "heart-o 2x"
       end
     else
-      h.link_to h.dislike_user_path(user), method: :put, remote: true, class: 'like-link', id: "like_#{user.username}" do
+      h.link_to h.dislike_user_path(user), method: :put, remote: true, class: 'like-link', id: "like__#{user.username}" do
         h.fa_icon "heart 2x"
       end
     end

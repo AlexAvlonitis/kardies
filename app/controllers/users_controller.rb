@@ -4,9 +4,9 @@ class UsersController < ApplicationController
 
   def index
     if search_params.present?
-      @users = User.search(search_params)
+      @users = User.search(search_params).page params[:page]
     else
-      @users = User.all_except(current_user).order(is_signed_in: :desc)
+      @users = User.all_except(current_user).order(is_signed_in: :desc).page params[:page]
     end
   end
 

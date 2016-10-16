@@ -2,8 +2,8 @@ FactoryGirl.define do
 
   factory :user_detail do
     state       'att'
-    city        { FFaker::Address.city }
-    age         34
+    city        'holargos-ATT'
+    age         '32'
     gender      'male'
   end
 
