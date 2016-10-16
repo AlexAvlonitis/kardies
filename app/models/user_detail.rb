@@ -15,7 +15,7 @@ class UserDetail < ApplicationRecord
 
   validates_presence_of :city, :age, :gender, :state
   validates :gender, inclusion: {
-    in: %w(male female),
+    in: %w(male female other),
     message: "%{value} is not a valid gender"
   }
 
