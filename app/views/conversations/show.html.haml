@@ -1,27 +1,17 @@
-.col-sm-2
+.small-2.columns
   %p Chatting with
   = render 'conversations/participants', conversation: @conversation
 
-.col-sm-9
+.small-9.columns
   .panel.panel-default
     .panel-heading
       = @conversation.subject
 
-    .panel-body
-      .messages
+    .media-object{"id" => "conversation", "conversation-id" => "#{@conversation.id}"}
+      .media-object-section{"id" => "messages"}
         - @conversation.receipts_for(current_user).each do |receipt|
-          .media
-            - message = receipt.message
-            .media-left
-              = image_tag message.sender.profile_picture, class: "icon-size"
-              = message.sender.username
-
-            .media-body
-              %p= message.body
-              %p.small= message.created_at.strftime("%-d %B %Y, %H:%M:%S")
-          %hr
+          = render partial: 'conversations/message', locals: { receipt: receipt }
 
   = form_tag reply_conversation_path(@conversation), method: :post do
-    .form-group
-      = text_area_tag 'body', nil, cols: 3, class: 'form-control', placeholder: 'Type something...', required: true
-    = submit_tag "Send Message", class: 'btn btn-primary'
+    = text_area_tag 'body', nil, cols: 3, class: 'form-control', placeholder: 'Type something...', required: true, "data-behaviour" => "message_speaker"
+    = submit_tag "Send Message", class: 'button success'

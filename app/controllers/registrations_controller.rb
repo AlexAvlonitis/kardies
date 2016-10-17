@@ -3,6 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
   def new
     super do
       resource.build_user_detail
+      set_cookie
     end
   end
 
