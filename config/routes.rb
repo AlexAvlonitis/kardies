@@ -3,8 +3,7 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :users, param: :username, only: [:index, :show],
-                            constraints: { username: /[0-z\.]+/ } do
+  resources :users, param: :username, only: [:index, :show] do
     member do
       put "like", to: "users#like"
       put "dislike", to: "users#unlike"
