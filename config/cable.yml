@@ -7,4 +7,4 @@ test:
 
 production:
   adapter: redis
-  url: redis://127.0.0.1:6379
+  url: redis://vps193319.ovh.net:6379
