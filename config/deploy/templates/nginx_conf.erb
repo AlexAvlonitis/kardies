@@ -42,8 +42,6 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
     proxy_redirect off;
-    proxy_buffers 8 32k;
-    proxy_buffer_size 64k;
 
 <% if fetch(:nginx_use_ssl) %>
     proxy_set_header X-Forwarded-Proto https;
@@ -55,7 +53,7 @@ server {
   }
 
   location /cable {
-    proxy_pass http://vps193319.ovh.net:6379;
+    proxy_pass http://127.0.0.1:6379;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
