@@ -46,9 +46,9 @@ Rails.application.configure do
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
   config.action_cable.url = 'ws://vps193319.ovh.net/cable'
-  # config.action_cable.allowed_request_origins = [ 'http://vps193319.ovh.net', 'http://localhost', 'http://127.0.0.1' ]
+  config.action_cable.allowed_request_origins = [ 'http://vps193319.ovh.net', 'http://localhost', 'http://127.0.0.1' ]
 
-  config.action_cable.disable_request_forgery_protection = true
+  # config.action_cable.disable_request_forgery_protection = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -61,7 +61,7 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
+  # config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
