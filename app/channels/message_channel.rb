@@ -14,13 +14,13 @@ class MessageChannel < ApplicationCable::Channel
     broadcast(conversation)
   end
 
+  private
+
   def broadcast(conversation)
     ActionCable.server.broadcast "conversation_#{conversation.id}", {
       message: render_message(conversation.messages.last)
     }
   end
-
-  private
 
   def render_message(message)
     ApplicationController.renderer.render(partial: 'conversations/message', locals: {message: message})

@@ -1,5 +1,6 @@
-$(document).on 'turbolinks:load', ->
+$ ->
   conversation_id = $('#conversation').attr('conversation-id')
+
   App.message = App.cable.subscriptions.create { channel: "MessageChannel", conversation_id: conversation_id },
     connected: ->
       # Called when the subscription is ready for use on the server

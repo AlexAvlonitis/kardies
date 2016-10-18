@@ -12,10 +12,9 @@
 # //
 #= require jquery
 #= require jquery_ujs
-#= require turbolinks
 #= require foundation
 #= require users
 #= require_tree .
 
-$(document).on 'turbolinks:load', ->
+$ ->
   $(document).foundation()
