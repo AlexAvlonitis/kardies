@@ -1,9 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController
+  include Devise::Controllers::Helpers
+
+  after_action :set_cookie, only: :create
 
   def new
     super do
       resource.build_user_detail
-      set_cookie
     end
   end
 
