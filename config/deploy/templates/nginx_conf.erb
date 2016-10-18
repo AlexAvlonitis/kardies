@@ -11,6 +11,7 @@ end
 %><% @backends.each do |server|  %>
   <%= server %><% end %>
 }
+
 <% if fetch(:nginx_use_ssl) %>
 server {
   listen 80;
@@ -57,7 +58,6 @@ server {
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
-    proxy_set_header Host $host;
   }
 
   location ^~ /assets/ {
