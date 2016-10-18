@@ -27,6 +27,7 @@ server {
 <% else %>
   listen 80;
 <% end %>
+  large_client_header_buffers 8 32k;
 
   client_max_body_size 4G;
   keepalive_timeout 10;
@@ -52,7 +53,6 @@ server {
   }
 
   location /cable{
-    proxy_pass http://puma_<%= fetch(:nginx_config_name) %>;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
