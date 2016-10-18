@@ -39,11 +39,8 @@ server {
   try_files $uri/index.html $uri @puma_<%= fetch(:nginx_config_name) %>;
 
   location @puma_<%= fetch(:nginx_config_name) %> {
-    proxy_http_version 1.1;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "upgrade";
     proxy_redirect off;
 <% if fetch(:nginx_use_ssl) %>
     proxy_set_header X-Forwarded-Proto https;
@@ -52,6 +49,12 @@ server {
     # limit_req zone=one;
     access_log <%= shared_path %>/log/nginx.access.log;
     error_log <%= shared_path %>/log/nginx.error.log;
+  }
+
+  location /cable {
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
   }
 
   location ^~ /assets/ {
