@@ -42,6 +42,9 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
     proxy_redirect off;
+    proxy_buffers 8 32k;
+    proxy_buffer_size 64k;
+
 <% if fetch(:nginx_use_ssl) %>
     proxy_set_header X-Forwarded-Proto https;
 <% end %>
