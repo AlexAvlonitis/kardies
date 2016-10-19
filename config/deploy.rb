@@ -2,7 +2,7 @@
 lock '3.6.1'
 
 set :application, 'travelhub'
-set :repo_url, 'git@bitbucket.org:alexavlonitis/travelhub.git'
+set :repo_url, 'git@github.com:AlexAvlonitis/dougrou.git'
 
 #RBENV#
 set :rbenv_type, :user # or :system, depends on your rbenv setup
