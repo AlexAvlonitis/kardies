@@ -9,12 +9,16 @@ class MessageChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-    conversation = current_user.mailbox.conversations.find_by_id(data['conversation_id'].to_i)
+    conversation = find_conversation(data['conversation_id'])
     current_user.reply_to_conversation(conversation, data['message'])
     broadcast(conversation)
   end
 
   private
+
+  def find_conversation(conversation_id)
+    current_user.mailbox.conversations.find_by_id(conversation_id)
+  end
 
   def broadcast(conversation)
     ActionCable.server.broadcast "conversation_#{conversation.id}", {
