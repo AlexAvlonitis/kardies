@@ -44,8 +44,8 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Mount Action Cable outside main process or domain
-  # config.action_cable.mount_path = nil
-  config.action_cable.allowed_request_origins = [ 'http://vps193319.ovh.net', %r{http://vps193319.*}, %r{http://localhost.*}, 'http://127.0.0.1' ]
+  config.action_cable.mount_path = ('/cable')
+  config.action_cable.allowed_request_origins = [ 'http://vps193319.ovh.net', %r{http://vps193319.*}, %r{http://localhost.*} ]
 
   # config.action_cable.disable_request_forgery_protection = true
 
@@ -60,7 +60,7 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  config.cache_store = :redis_store, 'redis://127.0.0.1:6379/0/cache', { expires_in: 1.day }
+  config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 1.day }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
