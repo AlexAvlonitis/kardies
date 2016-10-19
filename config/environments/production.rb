@@ -45,8 +45,7 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
-  config.action_cable.url = 'ws://127.0.0.1/cable'
-  config.action_cable.allowed_request_origins = [ 'http://vps193319.ovh.net', 'http://localhost', 'http://127.0.0.1' ]
+  config.action_cable.allowed_request_origins = [ 'http://vps193319.ovh.net', %r{http://vps193319.*}, %r{http://localhost.*}, 'http://127.0.0.1' ]
 
   # config.action_cable.disable_request_forgery_protection = true
 
