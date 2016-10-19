@@ -1,7 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-  include Devise::Controllers::Helpers
-
-  after_action :set_cookie, only: :create
 
   def new
     super do

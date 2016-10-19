@@ -13,11 +13,7 @@ class ApplicationController < ActionController::Base
   def redirect_back_or(path)
     redirect_to request.referer || path
   end
-
-  def set_cookie
-    cookies[:user_id] = current_user.id
-  end
-
+  
   private
 
   def user_not_authorized
