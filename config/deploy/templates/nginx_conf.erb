@@ -53,10 +53,10 @@ server {
   }
 
   location /cable {
-    proxy_pass http://localhost:6379;
+    proxy_pass http://localhost/cable;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "Upgrade";
+    proxy_set_header Connection "upgrade";
   }
 
   location ^~ /assets/ {
