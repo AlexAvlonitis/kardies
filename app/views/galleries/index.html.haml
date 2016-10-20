@@ -1,0 +1,14 @@
+%h1 Galleries
+
+%h3 Create a Gallery
+= render 'galleries/form', {gallery: @gallery}
+
+
+- if @galleries
+  - @galleries.each do |gallery|
+    .row
+      = gallery.name
+      = gallery.description
+
+      - gallery.pictures.each do |pic|
+        = image_tag pic.picture.url(:medium)

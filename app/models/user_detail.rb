@@ -12,7 +12,7 @@ class UserDetail < ApplicationRecord
 
   validates_attachment :profile_picture,
     size:         { in: 0..10.megabytes },
-    content_type: { content_type: /^image\/(jpeg|png|gif|tiff)$/ }
+    content_type: { content_type: /^image\/(jpeg|jpg|png|gif|tiff)$/ }
 
   validates_presence_of :city, :age, :gender, :state
   validates :gender, inclusion: {

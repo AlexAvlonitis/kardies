@@ -1,7 +1,9 @@
 .small-12.columns
   %h2
-    Edit #{resource_name.to_s.humanize}
+    Edit #{resource_name.to_s.humanize} /
     = link_to 'About me', edit_about_path
+    \/
+    = link_to 'My Galleries', galleries_path
   = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
 
     = f.fields_for :user_detail do |d|

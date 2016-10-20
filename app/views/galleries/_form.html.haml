@@ -1,0 +1,5 @@
+= form_for gallery, html: {multipart: true} do |f|
+  = f.text_field :name
+  = f.text_field :description
+  = file_field_tag "pictures[]", type: :file, multiple: true
+  = f.submit

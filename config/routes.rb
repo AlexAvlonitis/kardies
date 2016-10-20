@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :galleries
+
   resources :conversations, only: [:index, :show, :destroy] do
     member do
       post :reply
