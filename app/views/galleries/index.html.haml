@@ -7,8 +7,8 @@
 - if @galleries
   - @galleries.each do |gallery|
     .row
-      = gallery.name
-      = gallery.description
+      %h3= gallery.name
+      %p= gallery.description
 
       - gallery.pictures.each do |pic|
         = image_tag pic.picture.url(:medium)

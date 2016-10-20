@@ -1,6 +1,6 @@
 .card.small-1.medium-1.large-3.columns.effect1
   .card-top
-    = image_tag user.profile_picture(:medium)
+    = user_presenter.profile_picture_link(:medium)
   .card-divider
     = "Online now" if user.is_signed_in?
   .card-block

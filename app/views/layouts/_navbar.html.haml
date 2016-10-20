@@ -1,19 +1,20 @@
 - if user_signed_in?
   .top-bar
-    .top-bar-title
-      %span{"data-responsive-toggle" => "responsive-menu", "data-hide-for" => "medium"}
-        %button.menu-icon.dark{"type" => "button", "data-toggle" => ""}
-      %strong= link_to 'Dougrou', root_path
-    #responsive-menu
-      .top-bar-left
-        %ul.menu
-          %li= link_to "My messages", conversations_path(box: :inbox)
-          %li= link_to "All users", users_path
-          %li= link_to "My likes", my_likes_user_path(current_user)
-      .top-bar-right
-        .menu
-          = link_to 'Edit my profile', edit_user_registration_path,
-                                       class: "button edit-profile"
-          = link_to "Sign out", destroy_user_session_path,
-                                method: :delete,
-                                class: "button hollow alert"
+    .row
+      .top-bar-title
+        %span{"data-responsive-toggle" => "responsive-menu", "data-hide-for" => "medium"}
+          %button.menu-icon.dark{"type" => "button", "data-toggle" => ""}
+        %strong= link_to 'Dougrou', root_path
+      #responsive-menu
+        .top-bar-left
+          %ul.menu
+            %li= link_to "My messages", conversations_path(box: :inbox)
+            %li= link_to "All users", users_path
+            %li= link_to "My likes", my_likes_user_path(current_user)
+        .top-bar-right
+          .menu
+            = link_to 'Edit my profile', edit_user_registration_path,
+                                         class: "button edit-profile"
+            = link_to "Sign out", destroy_user_session_path,
+                                  method: :delete,
+                                  class: "button hollow alert"

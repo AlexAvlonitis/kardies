@@ -2,10 +2,10 @@
   %h2 About Me
   = form_for @about, url: about_path, html: { method: :put } do |f|
 
-    = f.text_field :job
-    = f.text_field :hobby
-    = f.text_field :relationship_status
-    = f.text_field :looking_for
-    = f.text_field :description
+    = f.text_field :job, placeholder: 'Job'
+    = f.text_field :hobby, placeholder: 'Hobby'
+    = f.text_field :relationship_status, placeholder: 'Relationship Status'
+    = f.text_field :looking_for, placeholder: 'Looking for'
+    = f.text_area :description, placeholder: 'description'
 
     = f.submit "Save", class: "btn btn-lg btn-primary"

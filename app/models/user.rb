@@ -40,6 +40,26 @@ class User < ApplicationRecord
     self.user_detail.gender
   end
 
+  def job
+    self.about.job if self.about && !self.about.job.blank?
+  end
+
+  def hobby
+    self.about.job if self.about && !self.about.hobby.blank?
+  end
+
+  def relationship_status
+    self.about.relationship_status if self.about && !self.about.relationship_status.blank?
+  end
+
+  def looking_for
+    self.about.looking_for if self.about && !self.about.looking_for.blank?
+  end
+
+  def description
+    self.about.description if self.about && !self.about.description.blank?
+  end
+
   def age
     Rails.cache.fetch([:user_detail, user_detail.id, :age], expires_in: 30.minutes) do
       self.user_detail.age
