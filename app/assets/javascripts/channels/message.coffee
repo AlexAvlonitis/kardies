@@ -19,3 +19,9 @@ $ ->
       App.message.speak event.target.value, conversation_id
       event.target.value = ""
       event.preventDefault()
+
+  $('#conversation-form').submit (event) ->
+    event.preventDefault()
+    message = $('.conversation-message').val()
+    App.message.speak message, conversation_id
+    $('.conversation-message').val("")

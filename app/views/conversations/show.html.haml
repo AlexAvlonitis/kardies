@@ -12,6 +12,6 @@
         - @conversation.receipts_for(current_user).each do |receipt|
           = render partial: 'conversations/message', locals: { receipt: receipt }
 
-  = form_tag reply_conversation_path(@conversation), method: :post do
-    = text_area_tag 'body', nil, cols: 3, class: 'form-control', placeholder: 'Type something...', required: true, "data-behaviour" => "message_speaker"
+  = form_tag reply_conversation_path(@conversation), method: :post, id: 'conversation-form' do
+    = text_area_tag 'body', nil, cols: 3, class: 'form-control conversation-message', placeholder: 'Type something...', required: true, "data-behaviour" => "message_speaker"
     = submit_tag "Send Message", class: 'button success'
