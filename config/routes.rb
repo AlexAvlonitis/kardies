@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'application/index'
+  end
+
   devise_for :user, controllers: { registrations: 'registrations' }
 
   root to: "home#index"
