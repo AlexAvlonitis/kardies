@@ -3,8 +3,9 @@
     %h1
       = @user.username
     = image_tag @user.profile_picture(:medium)
-    %p= user_presenter.new_message
-    %span.like= user_presenter.like_status
+    = user_presenter.new_message
+    %span.like.pull-right= user_presenter.like_status
+    %p= link_to 'Report this user', report_path(@user)
 
     %ul
       %li Lives in: #{@user.city}

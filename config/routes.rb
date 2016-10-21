@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :reports, param: :username, only: [:new, :create, :show]
+
   resources :galleries
 
   resources :conversations, only: [:index, :show, :destroy] do

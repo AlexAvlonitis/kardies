@@ -1,0 +1,6 @@
+%h1 Report user
+= form_for @report do |f|
+  = f.text_field :reason
+  = f.text_area :description
+  = f.hidden_field :username, value: params[:username]
+  = f.submit "Send Report"

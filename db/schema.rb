@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161021115138) do
+ActiveRecord::Schema.define(version: 20161021122517) do
 
   create_table "abouts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -97,6 +97,16 @@ ActiveRecord::Schema.define(version: 20161021115138) do
     t.index ["gallery_id"], name: "index_pictures_on_gallery_id", using: :btree
   end
 
+  create_table "reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "reason"
+    t.text     "description", limit: 65535
+    t.integer  "reporter_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["user_id"], name: "index_reports_on_user_id", using: :btree
+  end
+
   create_table "user_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.string   "city",                         null: false
@@ -149,5 +159,6 @@ ActiveRecord::Schema.define(version: 20161021115138) do
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
   add_foreign_key "pictures", "galleries"
+  add_foreign_key "reports", "users"
   add_foreign_key "user_details", "users"
 end
