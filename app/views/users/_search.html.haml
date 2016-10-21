@@ -7,7 +7,7 @@
                            class: 'state-selection'
     .row
       = select_tag :city, options_for_select(GC.cities('att')),
-                          include_blank: 'Πόλη',
-                          class: 'city-selection'
+                          class: 'city-selection',
+                          include_blank: 'Πόλη'
     .row
       = submit_tag 'Search', class: "button success expanded hollow"
