@@ -2,7 +2,7 @@ class UserDetail < ApplicationRecord
   belongs_to :user, optional: true
   after_update :flush_age_cache, :flush_profile_picture_cache
 
-  update_index('users#user') { user }
+  update_index('users#user') { self }
 
   has_attached_file :profile_picture, styles: {
     medium: "300x300>",

@@ -10,7 +10,7 @@
       %label.button{"for" => "picUpload"} Upload Profile Picture
       = d.file_field :profile_picture, as: :file, class: "show-for-sr", id: "picUpload"
       = d.select :state, GC.states, {selected: current_user.state}, {class: "state-selection"}
-      = d.select :city,  GC.cities('att'), {selected: current_user.city}, {class: "city-selection-not-hidden"}
+      = d.select :city,  GC.cities(current_user.state), {selected: current_user.city}, {class: "city-selection-not-hidden"}
       = d.collection_radio_buttons :gender, [['male', 'Male'], ['female', 'Female']], :first, :last
       = d.select :age, options_for_select((16..99).step(1), current_user.age)
 

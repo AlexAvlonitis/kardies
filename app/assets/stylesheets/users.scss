@@ -41,6 +41,13 @@
   span.like {
     margin-left: 20px;
   }
+
+  .online-now {
+    background-color: $online_green;
+    padding: 0.2rem;
+    border-radius: 5%;
+    font-size: small;
+  }
 }
 
 .effect1{

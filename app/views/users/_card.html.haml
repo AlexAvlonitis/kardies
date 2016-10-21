@@ -1,8 +1,8 @@
 .card.small-1.medium-1.large-3.columns.effect1
   .card-top
-    = user_presenter.profile_picture_link(size: :medium)
+    = user_presenter.online_status
+    = user_presenter.profile_picture_link(:medium)
   .card-divider
-    = "Online now" if user.is_signed_in?
   .card-block
     %h5.card-title= user.username
     %p.card-text Age: #{user.age}

@@ -2,6 +2,13 @@
   %h4 Aναζήτηση
   = form_tag users_path, method: :get, class: "form", id: "search" do
     .row
+      = text_field_tag :username, nil, placeholder: 'Ψευδώνυμο'
+    .row
+      = submit_tag 'Search', class: "button success expanded hollow"
+
+  %h4 Φίλτρα
+  = form_tag users_path, method: :get, class: "form", id: "search" do
+    .row
       = select_tag :state, options_for_select(GC.states),
                            include_blank: "Νομός",
                            class: 'state-selection'
@@ -10,4 +17,12 @@
                           class: 'city-selection',
                           include_blank: 'Πόλη'
     .row
-      = submit_tag 'Search', class: "button success expanded hollow"
+      %p Online Now
+      .switch
+        = check_box_tag :is_signed_in, 'true', false, class: 'switch-input'
+        %label.switch-paddle{"for" => "is_signed_in"}
+          %span.show-for-sr Online Now
+          %span.switch-active{"aria-hidden" => "true", "value" => "true"} Yes
+          %span.switch-inactive{"aria-hidden" => "true", "value" => "false"} No
+    .row
+      = submit_tag 'Update', class: "button primary small expanded hollow"

@@ -6,7 +6,7 @@ class User < ApplicationRecord
   acts_as_messageable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :timeoutable,
          :recoverable, :rememberable, :trackable, :validatable
 
   scope :all_except, ->(user) { where.not(id: user) }
@@ -21,16 +21,16 @@ class User < ApplicationRecord
   # Validations
   validates :username, presence: true, uniqueness: true
   validates_format_of :username,
-                      :with => /\A[^\.]*\Z/,
-                      :message => "should not contain dot!"
+                      with: /\A[^\.]*\Z/,
+                      message: "should not contain dot!"
 
   def self.search(query)
-    UsersIndex::User.query(
-      multi_match: {
-        query: query,
-        fields: [:city, :state]
-      }
-    ).load
+    UsersIndex::User
+      .filter{ state == query[:state] }
+      .filter{ city == query[:city] }
+      .filter{ username == query[:username] }
+      .filter{ is_signed_in == query[:is_signed_in] }
+      .load
   end
 
   def soft_delete

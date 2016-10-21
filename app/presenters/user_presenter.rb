@@ -13,6 +13,10 @@ class UserPresenter < BasePresenter
     end
   end
 
+  def online_status
+    user.is_signed_in ? h.content_tag(:span, "Online now", class: "online-now") : nil
+  end
+
   def new_message
     h.link_to h.new_message_path(user) do
       h.fa_icon "envelope 2x"
@@ -20,7 +24,7 @@ class UserPresenter < BasePresenter
   end
 
   def profile_picture_link(size = :thumb)
-    h.link_to h.user_path(user.username) do
+    h.link_to h.user_path(user) do
       h.image_tag user.profile_picture(size)
     end
   end
