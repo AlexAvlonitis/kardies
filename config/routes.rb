@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     get 'application/index'
+    resources :reports, only: :index
   end
 
   devise_for :user, controllers: { registrations: 'registrations' }
