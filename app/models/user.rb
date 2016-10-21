@@ -45,7 +45,7 @@ class User < ApplicationRecord
   # provide a custom message for a deleted account
   def inactive_message
     !deleted_at ? super : :deleted_account
-  end  
+  end
 
   def city
     self.user_detail.city
@@ -56,27 +56,47 @@ class User < ApplicationRecord
   end
 
   def job
-    self.about.job if self.about && !self.about.job.blank?
+    if self.about && !self.about.job.blank?
+      Rails.cache.fetch([:about, about.id, :job], expires_in: 1.day) do
+        self.about.job
+      end
+    end
   end
 
   def hobby
-    self.about.job if self.about && !self.about.hobby.blank?
+    if self.about && !self.about.hobby.blank?
+      Rails.cache.fetch([:about, about.id, :hobby], expires_in: 1.day) do
+        self.about.job
+      end
+    end
   end
 
   def relationship_status
-    self.about.relationship_status if self.about && !self.about.relationship_status.blank?
+    if self.about && !self.about.relationship_status.blank?
+      Rails.cache.fetch([:about, about.id, :relationship_status], expires_in: 1.day) do
+        self.about.relationship_status
+      end
+    end
   end
 
   def looking_for
-    self.about.looking_for if self.about && !self.about.looking_for.blank?
+    if self.about && !self.about.looking_for.blank?
+      Rails.cache.fetch([:about, about.id, :looking_for], expires_in: 1.day) do
+        self.about.looking_for
+      end
+    end
   end
 
   def description
-    self.about.description if self.about && !self.about.description.blank?
+    if self.about && !self.about.description.blank?
+      Rails.cache.fetch([:about, about.id, :description], expires_in: 1.day) do
+        self.about.description
+      end
+    end
   end
 
   def age
-    Rails.cache.fetch([:user_detail, user_detail.id, :age], expires_in: 30.minutes) do
+    Rails.cache.fetch([:user_detail, user_detail.id, :age], expires_in: 1.day) do
       self.user_detail.age
     end
   end
@@ -86,7 +106,7 @@ class User < ApplicationRecord
   end
 
   def profile_picture(size = :thumb)
-    Rails.cache.fetch([:user_detail, user_detail.id, :profile_picture], expires_in: 30.minutes) do
+    Rails.cache.fetch([:user_detail, user_detail.id, :profile_picture], expires_in: 1.day) do
       self.user_detail.profile_picture.url(size)
     end
   end
