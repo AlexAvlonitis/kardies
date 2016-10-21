@@ -6,6 +6,11 @@ Rails.application.routes.draw do
 
   devise_for :user, controllers: { registrations: 'registrations' }
 
+  devise_scope :user do
+    delete 'delete_user/:username', to: "registrations#admin_destroy", as: :admin_destroy
+    post 'unblock_user/:username', to: "registrations#admin_unblock", as: :admin_unblock
+  end
+
   root to: "home#index"
 
   mount ActionCable.server => '/cable'
