@@ -1,28 +1,29 @@
 .small-12.medium-12.large-2.columns.side-search
-  %h5= t ".search"
+  %h5.text-center= t ".search"
   = form_tag users_path, method: :get, class: "form", id: "search" do
     .row
       = text_field_tag :username, nil, placeholder: "#{t '.username'}"
     .row
       = submit_tag "#{t '.search'}", class: "button success expanded"
 
-  %h5= t ".filters"
-  = form_tag users_path, method: :get, class: "form", id: "search" do
-    .row
-      = select_tag :state, options_for_select(GC.states),
-                           include_blank: "#{t '.state'}",
-                           class: 'state-selection'
-    .row
-      = select_tag :city, options_for_select(GC.cities('att')),
-                          class: 'city-selection',
-                          include_blank: 'Πόλη'
-    .row
-      %p= t ".online_now"
-      .switch
-        = check_box_tag :is_signed_in, 'true', false, class: 'switch-input'
-        %label.switch-paddle{"for" => "is_signed_in"}
-          %span.show-for-sr Online Now
-          %span.switch-active{"aria-hidden" => "true", "value" => "true"}= t '.online_yes'
-          %span.switch-inactive{"aria-hidden" => "true", "value" => "false"}= t '.online_no'
-    .row
-      = submit_tag "#{t '.update'}", class: "button primary small expanded hollow"
+  .filters
+    %h5.text-center= t ".filters"
+    = form_tag users_path, method: :get, class: "form", id: "search" do
+      .row
+        = select_tag :state, options_for_select(GC.states),
+                             include_blank: "#{t '.state'}",
+                             class: 'state-selection'
+      .row
+        = select_tag :city, options_for_select(GC.cities('att')),
+                            class: 'city-selection',
+                            include_blank: 'Πόλη'
+      .row
+        %p= t ".online_now"
+        .switch
+          = check_box_tag :is_signed_in, 'true', false, class: 'switch-input'
+          %label.switch-paddle{"for" => "is_signed_in"}
+            %span.show-for-sr Online Now
+            %span.switch-active{"aria-hidden" => "true", "value" => "true"}= t '.online_yes'
+            %span.switch-inactive{"aria-hidden" => "true", "value" => "false"}= t '.online_no'
+      .row
+        = submit_tag "#{t '.update'}", class: "button primary small expanded hollow"
