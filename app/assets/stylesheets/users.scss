@@ -5,16 +5,15 @@
   border: 1px solid $aluminium;
   margin: 1rem 2.5rem;
   min-width: 200px;
-  border-radius: 5%;
+  border-bottom-left-radius: 5%;
+  border-bottom-right-radius: 5%;
   text-align: center;
 
   img {
-    border-radius: 5%;
     margin: 0 auto;
     margin-top: 5px;
     max-height: 210px;
     max-width: 100%;
-    display: block;
   }
 
   i.fa-heart-o {

@@ -20,4 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  users:
+    search:
+      search: "Search"
+      filters: "Filters"
+      username: "Username"
+      state: "State"
+      online_now: "Online now"
+      online_yes: "Yes"
+      online_no: "No"
+      update: "Update"
