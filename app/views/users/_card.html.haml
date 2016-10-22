@@ -1,11 +1,12 @@
-.card.small-1.medium-1.large-3.columns.effect1
-  .card-top
-    = user_presenter.online_status
-    = user_presenter.profile_picture_link(:medium)
-  .card-divider
-  .card-block
-    %h5.card-title= user.username
-    %p.card-text Age: #{user.age}
-    %span.message= user_presenter.new_message
-    %span.vertical-border
-    %span.like= user_presenter.like_status
+.column
+  .card.effect1
+    .card-top
+      = user_presenter.online_status
+      = user_presenter.profile_picture_link(:medium)
+    .card-divider
+    .card-block
+      %h5.card-title= user.username
+      %p.card-text Age: #{user.age}
+      %span.message= user_presenter.new_message
+      %span.vertical-border
+      %span.like= user_presenter.like_status

@@ -25,8 +25,12 @@
   background-color: $fbblue;
   margin-bottom: 2rem;
 
+  a {
+    color: $white;
+  }
+
   .top-bar-left a {
-    color: white;
+    color: $white;
   }
 
   .top-bar-left li {

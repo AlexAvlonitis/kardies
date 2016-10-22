@@ -3,15 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .card {
   border: 1px solid $aluminium;
-  margin: 1rem 2.5rem;
+  margin: 0 2.5rem 2rem 2.5rem;
   min-width: 200px;
-  border-radius: 2%;
   text-align: center;
   position: relative;
 
   img {
     margin: 0 auto;
-    margin-top: 5px;
     max-height: 210px;
     max-width: 100%;
   }

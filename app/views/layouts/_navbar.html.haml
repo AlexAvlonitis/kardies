@@ -16,7 +16,7 @@
         .top-bar-right
           .menu
             = link_to "#{t '.profile'}", edit_user_registration_path,
-                                         class: "button edit-profile"
+                                         class: "edit-profile"
             = link_to "#{t '.sign_out'}", destroy_user_session_path,
                                   method: :delete,
-                                  class: "button hollow alert"
+                                  class: "button small alert"
