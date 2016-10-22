@@ -9,3 +9,11 @@ gr:
       online_yes: "Ναί"
       online_no: "Οχι"
       update: "Προσαρμογή"
+  layouts:
+    navbar:
+      messages: "Μηνύματα"
+      users: "Χρήστες"
+      likes: "Καρδιές"
+      admin_area: "Διαχείριση"
+      profile: "Προφίλ"
+      sign_out: "Αποσύνδεση"
