@@ -14,7 +14,7 @@ class UserPresenter < BasePresenter
   end
 
   def online_status
-    user.is_signed_in ? h.content_tag(:span, "Online now", class: "online-now") : nil
+    user.is_signed_in ? h.content_tag(:span, "", class: "online-now") : nil
   end
 
   def new_message
