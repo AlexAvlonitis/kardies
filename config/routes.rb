@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+
   scope "(:locale)", locale: /gr|en/ do
     namespace :admin do
       get 'application/index'
@@ -14,8 +16,6 @@ Rails.application.routes.draw do
     end
 
     root to: "home#index"
-
-    mount ActionCable.server => '/cable'
 
     resources :users, param: :username, only: [:index, :show] do
       member do
@@ -48,6 +48,4 @@ Rails.application.routes.draw do
     get 'about/edit', to: 'abouts#edit',   as: :edit_about
     put 'about',      to: 'abouts#update', as: :about
   end
-  match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), via: [:get]
-  match '', to: redirect("/#{I18n.default_locale}"), via: [:get]
 end
