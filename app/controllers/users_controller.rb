@@ -55,7 +55,7 @@ class UsersController < ApplicationController
     if params[:age_from] && !params[:age_from].blank? && params[:age_to] && !params[:age_to].blank?
       [params[:age_from], params[:age_to]]
     else
-      nil
+      [nil, nil]
     end
   end
 
