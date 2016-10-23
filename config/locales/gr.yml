@@ -21,7 +21,7 @@ gr:
   layouts:
     navbar:
       messages: "Μηνύματα"
-      users: "Χρήστες"
+      users: "Μέλη"
       likes: "Καρδιές"
       admin_area: "Διαχείριση"
       profile: "Ρυθμίσεις"

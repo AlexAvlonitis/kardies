@@ -32,7 +32,7 @@ gem "pundit"
 gem 'foundation-rails'
 gem "font-awesome-rails"
 gem 'acts_as_votable', '~> 0.10.0'
-gem 'greek-cities', '~> 0.0.1'
+gem 'greek-cities', '~> 1.0.1'
 gem 'chewy'
 gem 'aws-sdk', '~> 2.3.0'
 gem 'mailboxer'
