@@ -14,6 +14,7 @@
 #= require jquery_ujs
 #= require foundation
 #= require users
+#= require jquery-ui/slider
 #= require_tree .
 
 $ ->

@@ -23,6 +23,16 @@
                                                   ["#{t '.gender_woman'}", "female"],
                                                   ["#{t '.gender_other'}", "other"]])
       .row
+        %p= t '.age'
+        #slider
+        .small-6.columns
+          %label{ "for" => "amount_from" }= t '.age_from'
+          = number_field_tag :age_from, nil, readonly: true
+        .small-6.columns
+          %label{ "for" => "amount_to" }= t '.age_to'
+          = number_field_tag :age_to, nil, readonly: true
+
+      .row
         = label_tag t ".online_now"
         .switch
           = check_box_tag :is_signed_in, 'true', false, class: 'switch-input'

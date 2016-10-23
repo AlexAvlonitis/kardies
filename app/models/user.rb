@@ -31,7 +31,7 @@ class User < ApplicationRecord
       .filter{ username == query[:username] }
       .filter{ is_signed_in == query[:is_signed_in] }
       .filter{ gender == query[:gender] }
-      .filter{ age == query[:age] }
+      .filter{ (age >= query[:age][0]) & (age <= query[:age][1]) }
       .load
   end
 
