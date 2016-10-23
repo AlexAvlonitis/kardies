@@ -1,12 +1,13 @@
 .column
   .card.effect1
-    .card-top
-      = user_presenter.online_status
-      = user_presenter.profile_picture_link(:medium)
+    = link_to user_path(user) do
+      .card-top
+        = user_presenter.online_status
+        = image_tag user.profile_picture(:medium)
     .card-divider
     .card-block
-      %h5.card-title= user.username
-      %p.card-text Age: #{user.age}
+      %h5.card-title= user.username + " " +  user.age
+      %p.card-text= user.city + " " + user.state
       %span.message= user_presenter.new_message
       %span.vertical-border
       %span.like= user_presenter.like_status

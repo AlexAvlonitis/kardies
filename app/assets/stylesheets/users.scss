@@ -8,6 +8,13 @@
   text-align: center;
   position: relative;
 
+  .card-text {
+    font-size: small;
+  }
+
+  .card-title {
+  }
+
   img {
     margin: 0 auto;
     max-height: 210px;
@@ -18,7 +25,9 @@
     color: $red;
   }
 
-  i.fa-heart { color: $red; }
+  i.fa-heart {
+    color: $red;
+  }
 
   .card-top {
     height: 220px;
