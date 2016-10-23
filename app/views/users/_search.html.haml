@@ -5,7 +5,7 @@
       = text_field_tag :username, nil, placeholder: "#{t '.username'}"
     .row
       = submit_tag "#{t '.search'}", class: "button success expanded"
-
+  %hr
   .filters
     %h5.text-center= t ".filters"
     = form_tag users_path, method: :get, class: "form", id: "search" do
@@ -14,16 +14,22 @@
                              include_blank: "#{t '.state'}",
                              class: 'state-selection'
       .row
-        = select_tag :city, options_for_select(GC.cities('att')),
+        = select_tag :city, options_for_select(''),
                             class: 'city-selection',
-                            include_blank: 'Πόλη'
+                            include_blank: " "
       .row
-        %p= t ".online_now"
+        = label_tag :gender, "#{t '.gender'}"
+        = select_tag :gender, options_for_select([["#{t '.gender_man'}", "male"],
+                                                  ["#{t '.gender_woman'}", "female"],
+                                                  ["#{t '.gender_other'}", "other"]])
+      .row
+        = label_tag t ".online_now"
         .switch
           = check_box_tag :is_signed_in, 'true', false, class: 'switch-input'
           %label.switch-paddle{"for" => "is_signed_in"}
             %span.show-for-sr Online Now
             %span.switch-active{"aria-hidden" => "true", "value" => "true"}= t '.online_yes'
             %span.switch-inactive{"aria-hidden" => "true", "value" => "false"}= t '.online_no'
+
       .row
         = submit_tag "#{t '.update'}", class: "button primary small expanded hollow"

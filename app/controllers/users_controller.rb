@@ -44,7 +44,9 @@ class UsersController < ApplicationController
     all_params[:state] = params[:state] if params[:state] && !params[:state].blank?
     all_params[:city] = params[:city] if params[:city] && !params[:city].blank?
     all_params[:is_signed_in] = params[:is_signed_in] if params[:is_signed_in] && !params[:is_signed_in].blank?
-    all_params[:username] = params[:username] if params[:username]
+    all_params[:username] = params[:username] if params[:username] && !params[:username].blank?
+    all_params[:age] = params[:age] if params[:age] && !params[:age].blank?
+    all_params[:gender] = params[:gender] if params[:gender] && !params[:gender].blank?
     all_params
   end
 

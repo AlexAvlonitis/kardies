@@ -30,6 +30,8 @@ class User < ApplicationRecord
       .filter{ city == query[:city] }
       .filter{ username == query[:username] }
       .filter{ is_signed_in == query[:is_signed_in] }
+      .filter{ gender == query[:gender] }
+      .filter{ age == query[:age] }
       .load
   end
 

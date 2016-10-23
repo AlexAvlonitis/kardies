@@ -11,6 +11,13 @@ gr:
       online_yes: "Ναί"
       online_no: "Οχι"
       update: "Προσαρμογή"
+      gender: "Φύλο"
+      gender_man: "Άντρας"
+      gender_woman: "Γυναίκα"
+      gender_other: "Άλλο"
+      age: "Ηλικία"
+      age_from: "Από"
+      age_to: "Μέχρι"
   layouts:
     navbar:
       messages: "Μηνύματα"

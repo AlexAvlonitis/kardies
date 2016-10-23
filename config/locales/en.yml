@@ -11,6 +11,10 @@ en:
       online_yes: "Yes"
       online_no: "No"
       update: "Update"
+      gender: "Gender"
+      gender_man: "Man"
+      gender_woman: "Woman"
+      gender_other: "Other"
   layouts:
     navbar:
       messages: "Messages"

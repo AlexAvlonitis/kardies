@@ -2,6 +2,6 @@
   .small-6.small-centered.columns
     - flash.each do |name, msg|
       - if msg.is_a?(String)
-        %div{ "data-alert" => "", "class" => "alert-box #{foundation_class_for(name)}" }
+        %div{ "data-alert" => "", "class" => "alert-box #{foundation_class_for(name)}", "data-closable" => "" }
           = msg
-          %a.close.pull-right{"href" => "#"} ⊗
+          %a.close.pull-right{"href" => "#", "data-close" => ""} ⊗
