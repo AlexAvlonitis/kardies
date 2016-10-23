@@ -10,6 +10,7 @@ $ ->
 
     received: (data) ->
       $('#messages').append(data['message'])
+      messages_to_bottom()
 
     speak: (message, convo_id) ->
       @perform 'speak', message: message, conversation_id: convo_id
@@ -25,3 +26,9 @@ $ ->
     message = $('.conversation-message').val()
     App.message.speak message, conversation_id
     $('.conversation-message').val("")
+
+  messages = $('#messages')
+  if $('#messages').length > 0
+    messages_to_bottom = -> messages.scrollTop(messages.prop("scrollHeight"))
+
+    messages_to_bottom()

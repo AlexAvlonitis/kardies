@@ -16,7 +16,12 @@
  @import "foundation_and_overrides";
  @import "font-awesome";
  @import "colors";
+ @import "conversations";
  @import "users";
+
+ body {
+   background-color: $light_blue;
+ }
 
 
 .edit-profile {

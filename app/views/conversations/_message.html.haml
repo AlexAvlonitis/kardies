@@ -1,7 +1,8 @@
 - message = receipt.message if defined? receipt
-= image_tag message.sender.profile_picture, class: "thumbnail icon-size"
+%li.myself
+  .head
+    %span.name= image_tag message.sender.profile_picture, class: "icon-size"
+    %span.time= message.created_at.strftime("%-d %B %Y, %H:%M:%S")
 
-.media-object-section{"id" => "messages"}
-  %p= message.body
-  %p.small= message.created_at.strftime("%-d %B %Y, %H:%M:%S")
-%hr
+  .message
+    %p= message.body
