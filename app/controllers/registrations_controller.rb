@@ -6,6 +6,12 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def created
+    super do
+      set_cookie
+    end
+  end
+
   def edit
     @user = User.find(current_user.id)
     @user.user_detail ? @user.user_detail : @user.build_user_detail

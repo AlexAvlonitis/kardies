@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     redirect_to request.referer || path
   end
 
+  def set_cookie
+    cookies.signed["user_id"] = user.id
+  end
+
   private
 
   def set_locale
