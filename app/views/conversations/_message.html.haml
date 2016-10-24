@@ -1,5 +1,6 @@
 - message = receipt.message if defined? receipt
-%li.myself
+- conversation = @conversation || conversation
+%li{ "class" => "#{ message.sender == conversation.participants[0] ? 'myself' : 'friend-message'}"}
   .head
     %span.name= image_tag message.sender.profile_picture, class: "icon-size"
     %span.time= message.created_at.strftime("%-d %B %Y, %H:%M:%S")
