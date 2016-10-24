@@ -11,6 +11,14 @@
 	display: flex;
 	overflow: hidden;
 
+	.left-menu {
+		width: 29%;
+		box-sizing: content-box;
+		padding-right: 1%;
+		height: 100%;
+		background: #434753;
+	}
+
 	.chat {
 		width: 100%;
 		height: 100%;

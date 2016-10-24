@@ -1,5 +1,11 @@
 .small-12.columns
   .ui
+    .left-menu
+      %menu.list-friends
+        %li
+          .info
+            .user Alex
+            .status.on online
     .chat{"id" => "conversation", "conversation-id" => "#{@hashed_conversation}"}
       .top
         .avatar
