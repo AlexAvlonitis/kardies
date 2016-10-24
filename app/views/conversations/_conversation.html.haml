@@ -9,11 +9,5 @@
           class: 'btn btn-xs btn-danger', method: :delete,
           data: {confirm: 'Are you sure?'}
 
-  = link_to conversation_path(conversation) do
-    %p= render 'conversations/participants', conversation: conversation
-  Message:
-  = conversation.last_message.body
-  %small
-    (
-    %span.text-muted>= conversation.last_message.created_at.strftime("%-d %B %Y, %H:%M:%S")
-    )
+  = link_to conversation_path(conversation), remote: true, id: "conversation-messages" do
+    = render 'conversations/participants', conversation: conversation

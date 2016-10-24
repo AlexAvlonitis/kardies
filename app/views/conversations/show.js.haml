@@ -1,0 +1,1 @@
+$("#chat-messages").html("#{j render partial: "show_messages", locals: { conversation: @conversation, hashed_conversation: @hashed_conversation } }").trigger('now');

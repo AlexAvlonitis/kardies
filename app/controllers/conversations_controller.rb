@@ -4,18 +4,15 @@ class ConversationsController < ApplicationController
   before_action :get_box, only: [:index]
 
   def index
-    if @box.eql? "inbox"
-      @conversations = @mailbox.inbox
-    elsif @box.eql? "sent"
-      @conversations = @mailbox.sentbox
-    else
-      @conversations = @mailbox.trash
-    end
+    @conversations = @mailbox.inbox
   end
 
   def show
     @conversation.mark_as_read(current_user) if @conversation.is_unread?(current_user)
     @hashed_conversation = EncryptId.new(@conversation.id).encrypt
+    respond_to do |format|
+      format.js
+    end
   end
 
   def reply
