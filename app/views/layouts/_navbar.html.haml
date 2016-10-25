@@ -8,7 +8,7 @@
       #responsive-menu
         .top-bar-left
           %ul.menu
-            %li= link_to "#{t '.messages'}", conversations_path(box: :inbox)
+            %li= link_to "#{t '.messages'}", conversations_path
             %li= link_to "#{t '.users'}", users_path
             %li= link_to "#{t '.likes'}", my_likes_user_path(current_user)
             - admins_only do

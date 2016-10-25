@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
   before_action :get_box, only: [:index]
 
   def index
-    @conversations = @mailbox.inbox
+    @conversations_inbox = @mailbox.inbox
   end
 
   def show

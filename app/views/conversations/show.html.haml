@@ -6,9 +6,7 @@
     .chat
       .top{"id" => "conversation", "conversation-id" => "#{@hashed_conversation}"}
         .avatar
-          %img
-            .info
-              = render 'conversations/participants', conversation: @conversation
+          .info
           %ul.messages{"id" => "messages"}
             - @conversation.receipts_for(current_user).each do |receipt|
               = render partial: 'conversations/message', locals: { receipt: receipt }

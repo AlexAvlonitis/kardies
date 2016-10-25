@@ -1,1 +1,11 @@
-= render partial: 'conversations/conversation', collection: @conversations
+.small-6.columns
+  %h1 Inbox
+  %table.messages
+    %thead
+      %tr
+        %th From
+        %th At
+        %th Action
+    %tbody
+      = render partial: 'conversations/conversation', collection: @conversations_inbox
+.small-6.columns

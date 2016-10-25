@@ -1,13 +1,18 @@
-%li.list-group-item.clearfix
-  .btn-group-vertical.pull-right
-    - if conversation.is_trashed?(current_user)
-      = link_to 'Restore', restore_conversation_path(conversation),
-          class: 'btn btn-xs btn-info',
-          method: :post
-    - else
-      = link_to 'Move to trash', conversation_path(conversation),
-          class: 'btn btn-xs btn-danger', method: :delete,
-          data: {confirm: 'Are you sure?'}
+- conversation.participants.each do |participant|
+  %tr
+    %td
+      = link_to conversation_path(conversation) do
+        = image_tag participant.profile_picture, class: "icon-size"
+        = participant.username
+    %td= conversation.created_at.to_formatted_s(:short)
 
-  = link_to conversation_path(conversation) do
-    = render 'conversations/participants', conversation: conversation
+    %td
+      .btn-group-vertical.pull-right
+      - if conversation.is_trashed?(current_user)
+        = link_to 'Restore', restore_conversation_path(conversation),
+                             class: 'button secondary small',
+                             method: :post
+
+      - else
+        = link_to conversation_path(conversation), class: 'button alert small', method: :delete, data: {confirm: 'Are you sure?'} do
+          = fa_icon "trash 2x"
