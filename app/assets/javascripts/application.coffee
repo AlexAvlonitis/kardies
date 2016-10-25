@@ -15,6 +15,8 @@
 #= require foundation
 #= require users
 #= require jquery-ui/slider
+#= require jgallery
+#= require tinycolor.min
 #= require_tree .
 
 $ ->

@@ -14,10 +14,12 @@
   .large-9.medium-9.small-12.columns
     %h1 Galleries
     - @user.galleries.each do |gallery|
-      %h3= gallery.name
-      %p= gallery.description
-      - gallery.pictures.each do |pic|
-        = image_tag pic.picture.url(:medium)
+      #gallery
+        %h5= gallery.name
+        %p= gallery.description
+        - gallery.pictures.each do |pic|
+          = link_to pic.picture.url do
+            = image_tag pic.picture.url, class: "icon-size"
 
 
     .small-12
