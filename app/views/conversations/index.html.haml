@@ -1,11 +1,35 @@
-.small-6.columns
-  %h1 Inbox
-  %table.messages
-    %thead
-      %tr
-        %th From
-        %th At
-        %th Action
-    %tbody
-      = render partial: 'conversations/conversation', collection: @conversations_inbox
-.small-6.columns
+%ul.tabs{ "data-tabs" => "", "id" => "messages-tabs" }
+  %li.tabs-title.is-active
+    %a{ "href" => "#inbox", "aria-selected" => "true"} Inbox
+  %li.tabs-title
+    %a{ "href" => "#sent" } Sent
+  %li.tabs-title
+    %a{ "href" => "#trash" } trash
+.tabs-content{ "data-tabs-content" => "messages-tabs" }
+  .tabs-panel.is-active{ "id" => "inbox" }
+    %table.messages
+      %thead
+        %tr
+          %th From
+          %th At
+          %th Action
+      %tbody
+        = render partial: 'conversations/conversation', collection: @conversations_inbox
+  .tabs-panel{ "id" => "sent" }
+    %table.messages
+      %thead
+        %tr
+          %th From
+          %th At
+          %th Action
+      %tbody
+        = render partial: 'conversations/conversation', collection: @conversations_sent
+  .tabs-panel{ "id" => "Trash" }
+    %table.messages
+      %thead
+        %tr
+          %th From
+          %th At
+          %th Action
+      %tbody
+        = render partial: 'conversations/conversation', collection: @conversations_trash

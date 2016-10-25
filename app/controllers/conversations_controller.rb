@@ -5,6 +5,8 @@ class ConversationsController < ApplicationController
 
   def index
     @conversations_inbox = @mailbox.inbox
+    @conversations_sent = @mailbox.sentbox
+    @conversations_trash = @mailbox.trash
   end
 
   def show
