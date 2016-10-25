@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
 
+  $('#gallery').jGallery()
   $('.city-selection').hide()
   $('.city-selection-label').hide()
 

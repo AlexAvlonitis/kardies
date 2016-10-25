@@ -12,11 +12,13 @@
  *
  *
  *= require jquery-ui/slider
+ *= require jgallery
  */
  @import "foundation_and_overrides";
  @import "font-awesome";
  @import "colors";
  @import "conversations";
+ @import "jgallery";
  @import "users";
 
  body {
