@@ -10,9 +10,6 @@ class ConversationsController < ApplicationController
   def show
     @conversation.mark_as_read(current_user) if @conversation.is_unread?(current_user)
     @hashed_conversation = EncryptId.new(@conversation.id).encrypt
-    respond_to do |format|
-      format.js
-    end
   end
 
   def reply
