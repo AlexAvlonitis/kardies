@@ -4,9 +4,9 @@ class ConversationsController < ApplicationController
   before_action :get_box, only: [:index]
 
   def index
-    @conversations_inbox = @mailbox.inbox
-    @conversations_sent = @mailbox.sentbox
-    @conversations_trash = @mailbox.trash
+    @conversations_inbox = @mailbox.inbox.page(params[:page]).per(10)
+    @conversations_sent = @mailbox.sentbox.page(params[:page]).per(10)
+    @conversations_trash = @mailbox.trash.page(params[:page]).per(10)
   end
 
   def show

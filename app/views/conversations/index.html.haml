@@ -15,6 +15,8 @@
           %th Action
       %tbody
         = render partial: 'conversations/conversation', collection: @conversations_inbox
+        .row
+          = paginate @conversations_inbox
   .tabs-panel{ "id" => "sent" }
     %table.messages
       %thead
@@ -24,6 +26,8 @@
           %th Action
       %tbody
         = render partial: 'conversations/conversation', collection: @conversations_sent
+        .row
+          = paginate @conversations_sent
   .tabs-panel{ "id" => "Trash" }
     %table.messages
       %thead
@@ -33,3 +37,5 @@
           %th Action
       %tbody
         = render partial: 'conversations/conversation', collection: @conversations_trash
+        .row
+          = paginate @conversations_trash
