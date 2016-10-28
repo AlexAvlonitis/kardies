@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :users, only: :index
     end
 
-    devise_for :user, controllers: { registrations: 'registrations' }
+    devise_for :user, controllers: { registrations: 'registrations', sessions: 'sessions' }
 
     devise_scope :user do
       delete 'delete_user/:username', to: "registrations#admin_destroy", as: :admin_destroy

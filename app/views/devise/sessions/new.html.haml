@@ -1,12 +1,10 @@
-.medium-12.columns
-  %h2 Log in
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    = f.email_field :email, autofocus: true
-    = f.password_field :password, autocomplete: "off"
-    = f.submit "Log in", class: "button primary"
-    - if devise_mapping.rememberable?
-      .row
-        = f.check_box :remember_me
-        = f.label :remember_me
-
-  .row= render "devise/shared/links"
+.center-page
+  .small-12.columns.text-center
+    %h1.custom_h1 Γνωρίστε άτομα από όλη την Ελλάδα
+  .row
+    .small-8.small-centered.columns
+      .small-6.columns.small-centered.text-center
+        %a.button.primary.expanded{ "data-toggle" => "signin_modal" } Σύνδεση
+        %a.button.secondary{ "data-toggle" => "signup_modal" } Εγγραφή
+        = render 'devise/sessions/signin_modal'
+        = render 'devise/registrations/signup_modal'

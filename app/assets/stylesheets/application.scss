@@ -1,30 +1,63 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *
- *= require jquery-ui/slider
- *= require jgallery
- */
- @import "foundation_and_overrides";
- @import "font-awesome";
- @import "colors";
- @import "conversations";
- @import "jgallery";
- @import "users";
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+* or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*
+*= require jquery-ui/slider
+*= require jgallery
+*/
+@import "foundation_and_overrides";
+@import "font-awesome";
+@import "colors";
+@import "conversations";
+@import "jgallery";
+@import "users";
 
- body {
-   background-color: $white;
- }
+body {
+ background-color: $white;
+}
 
+#bg {
+  z-index: -999;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  .bg_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: none;
+    max-height: none;
+  }
+}
+
+.center-page {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: inline-block;
+
+  .custom_h1 {
+    color: $white;
+    font-weight: lighter;;
+  }
+}
 
 .edit-profile {
   margin-right: 1rem;

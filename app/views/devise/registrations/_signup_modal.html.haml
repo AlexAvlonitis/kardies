@@ -1,0 +1,42 @@
+#signup_modal.reveal{ "data-reveal" => "", "data-close-on-click" => "true", "data-animation-in" => "fade-in", "data-animation-out" => "fade-out" }
+  .small-12.columns
+    %h2 Sign up
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = devise_error_messages!
+
+      = f.fields_for :user_detail do |d|
+        .medium-12.columns
+          %label.button{"for" => "picUpload"} Upload Profile Picture
+          = d.file_field :profile_picture, as: :file, class: "show-for-sr", id: "picUpload"
+        .medium-12.columns
+          %label Σε ποιό νομό βρίσκεστε?
+          = d.select :state, GC.states, {include_blank: true}, {class: "state-selection"}
+        .medium-12.columns
+          %label.city-selection-label Σε ποιά πόλη?
+          = d.select :city, GC.cities('att'), {include_blank: "Πόλη"}, {class: "city-selection"}
+        .medium-7.columns
+          %legend Φύλο
+          = d.collection_radio_buttons :gender, [['male', 'Άντρας'], ['female', 'Γυναίκα'], ['other', 'Άλλο']], :first, :last
+        .medium-5.columns
+          %label Ηλικία
+          = d.select :age, options_for_select((16..99).step(1), 30)
+
+      .medium-12.columns
+        %label Ψευδώνυμο
+        = f.text_field :username
+      .medium-12.columns
+        %label Διεύθυνση ηλεκτρονικού ταχυδρομείου (email)
+        = f.email_field :email
+      .medium-12.columns
+        %label Κωδικός
+        = f.password_field :password, autocomplete: "off"
+        %p.help-text
+          - if @minimum_password_length
+            %em
+              (#{@minimum_password_length} χαρακτήρες τουλάχιστον)
+      .medium-12.columns
+        %label Επανάληψη Κωδικού
+        = f.password_field :password_confirmation, autocomplete: "off"
+        = f.submit "Sign up", class: "button primary expanded"
+  %button.close-button{ "data-close" => "", "aria-label" => "Close reveal", "type" => "button" }
+    %span{ "aria-hidden" => "true" } &times;
