@@ -53,6 +53,7 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.11)
+    bcrypt (3.1.11-x86-mingw32)
     builder (3.2.2)
     byebug (9.0.6)
     capistrano (3.6.1)
@@ -136,6 +137,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffaker (2.2.0)
     ffi (1.9.14)
+    ffi (1.9.14-x86-mingw32)
     font-awesome-rails (4.6.3.1)
       railties (>= 3.2, < 5.1)
     foundation-rails (6.2.4.0)
@@ -193,11 +195,14 @@ GEM
     multi_json (1.12.1)
     multipart-post (2.0.0)
     mysql2 (0.4.5)
+    mysql2 (0.4.5-x86-mingw32)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
+      mini_portile2 (~> 2.1.0)
+    nokogiri (1.6.8.1-x86-mingw32)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
     paperclip (5.0.0)
@@ -326,10 +331,13 @@ GEM
     tilt (2.0.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2016.8)
+      tzinfo (>= 1.0.0)
     uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
     warden (1.2.6)
       rack (>= 1.0)
+    wdm (0.1.1)
     web-console (3.3.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -341,6 +349,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   acts_as_votable (~> 0.10.0)
@@ -386,7 +395,8 @@ DEPENDENCIES
   sshkit-sudo
   tzinfo-data
   uglifier (>= 1.3.0)
+  wdm (>= 0.1.0)
   web-console
 
 BUNDLED WITH
-   1.13.5
+   1.13.6
