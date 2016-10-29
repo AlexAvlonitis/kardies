@@ -26,3 +26,29 @@ gr:
       admin_area: "Διαχείριση"
       profile: "Ρυθμίσεις"
       sign_out: "Αποσύνδεση"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            username:
+              taken: "Αυτό το ψευδώνυμο δεν είναι διαθέσιμο"
+              blank: "Το ψευδώνυμο δεν μπορεί να είναι κενό"
+            email:
+              taken: "Αυτό το email δεν είναι διαθέσιμο."
+              blank: "Το email δεν μπορεί να είναι κενό"
+            password:
+              too_short: "Ο κωδικός είναι μικρός"
+              blank: "Ο κωδικός δεν μπορεί να είναι κενός"
+            password_confirmation:
+              confirmation: "Ο κωδικός επιβεβαίωσης δεν είναι ίδιος με τον κωδικό"
+        user_detail:
+          attributes:
+            state:
+              blank: "Ο νομός δεν μπορεί να είναι κενός"
+            city:
+              blank: "Η πόλη δεν μπορεί να είναι κενή"
+            gender:
+              blank: "Το φύλο δεν μπορεί να είναι κενό"
+            age:
+              blank: "Η ηλικία δεν μπορεί να είναι κενή"

@@ -22,7 +22,18 @@
 @import "users";
 
 body {
- background-color: $white;
+ background-color: $whitesmoke;
+}
+
+.registration-bg {
+  background-color: $white;
+}
+
+.error {
+  margin-top: 0;
+  font-weight: bold;
+  font-size: small;
+  color: $red;
 }
 
 #bg {

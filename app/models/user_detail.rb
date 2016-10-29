@@ -38,9 +38,7 @@ class UserDetail < ApplicationRecord
   end
 
   def states_are_included_in_the_list
-    if GC.states.select { |x| x.include?(state) }.empty?
-      errors.add(:state, "state is not valid")
-    end
+    GC.states.select { |x| x.include?(state) }.empty?
   end
 
 end

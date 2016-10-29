@@ -1,35 +1,41 @@
-.small-12.columns
+.small-6.small-centered.columns
   %h2 Sign up
-  = form_for(@user, as: resource_name, url: registration_path(resource_name)) do |f|
-    = devise_error_messages!
+  = form_for(@user, as: resource_name, url: registration_path(resource_name), class: "registration-bg") do |f|
 
     = f.fields_for :user_detail do |d|
       .medium-12.columns
         %label.button{"for" => "picUpload"} Upload Profile Picture
         = d.file_field :profile_picture, as: :file, class: "show-for-sr", id: "picUpload"
+        %p.error= show_errors(@user.user_detail, :profile_picture)
       .medium-12.columns
         %label Σε ποιό νομό βρίσκεστε?
         = d.select :state, GC.states, {include_blank: true}, {class: "state-selection"}
+        %p.error= show_errors(@user.user_detail, :state)
       .medium-12.columns
         %label.city-selection-label Σε ποιά πόλη?
         = d.select :city, GC.cities('att'), {include_blank: "Πόλη"}, {class: "city-selection"}
+        %p.error= show_errors(@user.user_detail, :city)
       .medium-7.columns
-        %fieldset.large-6.columns
-          %legend Φύλο
-          = d.collection_radio_buttons :gender, [['male', 'Άντρας'], ['female', 'Γυναίκα'], ['other', 'Άλλο']], :first, :last
+        %legend Φύλο
+        = d.collection_radio_buttons :gender, [['male', 'Άντρας'], ['female', 'Γυναίκα'], ['other', 'Άλλο']], :first, :last
+        %p.error= show_errors(@user.user_detail, :gender)
       .medium-5.columns
         %label Ηλικία
         = d.select :age, options_for_select((16..99).step(1), 30)
+        %p.error= show_errors(@user.user_detail, :age)
 
     .medium-12.columns
       %label Ψευδώνυμο
       = f.text_field :username
+      %p.error= show_errors(@user, :username)
     .medium-12.columns
       %label Διεύθυνση ηλεκτρονικού ταχυδρομείου (email)
       = f.email_field :email
+      %p.error= show_errors(@user, :email)
     .medium-12.columns
       %label Κωδικός
       = f.password_field :password, autocomplete: "off"
+      %p.error= show_errors(@user, :password)
       %p.help-text
         - if @minimum_password_length
           %em
@@ -37,5 +43,6 @@
     .medium-12.columns
       %label Επανάληψη Κωδικού
       = f.password_field :password_confirmation, autocomplete: "off"
+      %p.error= show_errors(@user, :password_confirmation)
       = f.submit "Sign up", class: "button primary expanded"
   = render "devise/shared/links"
