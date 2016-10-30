@@ -8,15 +8,28 @@
       #responsive-menu
         .top-bar-left
           %ul.menu
-            %li= link_to "#{t '.messages'}", conversations_path
-            %li= link_to "#{t '.users'}", users_path
-            %li= link_to "#{t '.likes'}", my_likes_user_path(current_user)
+            %li
+              = link_to conversations_path do
+                = fa_icon "comments-o"
+                = t '.messages'
+            %li
+              = link_to users_path do
+                = fa_icon "users"
+                = t '.users'
+            %li
+              = link_to my_likes_user_path(current_user) do
+                = fa_icon "gratipay"
+                = t '.likes'
             - admins_only do
-              %li= link_to "#{t '.admin_area'}", admin_application_index_path
+              %li
+                = link_to admin_application_index_path do
+                  = fa_icon "key"
+                  = t '.admin_area'
         .top-bar-right
           .menu
-            = link_to "#{t '.profile'}", edit_user_registration_path,
-                                         class: "edit-profile"
-            = link_to "#{t '.sign_out'}", destroy_user_session_path,
-                                          method: :delete,
-                                          class: "button small alert"
+            = link_to edit_user_registration_path, class: "edit-profile" do
+              = fa_icon "cogs"
+              = t '.profile'
+            = link_to destroy_user_session_path, method: :delete, class: "button small alert hollow" do
+              = fa_icon "power-off"
+              = t '.sign_out'
