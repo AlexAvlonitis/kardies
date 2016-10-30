@@ -1,5 +1,5 @@
 .small-12.medium-4.large-2.columns.side-search
-  %h5.text-center= t ".search"
+  %h5.text-center.orange-text= t ".search"
   = form_tag users_path, method: :get, class: "form", id: "search" do
     .row
       = text_field_tag :username, nil, placeholder: "#{t '.username'}"
@@ -7,7 +7,7 @@
       = submit_tag "#{t '.search'}", class: "button success expanded"
   %hr
   .filters
-    %h5.text-center= t ".filters"
+    %h5.text-center.orange-text= t ".filters"
     = form_tag users_path, method: :get, class: "form", id: "search" do
       .row
         = select_tag :state, options_for_select(GC.states),

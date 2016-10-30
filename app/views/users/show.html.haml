@@ -1,13 +1,14 @@
 - present @user do |user_presenter|
   .large-3.medium-3.small-12.columns
-    = image_tag @user.profile_picture(:medium), class: "thumbnail"
+    .text-center
+      = image_tag @user.profile_picture(:medium), class: "thumbnail"
     %h3.text-center
       = @user.username
     %ul.menu.expanded
       %li= user_presenter.new_message
       %li.pull-right= user_presenter.like_status
     %hr
-    = link_to "#{t 'users.index.report'}", report_path(@user), class: "button warning hollow expanded"
+    = link_to "#{t 'users.index.report'}", report_path(@user), class: "button alert hollow expanded tiny"
 
     %ul.menu.vertical
       %li
@@ -18,25 +19,35 @@
         = @user.age
 
   .large-9.medium-9.small-12.columns
-    %h1 Galleries
-    - @user.galleries.each do |gallery|
-      #gallery
-        %h5= gallery.name
-        %p= gallery.description
-        - gallery.pictures.each do |pic|
-          = link_to pic.picture.url do
-            = image_tag pic.picture.url, class: "icon-size"
+    %h2.orange-text= t '.galleries'
+    %ul.accordion{ "data-accordion" => "", "role" => "tablist" }
+      - if @user.galleries.empty? || @user.galleries.nil?
+        %h4.subheader= t '.no_albums'
+      - @user.galleries.each.with_index do |gallery, index|
+        %li.accordion-item
+          %a{ "href" => "#panel#{index}d", "role" => "tab", "class" => "accordion-title", "id" => "panel#{index}d-heading", "aria-controls" => "panel#{index}d" }= gallery.name
+          .accordion-content{ "role" => "tabpanel", "data-tab-content" => "", "aria-labelledby" => "panel#{index}d-heading", "id" => "panel#{index}d" }
+            .gallery
+              - gallery.pictures.each do |pic|
+                = link_to pic.picture.url do
+                  = image_tag pic.picture.url, class: "icon-size"
 
 
+    %hr
     .small-12
-      %h1 About me
-      %h4 Job
-      %p= @user.job
-      %h4 Hobby
-      %p= @user.hobby
-      %h4 Relationship status
-      %p= @user.relationship_status
-      %h4 Looking for
-      %p= @user.looking_for
-      %h4 A little description about me
-      %p= @user.description
+      %h2.orange-text= t '.about'
+      %h4= t '.job'
+      .callout.primary
+        = user_presenter.about_info('job')
+      %h4= t '.hobby'
+      .callout.primary
+        = user_presenter.about_info('hobby')
+      %h4= t '.relationship_status'
+      .callout.primary
+        = user_presenter.about_info('relationship_status')
+      %h4= t '.looking_for'
+      .callout.primary
+        = user_presenter.about_info('looking_for')
+      %h4= t '.about_me'
+      .callout.primary
+        = user_presenter.about_info('description')

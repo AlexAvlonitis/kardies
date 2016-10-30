@@ -23,6 +23,14 @@ class UserPresenter < BasePresenter
     end
   end
 
+  def about_info(data)
+    if user.send(data).nil? || user.send(data).empty?
+      h.content_tag(:p, h.content_tag(:em, "#{h.t '.no_post'}"), class: "aluminium-text")
+    else
+      h.content_tag(:p, h.content_tag(:em, user.send(data)), class: "dark-gray-text")
+    end
+  end
+
   def profile_picture_link(size = :thumb)
     h.link_to h.user_path(user) do
       h.image_tag user.profile_picture(size)

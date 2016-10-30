@@ -4,6 +4,16 @@ en:
       area: 'Area'
       report: 'Report user'
       no_results: "No results found, please try a different search."
+    show:
+      job: "Occupation"
+      hobby: "Hobbies"
+      relationship_status: "Relationship status"
+      looking_for: "I'm looking for..."
+      about_me: "A little about myself"
+      galleries: "Albums"
+      about: "About me"
+      no_post: "...The user hasn't posted anything yet..."
+      no_albums: "...The user hasn't posted any albums yet..."
     search:
       search: "Search"
       filters: "Filters"
