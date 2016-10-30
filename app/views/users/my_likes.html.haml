@@ -1,9 +1,16 @@
-.col-md-5
-  %h2 Who likes me
-  %h3 Number of likes: #{@likes.size}
-  - @likes.each do |user|
-    - present user do |user_profile|
-      %ul.list-group
-        %li.list-group-item.clearfix
-          = user_profile.profile_picture_link
-          = user.username
+.small-6.columns
+  %h2 Οι Καρδιές μου
+  %p Αριθμός καρδιών: #{@likes.size}
+  %table.messages
+    %thead
+      %tr
+        %th Από
+        %th Ψευδώνυμο
+    %tbody
+      - @likes.each do |user|
+        - present user do |user_profile|
+          %tr
+            %td
+              .icon-size= user_profile.profile_picture_link
+            %td
+              = user.username
