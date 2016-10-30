@@ -1,6 +1,8 @@
 en:
   users:
     index:
+      area: 'Area'
+      report: 'Report user'
       no_results: "No results found, please try a different search."
     search:
       search: "Search"

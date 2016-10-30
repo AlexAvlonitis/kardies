@@ -34,15 +34,3 @@ $ ->
         $('.city-selection-not-hidden').append opt
     $('.city-selection').show()
     $('.city-selection-label').show()
-
-  slider = $('#slider').slider
-    range: true
-    min: 16
-    max: 99
-    values: [20, 50]
-    slide: (event, ui) ->
-      $( "#age_from" ).val(ui.values[0])
-      $( "#age_to" ).val(ui.values[1])
-
-  $("#age_from").val( $("#slider").slider("values", 0) );
-  $("#age_to").val( $("#slider").slider("values", 1) );
