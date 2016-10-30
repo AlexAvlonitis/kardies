@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
 
   def new
+    @recipient = User.find_by_username(params[:username])
   end
 
   def create

@@ -23,3 +23,9 @@ en:
       admin_area: "Admininstation"
       profile: "Settings"
       sign_out: "Sign out"
+  messages:
+    new:
+      subject: 'Subject'
+      message: "Message"
+      subject_placeholder: "Type a subject for your message"
+      message_placeholder: "Type your message"

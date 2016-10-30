@@ -1,12 +1,17 @@
-= form_tag messages_path, method: :post do
-  .form-group
-    = label_tag 'message[subject]', 'Subject'
-    = text_field_tag 'message[subject]', nil, class: 'form-control', required: true
+.medium-6.small-centered.columns
+  %h3 #{image_tag @recipient.profile_picture, class: "icon-size"} Αποστολή μηνύματος
+  = form_tag messages_path, method: :post do
+    = label_tag 'message[subject]', "#{t '.subject'}"
+    = text_field_tag 'message[subject]', nil, class: 'form-control',
+                                              required: true,
+                                              placeholder: "#{t '.subject_placeholder'}"
 
-  .form-group
-    = label_tag 'message[body]', 'Message'
-    = text_area_tag 'message[body]', nil, cols: 3, class: 'form-control', required: true
+    = label_tag 'message[body]', "#{t '.message'}"
+    = text_area_tag 'message[body]', nil, cols: 3, class: 'form-control',
+                                                   required: true,
+                                                   placeholder: "#{t '.message_placeholder'}"
 
-    = hidden_field_tag "message[username]", params[:username]
+    = hidden_field_tag "message[username]", @recipient
 
-  = submit_tag 'Send', class: 'btn btn-primary'
+    = submit_tag 'Send', class: 'button success expanded'
+    = link_to 'Back', :back

@@ -26,6 +26,12 @@ gr:
       admin_area: "Διαχείριση"
       profile: "Ρυθμίσεις"
       sign_out: "Αποσύνδεση"
+  messages:
+    new:
+      subject: 'Θέμα'
+      message: "Μήνυμα"
+      subject_placeholder: "Γράψτε ένα θέμα για την συνομιλία σας"
+      message_placeholder: "Γράψτε το μήνυμά σας"
   activerecord:
     errors:
       models:
