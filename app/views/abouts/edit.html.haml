@@ -1,11 +1,24 @@
-.col-md-4.col-md-offset-4
-  %h2 About Me
+.medium-6.small-centered.columns
+  %nav{ "aria-label" => "You are here:", "role" => "navigation" }
+    %ul.breadcrumbs
+      %li= link_to 'My Profile', edit_user_registration_path
+      %li
+        %span.show-for-sr Current:
+        About me
+      %li= link_to 'My Galleries', galleries_path
+
+  %h2.orange-text About me
   = form_for @about, url: about_path, html: { method: :put } do |f|
 
+    %label Occupation
     = f.text_field :job, placeholder: 'Job'
+    %label Hobby
     = f.text_field :hobby, placeholder: 'Hobby'
+    %label Relationship status
     = f.text_field :relationship_status, placeholder: 'Relationship Status'
+    %label Looking for
     = f.text_field :looking_for, placeholder: 'Looking for'
+    %label About me
     = f.text_area :description, placeholder: 'description'
 
-    = f.submit "Save", class: "btn btn-lg btn-primary"
+    = f.submit "Save", class: "button primary expanded"

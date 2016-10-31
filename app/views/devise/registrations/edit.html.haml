@@ -1,28 +1,40 @@
-.small-12.columns
-  %h2
-    Edit #{resource_name.to_s.humanize} /
-    = link_to 'About me', edit_about_path
-    \/
-    = link_to 'My Galleries', galleries_path
+.medium-6.small-centered.columns
+  %nav{ "aria-label" => "You are here:", "role" => "navigation" }
+    %ul.breadcrumbs
+      %li
+        %span.show-for-sr Current:
+        My Profile
+      %li= link_to 'About me', edit_about_path
+      %li= link_to 'My Galleries', galleries_path
+
+  %h2.orange-text My Profile
   = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
 
     = f.fields_for :user_detail do |d|
-      %label.button{"for" => "picUpload"} Upload Profile Picture
+      = image_tag current_user.profile_picture(:thumb), class: "thumbnail"
+      %label.button{"for" => "picUpload"} Change Profile Picture
       = d.file_field :profile_picture, as: :file, class: "show-for-sr", id: "picUpload"
+      %label State
       = d.select :state, GC.states, {selected: current_user.state}, {class: "state-selection"}
+      %label City
       = d.select :city,  GC.cities(current_user.state), {selected: current_user.city}, {class: "city-selection-not-hidden"}
-      = d.collection_radio_buttons :gender, [['male', 'Male'], ['female', 'Female']], :first, :last
+      %label Gender
+      = d.collection_radio_buttons :gender, [['male', 'Male'], ['female', 'Female'], ['other', "Other"]], :first, :last
+      %label Age
       = d.select :age, options_for_select((16..99).step(1), current_user.age)
 
+    %label Username
     = f.text_field :username
+    %label Email
     = f.email_field :email
 
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       %div
         Currently waiting confirmation for: #{resource.unconfirmed_email}
 
-    %i (leave blank if you don't want to change it)
-    = f.password_field :password
+    %label Password
+    = f.password_field :password, placeholder: "leave blank if you don't want to change it"
+    %label Password confirmation
     = f.password_field :password_confirmation
 
     %i (we need your current password to confirm your changes)
@@ -30,7 +42,8 @@
 
 
     = f.submit "Update", class: "button primary expanded"
-  %h3 Cancel my account
+  %hr
+  %h3.orange-text Cancel my account
   = button_to "Cancel my account", registration_path(resource_name),
                                    data: { confirm: "Προσοχή, ο λογαριασμός σας θα διαγραφεί ολοκληρωτικά" },
                                    method: :delete,

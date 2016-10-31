@@ -1,14 +1,22 @@
-%h1 Galleries
+.medium-6.small-centered.columns
+  %nav{ "aria-label" => "You are here:", "role" => "navigation" }
+    %ul.breadcrumbs
+      %li= link_to 'My Profile', edit_user_registration_path
+      %li= link_to 'About me', edit_about_path
+      %li
+        %span.show-for-sr Current:
+        My Galleries
 
-%h3 Create a Gallery
-= render 'galleries/form', {gallery: @gallery}
 
+  %h2.orange-text Galleries
+  %h3.subheader Create a Gallery
+  = render 'galleries/form', {gallery: @gallery}
 
-- if @galleries
-  - @galleries.each do |gallery|
-    .row
-      %h3= gallery.name
-      %p= gallery.description
+  %hr
+  %h4.orange-text My Galleries
+  - if @galleries
+    - @galleries.each do |gallery|
+      %h5= gallery.name.upcase
 
       - gallery.pictures.each do |pic|
-        = image_tag pic.picture.url(:medium)
+        = image_tag pic.picture.url(:thumb), class: "thumbnail"
