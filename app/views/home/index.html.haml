@@ -1,7 +1,3 @@
 %h1 Welcome #{current_user.username}
 - if current_user.profile_picture
   = image_tag current_user.profile_picture(:medium), class: "img-rounded"
-
-%h3 Languages
-= link_to_unless_current "English", locale: "en"
-= link_to_unless_current "Greek", locale: "gr"
