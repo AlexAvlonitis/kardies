@@ -1,10 +1,27 @@
 gr:
+  abouts:
+    edit:
+      about_me: 'ΛΕΠΤΟΜΕΡΕΙΕΣ'
+      galleries: 'ΑΛΜΠΟΥΜ'
+      profile: 'ΠΡΟΦΙΛ'
+      details: 'Για μένα'
+      save: 'Αποθήκευση'
+      job_placeholder: "Δασκάλα, Υδραυλικός, Μηχανικός..."
+      hobby_placeholder: "Πλέξιμο, Γυμναστική, Κηπουρική..."
+      relationship_status_placeholder: "Ελεύθερος/η, Παντρεμένος/η..."
+      looking_for_placeholder: "Το άλλο μου μισό, Φιλία..."
+      about_me_placeholder: "Χρυσό παιδί..."
+      back: 'Πίσω'
   users:
     index:
       area: "Περιοχή"
       report: 'Αναφορά χρήστη'
       no_results: "Δεν βρέθηκαν χρήστες, παρακαλούμε δοκιμάστε διαφορετική αναζήτηση."
     show:
+      upload_pictures: 'Ανέβασμα φωτογραφιών'
+      album_name: 'Όνομα άλμπουμ'
+      my_galleries: 'Τα άλμπουμ μου'
+      create_gallery: 'Δημιουργία άλμπουμ'
       job: "Επάγγελμα"
       hobby: "Χόμπυ"
       relationship_status: "Κατάσταση σχέσης"

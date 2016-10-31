@@ -3,49 +3,49 @@
     %ul.breadcrumbs
       %li
         %span.show-for-sr Current:
-        My Profile
-      %li= link_to 'About me', edit_about_path
-      %li= link_to 'My Galleries', galleries_path
+        =t '.profile'
+      %li= link_to "#{t '.about_me'}", edit_about_path
+      %li= link_to "#{t '.galleries'}", galleries_path
 
-  %h2.orange-text My Profile
+  %h2.orange-text= t '.my_profile'
   = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
 
     = f.fields_for :user_detail do |d|
-      = image_tag current_user.profile_picture(:thumb), class: "thumbnail"
-      %label.button{"for" => "picUpload"} Change Profile Picture
+      = image_tag current_user.profile_picture(:thumb), class: "thumbnail icon-size"
+      %label.button{"for" => "picUpload"}=t '.change_prof_pic'
       = d.file_field :profile_picture, as: :file, class: "show-for-sr", id: "picUpload"
-      %label State
+      %label= t '.state'
       = d.select :state, GC.states, {selected: current_user.state}, {class: "state-selection"}
-      %label City
+      %label= t '.city'
       = d.select :city,  GC.cities(current_user.state), {selected: current_user.city}, {class: "city-selection-not-hidden"}
-      %label Gender
-      = d.collection_radio_buttons :gender, [['male', 'Male'], ['female', 'Female'], ['other', "Other"]], :first, :last
-      %label Age
+      %label= t '.gender'
+      = d.collection_radio_buttons :gender, [['male', "#{t '.male'}"], ['female', "#{t '.female'}"], ['other', "#{t '.other'}"]], :first, :last
+      %label= t '.age'
       = d.select :age, options_for_select((16..99).step(1), current_user.age)
 
-    %label Username
+    %label= t '.username'
     = f.text_field :username
-    %label Email
+    %label= t '.email'
     = f.email_field :email
 
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       %div
         Currently waiting confirmation for: #{resource.unconfirmed_email}
 
-    %label Password
-    = f.password_field :password, placeholder: "leave blank if you don't want to change it"
-    %label Password confirmation
-    = f.password_field :password_confirmation
+    %label= t '.password'
+    = f.password_field :password, placeholder: "#{t '.password_placeholder'}"
+    %label= t '.password_confirmation'
+    = f.password_field :password_confirmation, placeholder: "#{t '.password_placeholder'}"
 
-    %i (we need your current password to confirm your changes)
-    = f.password_field :current_password
+    %i.red-text= t '.update_profile'
+    = f.password_field :current_password, placeholder: "#{t '.password'}"
 
 
-    = f.submit "Update", class: "button primary expanded"
+    = f.submit "#{t '.update'}", class: "button primary expanded"
   %hr
-  %h3.orange-text Cancel my account
-  = button_to "Cancel my account", registration_path(resource_name),
+  %h3.orange-text= t '.cancel_account'
+  = button_to "#{t '.cancel_account'}", registration_path(resource_name),
                                    data: { confirm: "Προσοχή, ο λογαριασμός σας θα διαγραφεί ολοκληρωτικά" },
                                    method: :delete,
                                    class: 'button alert'
-  = link_to "Back", :back
+  = link_to "#{t '.back'}", :back

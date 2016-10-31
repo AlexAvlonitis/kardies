@@ -1,6 +1,6 @@
 = form_for gallery, html: {multipart: true} do |f|
-  %label Name
-  = f.text_field :name, placeholder: "Enter a name for your gallery"
-  %label.button{"for" => "picUpload"} Upload Pictures
+  %label= t 'users.show.album_name'
+  = f.text_field :name
+  %label.button{"for" => "picUpload"}= t 'users.show.upload_pictures'
   = file_field_tag "pictures[]", type: :file, multiple: true, class: "show-for-sr", id: "picUpload"
-  = f.submit class: "button success expanded"
+  = f.submit class: "button success expanded", value: "#{t 'users.show.create_gallery'}"

@@ -1,10 +1,27 @@
 en:
+  abouts:
+    edit:
+      about_me: 'DETAILS'
+      galleries: 'GALLERIES'
+      profile: 'PROFILE'
+      details: 'About me'
+      save: 'save'
+      job_placeholder: "Teacher, Plumber, Mechanic..."
+      hobby_placeholder: "Knitting, Exercising, Gardening..."
+      relationship_status_placeholder: "Single, Married..."
+      looking_for_placeholder: "My other half, Friendship..."
+      about_me_placeholder: "Very good person..."
+      back: 'Back'
   users:
     index:
       area: 'Area'
       report: 'Report user'
       no_results: "No results found, please try a different search."
     show:
+      upload_pictures: 'Upload pictures'
+      album_name: 'Album name'
+      my_galleries: 'My galleries'
+      create_gallery: 'Create gallery'
       job: "Occupation"
       hobby: "Hobbies"
       relationship_status: "Relationship status"

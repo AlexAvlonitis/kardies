@@ -36,6 +36,28 @@ en:
       updated: "Your password has been changed successfully. You are now signed in."
       updated_not_active: "Your password has been changed successfully."
     registrations:
+      edit:
+        male: 'Man'
+        female: 'Woman'
+        update: 'Update'
+        other: 'Other'
+        about_me: 'DETAILS'
+        galleries: 'GALLERIES'
+        profile: 'PROFILE'
+        my_profile: 'My profile'
+        change_prof_pic: 'Change profile picture'
+        state: 'State'
+        city: 'City'
+        age: 'Age'
+        gender: 'Gender'
+        username: 'Username'
+        email: 'Email'
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
+        password_placeholder: "Leave it blank if you don't want to change your password"
+        update_profile: 'Enter your password for your changes to be saved!'
+        cancel_account: "Cancel my account"
+        back: 'Back'
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
       signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
