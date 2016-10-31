@@ -19,8 +19,15 @@
 @import "jgallery";
 @import "users";
 
-body {
+html, body {
  background-color: $whitesmoke;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: -150px;
 }
 
 .orange-text {
@@ -155,4 +162,10 @@ body {
     line-height: 1.25rem;
     color: $aluminium;
   }
+}
+
+footer {
+  background-color: $dark_gray;
+  width: 100%;
+  height: 150px;
 }

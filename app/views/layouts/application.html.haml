@@ -17,5 +17,8 @@
     = render 'layouts/navbar'
     = render 'layouts/flash_errors'
 
-    .row
-      = yield
+    #wrap
+      .row
+        = yield
+
+    = render 'layouts/footer'
