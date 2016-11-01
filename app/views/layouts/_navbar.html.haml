@@ -4,7 +4,8 @@
       .top-bar-title
         %span{"data-responsive-toggle" => "responsive-menu", "data-hide-for" => "medium"}
           %button.menu-icon.dark{"type" => "button", "data-toggle" => ""}
-        %strong= link_to 'Dougrou', root_path
+        = link_to root_path do
+          = image_tag 'hearts_only.png', class: 'icon-size'
       #responsive-menu
         .top-bar-left
           %ul.menu
