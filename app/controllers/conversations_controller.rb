@@ -10,6 +10,7 @@ class ConversationsController < ApplicationController
   end
 
   def show
+    redirect_to conversations_path if @conversation.is_deleted?(current_user)
     @conversation.mark_as_read(current_user) if @conversation.is_unread?(current_user)
     @hashed_conversation = EncryptId.new(@conversation.id).encrypt
   end
@@ -33,7 +34,7 @@ class ConversationsController < ApplicationController
 
   def empty_trash
     @mailbox.trash.each do |conversation|
-      conversation.receipts_for(current_user).update_all(deleted: true)
+      conversation.receipts_for(current_user).mark_as_deleted
     end
     flash[:success] = 'Your trash was cleaned!'
     redirect_to conversations_path

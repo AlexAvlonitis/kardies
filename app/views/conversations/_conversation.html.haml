@@ -1,19 +1,19 @@
-- conversation.participants.each do |participant|
-  %tr
-    - unless participant == current_user
-      %td
-        = link_to conversation_path(conversation) do
-          = image_tag participant.profile_picture, class: "icon-size"
-          = participant.username
-      %td= conversation.created_at.to_formatted_s(:short)
+%tr
+  %td
+    = link_to conversation_path(conversation) do
+      = conversation.participants[0].username
+  %td
+    - conversation.participants.each do |participant|
+      = image_tag participant.profile_picture, class: "icon-size"
+  %td= conversation.created_at.to_formatted_s(:short)
 
-      %td
-        .btn-group-vertical.pull-right
-        - if conversation.is_trashed?(current_user)
-          = link_to 'Restore', restore_conversation_path(conversation),
-                               class: 'button secondary small',
-                               method: :post
+  %td
+    .btn-group-vertical.pull-right
+    - if conversation.is_trashed?(current_user)
+      = link_to 'Restore', restore_conversation_path(conversation),
+                           class: 'button secondary small',
+                           method: :post
 
-        - else
-          = link_to conversation_path(conversation), method: :delete, data: {confirm: 'Are you sure?'} do
-            = fa_icon "trash"
+    - else
+      = link_to conversation_path(conversation), method: :delete, data: {confirm: 'Are you sure?'} do
+        = fa_icon "trash"

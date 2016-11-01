@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
   def create
     recipient = User.find_by_username(params[:message][:username])
     redirect_to users_path if recipient == current_user
-    conversation = current_user.send_message(recipient, params[:message][:body], params[:message][:subject]).conversation
+    current_user.send_message(recipient, params[:message][:body], params[:message][:subject]).conversation
     flash[:success] = "Message has been sent!"
     redirect_to users_path
   end

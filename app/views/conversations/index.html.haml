@@ -4,13 +4,14 @@
   %li.tabs-title
     %a{ "href" => "#sent" } Sent
   %li.tabs-title
-    %a{ "href" => "#trash" } trash
+    %a{ "href" => "#trash" } Trash
 .tabs-content{ "data-tabs-content" => "messages-tabs" }
   .tabs-panel.is-active{ "id" => "inbox" }
     %table.messages
       %thead
         %tr
           %th From
+          %th Participants
           %th At
           %th Action
       %tbody
@@ -22,20 +23,21 @@
       %thead
         %tr
           %th From
+          %th Participants
           %th At
           %th Action
       %tbody
         = render partial: 'conversations/conversation', collection: @conversations_sent
         .row
           = paginate @conversations_sent
-  .tabs-panel{ "id" => "Trash" }
+  .tabs-panel{ "id" => "trash" }
     %table.messages
       %thead
         %tr
           %th From
+          %th Participants
           %th At
           %th Action
       %tbody
+        %p= link_to 'Empty trash', empty_trash_conversations_path, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'}
         = render partial: 'conversations/conversation', collection: @conversations_trash
-        .row
-          = paginate @conversations_trash
