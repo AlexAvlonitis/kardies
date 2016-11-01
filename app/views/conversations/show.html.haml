@@ -1,12 +1,15 @@
 .small-12.columns
   .ui
     .left-menu
-      %menu.list-friends
-
+      = link_to "#{t 'abouts.edit.back'}", :back, class: "button expanded hollow primary"
     .chat
       .top{"id" => "conversation", "conversation-id" => "#{@hashed_conversation}"}
         .avatar
           .info
+            - @conversation.participants.each do |participant|
+              - unless participant == current_user
+                = image_tag participant.profile_picture(:thumb), class: "icon-size"
+                = participant.username
           %ul.messages{"id" => "messages"}
             - @conversation.receipts_for(current_user).each do |receipt|
               = render partial: 'conversations/message', locals: { receipt: receipt }

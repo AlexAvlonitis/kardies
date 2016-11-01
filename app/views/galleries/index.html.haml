@@ -21,4 +21,4 @@
       - gallery.pictures.each do |pic|
         = image_tag pic.picture.url(:thumb), class: "thumbnail"
 
-  = link_to "#{t 'abouts.edit.back'}", :back
+  %p= link_to "#{t 'abouts.edit.back'}", :back

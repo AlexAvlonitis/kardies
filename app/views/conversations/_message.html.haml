@@ -1,9 +1,18 @@
 - message = receipt.message if defined? receipt
 - conversation = @conversation || conversation
-%li{ "class" => "#{ message.sender == conversation.participants[0] ? 'myself' : 'friend-message'}"}
-  .head
-    %span.name= image_tag message.sender.profile_picture, class: "icon-size"
-    %span.time= message.created_at.strftime("%-d %B %Y, %H:%M:%S")
+- if message.sender == conversation.participants[0]
+  %li{ "class" => "myself" }
+    .head
+      %span.time= message.created_at.strftime("%-d %B %Y, %H:%M:%S")
+      %span.name= image_tag message.sender.profile_picture, class: "icon-size"
 
-  .message
-    %p= message.body
+    .message
+      %p= message.body
+- else
+  %li{ "class" => "friend-message"}
+    .head
+      %span.name= image_tag message.sender.profile_picture, class: "icon-size"
+      %span.time= message.created_at.strftime("%-d %B %Y, %H:%M:%S")
+
+    .message
+      %p= message.body

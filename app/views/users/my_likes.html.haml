@@ -1,11 +1,13 @@
 .small-12.medium-6.large-6.columns
-  %h2.orange-text Οι Καρδιές μου
-  %p Αριθμός καρδιών: #{@likes.size}
+  %h2.orange-text= t '.my_hearts'
+  %p
+    = t '.hearts_number'
+    = @likes.size
   %table.messages
     %thead
       %tr
-        %th Από
-        %th Ψευδώνυμο
+        %th= t 'users.search.age_from'
+        %th= t 'users.search.username'
     %tbody
       - @likes.each do |user|
         - present user do |user_profile|

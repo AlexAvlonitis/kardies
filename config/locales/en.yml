@@ -13,6 +13,9 @@ en:
       about_me_placeholder: "Very good person..."
       back: 'Back'
   users:
+    my_likes:
+      my_hearts: "My hearts"
+      hearts_number: "Number of hearts"
     index:
       area: 'Area'
       report: 'Report user'

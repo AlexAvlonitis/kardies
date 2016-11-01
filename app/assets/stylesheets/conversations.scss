@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .ui {
-	margin: 10px auto;
+	margin: 2px auto 10px auto;
 	height: 45rem ;
 	background-color: #fff;
 	border-radius: 3px;
@@ -13,8 +13,7 @@
 
 	.left-menu {
 		width: 29%;
-		box-sizing: content-box;
-		padding-right: 1%;
+		padding: 0.5% 1%;
 		height: 100%;
 		background: #434753;
 	}
@@ -25,7 +24,7 @@
 		background: $whitesmoke;
 
 		.info {
-			display: inline-flex;
+			padding-left: 10px;
 			flex-direction: column;
 			vertical-align: 40px;
 			width: 100%;
@@ -57,7 +56,7 @@
 		height: 70px;
 	}
 	.messages {
-		height: 100%;
+		height: 530px;
 		list-style: none;
 		border: 2px solid #fff;
 		border-left: none;
@@ -95,8 +94,8 @@
 				margin-top: 20px;
 				color: #fff;
 				font-size: 15px;
-				border-radius: 3px;
-				padding: 0.5rem 1rem;
+				border-radius: 5px;
+				padding: 0 1rem;
 				line-height: 25px;
 				max-width: 500px;
 				word-wrap: break-word;
