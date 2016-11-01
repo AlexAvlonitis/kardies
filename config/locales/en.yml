@@ -47,12 +47,14 @@ en:
       gender_man: "Man"
       gender_woman: "Woman"
       gender_other: "Other"
+      age_from: "From"
+      age_to: "Up to"
   layouts:
     navbar:
       messages: "Messages"
       users: "Users"
       likes: "Hearts"
-      admin_area: "Admininstation"
+      admin_area: "Administration"
       profile: "Settings"
       sign_out: "Sign out"
   messages:

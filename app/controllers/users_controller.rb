@@ -6,14 +6,16 @@ class UsersController < ApplicationController
     if search_params.present?
       @users = User.search(search_params).page params[:page]
     else
-      @users = User.all_except(current_user).order(is_signed_in: :desc).page params[:page]
+      @users = User.all_except(current_user).not_blocked.page params[:page]
     end
   end
 
   def show
+    user_deleted_check
   end
 
   def like
+    user_deleted_check
     if @user.liked_by current_user
       render json: @user, status: 201
     else
@@ -22,6 +24,7 @@ class UsersController < ApplicationController
   end
 
   def unlike
+    user_deleted_check
     if @user.unliked_by current_user
       render json: @user, status: 201
     else
@@ -46,7 +49,7 @@ class UsersController < ApplicationController
     all_params[:city] = params[:city] if params[:city] && !params[:city].blank?
     all_params[:is_signed_in] = params[:is_signed_in] if params[:is_signed_in] && !params[:is_signed_in].blank?
     all_params[:username] = params[:username] if params[:username] && !params[:username].blank?
-    all_params[:age] = set_age_range
+    all_params[:age] = set_age_range if set_age_range
     all_params[:gender] = params[:gender] if params[:gender] && !params[:gender].blank?
     all_params
   end
@@ -55,8 +58,12 @@ class UsersController < ApplicationController
     if params[:age_from] && !params[:age_from].blank? && params[:age_to] && !params[:age_to].blank?
       [params[:age_from], params[:age_to]]
     else
-      [nil, nil]
+      nil
     end
+  end
+
+  def user_deleted_check
+    rescue_error if ! @user.deleted_at.nil?
   end
 
   def set_user

@@ -10,6 +10,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   scope :all_except, ->(user) { where.not(id: user) }
+  scope :not_blocked, -> { where(deleted_at: nil) }
 
   # Relations
   has_one :about, dependent: :destroy
@@ -25,14 +26,23 @@ class User < ApplicationRecord
                       message: "should not contain dot!"
 
   def self.search(query)
-    UsersIndex::User
-      .filter{ state == query[:state] }
-      .filter{ city == query[:city] }
-      .filter{ username == query[:username] }
-      .filter{ is_signed_in == query[:is_signed_in] }
-      .filter{ gender == query[:gender] }
-      .filter{ (age >= query[:age][0]) & (age <= query[:age][1]) }
-      .load
+    scope = UsersIndex::User
+              .filter{ deleted_at != true }
+              .filter{ state == query[:state] }
+              .filter{ city == query[:city] }
+              .filter{ username == query[:username] }
+              .filter{ is_signed_in == query[:is_signed_in] }
+              .filter{ gender == query[:gender] }
+              .filter{ age_values(query) }
+    scope.only(:id).load
+  end
+
+  def age_values(query)
+    if query.has_key?(:age)
+      (age >= query[:age][0]) & (age <= query[:age][1])
+    else
+      (age >= query[:age]) & (age <= query[:age])
+    end
   end
 
   def soft_delete

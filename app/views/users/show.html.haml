@@ -4,11 +4,12 @@
       = image_tag @user.profile_picture(:medium), class: "thumbnail"
     %h3.text-center
       = @user.username
-    %ul.menu.expanded
-      %li= user_presenter.new_message
-      %li.pull-right= user_presenter.like_status
-    %hr
-    = link_to "#{t 'users.index.report'}", report_path(@user), class: "button alert hollow expanded tiny"
+    - unless @user == current_user
+      %ul.menu.expanded
+        %li= user_presenter.new_message
+        %li.pull-right= user_presenter.like_status
+      %hr
+      = link_to "#{t 'users.index.report'}", report_path(@user), class: "button alert hollow expanded tiny"
 
     %ul.menu.vertical
       %li

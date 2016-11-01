@@ -8,6 +8,7 @@
     .card-block
       %h5.card-title= user.username + " " +  user.age
       %p.card-text= GC.get_city_name(user.state, user.city) + " " + "(" + GC.get_state_name(user.state) + ")"
-      %span.message= user_presenter.new_message
-      %span.vertical-border
-      %span.like= user_presenter.like_status
+      - unless user == current_user
+        %span.message= user_presenter.new_message
+        %span.vertical-border
+        %span.like= user_presenter.like_status
