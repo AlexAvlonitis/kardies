@@ -11,7 +11,7 @@
                                                    required: true,
                                                    placeholder: "#{t '.message_placeholder'}"
 
-    = hidden_field_tag "message[username]", @recipient
+    = hidden_field_tag "message[username]", @recipient.username
 
     = submit_tag 'Send', class: 'button success expanded'
     = link_to 'Back', :back

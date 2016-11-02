@@ -1,10 +1,9 @@
 %tr
-  %td
-    = link_to conversation_path(conversation) do
-      = conversation.participants[0].username
+  %td= link_to 'View', conversation_path(conversation)
   %td
     - conversation.participants.each do |participant|
-      = image_tag participant.profile_picture, class: "icon-size"
+      = link_to user_path(participant) do
+        = image_tag participant.profile_picture, class: "icon-size"
   %td= conversation.created_at.to_formatted_s(:short)
 
   %td
