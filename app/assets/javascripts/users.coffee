@@ -34,3 +34,23 @@ $ ->
         $('.city-selection-not-hidden').append opt
     $('.city-selection').show()
     $('.city-selection-label').show()
+
+  @previewProfilePic = ->
+    preview = document.querySelector('img')
+    file = document.querySelector('input[type=file]').files[0]
+    profPic = $('.previewProfilePic')
+    reader = new FileReader
+    reader.addEventListener 'load', (->
+      image = new Image()
+      image.className = 'thumbnail thumb-size'
+      image.style.display = "block"
+      image.title = file.name
+      image.src = this.result
+      profPic.html image
+    ), false
+    if file
+      reader.readAsDataURL file
+
+  $('#edit-submit').on 'click', ->
+    $body = $("body")
+    $body.addClass("loading");

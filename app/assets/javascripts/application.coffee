@@ -16,6 +16,7 @@
 #= require users
 #= require jgallery
 #= require tinycolor.min
+#= require galleries
 #= require_tree .
 
 $ ->
