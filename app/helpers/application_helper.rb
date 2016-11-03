@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def foundation_class_for flash_type
-    { success: "success", error: "alert", alert: "warning", notice: "info" }[flash_type.to_sym] || flash_type.to_s
+    { success: "success", alert: "alert", warning: "warning", notice: "info" }[flash_type.to_sym] || flash_type.to_s
   end
 
   def admins_only(&block)

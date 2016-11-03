@@ -4,6 +4,9 @@ en:
       gallery_deleted: 'Gallery has been deleted successfully'
     index:
       gallery_delete_confirmation: "This gallery will be deleted permanently!"
+    create:
+      no_picture_error: "Please select one picture at least"
+      no_save_error: "Something went wrong, please check all the fields and try again"
   abouts:
     edit:
       about_me: 'DETAILS'

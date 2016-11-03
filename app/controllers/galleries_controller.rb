@@ -6,17 +6,21 @@ class GalleriesController < ApplicationController
   end
 
   def create
-    gallery = current_user.galleries.build(gallery_params)
+    @gallery = current_user.galleries.build(gallery_params)
 
-    if gallery.save
-      if params[:pictures]
-        params[:pictures].each do |picture|
-          gallery.pictures.create(picture: picture)
-        end
+    unless params[:pictures]
+      flash.now[:alert] = t '.no_picture_error'
+      render :index
+      return
+    end
+
+    if @gallery.save
+      params[:pictures].each do |picture|
+        @gallery.pictures.create(picture: picture)
       end
       redirect_to galleries_path
     else
-      flash.now[:alert] = 'error did not save gallery'
+      flash[:alert] = t '.no_save_error'
       redirect_to galleries_path
     end
   end

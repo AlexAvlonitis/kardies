@@ -23,16 +23,16 @@
                                                   ["#{t '.gender_woman'}", "female"],
                                                   ["#{t '.gender_other'}", "other"]])
       .row
-        %p= t '.age'
+        %label= t '.age'
         .slider{ "data-slider" => "", "data-initial-start" => "20", "data-initial-end" => "50", "data-end" => "99", "data-start" => "16" }
           %span.slider-handle{ "data-slider-handle" => "", "role" => "slider", "tabindex" => "1", "aria-controls" => "age_from" }
           %span.slider-fill{ "data-slider-fill" => "" }
           %span.slider-handle{ "data-slider-handle" => "", "role" => "slider", "tabindex" => "1", "aria-controls" => "age_to"}
         .small-6.columns
-          %label{ "for" => "amount_from" }= t '.age_from'
+          %label= t '.age_from'
           = number_field_tag :age_from
         .small-6.columns
-          %label{ "for" => "amount_to" }= t '.age_to'
+          %label= t '.age_to'
           = number_field_tag :age_to
 
       .row
