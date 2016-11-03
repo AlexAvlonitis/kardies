@@ -62,6 +62,18 @@ en:
       admin_area: "Administration"
       profile: "Settings"
       sign_out: "Sign out"
+  conversations:
+    index:
+      empty_trash: "Empty Trash"
+      conversation: "Conversation"
+      participants: "Participants"
+      conversation_at: "Date"
+      conversation_action: "Action"
+      inbox: "Inbox"
+      sent: "Outbox"
+      trash: "Recycle Bin"
+    conversation:
+      view: 'View conversation'
   messages:
     new:
       subject: 'Subject'

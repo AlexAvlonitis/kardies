@@ -63,6 +63,18 @@ gr:
       admin_area: "Διαχείριση"
       profile: "Ρυθμίσεις"
       sign_out: "Αποσύνδεση"
+  conversations:
+    index:
+      empty_trash: "Άδειασμα Κάδου"
+      conversation: "Συζήτηση"
+      participants: "Παρευρισκόμενοι"
+      conversation_at: "Ημερομηνία"
+      conversation_action: "Ενέργεια"
+      inbox: "Εισερχόμενα"
+      sent: "Εξερχόμενα"
+      trash: "Κάδος ανακύκλωσης"
+    conversation:
+      view: 'Προβολή συζήτησης'
   messages:
     new:
       subject: 'Θέμα'

@@ -1,19 +1,20 @@
 %ul.tabs{ "data-tabs" => "", "id" => "messages-tabs" }
   %li.tabs-title.is-active
-    %a{ "href" => "#inbox", "aria-selected" => "true"} Inbox
+    %a{ "href" => "#inbox", "aria-selected" => "true"}= t '.inbox'
   %li.tabs-title
-    %a{ "href" => "#sent" } Sent
+    %a{ "href" => "#sent" }= t '.sent'
   %li.tabs-title
-    %a{ "href" => "#trash" } Trash
+    %a{ "href" => "#trash" }= t '.trash'
 .tabs-content{ "data-tabs-content" => "messages-tabs" }
   .tabs-panel.is-active{ "id" => "inbox" }
     %table.messages
       %thead
+        %strong= t '.inbox'
         %tr
-          %th Conversation
-          %th Participants
-          %th At
-          %th Action
+          %th= t '.conversation'
+          %th= t '.participants'
+          %th= t '.conversation_at'
+          %th= t '.conversation_action'
       %tbody
         = render partial: 'conversations/conversation', collection: @conversations_inbox
         .row
@@ -21,11 +22,12 @@
   .tabs-panel{ "id" => "sent" }
     %table.messages
       %thead
+        %strong= t '.sent'
         %tr
-          %th Conversation
-          %th Participants
-          %th At
-          %th Action
+          %th= t '.conversation'
+          %th= t '.participants'
+          %th= t '.conversation_at'
+          %th= t '.conversation_action'
       %tbody
         = render partial: 'conversations/conversation', collection: @conversations_sent
         .row
@@ -33,11 +35,15 @@
   .tabs-panel{ "id" => "trash" }
     %table.messages
       %thead
+        %p
+          %strong= t '.trash'
         %tr
-          %th Conversation
-          %th Participants
-          %th At
-          %th Action
+          %th= t '.conversation'
+          %th= t '.participants'
+          %th= t '.conversation_at'
+          %th= t '.conversation_action'
       %tbody
-        %p= link_to 'Empty trash', empty_trash_conversations_path, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'}
+        = link_to empty_trash_conversations_path, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} do
+          = fa_icon 'trash-o'
+          = t '.empty_trash'
         = render partial: 'conversations/conversation', collection: @conversations_trash

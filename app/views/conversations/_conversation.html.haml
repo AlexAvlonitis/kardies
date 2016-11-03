@@ -1,5 +1,5 @@
 %tr
-  %td= link_to 'View', conversation_path(conversation)
+  %td= link_to "#{t '.view'}", conversation_path(conversation)
   %td
     - conversation.participants.each do |participant|
       = link_to user_path(participant) do
