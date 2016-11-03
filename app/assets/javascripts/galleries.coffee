@@ -2,6 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
+  $('.hidden-gallery-form').hide()
+
   @previewFiles = ->
 
     preview = document.querySelector('#preview')
@@ -28,3 +30,7 @@ $ ->
   $('#gallery-submit').on 'click', ->
     $body = $("body")
     $body.addClass("loading");
+
+  $('.create-gallery').on 'click', (e) ->
+    e.preventDefault()
+    $('.hidden-gallery-form').toggle 'show'

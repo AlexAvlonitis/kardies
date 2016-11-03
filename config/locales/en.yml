@@ -21,7 +21,7 @@ en:
       report: 'Report user'
       no_results: "No results found, please try a different search."
     show:
-      upload_pictures: 'Upload pictures'
+      upload_pictures: 'Select pictures'
       album_name: 'Album name'
       my_galleries: 'My galleries'
       create_gallery: 'Create gallery'
