@@ -21,7 +21,10 @@
   %h4.orange-text=t 'users.show.my_galleries'
   - if @galleries
     - @galleries.each do |gallery|
-      %h5= gallery.name
+      %h5
+        = gallery.name
+        = link_to gallery_path(gallery), method: :delete, data: {confirm: "#{t '.gallery_delete_confirmation'}"} do
+          = fa_icon 'trash'
 
       - gallery.pictures.each do |pic|
         = image_tag pic.picture.url(:thumb), class: "thumbnail"

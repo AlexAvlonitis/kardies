@@ -1,4 +1,9 @@
 gr:
+  galleries:
+    destroy:
+      gallery_deleted: 'Το άλμπουμ διαγράφηκε με επιτυχία'
+    index:
+      gallery_delete_confirmation: "Αυτό το άλμπουμ θα διαγραφεί οριστικά!"
   abouts:
     edit:
       about_me: 'ΛΕΠΤΟΜΕΡΕΙΕΣ'

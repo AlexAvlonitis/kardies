@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       post 'unblock_user/:username', to: "registrations#admin_unblock", as: :admin_unblock
     end
 
-    root to: "home#index"
+    root 'home#index'
 
     resources :users, param: :username, only: [:index, :show] do
       member do

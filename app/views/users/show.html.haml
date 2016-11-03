@@ -4,6 +4,10 @@
       = image_tag @user.profile_picture(:medium), class: "thumbnail"
     %h3.text-center
       = @user.username
+    - if current_user == @user
+      = link_to edit_user_registration_path, class: "button tiny expanded" do
+        = fa_icon 'gears'
+        Edit Profile
     - unless @user == current_user
       %ul.menu.expanded
         %li= user_presenter.new_message
