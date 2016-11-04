@@ -1,11 +1,11 @@
 .center-page
   .small-12.columns.text-center
     = image_tag 'hearts_2.png'
-    %h2.custom_header Γνωριμίες από όλη την Ελλάδα
+    %h2.custom_header= t '.kardies-text'
   .row
     .small-8.small-centered.columns
       .small-12.medium-6.large-6.columns.small-centered.text-center
-        %a.button.primary.expanded{ "data-toggle" => "signin_modal" } Σύνδεση
-        %a.button.secondary{ "data-toggle" => "signup_modal" } Εγγραφή
+        %a.button.primary.expanded{ "data-toggle" => "signin_modal" }= t '.login'
+        %a.button.secondary{ "data-toggle" => "signup_modal" }= t '.register'
         = render 'devise/sessions/signin_modal'
         = render 'devise/sessions/signup_modal'

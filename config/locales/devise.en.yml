@@ -46,6 +46,7 @@ en:
         profile: 'PROFILE'
         my_profile: 'My profile'
         change_prof_pic: 'Change profile picture'
+        upload_prof_pic: 'Upload profile picture'
         state: 'State'
         city: 'City'
         age: 'Age'
@@ -57,6 +58,7 @@ en:
         password_placeholder: "Leave it blank if you don't want to change your password"
         update_profile: 'Enter your password for your changes to be saved!'
         cancel_account: "Cancel my account"
+        pass_validation: "characters at least"
         back: 'Back'
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
@@ -69,6 +71,10 @@ en:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
+      new:
+        kardies-text: "Meet singles in Greece"
+        login: 'Sign in'
+        register: "Register"
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
