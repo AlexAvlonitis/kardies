@@ -30,29 +30,28 @@
         %h4.subheader= t '.no_albums'
       - @user.galleries.each.with_index do |gallery, index|
         %li.accordion-item
-          %a{ "href" => "#panel#{index}d", "role" => "tab", "class" => "accordion-title", "id" => "panel#{index}d-heading", "aria-controls" => "panel#{index}d" }= gallery.name
+          %a{ "href" => "#panel#{index}d", "role" => "tab", "class" => "accordion-title", "id" => "panel#{index}d-heading", "aria-controls" => "panel#{index}d" }
+            = fa_icon 'image'
+            = gallery.name
           .accordion-content{ "role" => "tabpanel", "data-tab-content" => "", "aria-labelledby" => "panel#{index}d-heading", "id" => "panel#{index}d" }
             .gallery
               - gallery.pictures.each do |pic|
                 = link_to pic.picture.url do
                   = image_tag pic.picture.url, class: "icon-size"
 
-
-    %hr
     .small-12
       %h2.orange-text= t '.about'
       %h4= t '.job'
-      .callout.primary
-        = user_presenter.about_info('job')
+      = user_presenter.about_info('job')
+      %hr
       %h4= t '.hobby'
-      .callout.primary
-        = user_presenter.about_info('hobby')
+      = user_presenter.about_info('hobby')
+      %hr
       %h4= t '.relationship_status'
-      .callout.primary
-        = user_presenter.about_info('relationship_status')
+      = user_presenter.about_info('relationship_status')
+      %hr
       %h4= t '.looking_for'
-      .callout.primary
-        = user_presenter.about_info('looking_for')
+      = user_presenter.about_info('looking_for')
+      %hr
       %h4= t '.about_me'
-      .callout.primary
-        = user_presenter.about_info('description')
+      = user_presenter.about_info('description')

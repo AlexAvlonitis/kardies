@@ -17,7 +17,9 @@
 #= require jgallery
 #= require tinycolor.min
 #= require galleries
+#= require jquery-ui/dialog
 #= require_tree .
 
 $ ->
   $(document).foundation()
+  $(".alert-box" ).fadeOut(3000);

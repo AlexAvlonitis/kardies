@@ -11,6 +11,7 @@
 * It is generally better to create a new file per style scope.
 *
 *= require jgallery
+*= require jquery-ui/dialog
 */
 @import "foundation_and_overrides";
 @import "font-awesome";

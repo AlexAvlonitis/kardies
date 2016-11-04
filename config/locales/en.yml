@@ -81,5 +81,6 @@ en:
     new:
       subject: 'Subject'
       message: "Message"
-      subject_placeholder: "Type a subject for your message"
+      subject_placeholder: "Conversation subject"
       message_placeholder: "Type your message"
+      send: 'Send Message'

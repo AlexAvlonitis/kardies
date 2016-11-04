@@ -7,6 +7,17 @@ $ ->
   $('.city-selection').hide()
   $('.city-selection-label').hide()
 
+  $("#message-modal").dialog({
+    autoOpen: false,
+    width: 'auto',
+    maxWidth: 450,
+    height: 'auto',
+    modal: true,
+    resizable: false,
+    draggable: false,
+    fluid: true
+  })
+
   $('.like-link').on("ajax:success", (e, data, status, xhr) ->
     username  = this.id.split("__");
     getID = this.id

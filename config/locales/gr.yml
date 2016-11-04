@@ -82,8 +82,9 @@ gr:
     new:
       subject: 'Θέμα'
       message: "Μήνυμα"
-      subject_placeholder: "Γράψτε ένα θέμα για την συνομιλία σας"
+      subject_placeholder: "Θέμα συνομιλίας"
       message_placeholder: "Γράψτε το μήνυμά σας"
+      send: 'Αποστολή μηνύματος'
   activerecord:
     errors:
       models:

@@ -1,5 +1,5 @@
 .row
-  .small-6.small-centered.columns
+  .small-12.medium-6.small-centered.columns
     - flash.each do |name, msg|
       - if msg.is_a?(String)
         %div{ "data-alert" => "", "class" => "alert-box #{foundation_class_for(name)}", "data-closable" => "" }

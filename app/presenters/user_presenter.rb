@@ -18,7 +18,7 @@ class UserPresenter < BasePresenter
   end
 
   def new_message
-    h.link_to h.new_message_path(user) do
+    h.link_to h.new_message_path(user), remote: true do
       h.fa_icon "envelope 2x"
     end
   end

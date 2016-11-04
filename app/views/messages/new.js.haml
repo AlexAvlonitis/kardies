@@ -1,0 +1,3 @@
+var $modal = $('#message-modal');
+$modal.html("#{j render partial: 'messages/message_modal', locals: {user: @recipient}}")
+$modal.dialog('open');

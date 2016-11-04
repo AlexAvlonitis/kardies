@@ -3,6 +3,10 @@ class MessagesController < ApplicationController
   def new
     @recipient = User.find_by_username(params[:username])
     redirect_to users_path if @recipient == current_user
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
