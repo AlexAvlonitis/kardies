@@ -47,5 +47,7 @@ Rails.application.routes.draw do
     # about, removed IDs
     get 'about/edit', to: 'abouts#edit',   as: :edit_about
     put 'about',      to: 'abouts#update', as: :about
+
+    get 'terms', to: 'terms#index', as: :terms
   end
 end

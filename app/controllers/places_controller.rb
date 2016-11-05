@@ -1,6 +1,5 @@
 class PlacesController < ApplicationController
 
-
   def cities
     render json: GC.cities(params[:state]).to_json
   end
