@@ -72,7 +72,7 @@ gr:
       signed_out: 'Αποσύνδεση με επιτυχία.'
       already_signed_out: "Αποσύνδεση με επιτυχία."
       new:
-        kardies-text: "Γνωριμίες από όλη την Ελλάδα"
+        kardies-text: "Δωρεάν γνωριμίες από όλη την Ελλάδα"
         login: 'Σύνδεση'
         register: "Εγγραφή"
     unlocks:

@@ -65,6 +65,9 @@ en:
       admin_area: "Administration"
       profile: "Settings"
       sign_out: "Sign out"
+    footer:
+      terms: 'Terms of Use'
+      copyright: 'Copyright'
   conversations:
     index:
       empty_trash: "Empty Trash"

@@ -66,6 +66,9 @@ gr:
       admin_area: "Διαχείριση"
       profile: "Ρυθμίσεις"
       sign_out: "Αποσύνδεση"
+    footer:
+      terms: 'Όροι χρήσης'
+      copyright: 'Δικαιώματα'
   conversations:
     index:
       empty_trash: "Άδειασμα Κάδου"

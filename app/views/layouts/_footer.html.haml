@@ -1,7 +1,11 @@
 %footer
   .row
-    .medium-4.columns
-      = link_to locale: "en" do
+    .small-4.columns
+      =link_to locale: "en" do
         = image_tag "uk_flag.png"
       = link_to locale: "gr" do
         = image_tag "greek_flag.png"
+    .small-4.columns.text-center
+      © 2016 #{t '.copyright'} Κardies.gr
+    .small-4.columns.text-right
+      = link_to "#{t '.terms'}", terms_path
