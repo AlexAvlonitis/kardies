@@ -5,8 +5,9 @@
       = devise_error_messages!
 
       = f.fields_for :user_detail do |d|
+        .previewProfilePic
         %label.button{"for" => "picUpload"}= t 'devise.registrations.edit.upload_prof_pic'
-        = d.file_field :profile_picture, as: :file, class: "show-for-sr", id: "picUpload"
+        = d.file_field :profile_picture, as: :file, class: "show-for-sr", id: "picUpload", onchange: "previewProfilePic()"
 
         %label= t 'devise.registrations.edit.state'
         = d.select :state, GC.states, {include_blank: true}, {class: "state-selection"}
