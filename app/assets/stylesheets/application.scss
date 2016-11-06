@@ -45,6 +45,9 @@ body {
 
 .red-text {
   color: $red;
+  a {
+    color: $red;
+  }
 }
 
 .aluminium-text {
@@ -194,9 +197,16 @@ footer {
 }
 
 body.loading {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 body.loading .loading-modal {
-    display: block;
+  display: block;
+}
+
+.ui-widget-overlay {
+  background: none;
+  background-color: $dark_gray;
+  opacity: .70;
+  filter: Alpha(Opacity=70);
 }
