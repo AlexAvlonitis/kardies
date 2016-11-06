@@ -78,6 +78,7 @@ gr:
   conversations:
     index:
       empty_trash: "Άδειασμα Κάδου"
+      empty_trash_confirm: "O κάδος ανακύκλωσης θα καθαριστεί, τα μηνύματα σας θα διαγραφούν οριστικά."
       conversation: "Συζήτηση"
       participants: "Παρευρισκόμενοι"
       conversation_at: "Ημερομηνία"
@@ -85,8 +86,17 @@ gr:
       inbox: "Εισερχόμενα"
       sent: "Εξερχόμενα"
       trash: "Κάδος ανακύκλωσης"
+    destroy:
+      convo_trashed: "Η συνομιλία μεταφέρθηκε στον κάδο ανακύκλωσης."
+    restore:
+      convo_restored: "Η συνομιλία επαναφέρθηκε."
+    empty_trash:
+      trash_cleaned: "Ο κάδος ανακύκλωσης καθαρίστηκε"
     conversation:
       view: 'Προβολή συζήτησης'
+      delete: "Διαγραφή"
+      delete_confirm: "Η συνομιλία θα διαγραφεί!"
+      restore: "Επαναφορά"
   messages:
     new:
       subject: 'Θέμα'
@@ -102,11 +112,13 @@ gr:
             username:
               taken: "Αυτό το ψευδώνυμο δεν είναι διαθέσιμο"
               blank: "Το ψευδώνυμο δεν μπορεί να είναι κενό"
+              too_short: "To ψευδώνυμο πρέπει να είναι απο 3 έως 18 χαρακτήρες"
+              too_long: "To ψευδώνυμο πρέπει να είναι απο 3 έως 18 χαρακτήρες"
             email:
               taken: "Αυτό το email δεν είναι διαθέσιμο."
               blank: "Το email δεν μπορεί να είναι κενό"
             password:
-              too_short: "Ο κωδικός είναι μικρός"
+              too_short: "Ο κωδικός πρέπει να είναι 6 χαρακτήρες τουλάχιστον"
               blank: "Ο κωδικός δεν μπορεί να είναι κενός"
             password_confirmation:
               confirmation: "Ο κωδικός επιβεβαίωσης δεν είναι ίδιος με τον κωδικό"

@@ -9,10 +9,10 @@
   %td
     .btn-group-vertical.pull-right
     - if conversation.is_trashed?(current_user)
-      = link_to 'Restore', restore_conversation_path(conversation),
-                           class: 'button secondary small',
-                           method: :post
+      = link_to "#{t '.restore'}", restore_conversation_path(conversation),
+                                   class: 'button secondary small',
+                                   method: :post
 
     - else
-      = link_to conversation_path(conversation), method: :delete, data: {confirm: 'Are you sure?'} do
+      = link_to conversation_path(conversation), method: :delete, class: "button alert", title: "#{t '.delete'}", data: {confirm: "#{t '.delete_confirm'}"} do
         = fa_icon "trash"

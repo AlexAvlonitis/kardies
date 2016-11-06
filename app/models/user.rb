@@ -23,7 +23,8 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates_format_of :username,
                       with: /\A[^\.]*\Z/,
-                      message: "should not contain dot!"
+                      message: "Should not contain dot!"
+  validates :username, length: { in: 3..18 }
 
   def self.search(query)
     scope = UsersIndex::User

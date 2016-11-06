@@ -19,10 +19,13 @@
       = d.select :state, GC.states, {selected: current_user.state}, {class: "state-selection"}
       %label= t '.city'
       = d.select :city,  GC.cities(current_user.state), {selected: current_user.city}, {class: "city-selection-not-hidden"}
-      %label= t '.gender'
-      = d.collection_radio_buttons :gender, [['male', "#{t '.male'}"], ['female', "#{t '.female'}"], ['other', "#{t '.other'}"]], :first, :last
-      %label= t '.age'
-      = d.select :age, options_for_select((16..99).step(1), current_user.age)
+      .row
+        .medium-7.columns
+          %label= t '.gender'
+          = d.collection_radio_buttons :gender, [['male', "#{t '.male'}"], ['female', "#{t '.female'}"], ['other', "#{t '.other'}"]], :first, :last
+        .medium-5.columns
+          %label= t '.age'
+          = d.select :age, options_for_select((16..99).step(1), current_user.age)
 
     %label= t '.username'
     = f.text_field :username

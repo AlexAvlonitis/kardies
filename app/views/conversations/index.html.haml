@@ -43,7 +43,7 @@
           %th= t '.conversation_at'
           %th= t '.conversation_action'
       %tbody
-        = link_to empty_trash_conversations_path, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} do
+        = link_to empty_trash_conversations_path, class: 'button alert', method: :delete, data: {confirm: "#{t '.empty_trash_confirm'}"} do
           = fa_icon 'trash-o'
           = t '.empty_trash'
         = render partial: 'conversations/conversation', collection: @conversations_trash

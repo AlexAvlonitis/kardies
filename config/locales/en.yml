@@ -77,6 +77,7 @@ en:
   conversations:
     index:
       empty_trash: "Empty Trash"
+      empty_trash_confirm: "The trash will be emptied, your messages will be deleted permanently."
       conversation: "Conversation"
       participants: "Participants"
       conversation_at: "Date"
@@ -84,8 +85,17 @@ en:
       inbox: "Inbox"
       sent: "Outbox"
       trash: "Recycle Bin"
+    destroy:
+      convo_trashed: "The conversation has been moved to trash."
+    restore:
+      convo_restored: "The conversation has been restored."
+    empty_trash:
+      trash_cleaned: "The trash has been cleaned."
     conversation:
       view: 'View conversation'
+      delete: "Delete"
+      delete_confirm: "This conversation will be deleted!"
+      restore: "Restore"
   messages:
     new:
       subject: 'Subject'

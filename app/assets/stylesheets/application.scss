@@ -16,7 +16,6 @@
 @import "foundation_and_overrides";
 @import "font-awesome";
 @import "colors";
-@import "terms";
 @import "conversations";
 @import "jgallery";
 @import "users";
@@ -209,4 +208,8 @@ body.loading .loading-modal {
   background-color: $dark_gray;
   opacity: .70;
   filter: Alpha(Opacity=70);
+}
+
+.whitesmoke-bg {
+  background-color: $whitesmoke;
 }
