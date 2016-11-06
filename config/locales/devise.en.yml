@@ -53,6 +53,9 @@ en:
         gender: 'Gender'
         username: 'Username'
         email: 'Email'
+        change_password: "Change password"
+        new_password: "New password"
+        new_password_confirmation: "New password confirmation"
         password: 'Password'
         password_confirmation: 'Password confirmation'
         password_placeholder: "Leave it blank if you don't want to change your password"

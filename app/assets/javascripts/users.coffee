@@ -6,6 +6,7 @@ $ ->
   $('.gallery').jGallery()
   $('.city-selection').hide()
   $('.city-selection-label').hide()
+  $('.change-password').hide()
 
   $("#message-modal").dialog({
     autoOpen: false,
@@ -65,3 +66,7 @@ $ ->
   $('#edit-submit').on 'click', ->
     $body = $("body")
     $body.addClass("loading");
+
+  $('.change-password-link').on 'click', (e) ->
+    e.preventDefault()
+    $('.change-password').toggle 'show'

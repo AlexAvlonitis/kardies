@@ -36,10 +36,18 @@
       %div
         Currently waiting confirmation for: #{resource.unconfirmed_email}
 
-    %label= t '.password'
-    = f.password_field :password, placeholder: "#{t '.password_placeholder'}"
-    %label= t '.password_confirmation'
-    = f.password_field :password_confirmation, placeholder: "#{t '.password_placeholder'}"
+    %p
+      %strong
+        = link_to nil, class: "change-password-link" do
+          = t '.change_password'
+          = fa_icon "plus"
+    .row.change-password
+      .medium-6.columns
+        %label= t '.new_password'
+        = f.password_field :password
+      .medium-6.columns
+        %label= t '.new_password_confirmation'
+        = f.password_field :password_confirmation
 
     %i.red-text= t '.update_profile'
     = f.password_field :current_password, placeholder: "#{t '.password'}"

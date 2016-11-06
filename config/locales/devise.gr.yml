@@ -53,6 +53,9 @@ gr:
         gender: 'Φύλο'
         username: 'Ψευδώνυμο'
         email: 'Email - Διεύθυνση ηλεκτρονικού ταχυδρομείου'
+        change_password: "Αλλαγή κωδικού"
+        new_password: "Νέος κωδικός"
+        new_password_confirmation: "Επαλήθευση νέου κωδικού"
         password: 'Κωδικός'
         password_confirmation: 'Επαλήθευση κωδικού'
         password_placeholder: 'Αφήστε το κενό εάν δεν θέλετε να αλλάξετε τον κωδικό σας'
