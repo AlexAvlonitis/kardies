@@ -1,4 +1,10 @@
 en:
+  reports:
+    show:
+      report: 'Report'
+      reason: "Reason"
+      details: "Details"
+      send_report: "Send Report"
   galleries:
     destroy:
       gallery_deleted: 'Gallery has been deleted successfully'

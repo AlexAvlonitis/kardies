@@ -1,4 +1,10 @@
 gr:
+  reports:
+    show:
+      report: 'Αναφορά'
+      reason: "Αιτία"
+      details: "Λεπτομέρειες"
+      send_report: "Αποστολή Aναφοράς"
   galleries:
     destroy:
       gallery_deleted: 'Το άλμπουμ διαγράφηκε με επιτυχία'
