@@ -6,8 +6,11 @@
         = image_tag user.profile_picture(:medium)
     .card-divider
     .card-block
-      %h5.card-title= user.username + " " +  user.age
-      %p.card-text= GC.get_city_name(user.state, user.city) + " " + "(" + GC.get_state_name(user.state) + ")"
+      = user_presenter.gender_type
+      %h5.card-title
+        = user.username + " " +  user.age
+      .card-text
+        %p= GC.get_city_name(user.state, user.city) + " " + "(" + GC.get_state_name(user.state) + ")"
       - unless user == current_user
         %span.message= user_presenter.new_message
         %span.vertical-border

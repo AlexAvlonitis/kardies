@@ -17,6 +17,16 @@ class UserPresenter < BasePresenter
     user.is_signed_in ? h.content_tag(:span, "", class: "online-now") : nil
   end
 
+  def gender_type
+    if user.gender == "male"
+      h.fa_icon 'mars', class: "gender"
+    elsif user.gender == "female"
+      h.fa_icon 'venus', class: "gender female"
+    else
+      h.fa_icon 'transgender', class: "gender other"
+    end
+  end
+
   def new_message
     h.link_to h.new_message_path(user), remote: true do
       h.fa_icon "envelope 2x"

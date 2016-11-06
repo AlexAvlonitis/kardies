@@ -56,6 +56,25 @@
     margin-top: 0.5rem;
     margin-left: 0.2rem;
   }
+
+  .gender {
+    z-index: -1;
+    width: 1.5rem;
+    font-weight: bold;
+    background-color: $aluminium;
+    padding: 0.4rem;
+    float: left;
+    margin-left: -1.52rem;
+    color: $light_blue;
+  }
+
+  .female {
+    color: $pink;
+  }
+
+  .other {
+    color: $orange;
+  }
 }
 
 .side-search {
