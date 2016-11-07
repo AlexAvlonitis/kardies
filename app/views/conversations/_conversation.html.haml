@@ -1,13 +1,17 @@
 %tr
-  %td= link_to "#{t '.view'}", conversation_path(conversation)
   %td
+    = link_to conversation_path(conversation) do
+      - if conversation.is_unread?(current_user)
+        = fa_icon 'envelope 2x'
+      - else
+        = fa_icon 'envelope-o 2x'
     - conversation.participants.each do |participant|
       = link_to user_path(participant) do
-        = image_tag participant.profile_picture, class: "icon-size"
+        = image_tag participant.profile_picture, class: "tiny-size"
   %td= conversation.created_at.to_formatted_s(:short)
 
   %td
-    .btn-group-vertical.pull-right
+    .pull-right
     - if conversation.is_trashed?(current_user)
       = link_to "#{t '.restore'}", restore_conversation_path(conversation),
                                    class: 'button secondary small',
