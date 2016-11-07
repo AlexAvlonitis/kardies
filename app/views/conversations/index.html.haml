@@ -31,7 +31,7 @@
         .row
           = paginate @conversations_sent
   .tabs-panel{ "id" => "trash" }
-    %table.messages
+    %table.messages.stack
       %thead
         %p
           %strong= t '.trash'

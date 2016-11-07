@@ -1,7 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :get_mailbox
   before_action :get_conversation, except: [:index, :empty_trash]
-  before_action :get_box, only: [:index]
 
   def index
     @conversations_inbox = @mailbox.inbox.page(params[:page]).per(10)
@@ -38,6 +37,11 @@ class ConversationsController < ApplicationController
     end
     flash[:success] = "#{ t '.trash_cleaned' }"
     redirect_to conversations_path
+  end
+
+  def new_conversation_count
+    new_conversations = @mailbox.inbox.select { |convo| convo.is_unread? current_user }.count
+    render json: new_conversations
   end
 
   private

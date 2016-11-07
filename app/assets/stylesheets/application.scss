@@ -217,3 +217,7 @@ body.loading .loading-modal {
 .whitesmoke-bg {
   background-color: $whitesmoke;
 }
+
+table tr:nth-of-type(even) {
+  background-color: transparent !important;
+}
