@@ -39,11 +39,6 @@ class ConversationsController < ApplicationController
     redirect_to conversations_path
   end
 
-  def new_conversation_count
-    new_conversations = @mailbox.inbox.select { |convo| convo.is_unread? current_user }.count
-    render json: new_conversations
-  end
-
   private
 
   def get_box

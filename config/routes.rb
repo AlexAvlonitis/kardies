@@ -33,7 +33,6 @@ Rails.application.routes.draw do
       member do
         post :reply
         post :restore
-        get :new_conversation_count
       end
       collection do
         delete :empty_trash

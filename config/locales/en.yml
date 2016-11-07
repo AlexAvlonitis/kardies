@@ -48,6 +48,7 @@ en:
       about: "About me"
       no_post: "...The user hasn't posted anything yet..."
       no_albums: "...The user hasn't posted any albums yet..."
+      edit_profile: "Edit Profile"
     search:
       search: "Search"
       filters: "Filters"
