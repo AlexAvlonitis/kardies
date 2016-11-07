@@ -1,4 +1,14 @@
 en:
+  contacts:
+    index:
+      contact: 'Contact'
+      name: 'Name'
+      name_placeholder: 'Enter your name'
+      email: 'Email'
+      email_placeholder: 'Enter your email'
+    create:
+      contact_sent: 'Your message has been sent successfully'
+      contact_not_sent: "Your message has not been sent"
   reports:
     show:
       report: 'Report'

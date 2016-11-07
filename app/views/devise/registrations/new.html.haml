@@ -45,6 +45,6 @@
     %label= t 'devise.registrations.edit.password_confirmation'
     = f.password_field :password_confirmation, autocomplete: "off"
     %p.error= show_errors(@user, :password_confirmation)
-    = f.submit "Sign up", class: "button primary expanded"
-    %br
+    = f.submit "Sign up", class: "button success expanded"
+    = link_to "#{t 'abouts.edit.back'}", :back, class: 'button primary small'
   = render "devise/shared/links"

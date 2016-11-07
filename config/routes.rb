@@ -39,6 +39,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :contacts, only: [:index, :create]
+
     get 'cities/:state', to: 'places#cities'
 
     get 'messages/:username/new', to: 'messages#new', as: :new_message
