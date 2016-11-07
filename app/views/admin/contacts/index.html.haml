@@ -1,0 +1,15 @@
+%h1 Messages
+%table
+  %thead
+    %tr
+      %th Name
+      %th Email
+      %th Subject
+      %th Message
+  %tbody
+    - @contacts.each do |user|
+      %tr
+        %td= user.name
+        %td= user.email
+        %td= user.subject
+        %td= user.description

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get 'application/index'
       resources :reports, only: :index
       resources :users, only: :index
+      resources :contacts, only: :index
     end
 
     devise_for :user, controllers: { registrations: 'registrations', sessions: 'sessions' }
