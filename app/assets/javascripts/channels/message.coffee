@@ -6,7 +6,6 @@ $(document).on "turbolinks:load", ->
       # Called when the subscription is ready for use on the server
 
     disconnected: ->
-      @uninstall()
 
     received: (data) ->
       $('#messages').append(data['message'])
