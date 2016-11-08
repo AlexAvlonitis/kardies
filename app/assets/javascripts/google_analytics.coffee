@@ -1,42 +1,43 @@
-class @GoogleAnalytics
+$(document).on "turbolinks:load", ->
+  class @GoogleAnalytics
 
-  @load: ->
-    # Google Analytics depends on a global _gaq array. window is the global scope.
-    window._gaq = []
-    window._gaq.push ["_setAccount", GoogleAnalytics.analyticsId()]
+    @load: ->
+      # Google Analytics depends on a global _gaq array. window is the global scope.
+      window._gaq = []
+      window._gaq.push ["_setAccount", GoogleAnalytics.analyticsId()]
 
-    # Create a script element and insert it in the DOM
-    ga = document.createElement("script")
-    ga.type = "text/javascript"
-    ga.async = true
-    ga.src = ((if "https:" is document.location.protocol then "https://ssl" else "http://www")) + ".google-analytics.com/ga.js"
-    firstScript = document.getElementsByTagName("script")[0]
-    firstScript.parentNode.insertBefore ga, firstScript
+      # Create a script element and insert it in the DOM
+      ga = document.createElement("script")
+      ga.type = "text/javascript"
+      ga.async = true
+      ga.src = ((if "https:" is document.location.protocol then "https://ssl" else "http://www")) + ".google-analytics.com/ga.js"
+      firstScript = document.getElementsByTagName("script")[0]
+      firstScript.parentNode.insertBefore ga, firstScript
 
-    # If Turbolinks is supported, set up a callback to track pageviews on page:change.
-    # If it isn't supported, just track the pageview now.
-    if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
-      document.addEventListener "page:change", (->
-        GoogleAnalytics.trackPageview()
-      ), true
-    else
-      GoogleAnalytics.trackPageview()
-
-  @trackPageview: (url) ->
-    unless GoogleAnalytics.isLocalRequest()
-      if url
-        window._gaq.push ["_trackPageview", url]
+      # If Turbolinks is supported, set up a callback to track pageviews on page:change.
+      # If it isn't supported, just track the pageview now.
+      if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
+        document.addEventListener "page:change", (->
+          GoogleAnalytics.trackPageview()
+        ), true
       else
-        window._gaq.push ["_trackPageview"]
-      window._gaq.push ["_trackPageLoadTime"]
+        GoogleAnalytics.trackPageview()
 
-  @isLocalRequest: ->
-    GoogleAnalytics.documentDomainIncludes "local"
+    @trackPageview: (url) ->
+      unless GoogleAnalytics.isLocalRequest()
+        if url
+          window._gaq.push ["_trackPageview", url]
+        else
+          window._gaq.push ["_trackPageview"]
+        window._gaq.push ["_trackPageLoadTime"]
 
-  @documentDomainIncludes: (str) ->
-    document.domain.indexOf(str) isnt -1
+    @isLocalRequest: ->
+      GoogleAnalytics.documentDomainIncludes "local"
 
-  @analyticsId: ->
-    'UA-53357156-4'
+    @documentDomainIncludes: (str) ->
+      document.domain.indexOf(str) isnt -1
 
-GoogleAnalytics.load()
+    @analyticsId: ->
+      'UA-53357156-4'
+
+  GoogleAnalytics.load()
