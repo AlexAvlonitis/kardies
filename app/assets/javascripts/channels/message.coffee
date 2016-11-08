@@ -17,7 +17,9 @@ $ ->
 
   $(document).on 'keypress', '[data-behaviour~=message_speaker]', (event) ->
     if event.keyCode is 13
-      App.message.speak event.target.value, conversation_id
+      messageValue = event.target.value
+      unless messageValue.trim() == ""
+        App.message.speak messageValue, conversation_id
       event.target.value = ""
       event.preventDefault()
 
