@@ -13,10 +13,8 @@
 #= require jquery
 #= require jquery_ujs
 #= require foundation
-#= require users
 #= require jgallery
 #= require tinycolor.min
-#= require galleries
 #= require jquery-ui/dialog
 #= require_tree .
 
