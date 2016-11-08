@@ -1,6 +1,6 @@
 %tr
   %td
-    = link_to conversation_path(conversation) do
+    = link_to conversation_path(conversation), {"data-turbolinks" => "false"} do
       - if conversation.is_unread?(current_user)
         = fa_icon 'envelope 2x'
       - else

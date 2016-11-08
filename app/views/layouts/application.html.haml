@@ -9,8 +9,8 @@
 
     = csrf_meta_tags
 
-    = stylesheet_link_tag 'application'
-    = javascript_include_tag 'application'
+    = stylesheet_link_tag 'application', "data-turbolinks-track" => "true"
+    = javascript_include_tag 'application', "data-turbolinks-track" => "true"
 
   %body
     #wrap

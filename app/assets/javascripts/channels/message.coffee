@@ -1,4 +1,4 @@
-$ ->
+$(document).on "turbolinks:load", ->
   conversation_id = $('#conversation').attr('conversation-id')
 
   App.message = App.cable.subscriptions.create { channel: "MessageChannel", conversation_id: conversation_id },
@@ -34,7 +34,3 @@ $ ->
     messages_to_bottom = -> messages.scrollTop(messages.prop("scrollHeight"))
 
     messages_to_bottom()
-
-  uninstall: ->
-    $(document).off(".appearance")
-    $(buttonSelector).hide()
