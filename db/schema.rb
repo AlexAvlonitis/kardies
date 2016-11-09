@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 20161109142415) do
   end
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                      null: false
-    t.string   "email",                     null: false
-    t.string   "subject",                   null: false
-    t.text     "description", limit: 65535, null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",        null: false
+    t.string   "email",       null: false
+    t.string   "subject",     null: false
+    t.string   "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "galleries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
