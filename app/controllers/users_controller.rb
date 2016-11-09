@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
   def like
     user_deleted_check
+    add_vote_notification
     if @user.liked_by current_user
       render json: @user, status: 201
     else
@@ -25,19 +26,12 @@ class UsersController < ApplicationController
 
   def unlike
     user_deleted_check
+    delete_vote_notification
     if @user.unliked_by current_user
       render json: @user, status: 201
     else
       render json: { errors: @user.errors }, status: 422
     end
-  end
-
-  def my_likes
-    unless params[:username] == current_user.username
-      flash[:error] = "You are not allowed to view this page"
-      redirect_to users_path
-    end
-    @likes = current_user.votes_for.voters
   end
 
   private
@@ -52,6 +46,17 @@ class UsersController < ApplicationController
     all_params[:age] = set_age_range if set_age_range
     all_params[:gender] = params[:gender] if params[:gender] && !params[:gender].blank?
     all_params
+  end
+
+  def add_vote_notification
+    VoteNotification.create(user_id: @user.id,
+                            voted_by_id: current_user.id,
+                            vote: true)
+  end
+
+  def delete_vote_notification
+    vote = VoteNotification.find_by(voted_by_id: current_user.id)
+    vote ? vote.destroy! : return
   end
 
   def set_age_range

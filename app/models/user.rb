@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_one :user_detail, dependent: :destroy
   has_many :galleries, dependent: :destroy
   has_many :reports
+  has_many :vote_notifications
   accepts_nested_attributes_for :user_detail
 
   # Validations

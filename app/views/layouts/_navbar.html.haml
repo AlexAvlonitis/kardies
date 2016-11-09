@@ -18,8 +18,11 @@
                 = fa_icon "users"
                 = t '.users'
             %li
-              = link_to my_likes_user_path(current_user) do
-                = fa_icon "gratipay"
+              = link_to my_likes_path do
+                - if current_user.vote_notifications.count > 0
+                  = fa_icon "gratipay", class: "blink-blink"
+                - else
+                  = fa_icon "gratipay"
                 = t '.likes'
             - admins_only do
               %li

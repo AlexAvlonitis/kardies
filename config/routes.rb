@@ -22,10 +22,10 @@ Rails.application.routes.draw do
       member do
         put "like", to: "users#like"
         put "dislike", to: "users#unlike"
-        get "likes", to: "users#my_likes", as: :my_likes
       end
     end
 
+    get "likes", to: "likes#index", as: :my_likes
     resources :reports, param: :username, only: [:new, :create, :show]
 
     resources :galleries

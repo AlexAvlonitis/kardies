@@ -1,4 +1,8 @@
 gr:
+  likes:
+    index:
+      my_hearts: "Οι καρδιές μου"
+      hearts_number: "Αριθμός καρδιών"
   contacts:
     index:
       contact: 'Επικοινωνία'
@@ -37,9 +41,6 @@ gr:
       about_me_placeholder: "Χρυσό παιδί..."
       back: 'Πίσω'
   users:
-    my_likes:
-      my_hearts: "Οι καρδιές μου"
-      hearts_number: "Αριθμός καρδιών"
     index:
       area: "Περιοχή"
       report: 'Αναφορά χρήστη'
