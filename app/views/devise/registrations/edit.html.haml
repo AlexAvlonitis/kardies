@@ -49,10 +49,6 @@
         %label= t '.new_password_confirmation'
         = f.password_field :password_confirmation
 
-    %i.red-text= t '.update_profile'
-    = f.password_field :current_password, placeholder: "#{t '.password'}"
-
-
     = f.submit "#{t '.update'}", class: "button primary expanded", id: "edit-submit"
   %hr
   %h3.orange-text= t '.cancel_account'
