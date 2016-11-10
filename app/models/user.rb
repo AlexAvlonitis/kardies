@@ -27,6 +27,12 @@ class User < ApplicationRecord
                       with: /\A[^\.]*\Z/,
                       message: "Should not contain dot!"
   validates :username, length: { in: 3..18 }
+  validates_presence_of :uid, :provider
+  validates_uniqueness_of :uid, scope: :provider
+
+  def self.find_for_oauth(auth, user)
+    find_or_create_by(user_id: user_id, uid: auth.uid, provider: auth.provider)
+  end
 
   def self.search(query)
     scope = UsersIndex::User
