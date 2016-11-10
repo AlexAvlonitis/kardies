@@ -42,6 +42,12 @@ body {
   color: $dark_gray;
 }
 
+.white-text {
+  color: $white;
+  font-weight: bolder;
+  text-shadow: 1px 1px $dark_gray;
+}
+
 .red-text {
   color: $red;
   a {
@@ -84,15 +90,17 @@ body {
 }
 
 .center-page {
-  position: absolute;
-  left: 50%;
+  position: fixed;
   top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  display: inline-block;
+
 
   .custom_header {
+    position: relative;
     color: $white;
     font-weight: bolder;
     text-shadow: 0px 0px 3px $dark_gray;

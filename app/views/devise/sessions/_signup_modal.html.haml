@@ -39,7 +39,7 @@
       %label= t 'devise.registrations.edit.password_confirmation'
       = f.password_field :password_confirmation, autocomplete: "off"
 
-      = f.button class: "button success expanded" do
+      = f.button class: "button primary expanded" do
         = fa_icon 'user-plus'
         = t 'devise.sessions.new.register'
   %button.close-button{ "data-close" => "", "aria-label" => "Close reveal", "type" => "button" }

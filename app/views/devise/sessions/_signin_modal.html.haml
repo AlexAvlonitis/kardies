@@ -7,7 +7,7 @@
     .input-group
       %span.input-group-label= fa_icon 'lock'
       = f.password_field :password, autocomplete: "off", placeholder: "#{t 'devise.registrations.edit.password'}", class: "input-group-field"
-    = f.button class: "button success expanded" do
+    = f.button class: "button primary expanded" do
       = fa_icon 'sign-in'
       = t "devise.sessions.new.login"
     - if devise_mapping.rememberable?

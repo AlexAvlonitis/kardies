@@ -77,8 +77,11 @@ gr:
       new:
         kardies-text: "Δωρεάν γνωριμίες από όλη την Ελλάδα"
         login: 'Σύνδεση'
+        login_button: 'Σύνδεση με Εmail'
         register: "Εγγραφή"
+        register_button: "Εγγραφείτε εδώ"
         fb_sign_in: "Σύνδεση με Facebook"
+        first_timer: "Πρώτη φορά στο site μας?"
     unlocks:
       send_instructions: 'Θα σας αποσταλούν οδηγίες ενεργοποίησης του λογαριασμού σας.'
       send_paranoid_instructions: 'Αν ο λογαριασμός σας υπάρχει, θα σας αποσταλεί σε λίγα λεπτά ένα email με οδηγίες ενεργοποίησής του.'
