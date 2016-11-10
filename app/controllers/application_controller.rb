@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     redirect_to request.referer || path
   end
 
-  def set_cookie
+  def set_cookie(user = nil)
     cookies.signed["user_id"] = user.id
   end
 

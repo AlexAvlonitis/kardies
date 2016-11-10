@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 20161110123859) do
   end
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",        null: false
-    t.string   "email",       null: false
-    t.string   "subject",     null: false
-    t.string   "description", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "name",                      null: false
+    t.string   "email",                     null: false
+    t.string   "subject",                   null: false
+    t.text     "description", limit: 65535, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "galleries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -117,14 +117,14 @@ ActiveRecord::Schema.define(version: 20161110123859) do
 
   create_table "user_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.string   "city",                         null: false
-    t.string   "gender",                       null: false
-    t.string   "age",                          null: false
+    t.string   "city",                         default: "athina-ATT", null: false
+    t.string   "gender",                       default: "female",     null: false
+    t.string   "age",                          default: "30",         null: false
     t.string   "profile_picture_file_name"
     t.string   "profile_picture_content_type"
     t.integer  "profile_picture_file_size"
     t.datetime "profile_picture_updated_at"
-    t.string   "state",                        null: false
+    t.string   "state",                        default: "ATT",        null: false
     t.index ["user_id"], name: "index_user_details_on_user_id", using: :btree
   end
 

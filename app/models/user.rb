@@ -30,8 +30,12 @@ class User < ApplicationRecord
   validates_presence_of :uid, :provider
   validates_uniqueness_of :uid, scope: :provider
 
-  def self.find_for_oauth(auth, user)
-    find_or_create_by(user, uid: auth.uid, provider: auth.provider)
+  def self.find_for_oauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.username = auth.extra.raw_info.name.split.join('_')
+    end
   end
 
   def self.search(query)
@@ -70,6 +74,10 @@ class User < ApplicationRecord
 
   def city
     self.user_detail.city
+  end
+
+  def state
+    self.user_detail.state
   end
 
   def gender
@@ -120,10 +128,6 @@ class User < ApplicationRecord
     Rails.cache.fetch([:user_detail, user_detail.id, :age], expires_in: 1.day) do
       self.user_detail.age
     end
-  end
-
-  def state
-    self.user_detail.state
   end
 
   def profile_picture(size = :thumb)

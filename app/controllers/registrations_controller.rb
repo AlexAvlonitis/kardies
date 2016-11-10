@@ -6,9 +6,9 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def created
+  def create
     super do
-      set_cookie
+      set_cookie(@user)
     end
   end
 
