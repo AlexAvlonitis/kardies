@@ -5,6 +5,10 @@
   .row
     .small-8.small-centered.columns
       .small-12.medium-6.large-6.columns.small-centered.text-center
+        = link_to user_facebook_omniauth_authorize_path, class: 'button primary expanded' do
+          = fa_icon 'facebook-official 2x'
+          = t '.fb_sign_in'
+        %hr
         %a.button.primary.expanded{ "data-toggle" => "signin_modal" }= t '.login'
         %a.button.secondary{ "data-toggle" => "signup_modal" }= t '.register'
         = render 'devise/sessions/signin_modal'

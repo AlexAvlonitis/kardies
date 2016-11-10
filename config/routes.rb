@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
+  devise_for :user, skip: [:session, :password, :registration, :confirmation], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+
   scope "(:locale)", locale: /gr|en/ do
     namespace :admin do
       get 'application/index'
@@ -9,7 +11,9 @@ Rails.application.routes.draw do
       resources :contacts, only: :index
     end
 
-    devise_for :user, controllers: { registrations: 'registrations', sessions: 'sessions' }
+    get 'omniauth/:provider' => 'omniauth#localized', as: :localized_omniauth
+
+    devise_for :user, skip: :omniauth_callbacks, controllers: { sessions: 'sessions', passwords: 'passwords', registrations: 'registrations' }
 
     devise_scope :user do
       delete 'delete_user/:username', to: "registrations#admin_destroy", as: :admin_destroy

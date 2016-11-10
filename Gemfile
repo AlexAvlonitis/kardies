@@ -27,6 +27,7 @@ gem 'kaminari'
 gem 'redis-rails'
 gem "haml-rails", "~> 0.9"
 gem 'devise'
+gem 'omniauth-facebook'
 gem "paperclip", "~> 5.0.0"
 gem "pundit"
 gem 'foundation-rails'
