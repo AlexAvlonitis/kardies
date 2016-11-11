@@ -9,9 +9,9 @@
       = user_presenter.gender_type
       %h5.card-title
         - if user.try(:username) && user.try(:age)
-          = user.username + " " +  user.age
+          = user.username + " " + user.age
       .card-text
-        -if user.state && user.city
+        -if user.try(:state) && user.try(:city)
           %p= GC.get_city_name(user.state, user.city) + " " + "(" + GC.get_state_name(user.state) + ")"
       - unless user == current_user
         %span.message= user_presenter.new_message
