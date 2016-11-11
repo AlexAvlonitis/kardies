@@ -8,7 +8,7 @@
     .card-block
       = user_presenter.gender_type
       %h5.card-title
-        - if user.username && user.age
+        - if user.try(:username) && user.try(:age)
           = user.username + " " +  user.age
       .card-text
         -if user.state && user.city
