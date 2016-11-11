@@ -82,7 +82,6 @@ server {
   }
 
   if ($request_method !~ ^(GET|HEAD|PUT|PATCH|POST|DELETE|OPTIONS)$ ){
-    proxy_pass http://puma_<%= fetch(:nginx_config_name) %>/google24de39283b44c66d.html;
     return 405;
   }
 
@@ -91,6 +90,7 @@ server {
   }
 
   location ~ \.(php|html)$ {
+    proxy_pass http://puma_<%= fetch(:nginx_config_name) %>/google24de39283b44c66d.html;
     return 405;
   }
 }
