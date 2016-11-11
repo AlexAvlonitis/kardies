@@ -26,7 +26,7 @@ class User < ApplicationRecord
   validates_format_of :username,
                       with: /\A[^\.]*\Z/,
                       message: "Should not contain dot!"
-  validates :username, length: { in: 3..18 }
+  validates :username, length: { in: 3..40 }
 
   def self.find_for_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
