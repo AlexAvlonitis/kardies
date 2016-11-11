@@ -59,6 +59,11 @@ server {
     proxy_set_header Connection "upgrade";
   }
 
+  location = /google24de39283b44c66d.html {
+    rewrite ^/(.*)  $1;
+    return 200 "google-site-verification: $uri";
+  }
+
   location ^~ /assets/ {
     gzip_static on;
     expires max;
@@ -90,7 +95,6 @@ server {
   }
 
   location ~ \.(php|html)$ {
-    proxy_pass http://puma_<%= fetch(:nginx_config_name) %>/google24de39283b44c66d.html;
     return 405;
   }
 }
