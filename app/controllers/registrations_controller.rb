@@ -7,6 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
+    join_username
     super do
       set_cookie(@user)
     end
@@ -55,10 +56,14 @@ class RegistrationsController < Devise::RegistrationsController
     params.require(:user).permit(allow_params)
   end
 
+  def join_username
+    params[:user][:username] = params[:user][:username].split(" ").join("_")
+  end
+
   def account_update_params
     params.require(:user).permit(allow_params)
   end
-  
+
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
