@@ -59,6 +59,10 @@ server {
     proxy_set_header Connection "upgrade";
   }
 
+  location /google24de39283b44c66d.html {
+    proxy_pass http://puma_<%= fetch(:nginx_config_name) %>/google24de39283b44c66d.html;
+  }
+
   location ^~ /assets/ {
     gzip_static on;
     expires max;
