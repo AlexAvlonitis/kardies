@@ -16,4 +16,10 @@ class MessagesController < ApplicationController
     flash[:success] = "Message has been sent!"
     redirect_to users_path
   end
+
+  private
+
+  def add_conversation_notification(user)
+
+  end
 end
