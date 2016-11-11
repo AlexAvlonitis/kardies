@@ -8,7 +8,8 @@
     .card-block
       = user_presenter.gender_type
       %h5.card-title
-        = "#{user.username if user.username}" + " " +  "#{user.age if user.age}"
+        - if user.username && user.age
+          = user.username + " " +  user.age
       .card-text
         -if user.state && user.city
           %p= GC.get_city_name(user.state, user.city) + " " + "(" + GC.get_state_name(user.state) + ")"
