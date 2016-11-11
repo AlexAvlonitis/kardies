@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   devise_for :user, skip: [:session, :password, :registration, :confirmation], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
+  get '/google24de39283b44c66d.html',
+    to: proc { |env| [200, {}, ["google-site-verification: google24de39283b44c66d.html"]] }
+
   scope "(:locale)", locale: /gr|en/ do
     namespace :admin do
       get 'application/index'
