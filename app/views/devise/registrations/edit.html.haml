@@ -49,7 +49,7 @@
 
     %p
       %strong
-        = link_to nil, class: "change-password-link" do
+        = link_to nil, {class: "change-password-link", "data-turbolinks" => "false"} do
           = t '.change_password'
           = fa_icon "plus"
     #change-password.row
