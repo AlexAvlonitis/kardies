@@ -127,14 +127,14 @@ ActiveRecord::Schema.define(version: 20161111225615) do
 
   create_table "user_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.string   "city",                         null: false
-    t.string   "gender",                       null: false
-    t.string   "age",                          null: false
+    t.string   "city",                         default: "athina-ATT", null: false
+    t.string   "gender",                       default: "female",     null: false
+    t.string   "age",                          default: "30",         null: false
     t.string   "profile_picture_file_name"
     t.string   "profile_picture_content_type"
     t.integer  "profile_picture_file_size"
     t.datetime "profile_picture_updated_at"
-    t.string   "state",                        null: false
+    t.string   "state",                        default: "ATT",        null: false
     t.index ["user_id"], name: "index_user_details_on_user_id", using: :btree
   end
 
