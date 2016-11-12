@@ -19,6 +19,15 @@ class ApplicationController < ActionController::Base
     cookies.signed["user_id"] = user.id
   end
 
+  def rescue_error
+    flash[:alert] = 'The user you were looking for could not be found'
+    redirect_to users_path
+  end
+
+  def user_deleted_check
+    rescue_error if ! @user.deleted_at.nil?
+  end
+
   private
 
   def set_locale

@@ -27,8 +27,8 @@ Rails.application.routes.draw do
 
     resources :users, param: :username, only: [:index, :show] do
       member do
-        put "like", to: "users#like"
-        put "dislike", to: "users#unlike"
+        put "like", to: "likes#like"
+        put "dislike", to: "likes#unlike"
       end
     end
 
