@@ -6,7 +6,10 @@ class UsersController < ApplicationController
     if search_params.present?
       @users = User.search(search_params).page params[:page]
     else
-      @users = User.all_except(current_user).not_blocked.page params[:page]
+      @users = User.all_except(current_user)
+                    .not_blocked
+                    .order(created_at: :desc)
+                    .page params[:page]
     end
   end
 
