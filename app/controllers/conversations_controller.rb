@@ -6,6 +6,7 @@ class ConversationsController < ApplicationController
     @conversations_inbox = @mailbox.inbox.page(params[:page]).per(10)
     @conversations_sent = @mailbox.sentbox.page(params[:page]).per(10)
     @conversations_trash = @mailbox.trash.page(params[:page]).per(10)
+    delete_conversation_notifications
   end
 
   def show
@@ -54,5 +55,9 @@ class ConversationsController < ApplicationController
 
   def get_conversation
     @conversation ||= @mailbox.conversations.find(params[:id])
+  end
+
+  def delete_conversation_notifications
+    current_user.conversation_notifications.destroy_all
   end
 end
