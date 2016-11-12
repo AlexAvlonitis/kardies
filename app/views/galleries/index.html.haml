@@ -1,8 +1,8 @@
 .medium-6.small-centered.columns
   %nav{ "aria-label" => "You are here:", "role" => "navigation" }
     %ul.breadcrumbs
-      %li= link_to "#{t 'abouts.edit.profile'}", edit_user_registration_path
-      %li= link_to "#{t 'abouts.edit.about_me'}", edit_about_path
+      %li= link_to "#{t 'abouts.edit.profile'}", edit_user_registration_path, "data-turbolinks" => "false"
+      %li= link_to "#{t 'abouts.edit.about_me'}", edit_about_path, "data-turbolinks" => "false"
       %li
         %span.show-for-sr Current:
         =t 'abouts.edit.galleries'
