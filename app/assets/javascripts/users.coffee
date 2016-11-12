@@ -6,7 +6,7 @@ $(document).on "turbolinks:load", ->
   $('.gallery').jGallery()
   $('.city-selection').hide()
   $('.city-selection-label').hide()
-  $('.change-password').hide()
+  $('#change-password').hide()
 
   $("#message-modal").dialog({
     autoOpen: false,
@@ -69,4 +69,4 @@ $(document).on "turbolinks:load", ->
 
   $('.change-password-link').on 'click', (e) ->
     e.preventDefault()
-    $('.change-password').toggle 'show'
+    $('#change-password').toggle 'show'

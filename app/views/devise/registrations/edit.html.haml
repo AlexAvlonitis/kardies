@@ -52,7 +52,7 @@
         = link_to nil, class: "change-password-link" do
           = t '.change_password'
           = fa_icon "plus"
-    .row.change-password
+    #change-password.row
       .medium-6.columns
         %label= t '.new_password'
         = f.password_field :password
