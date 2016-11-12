@@ -15,22 +15,33 @@
         = image_tag current_user.profile_picture(:thumb), class: "thumbnail thumb-size"
       %label.button{"for" => "picUpload"}=t '.change_prof_pic'
       = d.file_field :profile_picture, as: :file, class: "show-for-sr", id: "picUpload", onchange: "previewProfilePic()"
+      %p.error= show_errors(@user.user_detail, :profile_picture)
+
       %label= t '.state'
       = d.select :state, GC.states, {selected: current_user.state}, {class: "state-selection"}
+      %p.error= show_errors(@user.user_detail, :state)
+
       %label= t '.city'
       = d.select :city,  GC.cities(current_user.state), {selected: current_user.city}, {class: "city-selection-not-hidden"}
+      %p.error= show_errors(@user.user_detail, :city)
+
       .row
         .medium-7.columns
           %label= t '.gender'
           = d.collection_radio_buttons :gender, [['male', "#{t '.male'}"], ['female', "#{t '.female'}"], ['other', "#{t '.other'}"]], :first, :last
+          %p.error= show_errors(@user.user_detail, :gender)
         .medium-5.columns
           %label= t '.age'
           = d.select :age, options_for_select((16..99).step(1), current_user.age)
+          %p.error= show_errors(@user.user_detail, :age)
 
     %label= t '.username'
     = f.text_field :username
+    %p.error= show_errors(@user, :username)
+
     %label= t '.email'
     = f.email_field :email
+    %p.error= show_errors(@user, :email)
 
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       %div
@@ -48,6 +59,7 @@
       .medium-6.columns
         %label= t '.new_password_confirmation'
         = f.password_field :password_confirmation
+        %p.error= show_errors(@user, :password_confirmation)
 
     = f.submit "#{t '.update'}", class: "button primary expanded", id: "edit-submit"
   %hr
