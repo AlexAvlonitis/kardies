@@ -245,3 +245,13 @@ table tr:nth-of-type(even) {
     opacity: 0;
   }
 }
+
+.border-right {
+  border-left: 1px solid $white;
+}
+
+@media all and (max-width: 800px) {
+  .border-right {
+    border-left: none;
+  }
+}

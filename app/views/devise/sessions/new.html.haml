@@ -3,14 +3,16 @@
     = image_tag 'hearts_2.png'
     %h2.custom_header= t '.kardies-text'
   .row
-    .medium-8.small-centered.columns
-      .small-12.columns.small-centered.text-center
+    .small-12.small-centered.columns
+      .medium-6.columns.text-center
         = link_to user_facebook_omniauth_authorize_path, class: 'button primary expanded' do
           = fa_icon 'facebook-official lg'
           = t '.fb_sign_in'
-        %hr
+
+      .medium-6.columns.text-center.border-right
         %a.button.primary.expanded{ "data-toggle" => "signin_modal" }= t '.login_button'
         %p.white-text= t ".first_timer"
-        %a.button.alert{ "data-toggle" => "signup_modal" }= t '.register_button'
-        = render 'devise/sessions/signin_modal'
-        = render 'devise/sessions/signup_modal'
+        %a.button.alert.expanded{ "data-toggle" => "signup_modal" }= t '.register_button'
+
+= render 'devise/sessions/signin_modal'
+= render 'devise/sessions/signup_modal'
