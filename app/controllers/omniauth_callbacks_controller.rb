@@ -19,11 +19,20 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def user
     user = User.find_for_oauth(omniauth_values)
-    UserDetail.find_or_create_by(user_id: user.id)
+    add_user_details(user)
     user
   end
 
   private
+
+  def add_user_details(user)
+    UserDetail.find_or_create_by(user_id: user.id) do |user|
+      user.state = "att"
+      user.city = "athina-ATT"
+      user.gender = "female"
+      user.age = 30
+    end
+  end
 
   def omniauth_values
     env['omniauth.auth']

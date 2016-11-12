@@ -27,7 +27,7 @@
           %p.error= show_errors(@user.user_detail, :age)
 
     %label= t 'devise.registrations.edit.username'
-    = f.text_field :username
+    = f.text_field :username, placeholder: "#{t 'devise.registrations.edit.only_latin'}"
     %p.error= show_errors(@user, :username)
 
     %label= t 'devise.registrations.edit.email'

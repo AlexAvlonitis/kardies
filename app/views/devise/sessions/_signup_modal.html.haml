@@ -24,7 +24,7 @@
             = d.select :age, options_for_select((18..99).step(1), 30)
 
       %label= t 'devise.registrations.edit.username'
-      = f.text_field :username
+      = f.text_field :username, placeholder: "#{t 'devise.registrations.edit.only_latin'}"
 
       %label= t 'devise.registrations.edit.email'
       = f.email_field :email

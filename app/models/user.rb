@@ -25,15 +25,14 @@ class User < ApplicationRecord
   # Validations
   validates :username, presence: true, uniqueness: true
   validates_format_of :username,
-                      with: /\A[^\.]*\Z/,
-                      message: "Should not contain dot!"
+                      with: /\A[a-z0-9A-Z\_]*\Z/
   validates :username, length: { in: 3..40 }
 
   def self.find_for_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      user.username = auth.extra.raw_info.name.split.join('_')
+      user.username = create_username(auth.info.email)
     end
   end
 
@@ -141,5 +140,11 @@ class User < ApplicationRecord
 
   def mailboxer_email(object)
     self.email
+  end
+
+  private
+
+  def self.create_username(email)
+    email.scan(/\A(.+?)@/).join.gsub(".", "_")
   end
 end

@@ -62,6 +62,7 @@ en:
         update_profile: 'Enter your password for your changes to be saved!'
         cancel_account: "Cancel my account"
         pass_validation: "characters at least"
+        only_latin: "Only latin characters (abc...)"
         back: 'Back'
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
