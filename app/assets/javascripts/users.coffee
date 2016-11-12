@@ -69,4 +69,4 @@ $(document).on "turbolinks:load", ->
 
   $('.change-password-link').on 'click', (e) ->
     e.preventDefault()
-    $('#change-password').toggle 'show'
+    $('#change-password').toggle()

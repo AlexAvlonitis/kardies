@@ -34,7 +34,7 @@
                   %span= t '.admin_area'
         .top-bar-right
           .menu
-            = link_to edit_user_registration_path, {class: "edit-profile", "data-turbolinks" => "false"} do
+            = link_to edit_user_registration_path, class: "edit-profile" do
               = fa_icon "cogs"
               %span= t '.profile'
             = link_to destroy_user_session_path, method: :delete, class: "button small alert hollow" do
