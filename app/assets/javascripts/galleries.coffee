@@ -33,4 +33,4 @@ $(document).on "turbolinks:load", ->
 
   $('.create-gallery').on 'click', (e) ->
     e.preventDefault()
-    $('.hidden-gallery-form').toggle 'show'
+    $('.hidden-gallery-form').toggle()
