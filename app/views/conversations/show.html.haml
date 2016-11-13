@@ -8,8 +8,9 @@
           .info
             - @conversation.participants.each do |participant|
               - unless participant == current_user
-                = image_tag participant.profile_picture(:thumb), class: "icon-size"
-                = participant.username
+                = link_to user_path(participant) do
+                  = image_tag participant.profile_picture(:thumb), class: "icon-size"
+                %span.orange-text= participant.username
           %ul.messages{"id" => "messages"}
             - @conversation.receipts_for(current_user).each do |receipt|
               = render partial: 'conversations/message', locals: { receipt: receipt }
