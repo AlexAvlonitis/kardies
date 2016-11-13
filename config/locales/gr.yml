@@ -98,6 +98,9 @@ gr:
       inbox: "Εισερχόμενα"
       sent: "Εξερχόμενα"
       trash: "Κάδος ανακύκλωσης"
+    show:
+      send_message: "Αποστολή"
+      send_message_placeholder: "Πληκτρολογήστε το μήνυμά σας..."
     destroy:
       convo_trashed: "Η συνομιλία μεταφέρθηκε στον κάδο ανακύκλωσης."
     restore:

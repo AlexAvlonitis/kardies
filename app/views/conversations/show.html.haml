@@ -15,4 +15,9 @@
               = render partial: 'conversations/message', locals: { receipt: receipt }
         .write-form
           = form_tag reply_conversation_path(@conversation), method: :post, id: 'conversation-form' do
-            = text_area_tag 'body', nil, cols: 3, class: 'form-control conversation-message', placeholder: 'Type something...', required: true, "data-behaviour" => "message_speaker"
+            .input-group
+              = text_area_tag 'body', nil, cols: 3, class: 'form-control conversation-message',
+                                                    placeholder: "#{t '.send_message_placeholder'}",
+                                                    "data-behaviour" => "message_speaker"
+              .input-group-button
+                = button_tag "#{t '.send_message'}", class: "button", id: "send-message-button"

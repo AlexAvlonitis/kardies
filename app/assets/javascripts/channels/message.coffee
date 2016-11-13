@@ -17,16 +17,22 @@ $(document).on "turbolinks:load", ->
   $(document).on 'keypress', '[data-behaviour~=message_speaker]', (event) ->
     if event.keyCode is 13
       messageValue = event.target.value
-      unless messageValue.trim() == ""
+      unless sanitizeInput(messageValue) == ""
         App.message.speak messageValue, conversation_id
       event.target.value = ""
       event.preventDefault()
 
-  $('#conversation-form').submit (event) ->
-    event.preventDefault()
-    message = $('.conversation-message').val()
-    App.message.speak message, conversation_id
+  $('#conversation-form').submit (e) ->
+    e.preventDefault()
+    messageValue = $('.conversation-message').val()
+    unless sanitizeInput(messageValue) == ""
+      App.message.speak messageValue, conversation_id
     $('.conversation-message').val("")
+
+  sanitizeInput = (data) ->
+    regex = /\<|\>/g
+    trimmedData = data.replace(regex, "").trim()
+    return trimmedData
 
   messages = $('#messages')
   if $('#messages').length > 0

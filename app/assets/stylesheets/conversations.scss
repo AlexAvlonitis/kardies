@@ -193,3 +193,9 @@
 			user-select:none;
 		}
 }
+
+@media all and (max-width: 800px) {
+	.left-menu {
+		display: none;
+	}
+}

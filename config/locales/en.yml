@@ -97,6 +97,9 @@ en:
       inbox: "Inbox"
       sent: "Outbox"
       trash: "Recycle Bin"
+    show:
+      send_message: "Send"
+      send_message_placeholder: "Type your message..."
     destroy:
       convo_trashed: "The conversation has been moved to trash."
     restore:
