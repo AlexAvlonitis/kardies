@@ -3,7 +3,7 @@
     = link_to user_path(user) do
       .card-top
         = user_presenter.online_status
-        = image_tag user.profile_picture(:medium)
+        = image_tag user.profile_picture(:medium), lazy: true
     .card-divider
     .card-block
       = user_presenter.gender_type

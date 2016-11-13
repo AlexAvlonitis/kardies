@@ -12,6 +12,7 @@
 # //
 #= require jquery
 #= require jquery_ujs
+#= require lazyload
 #= require turbolinks
 #= require foundation
 #= require jgallery
@@ -22,3 +23,7 @@
 $(document).on "turbolinks:load", ->
   $(document).foundation()
   $(".alert-box" ).fadeOut(3000);
+  $("img").lazyload(
+    threshold : 500,
+    effect : "fadeIn"
+  )
