@@ -15,6 +15,7 @@
         = image_tag current_user.profile_picture(:thumb), class: "thumbnail thumb-size"
       %label.button{"for" => "picUpload"}=t '.change_prof_pic'
       = d.file_field :profile_picture, as: :file, class: "show-for-sr", id: "picUpload", onchange: "previewProfilePic()"
+      = t '.ten_mb_limit'
       %p.error= show_errors(@user.user_detail, :profile_picture)
 
       %label= t '.state'
