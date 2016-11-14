@@ -93,7 +93,7 @@ class User < ApplicationRecord
   def hobby
     if self.about && !self.about.hobby.blank?
       Rails.cache.fetch([:about, about.id, :hobby], expires_in: 1.day) do
-        self.about.job
+        self.about.hobby
       end
     end
   end
