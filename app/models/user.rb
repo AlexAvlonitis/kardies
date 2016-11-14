@@ -129,9 +129,7 @@ class User < ApplicationRecord
   end
 
   def profile_picture(size = :thumb)
-    Rails.cache.fetch([:user_detail, user_detail.id, :profile_picture], expires_in: 1.day) do
-      self.user_detail.profile_picture.url(size)
-    end
+    self.user_detail.profile_picture.url(size)
   end
 
   def to_param
