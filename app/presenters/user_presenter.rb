@@ -13,6 +13,16 @@ class UserPresenter < BasePresenter
     end
   end
 
+  def display_city_info
+    city = GC.get_city_name(user.state, user.city)
+    state = GC.get_state_name(user.state)
+    if city && state
+      city + " " + "(" + state + ")"
+    else
+      ""
+    end
+  end
+
   def online_status
     user.is_signed_in ? h.content_tag(:span, "", class: "online-now") : nil
   end

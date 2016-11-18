@@ -20,7 +20,7 @@
     %ul.menu.vertical
       %li
         %span.orange-text= t 'users.index.area'
-        = GC.get_city_name(@user.state, @user.city) + " " + '(' + GC.get_state_name(@user.state) + ')'
+        = user_presenter.display_city_info
       %li
         %span.orange-text= t 'users.search.age'
         = @user.age
