@@ -133,7 +133,7 @@ class User < ApplicationRecord
   end
 
   def youtube_url
-    self.about.youtube_url
+    self.about.youtube_url if self.about && !self.about.youtube_url.blank?
   end
 
   def to_param
