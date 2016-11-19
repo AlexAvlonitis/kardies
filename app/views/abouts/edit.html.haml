@@ -20,18 +20,16 @@
     = f.text_field :looking_for, placeholder: "#{t '.looking_for_placeholder'}"
     %label= t 'users.show.about_me'
     = f.text_area :description, placeholder: "#{t '.about_me_placeholder'}"
-    .rowr
-      .small-9.columns
-        %label.pull-right= t 'users.show.youtube'
-      .small-3.columns
-        .help-tip.pull-left
-          %p= t 'users.show.youtube_instructions'
-    .row
-      .medium-7.columns
-        %label.pull-left.orange-text{ for: "middle-label", class: "text-right middle" } https://youtube.com/watch?=
-      .medium-5.columns
-        = f.text_field :youtube_url, placeholder: "#{t '.youtube_placeholder'}",
-                                     id: "middle-label"
+
+    %label.pull-left= t 'users.show.youtube'
+    .help-tip
+      %p= t 'users.show.youtube_instructions'
+    .input-group
+      %span.input-group-label.orange-text https://youtube.com/watch?=
+      = f.text_field :youtube_url, placeholder: "#{t '.youtube_placeholder'}",
+                                   id: "middle-label",
+                                   class: 'input-group-field'
+
     - present @user do |user_presenter|
       %p= user_presenter.youtube_url
 
