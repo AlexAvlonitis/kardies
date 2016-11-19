@@ -2,9 +2,14 @@ class AboutsController < ApplicationController
 
   def edit
     current_user.about ? @about = current_user.about : @about = current_user.build_about
+    @user = current_user
   end
 
   def update
+    youtube_url = params[:about][:youtube_url]
+    if youtube_url
+      params[:about][:youtube_url] = youtube_url.gsub(/\s+/, "")
+    end
     @about = current_user.build_about
 
     if @about.update(abouts_params)
@@ -23,6 +28,6 @@ class AboutsController < ApplicationController
   end
 
   def allow_params
-    [:job, :hobby, :relationship_status, :looking_for, :description]
+    [:job, :hobby, :relationship_status, :looking_for, :description, :youtube_url]
   end
 end

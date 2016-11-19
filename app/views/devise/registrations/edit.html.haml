@@ -64,9 +64,9 @@
 
     = f.submit "#{t '.update'}", class: "button primary expanded", id: "edit-submit"
   %hr
-  %h3.orange-text= t '.cancel_account'
+  %p.orange-text= t '.cancel_account'
   = button_to "#{t '.cancel_account'}", registration_path(resource_name),
                                    data: { confirm: "Προσοχή, ο λογαριασμός σας θα διαγραφεί ολοκληρωτικά" },
                                    method: :delete,
-                                   class: 'button alert'
+                                   class: 'button alert tiny'
   = link_to "#{t '.back'}", :back

@@ -45,9 +45,19 @@ class UserPresenter < BasePresenter
 
   def about_info(data)
     if user.send(data).nil? || user.send(data).empty?
-      h.content_tag(:p, h.content_tag(:em, "#{h.t '.no_post'}"), class: "aluminium-text")
+      no_post
     else
       h.content_tag(:p, h.content_tag(:em, user.send(data)), class: "dark-gray-text")
+    end
+  end
+
+  def youtube_url
+    if user.youtube_url.nil? || user.youtube_url.blank?
+      no_post
+    else
+      h.content_tag :div, class: "video-container" do
+        h.content_tag(:iframe, "", src: "https://www.youtube.com/embed/#{user.youtube_url}", frameborder: 0)
+      end
     end
   end
 
@@ -55,6 +65,12 @@ class UserPresenter < BasePresenter
     h.link_to h.user_path(user) do
       h.image_tag user.profile_picture(size)
     end
+  end
+
+  private
+
+  def no_post
+    h.content_tag(:p, h.content_tag(:em, "#{h.t 'users.show.no_post'}"), class: "aluminium-text")
   end
 
 end

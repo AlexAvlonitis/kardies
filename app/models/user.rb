@@ -132,6 +132,10 @@ class User < ApplicationRecord
     self.user_detail.profile_picture.url(size)
   end
 
+  def youtube_url
+    self.about.youtube_url
+  end
+
   def to_param
     username
   end
