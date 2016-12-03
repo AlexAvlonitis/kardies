@@ -1,8 +1,5 @@
-= form_for gallery, html: {multipart: true} do |f|
-  %label
-    = t 'users.show.album_name'
-    *
-  = f.text_field :name
+= form_for gallery, html: {multipart: true, class: "form-style-8"} do |f|
+  = f.text_field :name, placeholder: "#{t 'users.show.album_name'}*"
   %label.button{"for" => "picUpload"}= t 'users.show.upload_pictures'
   = file_field_tag "pictures[]", type: :file, multiple: true, class: "show-for-sr", id: "picUpload", onchange: "previewFiles()"
   #preview
