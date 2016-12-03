@@ -1,8 +1,7 @@
 #signup_modal.reveal{ "data-reveal" => "", "data-close-on-click" => "true", "data-animation-in" => "fade-in", "data-animation-out" => "fade-out" }
   .small-12.columns
-    %h2.orange-text= t 'devise.sessions.new.register'
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = devise_error_messages!
+    %h2.orange-text= t 'home.index.register'
+    = form_for(@user, url: registration_path(@user)) do |f|
 
       = f.fields_for :user_detail do |d|
         .previewProfilePic
@@ -15,13 +14,12 @@
         %label.city-selection-label= t 'devise.registrations.edit.city'
         = d.select :city, GC.cities('att'), {include_blank: "Πόλη"}, {class: "city-selection"}
 
-        .row
-          .medium-7.columns
-            %legend= t 'devise.registrations.edit.gender'
-            = d.collection_radio_buttons :gender, [['male', "#{t 'devise.registrations.edit.male'}"], ['female', "#{t 'devise.registrations.edit.female'}"], ['other', "#{t 'devise.registrations.edit.other'}"]], :first, :last, checked: ['male', "#{t 'devise.registrations.edit.male'}"]
-          .medium-5.columns
-            %label= t 'devise.registrations.edit.age'
-            = d.select :age, options_for_select((18..99).step(1), 30)
+        .medium-7.columns
+          %legend= t 'devise.registrations.edit.gender'
+          = d.collection_radio_buttons :gender, [['male', "#{t 'devise.registrations.edit.male'}"], ['female', "#{t 'devise.registrations.edit.female'}"], ['other', "#{t 'devise.registrations.edit.other'}"]], :first, :last, checked: ['male', "#{t 'devise.registrations.edit.male'}"]
+        .medium-5.columns
+          %label= t 'devise.registrations.edit.age'
+          = d.select :age, options_for_select((18..99).step(1), 30)
 
       %label= t 'devise.registrations.edit.username'
       = f.text_field :username, placeholder: "#{t 'devise.registrations.edit.only_latin'}"
@@ -41,6 +39,6 @@
 
       = f.button class: "button primary expanded" do
         = fa_icon 'user-plus'
-        = t 'devise.sessions.new.register'
+        = t 'home.index.register'
   %button.close-button{ "data-close" => "", "aria-label" => "Close reveal", "type" => "button" }
     %span{ "aria-hidden" => "true" } &times;

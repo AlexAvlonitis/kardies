@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
     get 'omniauth/:provider' => 'omniauth#localized', as: :localized_omniauth
 
-    devise_for :user, skip: :omniauth_callbacks, controllers: { sessions: 'sessions', registrations: 'registrations' }
+    devise_for :user, skip: :omniauth_callbacks, controllers: { registrations: 'registrations' }
 
     devise_scope :user do
       delete 'delete_user/:username', to: "registrations#admin_destroy", as: :admin_destroy

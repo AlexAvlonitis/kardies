@@ -76,14 +76,6 @@ en:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
-      new:
-        kardies-text: "Meet singles for free in Greece"
-        login: 'Sign in'
-        login_button: 'Sign in with Email'
-        register: "Register"
-        register_button: "Register here"
-        fb_sign_in: "Sign in with Facebook"
-        first_timer: "First time on our site?"
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
