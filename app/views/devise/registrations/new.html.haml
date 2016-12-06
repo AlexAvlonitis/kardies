@@ -1,5 +1,5 @@
 .small-6.small-centered.columns.whitesmoke-bg
-  %h2.orange-text= t 'devise.sessions.new.register'
+  %h2.orange-text= t 'home.index.register'
   = form_for(resource, as: resource_name, url: registration_path(resource_name), class: "registration-bg") do |f|
 
     = f.fields_for :user_detail do |d|
@@ -47,4 +47,3 @@
     %p.error= show_errors(@user, :password_confirmation)
     = f.submit "Sign up", class: "button success expanded"
     = link_to "#{t 'abouts.edit.back'}", :back, class: 'button primary small'
-  = render "devise/shared/links"

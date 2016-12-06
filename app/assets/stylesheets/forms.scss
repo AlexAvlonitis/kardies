@@ -63,3 +63,33 @@
   background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
   background-color:#34CACA;
 }
+
+.active {
+ color:red;
+}
+
+fieldset {
+  display:none;
+  padding: 1rem;
+}
+
+#first {
+  display:block;
+}
+
+.separator {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid $black;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+
+  span {
+    background-color: $white;
+    padding: 0 10px;
+  }
+}
+
+#form_errors {
+  color: $red;
+}

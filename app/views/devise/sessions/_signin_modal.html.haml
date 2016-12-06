@@ -1,10 +1,18 @@
 #signin_modal.reveal{ "data-reveal" => "", "data-close-on-click" => "true", "data-animation-in" => "fade-in", "data-animation-out" => "fade-out" }
-  %h2.orange-text= t 'home.index.login'
-  = form_for(@user, url: session_path(@user), html: {class: "form-style-8"}) do |f|
-    = f.email_field :email, autofocus: true, placeholder: "Email"
+  %h3.text-center.orange-text= t 'home.index.login'
+  = form_for(@user, url: session_path(@user), html: {class: "form-style-8", "data-parsley-validate" => ""}) do |f|
+    = f.email_field :email, autofocus: true, placeholder: "Email", "data-parsley-trigger" => "change"
     = f.password_field :password, autocomplete: "off", placeholder: "#{t 'devise.registrations.edit.password'}"
     = f.button class: "button primary expanded" do
       = fa_icon 'sign-in'
       = t "home.index.login"
   %button.close-button{ "data-close" => "", "aria-label" => "Close reveal", "type" => "button" }
     %span{ "aria-hidden" => "true" } &times;
+
+  .separator
+    %span
+      = t "home.index.or"
+
+  = link_to user_facebook_omniauth_authorize_path, class: 'button primary expanded' do
+    = fa_icon 'facebook-official lg'
+    = t 'home.index.fb_sign_in'

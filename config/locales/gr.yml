@@ -50,6 +50,9 @@ gr:
       register_button: "Εγγραφείτε εδώ"
       fb_sign_in: "Σύνδεση με Facebook"
       first_timer: "Πρώτη φορά στο site μας?"
+      or: 'Ή'
+      next: "Συνέχεια"
+      previous: "Πίσω"
   users:
     index:
       area: "Περιοχή"

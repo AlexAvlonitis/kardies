@@ -50,6 +50,9 @@ en:
       register_button: "Register here"
       fb_sign_in: "Sign in with Facebook"
       first_timer: "First time on our site?"
+      or: "OR"
+      next: "Next"
+      previous: "Previous"
   users:
     index:
       area: 'Area'
