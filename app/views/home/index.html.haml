@@ -2,11 +2,8 @@
   .small-12.columns.text-center
     = image_tag 'hearts_2.png'
     %h3.custom_header= t '.kardies-text'
-  .row
-    .small-12.small-centered.columns
-      %a.button.primary.expanded{ "data-toggle" => "signin_modal" }= t '.login'
-      %p.text-center.white-text= t ".first_timer"
-      %a.button.alert.expanded{ "data-toggle" => "signup_modal" }= t '.register_button'
 
-= render 'devise/sessions/signin_modal'
-= render 'devise/sessions/signup_modal'
+  .small-12.columns.text-center
+    = link_to user_facebook_omniauth_authorize_path, class: 'action-button shadow animate blue expanded' do
+      = fa_icon 'facebook-official lg'
+      = t 'home.index.fb_sign_in'

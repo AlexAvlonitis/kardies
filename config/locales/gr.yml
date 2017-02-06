@@ -43,7 +43,7 @@ gr:
       back: 'Πίσω'
   home:
     index:
-      kardies-text: "Δωρεάν γνωριμίες από όλη την Ελλάδα"
+      kardies-text: "Το νέο δωρεάν Ελληνικό site γνωριμιών"
       login: 'Σύνδεση'
       login_button: 'Σύνδεση με Εmail'
       register: "Εγγραφή"
