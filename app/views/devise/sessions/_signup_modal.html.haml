@@ -1,0 +1,58 @@
+#signup_modal.reveal{ "data-reveal" => "", "data-close-on-click" => "true", "data-animation-in" => "fade-in", "data-animation-out" => "fade-out" }
+  .small-12.columns
+    = form_for(@user, url: registration_path(@user), html: { class: "reg-form"}) do |f|
+      %h3.text-center.orange-text= t 'home.index.register'
+
+      %fieldset{ id: "first" }
+        %p{ id: "form_errors" }
+
+        %label= t 'devise.registrations.edit.email'
+        = f.email_field :email, class: "text_field"
+
+        %label= t 'devise.registrations.edit.password'
+        = f.password_field :password, autocomplete: "off", class: "password_field"
+
+        %label= t 'devise.registrations.edit.password_confirmation'
+        = f.password_field :password_confirmation, autocomplete: "off", class: "password_confirmation_field"
+
+        %input.next_btn.next.button{ name: "next", type: "button", value: "#{t 'home.index.next'}" }
+
+        .separator
+          %span
+            = t "home.index.or"
+
+        = link_to user_facebook_omniauth_authorize_path, class: 'button primary expanded' do
+          = fa_icon 'facebook-official lg'
+          = t 'home.index.fb_sign_in'
+
+
+      %fieldset
+        = f.fields_for :user_detail do |d|
+          .previewProfilePic
+          %label.button{"for" => "picUpload"}= t 'devise.registrations.edit.upload_prof_pic'
+          = d.file_field :profile_picture, as: :file, class: "show-for-sr", id: "picUpload", onchange: "previewProfilePic()"
+
+          %label= t 'devise.registrations.edit.state'
+          = d.select :state, GC.states, {include_blank: true}, {class: "state-selection text_field"}
+
+          %label.city-selection-label= t 'devise.registrations.edit.city'
+          = d.select :city, GC.cities('att'), {include_blank: "Πόλη"}, {class: "city-selection text_field"}
+
+          .medium-7.columns
+            %legend= t 'devise.registrations.edit.gender'
+            = d.collection_radio_buttons :gender, [['male', "#{t 'devise.registrations.edit.male'}"], ['female', "#{t 'devise.registrations.edit.female'}"], ['other', "#{t 'devise.registrations.edit.other'}"]], :first, :last, checked: ['male', "#{t 'devise.registrations.edit.male'}"]
+          .medium-5.columns
+            %label= t 'devise.registrations.edit.age'
+            = d.select :age, options_for_select((18..99).step(1), 30)
+
+        %label= t 'devise.registrations.edit.username'
+        = f.text_field :username, placeholder: "#{t 'devise.registrations.edit.only_latin'}", class: "text_field"
+
+        %input.pre_btn.button{ name: "previous", type: "button", value: "#{t 'home.index.previous'}" }
+
+        = f.button class: "button primary expanded submit_btn" do
+          = fa_icon 'user-plus'
+          = t 'home.index.register'
+
+  %button.close-button{ "data-close" => "", "aria-label" => "Close reveal", "type" => "button" }
+    %span{ "aria-hidden" => "true" } &times;
