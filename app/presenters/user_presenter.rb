@@ -56,7 +56,7 @@ class UserPresenter < BasePresenter
       no_post
     else
       h.content_tag :div, class: "video-container" do
-        h.content_tag(:iframe, "", src: "https://www.youtube.com/embed/#{user.youtube_url}", frameborder: 0)
+        h.content_tag(:iframe, "", src: "#{YoutubeCodeExtractor.new(user.youtube_url).extract}", frameborder: 0)
       end
     end
   end
