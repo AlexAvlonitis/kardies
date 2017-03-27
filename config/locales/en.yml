@@ -110,7 +110,7 @@ en:
       participants: "Participants"
       conversation_at: "Date"
       conversation_action: "Action"
-      inbox: "Inbox"
+      messages: "Messages"
       sent: "Outbox"
       trash: "Recycle Bin"
     show:

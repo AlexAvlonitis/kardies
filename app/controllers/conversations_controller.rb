@@ -1,10 +1,9 @@
 class ConversationsController < ApplicationController
-  before_action :get_mailbox
+  before_action :get_mailbox, :get_messages
   before_action :get_conversation, except: [:index, :empty_trash]
 
   def index
-    @conversations_inbox = @mailbox.inbox.page(params[:page]).per(10)
-    @conversations_sent = @mailbox.sentbox.page(params[:page]).per(10)
+    @conversations = @messages
     @conversations_trash = @mailbox.trash.page(params[:page]).per(10)
     delete_conversation_notifications
   end
@@ -51,6 +50,11 @@ class ConversationsController < ApplicationController
 
   def get_mailbox
     @mailbox ||= current_user.mailbox
+  end
+
+  def get_messages
+    messages = @mailbox.inbox + @mailbox.sentbox
+    @messages = messages.flatten.uniq { |m| m.id } #remove duplicate IDs
   end
 
   def get_conversation

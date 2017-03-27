@@ -1,12 +1,10 @@
 %ul.tabs{ "data-tabs" => "", "id" => "messages-tabs" }
   %li.tabs-title.is-active
-    %a{ "href" => "#inbox", "aria-selected" => "true"}= t '.inbox'
-  %li.tabs-title
-    %a{ "href" => "#sent" }= t '.sent'
+    %a{ "href" => "#inbox", "aria-selected" => "true"}= t '.messages'
   %li.tabs-title
     %a{ "href" => "#trash" }= t '.trash'
 .tabs-content{ "data-tabs-content" => "messages-tabs" }
-  .tabs-panel.is-active{ "id" => "inbox" }
+  .tabs-panel.is-active{ "id" => "messages" }
     %table.messages
       %thead
         %strong= t '.inbox'
@@ -15,21 +13,7 @@
           %th= t '.conversation_at'
           %th= t '.conversation_action'
       %tbody
-        = render partial: 'conversations/conversation', collection: @conversations_inbox
-        .row
-          = paginate @conversations_inbox
-  .tabs-panel{ "id" => "sent" }
-    %table.messages
-      %thead
-        %strong= t '.sent'
-        %tr
-          %th= t '.conversation'
-          %th= t '.conversation_at'
-          %th= t '.conversation_action'
-      %tbody
-        = render partial: 'conversations/conversation', collection: @conversations_sent
-        .row
-          = paginate @conversations_sent
+        = render partial: 'conversations/conversation', collection: @conversations
   .tabs-panel{ "id" => "trash" }
     %table.messages.stack
       %thead

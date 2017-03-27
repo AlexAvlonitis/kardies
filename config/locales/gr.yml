@@ -110,7 +110,7 @@ gr:
       participants: "Παρευρισκόμενοι"
       conversation_at: "Ημερομηνία"
       conversation_action: "Ενέργεια"
-      inbox: "Εισερχόμενα"
+      messages: "Μηνύματα"
       sent: "Εξερχόμενα"
       trash: "Κάδος ανακύκλωσης"
     show:
