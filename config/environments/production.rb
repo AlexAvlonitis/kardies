@@ -44,8 +44,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Mount Action Cable outside main process or domain
-  config.action_cable.mount_path = ('/cable')
-  config.action_cable.allowed_request_origins = [ 'http://kardies.gr', %r{http://kardies.*}, %r{http://localhost.*} ]
+  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
 
   # config.action_cable.disable_request_forgery_protection = true
 
