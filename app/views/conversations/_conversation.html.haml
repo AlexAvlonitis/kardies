@@ -6,8 +6,10 @@
       - else
         = fa_icon 'envelope-o 2x'
     - conversation.participants.each do |participant|
-      = link_to user_path(participant) do
-        = image_tag participant.profile_picture, class: "tiny-size"
+      - unless participant == current_user
+        = link_to user_path(participant) do
+          = image_tag participant.profile_picture, class: "tiny-size"
+          = participant.username
   %td= conversation.created_at.to_formatted_s(:short)
 
   %td
