@@ -3,13 +3,8 @@
   = user.username
 %h3.orange-text= t 'messages.new.send'
 = form_tag messages_path, method: :post do
-  = label_tag 'message[subject]', "#{t 'messages.new.subject'}"
-  = text_field_tag 'message[subject]', nil, class: 'form-control',
-                                            required: true,
-                                            placeholder: "#{t 'messages.new.subject_placeholder'}"
-
   = label_tag 'message[body]', "#{t 'messages.new.message'}"
-  = text_area_tag 'message[body]', nil, cols: 3, class: 'form-control',
+  = text_area_tag 'message[body]', nil, cols: 5, class: 'form-control',
                                                  required: true,
                                                  placeholder: "#{t 'messages.new.message_placeholder'}"
 
