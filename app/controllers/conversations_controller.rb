@@ -41,13 +41,6 @@ class ConversationsController < ApplicationController
 
   private
 
-  def get_box
-    if params[:box].blank? or !%w(inbox sent trash).include?(params[:box])
-      params[:box] = 'inbox'
-    end
-    @box = params[:box]
-  end
-
   def get_mailbox
     @mailbox ||= current_user.mailbox
   end
