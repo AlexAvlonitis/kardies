@@ -21,7 +21,8 @@
         = label_tag :gender, "#{t '.gender'}"
         = select_tag :gender, options_for_select([["#{t '.gender_man'}", "male"],
                                                   ["#{t '.gender_woman'}", "female"],
-                                                  ["#{t '.gender_other'}", "other"]])
+                                                  ["#{t '.gender_other'}", "other"]]),
+                              include_blank: true
       .row
         %label= t '.age'
         .slider{ "data-slider" => "", "data-start" => "18", "data-end" => "99" }
