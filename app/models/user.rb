@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  update_index('users#user', urgent: true) { self }
+  update_index 'users#user', :self
 
   acts_as_votable
   acts_as_voter

@@ -1,5 +1,4 @@
 Warden::Manager.after_set_user do |user,auth,opts|
-  user.update(is_signed_in: true)
   scope = opts[:scope]
   auth.cookies.signed["#{scope}_id"] = user.id
   auth.cookies.signed["#{scope}_expires_at"] = 30.minutes.from_now
