@@ -8,6 +8,6 @@ class UsersDetailsIndex < Chewy::Index
     }
   }
 
-  define_type UserDetail.active
+  define_type UserDetail
 
 end
