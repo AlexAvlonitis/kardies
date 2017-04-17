@@ -5,6 +5,7 @@ class MessageChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
+    current_user.update(is_signed_in: false)
   end
 
   def speak(data)

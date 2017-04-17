@@ -2,7 +2,13 @@ class UserDetail < ApplicationRecord
   belongs_to :user, optional: true
   after_update :flush_age_cache, :flush_profile_picture_cache
 
-  update_index('users#user') { self }
+  update_index('user_details#user_detail') { self }
+  update_index 'users#user' do
+    # For the latest active_record changed values are
+    # already in `previous_changes` hash,
+    # but for mongoid you have to use `changes` hash
+    previous_changes['user_id'] || user
+  end
 
   has_attached_file :profile_picture, styles: {
     medium: "300x300>",

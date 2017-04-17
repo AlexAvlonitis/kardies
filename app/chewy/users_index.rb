@@ -2,14 +2,14 @@ class UsersIndex < Chewy::Index
   settings analysis: {
     analyzer: {
       default: {
-        tokenizer: 'whitespace'
+        tokenizer: 'whitespace',
+        filter: ['lowercase']
       }
     }
   }
 
   define_type User.includes(:user_detail) do
-    field :username, :email
-    field :deleted_at, type: :boolean
+    field :username, :email, :deleted_at
     field :is_signed_in, type: :boolean
     field :state, value: ->(user) { user.user_detail.state }
     field :city, value: ->(user) { user.user_detail.city }
