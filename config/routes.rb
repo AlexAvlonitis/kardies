@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resources :reports, param: :username, only: [:new, :create, :show]
 
     resources :galleries
+    resources :search_criteria, only: [:new, :create]
 
     resources :conversations, only: [:index, :show, :destroy] do
       member do

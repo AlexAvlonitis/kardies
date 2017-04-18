@@ -2,8 +2,7 @@ class UsersIndex < Chewy::Index
   settings analysis: {
     analyzer: {
       default: {
-        tokenizer: 'whitespace',
-        filter: ['lowercase']
+        tokenizer: 'whitespace'
       }
     }
   }
