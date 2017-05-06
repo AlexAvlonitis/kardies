@@ -55,6 +55,9 @@ GEM
     bcrypt (3.1.11)
     bcrypt (3.1.11-x86-mingw32)
     builder (3.2.2)
+    bullet (5.5.1)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.10.0)
     byebug (9.0.6)
     capistrano (3.6.1)
       airbrussh (>= 1.0.0)
@@ -357,6 +360,7 @@ GEM
       tzinfo (>= 1.0.0)
     uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
+    uniform_notifier (1.10.0)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (3.3.1)
@@ -375,6 +379,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_votable (~> 0.10.0)
   aws-sdk (~> 2.3.0)
+  bullet
   byebug
   capistrano
   capistrano-nginx
@@ -422,4 +427,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.13.6
+   1.14.6
