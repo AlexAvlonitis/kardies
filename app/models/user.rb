@@ -38,23 +38,13 @@ class User < ApplicationRecord
   end
 
   def self.search(query)
-    scope = UsersIndex::User
-              .filter{ deleted_at != true }
-              .filter{ state == query[:state] }
-              .filter{ city == query[:city] }
-              .filter{ username == query[:username] }
-              .filter{ is_signed_in == query[:is_signed_in] }
-              .filter{ gender == query[:gender] }
-              .filter{ age_values(query) }
+    scope = UsersIndex::User.filter{ ( deleted_at != true ) &
+                                     ( state == query.state ) &
+                                     ( city == query.city ) &
+                                     ( is_signed_in == query.is_signed_in ) &
+                                     ( gender == query.gender ) &
+                                     ( age >= query.age_from ) & ( age <= query.age_to ) }
     scope.only(:id).load
-  end
-
-  def age_values(query)
-    if query.has_key?(:age)
-      (age >= query[:age][0]) & (age <= query[:age][1])
-    else
-      (age >= query[:age]) & (age <= query[:age])
-    end
   end
 
   def soft_delete

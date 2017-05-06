@@ -1,49 +1,42 @@
 .small-12.medium-4.large-2.columns.side-search
   %h5.text-center.orange-text= t ".search"
-  = form_tag users_path, method: :get, class: "form", id: "search" do
+  = form_tag search_criteria_path, class: "form", id: "search" do
     .row
-      = text_field_tag :username, nil, placeholder: "#{t '.username'}"
+      = select_tag :state, options_for_select(GC.states),
+                           include_blank: "#{t '.state'}",
+                           class: 'state-selection'
     .row
-      = submit_tag "#{t '.search'}", class: "button success expanded"
-  %hr
-  .filters
-    %h5.text-center.orange-text= t ".filters"
-    = form_tag users_path, method: :get, class: "form", id: "search" do
-      .row
-        = select_tag :state, options_for_select(GC.states),
-                             include_blank: "#{t '.state'}",
-                             class: 'state-selection'
-      .row
-        = select_tag :city, options_for_select(''),
-                            class: 'city-selection',
-                            include_blank: " "
-      .row
-        = label_tag :gender, "#{t '.gender'}"
-        = select_tag :gender, options_for_select([["#{t '.gender_man'}", "male"],
-                                                  ["#{t '.gender_woman'}", "female"],
-                                                  ["#{t '.gender_other'}", "other"]]),
-                              include_blank: true
-      .row
-        %label= t '.age'
-        .slider{ "data-slider" => "", "data-start" => "18", "data-end" => "99" }
-          %span.slider-handle{ "data-slider-handle" => "", "role" => "slider", "tabindex" => "1", "aria-controls" => "age_from" }
-          %span.slider-fill{ "data-slider-fill" => "" }
-          %span.slider-handle{ "data-slider-handle" => "", "role" => "slider", "tabindex" => "1", "aria-controls" => "age_to"}
-        .small-6.columns
-          %label= t '.age_from'
-          = number_field_tag :age_from
-        .small-6.columns
-          %label= t '.age_to'
-          = number_field_tag :age_to
+      = select_tag :city, options_for_select(''),
+                          class: 'city-selection',
+                          include_blank: " "
+    .row
+      = label_tag :gender, "#{t '.gender'}"
+      = select_tag :gender, options_for_select([["#{t '.gender_man'}", "male"],
+                                                ["#{t '.gender_woman'}", "female"],
+                                                ["#{t '.gender_other'}", "other"]],
+                                                @search.gender),
+                            include_blank: true
+    .row
+      %label= t '.age'
+      .slider{ "data-slider" => "", "data-start" => "18", "data-end" => "99", "data-initial-start" => "#{@search.age_from}", "data-initial-end" => "#{@search.age_to}" }
+        %span.slider-handle{ "data-slider-handle" => "", "role" => "slider", "tabindex" => "1", "aria-controls" => "age_from" }
+        %span.slider-fill{ "data-slider-fill" => "" }
+        %span.slider-handle{ "data-slider-handle" => "", "role" => "slider", "tabindex" => "1", "aria-controls" => "age_to"}
+      .small-6.columns
+        %label= t '.age_from'
+        = number_field_tag :age_from
+      .small-6.columns
+        %label= t '.age_to'
+        = number_field_tag :age_to
 
-      .row
-        = label_tag t ".online_now"
-        .switch
-          = check_box_tag :is_signed_in, 'true', false, class: 'switch-input'
-          %label.switch-paddle{"for" => "is_signed_in"}
-            %span.show-for-sr Online Now
-            %span.switch-active{"aria-hidden" => "true", "value" => "true"}= t '.online_yes'
-            %span.switch-inactive{"aria-hidden" => "true", "value" => "false"}= t '.online_no'
+    .row
+      = label_tag t ".online_now"
+      .switch
+        = check_box_tag :is_signed_in, 'true', false, class: 'switch-input'
+        %label.switch-paddle{"for" => "is_signed_in"}
+          %span.show-for-sr Online Now
+          %span.switch-active{"aria-hidden" => "true", "value" => "true"}= t '.online_yes'
+          %span.switch-inactive{"aria-hidden" => "true", "value" => "false"}= t '.online_no'
 
-      .row
-        = submit_tag "#{t '.update'}", class: "button primary small expanded hollow"
+    .row
+      = submit_tag "#{t '.update'}", class: "button primary small expanded hollow"

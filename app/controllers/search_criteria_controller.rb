@@ -2,8 +2,12 @@ class SearchCriteriaController < ApplicationController
 
   def create
     search_criteria = current_user.search_criteria.build(search_criteria_params)
-    search_criteria.save
-    redirect_to users_path
+    search_criteria = SearchCriterium.normalize_params(search_criteria)
+    if search_criteria.save
+      redirect_to users_path
+    else
+      flash[:alert] = 'Ops something went wrong, try again'
+    end
   end
 
   private
