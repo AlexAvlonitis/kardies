@@ -53,6 +53,14 @@ body {
   text-shadow: 1px 1px $dark_gray;
 }
 
+.bg-white {
+  background-color: $white;
+}
+
+.bg-lightblue {
+  background-color: $light_blue;
+}
+
 .blue-text {
   color: $teal;
   font-weight: bolder;

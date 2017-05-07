@@ -1,6 +1,6 @@
 - present @user do |user_presenter|
   #message-modal
-  .col.col-lg-4
+  .col.col-lg-4.bg-lightblue
     .text-center.gallery
       = link_to @user.profile_picture(:original) do
         = image_tag @user.profile_picture(:medium), class: "img-thumbnail"
@@ -32,7 +32,7 @@
             %h5= t 'users.search.gender'
           %td= user_presenter.gender_type
 
-  .col.col-lg-8
+  .col.col-lg-8.bg-white
     %h1.display-5.orange-text= t '.galleries'
     - if @user.galleries.empty? || @user.galleries.nil?
       = image_tag 'no_uploaded.png', class: "img-thumbnail"
