@@ -32,11 +32,17 @@
     .row
       = label_tag t ".online_now"
       .switch
-        = check_box_tag :is_signed_in, 'true', false, class: 'switch-input'
-        %label.switch-paddle{"for" => "is_signed_in"}
-          %span.show-for-sr Online Now
-          %span.switch-active{"aria-hidden" => "true", "value" => "true"}= t '.online_yes'
-          %span.switch-inactive{"aria-hidden" => "true", "value" => "false"}= t '.online_no'
-
+        - if !@search.is_signed_in
+          = check_box_tag :is_signed_in, 'true', false, class: 'switch-input'
+          %label.switch-paddle{"for" => "is_signed_in"}
+            %span.show-for-sr Online Now
+            %span.switch-active{"aria-hidden" => "true", "value" => "true"}= t '.online_yes'
+            %span.switch-inactive{"aria-hidden" => "true", "value" => "false"}= t '.online_no'
+        - else
+          = check_box_tag :is_signed_in, false, 'true', class: 'switch-input'
+          %label.switch-paddle{"for" => "is_signed_in"}
+            %span.show-for-sr Online Now
+            %span.switch-active{"aria-hidden" => "true", "value" => "true"}= t '.online_yes'
+            %span.switch-inactive{"aria-hidden" => "true", "value" => "false"}= t '.online_no'
     .row
       = submit_tag "#{t '.update'}", class: "button primary small expanded hollow"
