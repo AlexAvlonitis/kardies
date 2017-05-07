@@ -1,7 +1,7 @@
 .small-12.columns
   .ui
     .left-menu
-      = link_to "#{t 'abouts.edit.back'}", :back, class: "button expanded primary"
+      = link_to "#{t 'abouts.edit.back'}", conversations_path, class: "button expanded primary"
     .chat
       .top{"id" => "conversation", "conversation-id" => "#{@hashed_conversation}"}
         .avatar
