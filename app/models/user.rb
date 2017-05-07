@@ -38,8 +38,7 @@ class User < ApplicationRecord
   end
 
   def self.search(query)
-    scope = UsersIndex::User.filter{ ( deleted_at != true ) &
-                                     ( state == query.state ) &
+    scope = UsersIndex::User.filter{ ( state == query.state ) &
                                      ( city == query.city ) &
                                      ( is_signed_in == query.is_signed_in ) &
                                      ( gender == query.gender ) &
