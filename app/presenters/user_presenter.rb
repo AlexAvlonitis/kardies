@@ -47,7 +47,7 @@ class UserPresenter < BasePresenter
     if user.send(data).nil? || user.send(data).empty?
       no_post
     else
-      h.content_tag(:p, h.content_tag(:em, user.send(data)), class: "dark-gray-text")
+      h.content_tag(:p, h.content_tag(:em, user.send(data)), class: "lead")
     end
   end
 

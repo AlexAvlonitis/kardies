@@ -1,42 +1,38 @@
 - if user_signed_in?
-  .top-bar
-    .row
-      .top-bar-title
-        %span{"data-responsive-toggle" => "responsive-menu", "data-hide-for" => "medium"}
-          %button.menu-icon.dark{"type" => "button", "data-toggle" => ""}
-        = link_to user_path(current_user) do
-          = image_tag 'hearts_only.png', class: 'icon-size'
-      #responsive-menu
-        .top-bar-left
-          %ul.menu
-            %li
-              = link_to conversations_path do
-                - if current_user.conversation_notifications.count > 0
-                  = fa_icon "comments-o", class: "blink-blink"
-                - else
-                  = fa_icon "comments-o"
-                %span= t '.messages'
-            %li
-              = link_to users_path do
-                = fa_icon "users"
-                %span= t '.users'
-            %li
-              = link_to my_likes_path do
-                - if current_user.vote_notifications.count > 0
-                  = fa_icon "gratipay", class: "blink-blink"
-                - else
-                  = fa_icon "gratipay"
-                %span= t '.likes'
-            - admins_only do
-              %li
-                = link_to admin_application_index_path do
-                  = fa_icon "key"
-                  %span= t '.admin_area'
-        .top-bar-right
-          .menu
-            = link_to edit_user_registration_path, class: "edit-profile" do
-              = fa_icon "cogs"
-              %span= t '.profile'
-            = link_to destroy_user_session_path, method: :delete, class: "button small alert hollow" do
-              = fa_icon "power-off"
-              %span= t '.sign_out'
+  %nav.navbar.navbar-toggleable-md.navbar-inverse.fixed-top{style: "background-color: #3b5998;"}
+    %button.navbar-toggler.navbar-toggler-right{ type: "button", "data-toggle" => "collapse", "data-target" => "#navbarSupportedContent", "aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation" }
+      %span.navbar-toggler-icon
+    = link_to user_path(current_user), class: "navbar-brand" do
+      = image_tag 'hearts_only.png', class: 'd-inline-block icon-size'
+      Kardies.gr
+    .collapse.navbar-collapse{ id: "navbarSupportedContent" }
+      %ul.navbar-nav.nav-justified.mr-auto
+        %li.nav-item
+          = link_to conversations_path, class: "nav-link" do
+            - if current_user.conversation_notifications.count > 0
+              = fa_icon "comments-o 2x", class: "blink-blink"
+            - else
+              = fa_icon "comments-o 2x"
+        %li.nav-item
+          = link_to users_path, class: "nav-link" do
+            = fa_icon "users 2x"
+        %li.nav-item
+          = link_to my_likes_path, class: "nav-link" do
+            - if current_user.vote_notifications.count > 0
+              = fa_icon "gratipay 2x", class: "blink-blink"
+            - else
+              = fa_icon "gratipay 2x"
+        - admins_only do
+          %li.nav-item
+            = link_to admin_application_index_path, class: "nav-link" do
+              = fa_icon "key 2x"
+              %span= t '.admin_area'
+      %ul.navbar-nav
+        %li.nav-item
+          = link_to edit_user_registration_path, class: "nav-link" do
+            = fa_icon "cogs"
+            %span= t '.profile'
+        %li.nav-item
+          = link_to destroy_user_session_path, method: :delete, class: "nav-link" do
+            = fa_icon "power-off"
+            %span= t '.sign_out'

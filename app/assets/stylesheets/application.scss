@@ -14,7 +14,7 @@
 *= require jquery-ui/dialog
 */
 @import "colors";
-@import "foundation_and_overrides";
+@import "bootstrap";
 @import "font-awesome";
 @import "forms";
 @import "help_tip";
@@ -27,6 +27,7 @@
 
 body {
  background-color: $whitesmoke;
+ padding-top: 5rem;
 }
 
 #wrap {

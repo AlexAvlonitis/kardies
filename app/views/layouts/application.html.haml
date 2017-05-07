@@ -5,7 +5,7 @@
     %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible", }
     %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}
     %meta{name: "description", content: "Γνωριμίες Ελλάδα, το νέο δωρεάν site γνωριμιών για όλη την Ελλάδα, Γίνε κι εσύ μέλος τώρα για να γνωρίσεις τον επόμενο έρωτά σου."}
-    %title Kardies.gr | Νέες γνωριμίες Ελλάδα
+    %title Νέες γνωριμίες Ελλάδα | Kardies.gr
 
     = csrf_meta_tags
 
@@ -18,8 +18,9 @@
       = render 'layouts/navbar'
       = render 'layouts/flash_errors'
 
-      .row
-        = yield
+      .container-fluid
+        .row
+          = yield
 
     = render 'layouts/footer'
     .loading-modal

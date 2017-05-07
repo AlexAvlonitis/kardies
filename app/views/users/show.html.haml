@@ -1,65 +1,65 @@
 - present @user do |user_presenter|
   #message-modal
-  .large-3.medium-3.small-12.columns
+  .col.col-lg-4
     .text-center.gallery
       = link_to @user.profile_picture(:original) do
-        = image_tag @user.profile_picture(:medium), class: "thumbnail"
+        = image_tag @user.profile_picture(:medium), class: "img-thumbnail"
     %h3.text-center
       = @user.username
     - if current_user == @user
-      = link_to edit_user_registration_path, class: "button tiny expanded" do
+      = link_to edit_user_registration_path, class: "btn btn-sm btn-primary btn-block" do
         = fa_icon 'gears'
         = t '.edit_profile'
     - unless @user == current_user
-      %ul.menu.expanded
-        %li= user_presenter.new_message
-        %li.pull-right.red-text= user_presenter.like_status
+      %ul.nav.nav-fill
+        %li.nav-item= user_presenter.new_message
+        %li.nav-item.red-text= user_presenter.like_status
       %hr
-      = link_to "#{t 'users.index.report'}", report_path(@user), class: "button alert hollow expanded tiny"
+      = link_to "#{t 'users.index.report'}", report_path(@user), class: "btn btn-sm btn-outline-danger btn-block"
 
-    %ul.menu.vertical
-      %li
-        %span.orange-text= t 'users.index.area'
-        = user_presenter.display_city_info
-      %li
-        %span.orange-text= t 'users.search.age'
-        = @user.age
-      %li
-        %span.orange-text= t 'users.search.gender'
-        = user_presenter.gender_type
+    %table.table.table-sm.table-bordered
+      %tbody
+        %tr
+          %th.orange-text{ scope: "row"}
+            %h5= t 'users.index.area'
+          %td= user_presenter.display_city_info
+        %tr
+          %th.orange-text{ scope: "row"}
+            %h5= t 'users.search.age'
+          %td= @user.age
+        %tr
+          %th.orange-text{ scope: "row"}
+            %h5= t 'users.search.gender'
+          %td= user_presenter.gender_type
 
-  .large-9.medium-9.small-12.columns
-    %h2.orange-text= t '.galleries'
-    %ul.accordion{ "data-accordion" => "", "role" => "tablist" }
-      - if @user.galleries.empty? || @user.galleries.nil?
-        %h4.subheader= t '.no_albums'
-      - @user.galleries.each.with_index do |gallery, index|
-        %li.accordion-item
-          %a{ "href" => "#panel#{index}d", "role" => "tab", "class" => "accordion-title", "id" => "panel#{index}d-heading", "aria-controls" => "panel#{index}d" }
-            = fa_icon 'image'
-            = gallery.name
-          .accordion-content{ "role" => "tabpanel", "data-tab-content" => "", "aria-labelledby" => "panel#{index}d-heading", "id" => "panel#{index}d" }
-            .gallery
-              - gallery.pictures.each do |pic|
-                = link_to pic.picture.url do
-                  = image_tag pic.picture.url, class: "icon-size"
+  .col.col-lg-8
+    %h1.display-5.orange-text= t '.galleries'
+    - if @user.galleries.empty? || @user.galleries.nil?
+      = image_tag 'no_uploaded.png', class: "img-thumbnail"
+    %ul
+      - @user.galleries.each do |gallery|
+        %li.list-unstyled.gallery
+          - gallery.pictures.each do |pic|
+            = link_to pic.picture.url do
+              = image_tag pic.picture.url, class: "icon-size img-thumbnail"
+          %strong= "(#{gallery.name})"
 
-    .small-12
-      %h2.orange-text= t '.about'
-      %h4= t '.job'
-      = user_presenter.about_info('job')
-      %hr
-      %h4= t '.hobby'
-      = user_presenter.about_info('hobby')
-      %hr
-      %h4= t '.relationship_status'
-      = user_presenter.about_info('relationship_status')
-      %hr
-      %h4= t '.looking_for'
-      = user_presenter.about_info('looking_for')
-      %hr
-      %h4= t '.about_me'
-      = user_presenter.about_info('description')
-      %hr
-      %h4= t '.youtube'
-      = user_presenter.youtube_url
+    %h1.display-5.orange-text= t '.about'
+    %h4= t '.job'
+    %blockquote.blockquote
+      %p.mb-0= user_presenter.about_info('job')
+    %h4= t '.hobby'
+    %blockquote.blockquote
+      %p.mb-0= user_presenter.about_info('hobby')
+    %h4= t '.relationship_status'
+    %blockquote.blockquote
+      %p.mb-0= user_presenter.about_info('relationship_status')
+    %h4= t '.looking_for'
+    %blockquote.blockquote
+      %p.mb-0= user_presenter.about_info('looking_for')
+    %h4= t '.about_me'
+    %blockquote.blockquote
+      %p.mb-0= user_presenter.about_info('description')
+    %h4= t '.youtube'
+    %blockquote.blockquote
+      %p.mb-0= user_presenter.youtube_url

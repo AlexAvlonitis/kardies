@@ -14,7 +14,7 @@
 #= require jquery_ujs
 #= require lazyload
 #= require turbolinks
-#= require foundation
+#= require bootstrap
 #= require jgallery
 #= require tinycolor.min
 #= require jquery-ui/dialog

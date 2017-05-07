@@ -1,12 +1,13 @@
 %footer
-  .row
-    .small-3.columns
-      =link_to locale: "en" do
-        = image_tag "uk_flag.png"
-      = link_to locale: "gr" do
-        = image_tag "greek_flag.png"
-      = link_to "#{t 'contacts.index.contact'}", contacts_path
-    .small-6.columns.text-center
-      © 2016 #{t '.copyright'} Κardies.gr
-    .small-3.columns.text-right
-      = link_to "#{t '.terms'}", terms_path
+  .container-fluid
+    .row
+      .col
+        =link_to locale: "en" do
+          = image_tag "uk_flag.png"
+        = link_to locale: "gr" do
+          = image_tag "greek_flag.png"
+        = link_to "#{t 'contacts.index.contact'}", contacts_path
+      .col.text-center
+        © 2016 #{t '.copyright'} Κardies.gr
+      .col.text-right
+        = link_to "#{t '.terms'}", terms_path
