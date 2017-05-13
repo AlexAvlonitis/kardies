@@ -24,7 +24,21 @@ class UserPresenter < BasePresenter
   end
 
   def online_status
-    user.is_signed_in ? h.content_tag(:span, "", class: "online-now") : nil
+    if user.is_signed_in
+      h.content_tag(:p, "", class: 'card-text, pull-left') do
+        h.content_tag(:span, "", class: "online-now")
+      end +
+      h.content_tag(:p, "", class: 'card-text') do
+        h.content_tag(:small, "Online now", class: "text-muted")
+      end
+    else
+      h.content_tag(:p, "", class: 'card-text, pull-left') do
+        h.content_tag(:span, "", class: "offline")
+      end +
+      h.content_tag(:p, "", class: 'card-text') do
+        h.content_tag(:small, "Offline", class: "text-muted")
+      end
+    end
   end
 
   def gender_type

@@ -1,10 +1,10 @@
 = render 'search'
-.medium-8.large-10.columns
+.col.col-lg-9.col-md-12.col-sm-12
   #message-modal
-  .small-up-1.medium-up-2.large-up-3
+  .card-deck
     - if ! @users.map {|f| f}.blank?
       - @users.each do |user|
-        - if user && !user.deleted_at
+        - if user && !user.deleted_at && !(user == current_user)
           - present user do |user_presenter|
             = render partial: 'users/card', locals: {user: user, user_presenter: user_presenter}
     - else

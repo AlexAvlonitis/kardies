@@ -1,19 +1,18 @@
-.column
-  .card.effect1
+.card.effect1
+  .card-img-top
     = link_to user_path(user) do
-      .card-top
-        = user_presenter.online_status
-        = image_tag user.profile_picture(:medium), lazy: true
-    .card-divider
-    .card-block
-      = user_presenter.gender_type
-      %h5.card-title
-        - if user.try(:username) && user.try(:age)
-          = user.username + " " + user.age
-      .card-text
-        -if user.try(:state) && user.try(:city)
-          %p= user_presenter.display_city_info
-      - unless user == current_user
-        %span.message= user_presenter.new_message
-        %span.vertical-border
-        %span.like= user_presenter.like_status
+      .card-bg{style: "background-image:url(#{user.profile_picture(:medium)})"}
+  .card-block
+    = user_presenter.gender_type
+    %h5.card-title
+      - if user.try(:username) && user.try(:age)
+        = user.username.capitalize + " " + user.age
+    .card-text
+      -if user.try(:state) && user.try(:city)
+        %p= user_presenter.display_city_info
+    - unless user == current_user
+      %span.message= user_presenter.new_message
+      %span.vertical-border
+      %span.like= user_presenter.like_status
+    .card-footer
+      = user_presenter.online_status
