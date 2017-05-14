@@ -6,7 +6,7 @@
 
   .col-lg-6.col-sm-12
     %h2.orange-text= t '.my_profile'
-    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
 
       = f.fields_for :user_detail do |d|
         .form-group
@@ -40,15 +40,8 @@
               %p.error= show_errors(@user.user_detail, :gender)
 
 
-      .form-group
-        %label= t '.username'
-        = f.text_field :username, class: "form-control"
-        %p.error= show_errors(@user, :username)
-
-      .form-group
-        %label= t '.email'
-        = f.email_field :email, class: "form-control"
-        %p.error= show_errors(@user, :email)
+      =f.input :username, label: "#{t '.username'}", error_html: { class: 'red-text' }
+      =f.input :email, label: "#{t '.email'}", error_html: { class: 'red-text' }
 
       - if devise_mapping.confirmable? && resource.pending_reconfirmation?
         %div

@@ -13,11 +13,6 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def edit
-    @user = User.find(current_user.id)
-    @user.user_detail ? @user.user_detail : @user.build_user_detail
-  end
-
   def destroy
     resource.soft_delete
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
