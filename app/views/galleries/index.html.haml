@@ -1,12 +1,8 @@
-.medium-6.small-centered.columns
-  %nav{ "aria-label" => "You are here:", "role" => "navigation" }
-    %ul.breadcrumbs
-      %li= link_to "#{t 'abouts.edit.profile'}", edit_user_registration_path
-      %li= link_to "#{t 'abouts.edit.about_me'}", edit_about_path
-      %li
-        %span.show-for-sr Current:
-        =t 'abouts.edit.galleries'
-
+.col
+  %ol.breadcrumb
+    %li.breadcrumb-item= link_to "#{t 'abouts.edit.profile'}", edit_user_registration_path
+    %li.breadcrumb-item= link_to "#{t 'abouts.edit.about_me'}", edit_about_path
+    %li.breadcrumb-item.active=t 'abouts.edit.galleries'
 
   %h2.orange-text=t 'users.show.galleries'
   %h5.subheader

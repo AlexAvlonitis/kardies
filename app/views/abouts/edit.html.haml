@@ -1,38 +1,40 @@
-.medium-6.small-centered.columns
-  %nav{ "aria-label" => "You are here:", "role" => "navigation" }
-    %ul.breadcrumbs
-      %li= link_to "#{t '.profile'}", edit_user_registration_path
-      %li
-        %span.show-for-sr Current:
-        =t '.about_me'
-      %li= link_to "#{t '.galleries'}", galleries_path
+.col
+  %ol.breadcrumb
+    %li.breadcrumb-item= link_to "#{t '.profile'}", edit_user_registration_path
+    %li.breadcrumb-item.acive= t '.about_me'
+    %li.breadcrumb-item= link_to "#{t '.galleries'}", galleries_path
 
-  %h2.orange-text= t '.details'
-  = form_for @about, url: about_path, html: { method: :put } do |f|
+  .col-lg-6.col-sm-12
+    %h2.orange-text= t '.details'
+    = form_for @about, url: about_path, html: { method: :put } do |f|
+      .form-group
+        %label= t 'users.show.job'
+        = f.text_field :job, placeholder: "#{t '.job_placeholder'}", class: 'form-control'
+      .form-group
+        %label= t 'users.show.hobby'
+        = f.text_field :hobby, placeholder: "#{t '.hobby_placeholder'}", class: 'form-control'
+      .form-group
+        %label= t 'users.show.relationship_status'
+        = f.text_field :relationship_status, placeholder: "#{t '.relationship_status_placeholder'}", class: 'form-control'
+      .form-group
+        %label= t 'users.show.looking_for'
+        = f.text_field :looking_for, placeholder: "#{t '.looking_for_placeholder'}", class: 'form-control'
+      .form-group
+        %label= t 'users.show.about_me'
+        = f.text_area :description, placeholder: "#{t '.about_me_placeholder'}", class: 'form-control'
 
-    %label= t 'users.show.job'
-    = f.text_field :job, placeholder: "#{t '.job_placeholder'}"
-    %label= t 'users.show.hobby'
-    = f.text_field :hobby, placeholder: "#{t '.hobby_placeholder'}"
-    %label= t 'users.show.relationship_status'
-    = f.text_field :relationship_status, placeholder: "#{t '.relationship_status_placeholder'}"
-    %label= t 'users.show.looking_for'
-    = f.text_field :looking_for, placeholder: "#{t '.looking_for_placeholder'}"
-    %label= t 'users.show.about_me'
-    = f.text_area :description, placeholder: "#{t '.about_me_placeholder'}"
+      .form-group
+        %label.pull-left= t 'users.show.youtube'
+        .help-tip
+          %p= t 'users.show.youtube_instructions'
+      .form-group.row
+        .col-sm-6.col-form-label.orange-text https://youtube.com/watch?=
+        .col-sm-6
+          = f.text_field :youtube_url, placeholder: "#{t '.youtube_placeholder'}", class: 'form-control'
 
-    %label.pull-left= t 'users.show.youtube'
-    .help-tip
-      %p= t 'users.show.youtube_instructions'
-    .input-group
-      %span.input-group-label.orange-text https://youtube.com/watch?=
-      = f.text_field :youtube_url, placeholder: "#{t '.youtube_placeholder'}",
-                                   id: "middle-label",
-                                   class: 'input-group-field'
+      - present @user do |user_presenter|
+        %p= user_presenter.youtube_url
 
-    - present @user do |user_presenter|
-      %p= user_presenter.youtube_url
+      = f.submit "#{t '.save'}", class: "btn btn-primary btn-block"
 
-    = f.submit "#{t '.save'}", class: "button primary expanded"
-
-  = link_to "#{t 'abouts.edit.back'}", :back
+    = link_to "#{t 'abouts.edit.back'}", :back
