@@ -1,8 +1,10 @@
 = form_for gallery, html: {multipart: true, class: "form-style-8"} do |f|
-  = f.text_field :name, placeholder: "#{t 'users.show.album_name'}*"
-  %label.button{"for" => "picUpload"}= t 'users.show.upload_pictures'
-  = file_field_tag "pictures[]", type: :file, multiple: true, class: "show-for-sr", id: "picUpload", onchange: "previewFiles()"
+  .form-group
+    = f.text_field :name, placeholder: "#{t 'users.show.album_name'}*", class: "form-control"
+  .form-group
+    %label.button{"for" => "picUpload"}= t 'users.show.upload_pictures'
+    = file_field_tag "pictures[]", type: :file, multiple: true, class: "show-for-sr form-file-control", id: "picUpload", onchange: "previewFiles()"
   #preview
-  = f.button class: "button success expanded", id: 'gallery-submit' do
+  = f.button class: "btn btn.primary btn.block", id: 'gallery-submit' do
     = fa_icon "plus"
     = t 'users.show.create_gallery'

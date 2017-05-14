@@ -1,9 +1,10 @@
-.col
+.col-12
   %ol.breadcrumb
     %li.breadcrumb-item= link_to "#{t 'abouts.edit.profile'}", edit_user_registration_path
     %li.breadcrumb-item= link_to "#{t 'abouts.edit.about_me'}", edit_about_path
     %li.breadcrumb-item.active=t 'abouts.edit.galleries'
 
+.col-lg-6.col-sm-12
   %h2.orange-text=t 'users.show.galleries'
   %h5.subheader
     = link_to "#{t 'users.show.create_gallery'}", class: "create-gallery" do
@@ -22,6 +23,6 @@
           = fa_icon 'trash'
 
       - gallery.pictures.each do |pic|
-        = image_tag pic.picture.url(:thumb), class: "thumbnail"
+        = image_tag pic.picture.url(:thumb), class: "img-thumbnail"
 
   %p= link_to "#{t 'abouts.edit.back'}", :back
