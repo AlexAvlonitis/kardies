@@ -1,7 +1,7 @@
-.small-12.columns
+.col-lg-10.offset-lg-1
   .ui
     .left-menu
-      = link_to "#{t 'abouts.edit.back'}", conversations_path, class: "button expanded primary"
+      = link_to "#{t 'abouts.edit.back'}", conversations_path, class: "btn btn-primary btn-sm btn-block"
     .chat
       .top{"id" => "conversation", "conversation-id" => "#{@hashed_conversation}"}
         .avatar
@@ -15,10 +15,11 @@
             - @conversation.receipts_for(current_user).each do |receipt|
               = render partial: 'conversations/message', locals: { receipt: receipt }
         .write-form
-          = form_tag reply_conversation_path(@conversation), method: :post, id: 'conversation-form' do
-            .input-group
+          = form_tag reply_conversation_path(@conversation), method: :post, id: 'conversation-form', class: 'form-inline' do
+            .col-9
               = text_area_tag 'body', nil, cols: 3, class: 'form-control conversation-message',
                                                     placeholder: "#{t '.send_message_placeholder'}",
                                                     "data-behaviour" => "message_speaker"
-              .input-group-button
-                = button_tag "#{t '.send_message'}", class: "button", id: "send-message-button"
+            .col-3
+              = button_tag class: "btn btn-primary", id: "send-message-button" do
+                = fa_icon 'paper-plane 2x', class: "pull-left"
