@@ -11,10 +11,11 @@
 # // about supported directives.
 # //
 #= require jquery
+#= require tether
+#= require bootstrap
 #= require jquery_ujs
 #= require lazyload
 #= require turbolinks
-#= require bootstrap
 #= require jgallery
 #= require tinycolor.min
 #= require jquery-ui/dialog

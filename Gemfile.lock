@@ -1,5 +1,6 @@
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actioncable (5.0.0.1)
       actionpack (= 5.0.0.1)
@@ -254,6 +255,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 5.0.0.1)
       sprockets-rails (>= 2.0.0)
+    rails-assets-tether (1.4.0)
     rails-controller-testing (1.0.1)
       actionpack (~> 5.x)
       actionview (~> 5.x)
@@ -409,6 +411,7 @@ DEPENDENCIES
   puma (~> 3.0)
   pundit
   rails (~> 5.0.0)
+  rails-assets-tether (>= 1.3.3)!
   rails-controller-testing
   redis-rails
   rspec-rails (~> 3.5)
