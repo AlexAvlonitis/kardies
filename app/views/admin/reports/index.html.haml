@@ -1,30 +1,31 @@
-%h1 Reports
-%table
-  %thead
-    %tr
-      %th{"width" => "150"} Suspect
-      %th Reason
-      %th Description
-      %th{"width" => "150"} Reporter
-      %th{"width" => "150"} Reported at
-      %th{"width" => "150"} Delete Account
-  %tbody
-    - @reports.each do |report|
+.col
+  %h1 Reports
+  %table.table
+    %thead
       %tr
-        %td
-          = link_to user_path(report.user) do
-            = image_tag report.user.profile_picture, class: "icon-size"
-        %td= report.reason
-        %td= report.description
-        %td= image_tag report.reporter.profile_picture, class: "icon-size"
-        %td= report.created_at.strftime("%B %d, %Y")
-        %td
-          - if ! report.user.deleted_at
-            = link_to "Block Account", admin_destroy_path(report.user),
-                                       data: { confirm: "Προσοχή, ο λογαριασμός Θα διαγραφεί" },
-                                       method: :delete,
-                                       class: 'button alert small'
-          - else
-            = link_to "Unblock Account", admin_unblock_path(report.user),
-                                         method: :post,
-                                         class: 'button primary small'
+        %th{"width" => "150"} Suspect
+        %th Reason
+        %th Description
+        %th{"width" => "150"} Reporter
+        %th{"width" => "150"} Reported at
+        %th{"width" => "150"} Delete Account
+    %tbody
+      - @reports.each do |report|
+        %tr
+          %td
+            = link_to user_path(report.user) do
+              = image_tag report.user.profile_picture, class: "icon-size"
+          %td= report.reason
+          %td= report.description
+          %td= image_tag report.reporter.profile_picture, class: "icon-size"
+          %td= report.created_at.strftime("%B %d, %Y")
+          %td
+            - if ! report.user.deleted_at
+              = link_to "Block Account", admin_destroy_path(report.user),
+                                         data: { confirm: "Προσοχή, ο λογαριασμός Θα διαγραφεί" },
+                                         method: :delete,
+                                         class: 'button alert small'
+            - else
+              = link_to "Unblock Account", admin_unblock_path(report.user),
+                                           method: :post,
+                                           class: 'button primary small'

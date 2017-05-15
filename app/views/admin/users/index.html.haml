@@ -1,27 +1,28 @@
-%h1 All users - #{@user_count}
-%table
-  %thead
-    %tr
-      %th{"width" => "150"} Profile Picture
-      %th{"width" => "150"} Username
-      %th{"width" => "150"} Email
-      %th{"width" => "150"} Delete Account
-  %tbody
-    - @users.each do |user|
+.col
+  %h1 All users - #{@user_count}
+  %table.table
+    %thead
       %tr
-        %td
-          = link_to user_path(user) do
-            = image_tag user.profile_picture, class: "icon-size"
-        %td= user.username
-        %td= user.email
-        %td
-          - if ! user.deleted_at
-            = link_to "Block Account", admin_destroy_path(user),
-                                       data: { confirm: "Προσοχή, ο λογαριασμός Θα διαγραφεί" },
-                                       method: :delete,
-                                       class: 'button alert small'
-          - else
-            = link_to "Unblock Account", admin_unblock_path(user),
-                                         method: :post,
-                                         class: 'button primary small'
-= paginate @users
+        %th{"width" => "150"} Profile Picture
+        %th{"width" => "150"} Username
+        %th{"width" => "150"} Email
+        %th{"width" => "150"} Delete Account
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td
+            = link_to user_path(user) do
+              = image_tag user.profile_picture, class: "icon-size"
+          %td= user.username
+          %td= user.email
+          %td
+            - if ! user.deleted_at
+              = link_to "Block Account", admin_destroy_path(user),
+                                         data: { confirm: "Προσοχή, ο λογαριασμός Θα διαγραφεί" },
+                                         method: :delete,
+                                         class: 'button alert small'
+            - else
+              = link_to "Unblock Account", admin_unblock_path(user),
+                                           method: :post,
+                                           class: 'button primary small'
+  = paginate @users
