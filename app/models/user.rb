@@ -43,6 +43,7 @@ class User < ApplicationRecord
                                      ( is_signed_in == query.is_signed_in ) &
                                      ( gender == query.gender ) &
                                      ( age >= query.age_from ) & ( age <= query.age_to ) }
+                            .order(created: :desc)
     scope.only(:id).load
   end
 
