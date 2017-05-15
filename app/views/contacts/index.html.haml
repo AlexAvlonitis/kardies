@@ -1,20 +1,10 @@
-.medium-6.medium-centered.columns.whitesmoke-bg
+.col-lg-6.col-sm-12.mx-auto.whitesmoke-bg
   %h3.orange-text= t '.contact'
-  = form_for @contact, method: :post do |f|
-    = f.label :name, "#{t '.name'}"
-    = f.text_field :name, class: 'form-control', placeholder: "#{t '.name_placeholder'}"
-    %p.error= show_errors(@contact, :name)
+  = simple_form_for @contact, method: :post do |f|
+    = f.input :name, class: 'form-control', placeholder: "#{t '.name_placeholder'}", label: "#{t '.name'}"
+    = f.input :email, class: 'form-control', placeholder: "#{t '.email_placeholder'}", label: "#{t '.email'}"
+    = f.input :subject, class: 'form-control', placeholder: "#{t 'messages.new.subject'}", label: "#{t 'messages.new.subject'}"
+    = f.input :description, class: 'form-control', placeholder: "#{t 'messages.new.message_placeholder'}", label: "#{t 'messages.new.message'}"
 
-    = f.label :email, "#{t '.email'}"
-    = f.email_field :email, class: 'form-control', placeholder: "#{t '.email_placeholder'}"
-    %p.error= show_errors(@contact, :email)
-    = f.label :subject, "#{t 'messages.new.subject'}"
-    = f.text_field :subject, class: 'form-control', placeholder: "#{t 'messages.new.subject'}"
-    %p.error= show_errors(@contact, :subject)
-
-    = f.label :description, "#{t 'messages.new.message'}"
-    = f.text_area :description, class: 'form-control', placeholder: "#{t 'messages.new.message_placeholder'}"
-    %p.error= show_errors(@contact, :description)
-
-    = f.submit "#{t 'messages.new.send'}", class: 'button success expanded'
-    = link_to "#{t 'abouts.edit.back'}", :back, class: 'button primary small'
+    = f.submit "#{t 'messages.new.send'}", class: 'btn btn-primary btn-block btn-sm'
+    = link_to "#{t 'abouts.edit.back'}", :back
