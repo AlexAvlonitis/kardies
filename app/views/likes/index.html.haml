@@ -1,9 +1,6 @@
-.small-12.medium-6.large-6.columns
-  %h2.orange-text= t '.my_hearts'
-  %p
-    = t '.hearts_number'
-    = @likes.size
-  %table.messages
+.col-sm-12.col-md-6.col-lg-6
+  %h2.orange-text #{t '.my_hearts'} (#{@likes.size})
+  %table.table
     %thead
       %tr
         %th= t 'users.search.age_from'
