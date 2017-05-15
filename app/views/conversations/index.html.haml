@@ -1,30 +1,32 @@
-%ul.tabs{ "data-tabs" => "", "id" => "messages-tabs" }
-  %li.tabs-title.is-active
-    %a{ "href" => "#inbox", "aria-selected" => "true"}= t '.messages'
-  %li.tabs-title
-    %a{ "href" => "#trash" }= t '.trash'
-.tabs-content{ "data-tabs-content" => "messages-tabs" }
-  .tabs-panel.is-active{ "id" => "messages" }
-    %table.messages
-      %thead
-        %strong= t '.inbox'
-        %tr
-          %th= t '.conversation'
-          %th= t '.conversation_at'
-          %th= t '.conversation_action'
-      %tbody
-        = render partial: 'conversations/conversation', collection: @conversations
-  .tabs-panel{ "id" => "trash" }
-    %table.messages.stack
-      %thead
-        %p
-          %strong= t '.trash'
-        %tr
-          %th= t '.conversation'
-          %th= t '.conversation_at'
-          %th= t '.conversation_action'
-      %tbody
-        = link_to empty_trash_conversations_path, class: 'button alert', method: :delete, data: {confirm: "#{t '.empty_trash_confirm'}"} do
-          = fa_icon 'trash-o'
-          = t '.empty_trash'
-        = render partial: 'conversations/conversation', collection: @conversations_trash
+.col
+  %ul.nav.nav-tabs{ role: "tablist" }
+    %li.nav-item
+      %a.nav-link.active{ "data-toggle" => "tab", href: "#messages", role: "tab" }= t '.messages'
+    %li.nav-item
+      %a.nav-link{ "data-toggle" => "tab", href: "#trash", role: "tab" }= t '.trash'
+
+  .tab-content
+    .tab-pane.active{ id: "messages", role: "tabpanel" }
+      %table.table
+        %thead
+          %strong.orange-text= t '.messages'
+          %tr
+            %th= t '.conversation'
+            %th= t '.conversation_at'
+            %th= t '.conversation_action'
+        %tbody
+          = render partial: 'conversations/conversation', collection: @conversations
+    .tab-pane{ id: "trash", role: "tabpanel" }
+      %table.table
+        %thead
+          %p
+            %strong.orange-text= t '.trash'
+          %tr
+            %th= t '.conversation'
+            %th= t '.conversation_at'
+            %th= t '.conversation_action'
+        %tbody
+          = link_to empty_trash_conversations_path, class: 'btn btn-sm btn-outline-danger', method: :delete, data: {confirm: "#{t '.empty_trash_confirm'}"} do
+            = fa_icon 'trash-o'
+            = t '.empty_trash'
+          = render partial: 'conversations/conversation', collection: @conversations_trash
