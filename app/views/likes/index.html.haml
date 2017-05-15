@@ -9,7 +9,5 @@
       - @likes.each do |user|
         - present user do |user_profile|
           %tr
-            %td
-              .icon-size= user_profile.profile_picture_link
-            %td
-              = user.username
+            %td= user_profile.profile_picture_link
+            %td= user.username.capitalize
