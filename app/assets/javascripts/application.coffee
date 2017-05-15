@@ -21,7 +21,6 @@
 #= require_tree .
 
 $(document).on "turbolinks:load", ->
-  $(document).foundation()
   $(".alert-box" ).fadeOut(3000);
   $("img").lazyload(
     threshold : 500,

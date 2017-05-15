@@ -177,25 +177,25 @@ body {
   border: none;
   box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
 
-  &.success {
+  &.alert-success {
     border-left: 6px solid $success;
     background: #f7f7f7;
     color: #333;
   }
 
-  &.alert {
+  &.alert-danger {
     border-left: 6px solid $alert;
     background: #f7f7f7;
     color: #333;
   }
 
-  &.warning {
+  &.alert-warning {
     border-left: 6px solid $warning;
     background: #f7f7f7;
     color: #333;
   }
 
-  &.info {
+  &.alert-info {
     border-left: 6px solid $info;
     background: #f7f7f7;
     color: #333;

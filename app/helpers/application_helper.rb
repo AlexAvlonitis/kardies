@@ -7,10 +7,6 @@ module ApplicationHelper
     presenter
   end
 
-  def foundation_class_for flash_type
-    { success: "success", alert: "alert", warning: "warning", notice: "info" }[flash_type.to_sym] || flash_type.to_s
-  end
-
   def admins_only(&block)
     block.call if current_user.try(:admin?)
   end

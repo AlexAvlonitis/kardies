@@ -1,6 +1,7 @@
-.row
+.col-lg-5.col-sm-12.mx-auto
   - flash.each do |name, msg|
     - if msg.is_a?(String)
-      %div{ "data-alert" => "", "class" => "alert-box #{foundation_class_for(name)}", "data-closable" => "" }
+      %div{ role: "alert", class: "alert-box alert alert-#{name} alert-dismissible fade show"}
         = msg
-        %a.close.pull-right{"href" => "#", "data-close" => ""} ⊗
+        %button.close{ type: "button", "data-dismiss" => "alert", "aria-label" => "Close" }
+          %span{ "aria-hidden" => "true"} &times
