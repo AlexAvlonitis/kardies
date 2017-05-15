@@ -1,13 +1,13 @@
 %p
-  = image_tag user.profile_picture, class: "icon-size"
-  = user.username
+  = image_tag user.profile_picture, class: "icon-size img-thumbnail"
+  = user.username.capitalize
 %h3.orange-text= t 'messages.new.send'
 = form_tag messages_path, method: :post do
-  = label_tag 'message[body]', "#{t 'messages.new.message'}"
-  = text_area_tag 'message[body]', nil, cols: 5, class: 'form-control',
-                                                 required: true,
-                                                 placeholder: "#{t 'messages.new.message_placeholder'}"
+  .form-group
+    = text_area_tag 'message[body]', nil, cols: 5, class: 'form-control',
+                                                   required: true,
+                                                   placeholder: "#{t 'messages.new.message_placeholder'}"
 
   = hidden_field_tag "message[username]", user.username
 
-  = submit_tag 'Send', class: 'button success expanded'
+  = submit_tag 'Send', class: 'btn btn-primary btn-block'
