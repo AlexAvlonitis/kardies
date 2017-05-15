@@ -1,5 +1,5 @@
 = render 'search'
-.col.col-lg-9.col-md-12.col-sm-12
+.col-lg-9.col-md-12.col-sm-12
   #message-modal
   .card-deck
     - if ! @users.map {|f| f}.blank?
@@ -9,5 +9,5 @@
             = render partial: 'users/card', locals: {user: user, user_presenter: user_presenter}
     - else
       %h4= t '.no_results'
-  .col
+  .col-lg-6.col-sm-12.mx-auto
     = paginate @users
