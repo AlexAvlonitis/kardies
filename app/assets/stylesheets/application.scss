@@ -92,6 +92,12 @@ body {
   color: $red;
 }
 
+.overflow-div {
+  height: 34rem;
+  overflow-y: scroll;
+}
+
+
 #bg {
   z-index: -999;
   position: fixed;

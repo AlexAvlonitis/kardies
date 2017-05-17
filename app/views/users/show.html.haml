@@ -1,65 +1,72 @@
 - present @user do |user_presenter|
   #message-modal
-  .col.col-lg-4.bg-lightblue
-    .text-center.gallery
-      = link_to @user.profile_picture(:original) do
-        = image_tag @user.profile_picture(:medium), class: "img-thumbnail"
-    %h3.text-center
-      = @user.username
-    - if current_user == @user
-      = link_to edit_user_registration_path, class: "btn btn-sm btn-primary btn-block" do
-        = fa_icon 'gears'
-        = t '.edit_profile'
-    - unless @user == current_user
-      %ul.nav.nav-fill
-        %li.nav-item= user_presenter.new_message
-        %li.nav-item.red-text= user_presenter.like_status
-      %hr
-      = link_to "#{t 'users.index.report'}", report_path(@user), class: "btn btn-sm btn-outline-danger btn-block"
+  .container-fluid
+    .row
+      .col-sm-12.col-lg-3.bg-white.m-2.effect2
+        .text-center.gallery
+          = link_to @user.profile_picture(:original) do
+            = image_tag @user.profile_picture(:medium), class: "img-thumbnail"
+        %hr
+        %h3.text-center
+          = @user.username.capitalize
+        - if current_user == @user
+          = link_to edit_user_registration_path, class: "btn btn-sm btn-primary btn-block" do
+            = fa_icon 'gears'
+            = t '.edit_profile'
+        - unless @user == current_user
+          %ul.nav.nav-fill
+            %li.nav-item= user_presenter.new_message
+            %li.nav-item.red-text= user_presenter.like_status
+          %hr
+          = link_to "#{t 'users.index.report'}", report_path(@user), class: "btn btn-sm btn-outline-danger btn-block"
 
-    %table.table.table-sm.table-bordered
-      %tbody
-        %tr
-          %th.orange-text{ scope: "row"}
-            %h5= t 'users.index.area'
-          %td= user_presenter.display_city_info
-        %tr
-          %th.orange-text{ scope: "row"}
-            %h5= t 'users.search.age'
-          %td= @user.age
-        %tr
-          %th.orange-text{ scope: "row"}
-            %h5= t 'users.search.gender'
-          %td= user_presenter.gender_type
+        %table.table.table-sm.table-bordered
+          %tbody
+            %tr
+              %th.orange-text{ scope: "row"}
+                %h5= t 'users.index.area'
+              %td= user_presenter.display_city_info
+            %tr
+              %th.orange-text{ scope: "row"}
+                %h5= t 'users.search.age'
+              %td= @user.age
+            %tr
+              %th.orange-text{ scope: "row"}
+                %h5= t 'users.search.gender'
+              %td= user_presenter.gender_type
 
-  .col.col-lg-8.bg-white
-    %h1.display-5.orange-text= t '.galleries'
-    - if @user.galleries.empty? || @user.galleries.nil?
-      = image_tag 'no_uploaded.png', class: "img-thumbnail"
-    %ul
-      - @user.galleries.each do |gallery|
-        %li.list-unstyled.gallery
-          - gallery.pictures.each do |pic|
-            = link_to pic.picture.url do
-              = image_tag pic.picture.url, class: "icon-size img-thumbnail"
-          %strong= "(#{gallery.name})"
+      .col.bg-white.m-2.effect2.overflow-div
+        %h1.display-5.orange-text= t '.galleries'
+        - if @user.galleries.empty? || @user.galleries.nil?
+          = image_tag 'no_uploaded.png', class: "img-thumbnail"
+        .polaroid-images
+          - @user.galleries.each.with_index(1) do |gallery, index|
+            %hr
+            %h4= gallery.name.capitalize
+            .row
+              %li.list-unstyled.gallery
+                - gallery.pictures.each do |pic|
+                  = link_to pic.picture.url, title: "Album-#{index}"  do
+                    = image_tag pic.picture.url
 
-    %h1.display-5.orange-text= t '.about'
-    %h4= t '.job'
-    %blockquote.blockquote
-      %p.mb-0= user_presenter.about_info('job')
-    %h4= t '.hobby'
-    %blockquote.blockquote
-      %p.mb-0= user_presenter.about_info('hobby')
-    %h4= t '.relationship_status'
-    %blockquote.blockquote
-      %p.mb-0= user_presenter.about_info('relationship_status')
-    %h4= t '.looking_for'
-    %blockquote.blockquote
-      %p.mb-0= user_presenter.about_info('looking_for')
-    %h4= t '.about_me'
-    %blockquote.blockquote
-      %p.mb-0= user_presenter.about_info('description')
-    %h4= t '.youtube'
-    %blockquote.blockquote
-      %p.mb-0= user_presenter.youtube_url
+    .row
+      .col.bg-white.m-2.effect2
+        %h1.display-5.orange-text= t '.about'
+        %h4= t '.job'
+        %blockquote.blockquote
+          %p.mb-0= user_presenter.about_info('job')
+        %h4= t '.hobby'
+        %blockquote.blockquote
+          %p.mb-0= user_presenter.about_info('hobby')
+        %h4= t '.relationship_status'
+        %blockquote.blockquote
+          %p.mb-0= user_presenter.about_info('relationship_status')
+        %h4= t '.looking_for'
+        %blockquote.blockquote
+          %p.mb-0= user_presenter.about_info('looking_for')
+        %h4= t '.about_me'
+        %blockquote.blockquote
+          %p.mb-0= user_presenter.about_info('description')
+        %h4= t '.youtube'
+        %blockquote.blockquote
+          %p.mb-0= user_presenter.youtube_url
