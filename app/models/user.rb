@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   update_index 'users#user', :self
+  after_create :send_admin_mail
 
   acts_as_votable
   acts_as_voter
@@ -136,6 +137,10 @@ class User < ApplicationRecord
   end
 
   private
+
+  def send_admin_mail
+    UserMailer.welcome_email(self).deliver_now
+  end
 
   def self.create_username(email)
     email.scan(/\A(.+?)@/).join.gsub(".", "_")
