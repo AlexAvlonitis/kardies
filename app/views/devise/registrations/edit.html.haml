@@ -4,7 +4,7 @@
     %li.breadcrumb-item= link_to "#{t '.about_me'}", edit_about_path
     %li.breadcrumb-item= link_to "#{t '.galleries'}", galleries_path
 
-  .col-lg-6.col-sm-12
+  .col-lg-6.col-sm-12.bg-white.effect2
     %h2.orange-text= t '.my_profile'
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
 
