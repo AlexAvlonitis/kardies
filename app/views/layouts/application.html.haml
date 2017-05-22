@@ -1,6 +1,9 @@
 !!! 5
 %html
   %head
+    - I18n.available_locales.each do |locale|
+      %link{rel: 'alternate', hreflang: locale, href: url_for(locale: locale, only_path: false)}
+    = canonical_tag
     %meta{charset: "utf-8"}
     %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible", }
     %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}
