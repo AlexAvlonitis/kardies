@@ -41,6 +41,16 @@ gr:
       about_me_placeholder: "Χρυσό παιδί..."
       youtube_placeholder: "YQHsXMglC9A"
       back: 'Πίσω'
+  email_preferences:
+    edit:
+      notifications: 'ΕΙΔΟΠΟΙΗΣΕΙΣ'
+      email_notifications: "Ειδοποιήσεις Email"
+      likes_label: 'Να λαμβάνω emails όταν μου στέλνουν καρδιές'
+      messages_label: 'Να λαμβάνω emails όταν μου στέλνουν μηνύματα'
+      news_label: 'Να λαμβάνω emails για γενικά νέα'
+    update:
+      settings_saved: 'Οι αλλαγές σας αποθηκεύτηκαν με επιτυχία'
+      settings_not_saved: 'Οι αλλαγές σας δεν αποθηκεύτηκαν, προσπαθήστε ξανά'
   home:
     index:
       kardies-text: "Το νέο δωρεάν Ελληνικό site γνωριμιών"

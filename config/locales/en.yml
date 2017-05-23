@@ -32,6 +32,7 @@ en:
       about_me: 'DETAILS'
       galleries: 'GALLERIES'
       profile: 'PROFILE'
+      email_preferences: 'NOTIFICATIONS'
       details: 'About me'
       save: 'save'
       job_placeholder: "Teacher, Plumber, Mechanic..."
@@ -41,6 +42,14 @@ en:
       about_me_placeholder: "Very good person..."
       youtube_placeholder: "YQHsXMglC9A"
       back: 'Back'
+  email_preferences:
+    edit:
+      likes_label: 'Receive emails when i get new hearts'
+      messages_label: 'Receive emails when i receive new messages'
+      news_label: 'Receive emails for general news'
+    update:
+      settings_saved: 'Changes have been saved'
+      settings_not_saved: 'Changes have not been saves, try again'
   home:
     index:
       kardies-text: "Meet singles for free in Greece"

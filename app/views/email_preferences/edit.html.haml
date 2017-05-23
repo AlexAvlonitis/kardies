@@ -1,0 +1,31 @@
+.col
+  %ol.breadcrumb
+    %li.breadcrumb-item= link_to "#{t 'abouts.edit.profile'}", edit_user_registration_path
+    %li.breadcrumb-item= link_to "#{ t 'abouts.edit.about_me'}", edit_about_path
+    %li.breadcrumb-item= link_to "#{t 'abouts.edit.galleries'}", galleries_path
+    %li.breadcrumb-item.active= t '.notifications'
+
+  .col-lg-6.col-sm-12.bg-white.effect2
+    %h2.orange-text.mb-4= t '.email_notifications'
+    = form_for @email_preferences, html: { method: :put } do |f|
+      .form-group
+        %label.custom-control.custom-checkbox
+          = f.check_box :likes, class: "custom-control-input"
+          %span.custom-control-indicator
+          %span.custom-control-description= t '.likes_label'
+
+      .form-group
+        %label.custom-control.custom-checkbox
+          = f.check_box :messages, class: "custom-control-input"
+          %span.custom-control-indicator
+          %span.custom-control-description= t '.messages_label'
+
+      .form-group
+        %label.custom-control.custom-checkbox
+          = f.check_box :news, class: "custom-control-input"
+          %span.custom-control-indicator
+          %span.custom-control-description= t '.news_label'
+
+      = f.submit "#{t 'abouts.edit.save'}", class: "btn btn-primary btn-block"
+
+    = link_to "#{t 'abouts.edit.back'}", :back
