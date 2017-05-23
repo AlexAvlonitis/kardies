@@ -22,7 +22,7 @@
         .col-sm-6
           = f.text_field :youtube_url, placeholder: "#{t '.youtube_placeholder'}", class: 'form-control'
 
-      - present @user do |user_presenter|
+      - present current_user do |user_presenter|
         %p= user_presenter.youtube_url
 
       = f.submit "#{t '.save'}", class: "btn btn-primary btn-block"

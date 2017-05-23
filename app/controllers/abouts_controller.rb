@@ -2,7 +2,6 @@ class AboutsController < ApplicationController
 
   def edit
     current_user.about ? @about = current_user.about : @about = current_user.build_about
-    @user = current_user
   end
 
   def update
@@ -17,7 +16,7 @@ class AboutsController < ApplicationController
       redirect_to edit_about_path
     else
       flash.now[:alert] = "Changes have not been saved."
-      render :new
+      render :edit
     end
   end
 
