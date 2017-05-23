@@ -1,0 +1,2 @@
+class EmailPreferencesController < ApplicationController
+end
