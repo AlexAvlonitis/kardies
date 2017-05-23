@@ -4,3 +4,9 @@
 .marg-bottom {
 	margin-bottom: 20px;
 }
+
+.white a {
+	color: $white;
+  font-weight: bolder;
+  text-shadow: 1px 1px $dark_gray;
+}

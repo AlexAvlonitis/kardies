@@ -11,6 +11,7 @@ class LikesController < ApplicationController
     add_vote_notification
     if @user.liked_by current_user
       render json: @user, status: 201
+      HeartsNotificationEmail.new(@user).send
     else
       render json: { errors: @user.errors }, status: 422
     end

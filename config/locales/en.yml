@@ -62,6 +62,8 @@ en:
       or: "OR"
       next: "Next"
       previous: "Previous"
+      forgot_password: 'Forgot your password??'
+      send_pass_instructions: "Send password reset instructions"
   users:
     index:
       area: 'Area'

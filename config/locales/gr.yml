@@ -63,6 +63,8 @@ gr:
       or: 'Ή'
       next: "Συνέχεια"
       previous: "Πίσω"
+      forgot_password: 'Ξεχάσατε τον κωδικό σας?'
+      send_pass_instructions: "Αποστολή οδηγιών για αλλαγή κωδικού"
   users:
     index:
       area: "Περιοχή"
