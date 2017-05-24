@@ -1,19 +1,18 @@
-%h2 Change your password
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
-  = f.hidden_field :reset_password_token
-  .field
-    = f.label :password, "New password"
-    %br/
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-      %br/
-    = f.password_field :password, autofocus: true, autocomplete: "off"
-  .field
-    = f.label :password_confirmation, "Confirm new password"
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .actions
-    = f.submit "Change my password"
-= render "devise/shared/links"
+.col
+  .col.text-center
+    = link_to root_path do
+      = image_tag 'hearts_2.png', class: "img-fluid"
+  .col-lg-4.col-sm-12.mx-auto.text-center
+    %h2.white-text.mb-4= t 'home.index.change_password'
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+      .bg-white
+        = devise_error_messages!
+      = f.hidden_field :reset_password_token
+      %small.white-text
+        (#{t 'activerecord.errors.models.user.attributes.password.too_short'})
+      .form-group
+        = f.password_field :password, placeholder: "#{t 'home.index.new_password'}", autofocus: true, autocomplete: "off", class: "form-control", label: false
+      .form-group
+        = f.password_field :password_confirmation, placeholder: "#{t 'home.index.new_password_confirmation'}", autocomplete: "off", class: "form-control", label: false
+      .actions
+        = f.submit "#{t 'home.index.change_password'}", class: "btn btn-primary btn-small btn-block "

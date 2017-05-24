@@ -65,6 +65,9 @@ gr:
       previous: "Πίσω"
       forgot_password: 'Ξεχάσατε τον κωδικό σας?'
       send_pass_instructions: "Αποστολή οδηγιών για αλλαγή κωδικού"
+      new_password: 'Νέος κωδικός'
+      new_password_confirmation: 'Νέος κωδικός επανάληψη'
+      change_password: "Αλλαγή κωδικού"
   users:
     index:
       area: "Περιοχή"

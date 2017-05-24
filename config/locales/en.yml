@@ -64,6 +64,9 @@ en:
       previous: "Previous"
       forgot_password: 'Forgot your password??'
       send_pass_instructions: "Send password reset instructions"
+      new_password: 'New password'
+      new_password_confirmation: 'New password confirmation'
+      change_password: "Change password"
   users:
     index:
       area: 'Area'
