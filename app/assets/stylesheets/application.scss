@@ -33,7 +33,7 @@ body {
 #wrap {
   min-height: 100%;
   height: auto;
-  margin: 0 auto -50px;
+  margin: 0 auto;
   padding: 0 0 70px;
 }
 
@@ -201,11 +201,11 @@ body {
 }
 
 footer {
-  border-top: solid 5px $orange;
-  background-color: rgba(77, 77, 77, 0.7);
+  padding-top: 0.5rem;
+  border-top: solid 1px $orange;
+  background-color: $dark_gray;
   bottom: 0;
   width: 100%;
-  height: 50px;
 }
 
 .loading-modal {
