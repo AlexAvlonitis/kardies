@@ -1,8 +1,8 @@
 - present @user do |user_presenter|
   #message-modal
-  .container-fluid
+  .container-fluid.mt-3
     .row
-      .col-sm-12.col-lg-3.bg-white.m-2.effect2
+      .col-sm-12.col-lg-4.bg-white.m-2.effect2.p-4
         .text-center.gallery
           = link_to @user.profile_picture(:original) do
             = image_tag @user.profile_picture(:medium), class: "img-thumbnail"
@@ -37,7 +37,7 @@
         %h4= t '.youtube'
         %p.mb-0= user_presenter.youtube_url
 
-      .col.bg-white.m-2.effect2
+      .col.bg-white.m-2.effect2.p-4
         %h1.display-5.orange-text= t '.about'
         %h4= t '.job'
         %blockquote.blockquote

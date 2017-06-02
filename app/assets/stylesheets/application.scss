@@ -12,11 +12,13 @@
 *
 *= require jgallery
 *= require jquery-ui/dialog
+*= require toastr
 */
 @import "colors";
 @import "bootstrap";
 @import "font-awesome";
 @import "forms";
+@import "creative";
 @import "help_tip";
 @import "conversations";
 @import "abouts";
@@ -25,9 +27,13 @@
 @import "home";
 @import "footer";
 
+html,
 body {
- background-color: $paleolive;
- padding-top: 5rem;
+  font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+  background-color: $paleolive;
+  height: 100%;
+  width: 100%;
+  padding-top: 32px;
 }
 
 #wrap {
@@ -98,22 +104,17 @@ body {
 
 
 #bg {
-  z-index: -999;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  padding: 0;
+  margin: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
-
-  .bg_image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    max-width: none;
-    max-height: none;
-  }
+  min-height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-position: center;
+  background-image: asset-data-url('couple_2.jpg');
 }
 
 .custom_header {

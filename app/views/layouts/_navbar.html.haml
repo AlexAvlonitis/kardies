@@ -1,12 +1,16 @@
-- if user_signed_in?
-  %nav.navbar.navbar-toggleable-md.navbar-inverse.fixed-top{style: "background-color: #3b5998;"}
+%nav.navbar.fixed-top.navbar-toggleable-md.navbar-default{ id: "mainNav"}
+  .navbar-header
     %button.navbar-toggler.navbar-toggler-right{ type: "button", "data-toggle" => "collapse", "data-target" => "#navbarSupportedContent", "aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation" }
       %span.navbar-toggler-icon
-    = link_to user_path(current_user), class: "navbar-brand" do
-      = image_tag 'hearts_only.png', class: 'd-inline-block icon-size'
+    .navbar-brand
+      = link_to root_path do
+        = image_tag 'hearts_only.png', class: 'icon-size'
       Kardies.gr
-    .collapse.navbar-collapse{ id: "navbarSupportedContent" }
+
+  .collapse.navbar-collapse.white{ id: "navbarSupportedContent" }
+    - if user_signed_in?
       %ul.navbar-nav.nav-justified.mr-auto
+
         %li.nav-item
           = link_to conversations_path, class: "nav-link" do
             - if current_user.conversation_notifications.count > 0
@@ -35,3 +39,10 @@
           = link_to destroy_user_session_path, method: :delete, class: "nav-link" do
             = fa_icon "power-off"
             %span= t '.sign_out'
+
+    - else
+      %ul.navbar-nav.nav-justified.mr-auto
+      %ul.navbar-nav
+        %li.ml-2
+          %button.btn-sm.btn-orange{"data-toggle" => "modal", "data-target" => "#registrationModal"}
+            = t 'home.index.register_button'

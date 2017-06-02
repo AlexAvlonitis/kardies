@@ -16,13 +16,21 @@
     = javascript_include_tag 'application', "data-turbolinks-track" => "true"
 
   %body
-    #wrap
-      = render 'layouts/bg_image'
-      = render 'layouts/navbar'
-      = render 'layouts/flash_errors'
+    - unless flash.empty?
+      - flash.each do |f|
+        - type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info')
+        = javascript_tag do
+          toastr["#{type}"]("#{f[1]}")
 
-      .container-fluid
+    - if user_signed_in?
+      #wrap
+        = render 'layouts/navbar'
         = yield
+    - else
+      = render 'layouts/navbar'
+      = yield
 
     = render 'layouts/footer'
+    - unless user_signed_in?
+      = render 'devise/sessions/signup_modal'
     .loading-modal

@@ -53,6 +53,9 @@ en:
   home:
     index:
       kardies-text: "Meet singles for free in Greece"
+      kardies-subtext: "Meet singles from Greece, become a member today and meet the love of your life"
+      kardies-bottom: "Because everyone deserves love!"
+      kardies-subbottom: "On Κardies.gr you can meet a new person very easily. Do you like someone? Just send them a heart or an instant message and get ready to fall in love!"
       login: 'Sign in'
       login_button: 'Sign in with Email'
       register: "Register"
