@@ -1,15 +1,13 @@
-%nav.navbar.fixed-top.navbar-toggleable-md.navbar-default{ id: "mainNav"}
-  .navbar-header
-    %button.navbar-toggler.navbar-toggler-right{ type: "button", "data-toggle" => "collapse", "data-target" => "#navbarSupportedContent", "aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation" }
-      %span.navbar-toggler-icon
-    .navbar-brand
-      = link_to root_path do
-        = image_tag 'hearts_only.png', class: 'icon-size'
+%nav.navbar.navbar-toggleable-md.fixed-top
+  %button.navbar-toggler.navbar-toggler-right{ type: "button", "data-toggle" => "collapse", "data-target" => "#navbarNavDropdown", "aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation" }
+    %span.reorder-icon= fa_icon "reorder 2x"
+  .navbar-brand
+    = link_to root_path do
+      = image_tag 'hearts_only.png', class: 'icon-size'
       Kardies.gr
-
-  .collapse.navbar-collapse.white{ id: "navbarSupportedContent" }
+  #navbarNavDropdown.collapse.navbar-collapse
     - if user_signed_in?
-      %ul.navbar-nav.nav-justified.mr-auto
+      %ul.navbar-nav.mr-auto
 
         %li.nav-item
           = link_to conversations_path, class: "nav-link" do
@@ -17,15 +15,18 @@
               = fa_icon "comments-o 2x", class: "blink-blink"
             - else
               = fa_icon "comments-o 2x"
+            = t '.messages'
         %li.nav-item
           = link_to users_path, class: "nav-link" do
             = fa_icon "users 2x"
+            = t '.users'
         %li.nav-item
           = link_to my_likes_path, class: "nav-link" do
             - if current_user.vote_notifications.count > 0
               = fa_icon "gratipay 2x", class: "blink-blink"
             - else
               = fa_icon "gratipay 2x"
+            = t '.likes'
         - admins_only do
           %li.nav-item
             = link_to admin_application_index_path, class: "nav-link" do
