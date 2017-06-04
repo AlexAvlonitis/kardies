@@ -30,5 +30,6 @@ class MessagesController < ApplicationController
     ConversationNotification.create(user_id: recipient.id,
                                     receiver_id: current_user.id,
                                     received: true )
+    ConversationsNotificationEmail.new(recipient).send_email
   end
 end
