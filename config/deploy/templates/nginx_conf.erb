@@ -1,30 +1,27 @@
-upstream puma_<%= fetch(:nginx_config_name) %> {
-    <%
-      flags = 'fail_timeout=0'
-      @backends = [fetch(:puma_bind)].flatten.map do |m|
-        etype, address  = /(tcp|unix|ssl):\/{1,2}(.+)/.match(m).captures
-        if etype =='unix'
-          "server #{etype}:#{address} #{fetch(:nginx_socket_flags)};"
-        else
-          "server #{address.gsub(/0\.0\.0\.0(.+)/, "127.0.0.1\\1")} #{fetch(:nginx_http_flags)};"
-        end
-      end
-    %>
-    <% @backends.each do |server| %>
-      <%= server %>
-    <% end %>
-  }
+upstream puma_<%= fetch(:nginx_config_name) %> { <%
+  flags = 'fail_timeout=0'
+  @backends = [fetch(:puma_bind)].flatten.map do |m|
+  etype, address  = /(tcp|unix|ssl):\/{1,2}(.+)/.match(m).captures
+  if etype =='unix'
+    "server #{etype}:#{address} #{fetch(:nginx_socket_flags)};"
+  else
+    "server #{address.gsub(/0\.0\.0\.0(.+)/, "127.0.0.1\\1")} #{fetch(:nginx_http_flags)};"
+  end
+end
+%><% @backends.each do |server|  %>
+  <%= server %><% end %>
+}
 
 server {
-  <% if fetch(:nginx_use_ssl) %>
-    listen 443;
-    ssl on;
-    ssl_certificate /etc/nginx/ssl/kardies_gr/ssl-bundle.crt;
-    ssl_certificate_key /etc/nginx/ssl/kardies_gr/kardies_gr.key;
-    ssl_prefer_server_ciphers on;
-  <% else %>
-    listen 80;
-  <% end %>
+<% if fetch(:nginx_use_ssl) %>
+  listen 443;
+  ssl on;
+  ssl_certificate /etc/nginx/ssl/kardies_gr/ssl-bundle.crt;
+  ssl_certificate_key /etc/nginx/ssl/kardies_gr/kardies_gr.key;
+  ssl_prefer_server_ciphers on;
+<% else %>
+  listen 80;
+<% end %>
 
   client_max_body_size 4G;
   keepalive_timeout 10;
@@ -45,8 +42,10 @@ server {
 
     <% if fetch(:nginx_use_ssl) %>
       proxy_set_header X-Forwarded-Proto https;
+      proxy_pass https://puma_<%= fetch(:nginx_config_name) %>;
+    <% else %>
+      proxy_pass http://puma_<%= fetch(:nginx_config_name) %>;
     <% end %>
-    proxy_pass http://puma_<%= fetch(:nginx_config_name) %>;
     # limit_req zone=one;
     access_log <%= shared_path %>/log/nginx.access.log;
     error_log <%= shared_path %>/log/nginx.error.log;

@@ -13,6 +13,8 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all # default value
 ##
 
+set :nginx_use_ssl, true
+
 set :user, 'deployer'
 set :application, 'travelhub'
 set :rails_env, 'production'
