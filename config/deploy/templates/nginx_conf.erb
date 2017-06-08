@@ -45,10 +45,8 @@ server {
 
     <% if fetch(:nginx_use_ssl) %>
       proxy_set_header X-Forwarded-Proto https;
-      proxy_pass https://puma_<%= fetch(:nginx_config_name) %>;
-    <% else %>
-      proxy_pass http://puma_<%= fetch(:nginx_config_name) %>;
     <% end %>
+    proxy_pass http://puma_<%= fetch(:nginx_config_name) %>;
     # limit_req zone=one;
     access_log <%= shared_path %>/log/nginx.access.log;
     error_log <%= shared_path %>/log/nginx.error.log;
