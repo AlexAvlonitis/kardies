@@ -13,8 +13,6 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all # default value
 ##
 
-# set :nginx_use_ssl, false
-
 set :user, 'deployer'
 set :application, 'travelhub'
 set :rails_env, 'production'
@@ -23,7 +21,7 @@ set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 set :deploy_via, :remote_cache
 set :pty, true
 
-set :nginx_use_ssl, true
+set :nginx_use_ssl, false
 
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml', 'config/puma.rb')
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
