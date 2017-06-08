@@ -11,6 +11,12 @@ end
 %><% @backends.each do |server|  %>
   <%= server %><% end %>
 }
+<% if fetch(:nginx_use_ssl) %>
+server {
+  listen 80;
+  rewrite ^(.*) https://$host$1 permanent;
+}
+<% end %>
 
 server {
 <% if fetch(:nginx_use_ssl) %>
@@ -18,7 +24,6 @@ server {
   ssl on;
   ssl_certificate /etc/nginx/ssl/kardies_gr/ssl-bundle.crt;
   ssl_certificate_key /etc/nginx/ssl/kardies_gr/kardies_gr.key;
-  ssl_prefer_server_ciphers on;
 <% else %>
   listen 80;
 <% end %>
