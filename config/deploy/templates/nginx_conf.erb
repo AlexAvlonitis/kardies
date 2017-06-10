@@ -11,12 +11,11 @@ end
 %><% @backends.each do |server|  %>
   <%= server %><% end %>
 }
-<% if fetch(:nginx_use_ssl) %>
+
 server {
   listen 80;
   rewrite ^(.*) https://$host$1 permanent;
 }
-<% end %>
 
 server {
   <% if fetch(:nginx_use_ssl) %>
