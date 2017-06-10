@@ -14,7 +14,7 @@ end
 <% if fetch(:nginx_use_ssl) %>
 server {
   listen 80;
-  server_name www.kardies.gr kardies.gr;
+  server_name kardies.gr;
   rewrite ^(.*) https://$server_name$request_uri? permanent;
 }
 <% end %>
@@ -36,7 +36,7 @@ server {
   error_page 500 502 504 /500.html;
   error_page 503 @503;
 
-  server_name <%= fetch(:nginx_server_name) %> www.kardies.gr kardies.gr;
+  server_name kardies.gr;
   root <%= current_path %>/public;
   try_files $uri/index.html $uri @puma_<%= fetch(:nginx_config_name) %>;
 
