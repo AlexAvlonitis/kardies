@@ -11,10 +11,16 @@ end
 %><% @backends.each do |server|  %>
   <%= server %><% end %>
 }
+<% if fetch(:nginx_use_ssl) %>
+server {
+  listen 80;
+  rewrite ^(.*) https://$host$1 permanent;
+}
+<% end %>
 
 server {
 <% if fetch(:nginx_use_ssl) %>
-  listen 443 default ssl;
+  listen 443;
   ssl on;
   ssl_certificate /etc/nginx/ssl/kardies_gr/ssl-bundle.crt;
   ssl_certificate_key /etc/nginx/ssl/kardies_gr/kardies_gr.key;
@@ -35,13 +41,14 @@ server {
 
   location @puma_<%= fetch(:nginx_config_name) %> {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header Host $host;
+    proxy_set_header Host $http_host;
     proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-Proto http;
     proxy_redirect off;
 
     <% if fetch(:nginx_use_ssl) %>
       proxy_set_header X-Forwarded-Proto https;
+    <% else %>
+      proxy_set_header X-Forwarded-Proto http;
     <% end %>
     proxy_pass http://puma_<%= fetch(:nginx_config_name) %>;
     # limit_req zone=one;
