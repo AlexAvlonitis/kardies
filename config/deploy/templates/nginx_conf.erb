@@ -13,20 +13,12 @@ end
 }
 
 server {
-  listen 80;
-  rewrite ^(.*) https://$host$1 permanent;
-}
-
-server {
-  <% if fetch(:nginx_use_ssl) %>
-    listen 443 default ssl;
-    ssl on;
-    ssl_certificate /etc/nginx/ssl/kardies_gr/ssl-bundle.crt;
-    ssl_certificate_key /etc/nginx/ssl/kardies_gr/kardies_gr.key;
-    ssl_prefer_server_ciphers on;
-  <% else %>
-    listen 80;
-  <% end %>
+  listen 80 default;
+  listen 443 default ssl;
+  ssl on;
+  ssl_certificate /etc/nginx/ssl/kardies_gr/ssl-bundle.crt;
+  ssl_certificate_key /etc/nginx/ssl/kardies_gr/kardies_gr.key;
+  ssl_prefer_server_ciphers on;
 
   client_max_body_size 4G;
   keepalive_timeout 10;
@@ -43,6 +35,7 @@ server {
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-Proto http;
+    add_header X-Frame-Options DENY;
     proxy_redirect off;
 
     <% if fetch(:nginx_use_ssl) %>
