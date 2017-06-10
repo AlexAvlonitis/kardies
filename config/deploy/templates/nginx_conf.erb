@@ -57,7 +57,11 @@ server {
   }
 
   location /cable {
-    proxy_pass http://puma_<%= fetch(:nginx_config_name) %>/cable;
+    <% if fetch(:nginx_use_ssl) %>
+      proxy_pass https://puma_<%= fetch(:nginx_config_name) %>/cable;
+    <% else %>
+      proxy_pass http://puma_<%= fetch(:nginx_config_name) %>/cable;
+    <% end %>
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
