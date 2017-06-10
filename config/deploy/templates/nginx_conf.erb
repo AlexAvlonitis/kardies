@@ -23,7 +23,7 @@ server {
     ssl_prefer_server_ciphers on;
   <% else %>
     listen 80;
-    return 301 https://$server_name$request_uri;
+    rewrite ^ https://$server_name$request_uri? permanent;
   <% end %>
 
   client_max_body_size 4G;
