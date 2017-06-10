@@ -14,7 +14,8 @@ end
 <% if fetch(:nginx_use_ssl) %>
 server {
   listen 80;
-  rewrite ^(.*) https://$host$1 permanent;
+  server_name www.kardies.gr kardies.gr;
+  rewrite ^(.*) https://$server_name$request_uri? permanent;
 }
 <% end %>
 
