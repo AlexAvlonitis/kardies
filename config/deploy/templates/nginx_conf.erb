@@ -57,14 +57,16 @@ server {
   }
 
   location /cable {
-    <% if fetch(:nginx_use_ssl) %>
-      proxy_pass https://puma_<%= fetch(:nginx_config_name) %>/cable;
-    <% else %>
-      proxy_pass http://puma_<%= fetch(:nginx_config_name) %>/cable;
-    <% end %>
+    proxy_pass http://puma_<%= fetch(:nginx_config_name) %>/cable;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "upgrade";
+    proxy_set_header Connection "Upgrade";
+
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_redirect off;
   }
 
   location = /google24de39283b44c66d.html {
