@@ -20,7 +20,7 @@ server {
 
 server {
 <% if fetch(:nginx_use_ssl) %>
-  listen 443;
+  listen 443 default ssl;
   ssl on;
   ssl_certificate /etc/nginx/ssl/kardies_gr/ssl-bundle.crt;
   ssl_certificate_key /etc/nginx/ssl/kardies_gr/kardies_gr.key;
