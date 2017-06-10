@@ -163,7 +163,7 @@ footer {
     height:     100%;
     width:      100%;
     background: rgba( 255, 255, 255, .8 )
-                url('http://i.stack.imgur.com/FhHRx.gif')
+                asset-data-url('loading.gif')
                 50% 50%
                 no-repeat;
 }
