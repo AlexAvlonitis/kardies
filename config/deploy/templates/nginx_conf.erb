@@ -12,23 +12,26 @@ end
   <%= server %><% end %>
 }
 
-<% if fetch(:nginx_use_ssl) %>
-  server {
-    listen 80;
-    rewrite ^(.*) https://$host$1 permanent;
-  }
-<% end %>
+server {
+  listen 80;
+  server_name kardies.gr www.kardies.gr;
+  return 301 https://kardies.gr$request_uri;
+}
 
 server {
-  <% if fetch(:nginx_use_ssl) %>
-    listen 443 default ssl;
-    ssl on;
-    ssl_certificate /etc/nginx/ssl/kardies_gr/ssl-bundle.crt;
-    ssl_certificate_key /etc/nginx/ssl/kardies_gr/kardies_gr.key;
-    ssl_prefer_server_ciphers on;
-  <% else %>
-    listen 80;
-  <% end %>
+  listen 443 ssl http2;
+  server_name www.kardies.gr;
+
+  return 301 $scheme://kardies.gr$request_uri;
+}
+
+server {
+  listen 443 ssl http2 default;
+  listen [::]:443 ssl http2 default;
+  ssl on;
+  ssl_certificate /etc/nginx/ssl/kardies_gr/ssl-bundle.crt;
+  ssl_certificate_key /etc/nginx/ssl/kardies_gr/kardies_gr.key;
+  ssl_prefer_server_ciphers on;
 
   client_max_body_size 4G;
   keepalive_timeout 10;
@@ -36,7 +39,7 @@ server {
   error_page 500 502 504 /500.html;
   error_page 503 @503;
 
-  server_name <%= fetch(:nginx_server_name) %> www.kardies.gr kardies.gr;
+  server_name kardies.gr;
   root <%= current_path %>/public;
   try_files $uri/index.html $uri @puma_<%= fetch(:nginx_config_name) %>;
 
@@ -52,7 +55,11 @@ server {
       proxy_set_header X-Forwarded-Proto https;
     <% end %>
     proxy_pass http://puma_<%= fetch(:nginx_config_name) %>;
-    # limit_req zone=one;
+
+    ssl_stapling on;
+    ssl_stapling_verify on;
+    ssl_trusted_certificate /etc/nginx/ssl/kardies_gr/ssl-bundle.crt;
+
     access_log <%= shared_path %>/log/nginx.access.log;
     error_log <%= shared_path %>/log/nginx.error.log;
   }
