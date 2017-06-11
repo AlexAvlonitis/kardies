@@ -13,7 +13,7 @@ end
 }
 
 server {
-  listen 80;
+  listen 80 default_server;
   rewrite ^(.*) https://$host$1 permanent;
 }
 
