@@ -48,17 +48,13 @@ server {
   ssl_trusted_certificate /etc/nginx/ssl/kardies_gr/ssl-bundle.crt;
 
   location @puma_<%= fetch(:nginx_config_name) %> {
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header Host $http_host;
+    proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
-    add_header X-Frame-Options DENY;
-    proxy_redirect off;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-SSL on;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    add_header       X-Frame-Options DENY;
 
-    <% if fetch(:nginx_use_ssl) %>
-      proxy_set_header X-Forwarded-Proto https;
-    <% else %>
-      proxy_set_header X-Forwarded-Proto http;
-    <% end %>
     proxy_pass http://puma_<%= fetch(:nginx_config_name) %>;
 
     access_log <%= shared_path %>/log/nginx.access.log;
