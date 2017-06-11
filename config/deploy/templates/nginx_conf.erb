@@ -36,9 +36,9 @@ server {
   listen 443 ssl;
   server_name kardies.gr;
 
+  ssl on;
   ssl_certificate /etc/nginx/ssl/kardies_gr/ssl-bundle.crt;
   ssl_certificate_key /etc/nginx/ssl/kardies_gr/kardies_gr.key;
-  ssl on;
   ssl_prefer_server_ciphers on;
 
   proxy_set_header X-Real-IP $remote_addr;
