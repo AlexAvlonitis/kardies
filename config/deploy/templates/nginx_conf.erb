@@ -13,7 +13,7 @@ end
 }
 
 server {
-  listen      80 default deferred;
+  listen      80;
   server_name www.kardies.gr kardies.gr;
   return      301 https://kardies.gr$request_uri;
 }
