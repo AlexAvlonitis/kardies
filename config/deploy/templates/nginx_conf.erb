@@ -13,41 +13,20 @@ end
 }
 
 server {
-  listen 80;
-  server_name kardies.gr;
-  return 301 https://kardies.gr$request_uri;
+  listen      80 default_server;
+  server_name www.kardies.gr kardies.gr;
+  return      301 https://kardies.gr$request_uri;
 }
 
-server {
-  listen 80;
-  server_name www.kardies.gr;
-  return 301 https://www.kardies.gr$request_uri;
-}
 
 server {
-  listen 443 ssl;
-  server_name www.kardies.gr;
-  add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload";
-  return 301 https://kardies.gr$request_uri;
-}
-
-server {
-  listen 80;
-  listen 443 ssl;
-  server_name kardies.gr;
+  listen 443 ssl http2;
+  server_name www.kardies.gr kardies.gr;
 
   ssl on;
   ssl_certificate /etc/nginx/ssl/kardies_gr/ssl-bundle.crt;
   ssl_certificate_key /etc/nginx/ssl/kardies_gr/kardies_gr.key;
   ssl_prefer_server_ciphers on;
-
-  proxy_set_header X-Real-IP $remote_addr;
-  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-  proxy_set_header X-Forwarded-Proto https;
-  proxy_set_header X-Forwarded-Port 443;
-  proxy_set_header Host $http_host;
-
-  add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload";
 
   client_max_body_size 4G;
   keepalive_timeout 10;
@@ -64,6 +43,12 @@ server {
 
   location @puma_<%= fetch(:nginx_config_name) %> {
     proxy_pass http://puma_<%= fetch(:nginx_config_name) %>;
+
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-Forwarded-Port 443;
+    proxy_set_header Host $http_host;
 
     access_log <%= shared_path %>/log/nginx.access.log;
     error_log <%= shared_path %>/log/nginx.error.log;
