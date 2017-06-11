@@ -14,6 +14,7 @@ end
 
 server {
   listen      80 default_server;
+  listen [::]:80 default_server;
   server_name www.kardies.gr kardies.gr;
   return      301 https://kardies.gr$request_uri;
 }
