@@ -23,5 +23,3 @@
 .ruby-version
 /config/database.production.yml
 /config/secrets.production.yml
-/config/database.production.yml
-/config/secrets.production.yml

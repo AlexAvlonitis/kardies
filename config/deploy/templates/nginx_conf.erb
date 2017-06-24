@@ -11,22 +11,22 @@ end
 %><% @backends.each do |server|  %>
   <%= server %><% end %>
 }
-<% if fetch(:nginx_use_ssl) %>
-server {
-  listen 80;
-  rewrite ^(.*) https://$host$1 permanent;
-}
-<% end %>
 
 server {
-<% if fetch(:nginx_use_ssl) %>
-  listen 443;
+  listen      80 default_server;
+  server_name www.kardies.gr kardies.gr;
+  return      301 https://kardies.gr$request_uri;
+}
+
+
+server {
+  listen 443 ssl http2;
+  server_name kardies.gr;
+
   ssl on;
-  ssl_certificate /etc/ssl/certs/<%= fetch(:nginx_config_name) %>.crt;
-  ssl_certificate_key /etc/ssl/private/<%= fetch(:nginx_config_name) %>.key;
-<% else %>
-  listen 80;
-<% end %>
+  ssl_certificate /etc/nginx/ssl/kardies_gr/ssl-bundle.crt;
+  ssl_certificate_key /etc/nginx/ssl/kardies_gr/kardies_gr.key;
+  ssl_prefer_server_ciphers on;
 
   client_max_body_size 4G;
   keepalive_timeout 10;
@@ -34,22 +34,22 @@ server {
   error_page 500 502 504 /500.html;
   error_page 503 @503;
 
-  server_name <%= fetch(:nginx_server_name) %> www.kardies.gr kardies.gr;
   root <%= current_path %>/public;
   try_files $uri/index.html $uri @puma_<%= fetch(:nginx_config_name) %>;
 
+  ssl_stapling on;
+  ssl_stapling_verify on;
+  ssl_trusted_certificate /etc/nginx/ssl/kardies_gr/ssl-bundle.crt;
+
   location @puma_<%= fetch(:nginx_config_name) %> {
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header Host $http_host;
+    proxy_pass http://puma_<%= fetch(:nginx_config_name) %>;
+
     proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-Proto http;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header Host $http_host;
     proxy_redirect off;
 
-    <% if fetch(:nginx_use_ssl) %>
-      proxy_set_header X-Forwarded-Proto https;
-    <% end %>
-    proxy_pass http://puma_<%= fetch(:nginx_config_name) %>;
-    # limit_req zone=one;
     access_log <%= shared_path %>/log/nginx.access.log;
     error_log <%= shared_path %>/log/nginx.error.log;
   }
@@ -58,7 +58,13 @@ server {
     proxy_pass http://puma_<%= fetch(:nginx_config_name) %>/cable;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "upgrade";
+    proxy_set_header Connection "Upgrade";
+
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_redirect off;
   }
 
   location = /google24de39283b44c66d.html {
