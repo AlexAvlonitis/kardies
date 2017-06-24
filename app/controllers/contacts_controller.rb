@@ -8,6 +8,7 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.new contact_params
+    @user = User.new unless user_signed_in?
 
     if @contact.save
       flash[:success] = t '.contact_sent'
