@@ -6,7 +6,7 @@ en:
   contacts:
     index:
       contact: 'Contact'
-      contact_header: 'Contact with us!'
+      contact_header: 'Contact us!'
       name: 'Name'
       name_placeholder: 'Enter your name'
       email: 'Email'
