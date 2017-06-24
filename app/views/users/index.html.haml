@@ -11,6 +11,5 @@
                 = render partial: 'users/card', locals: {user: user, user_presenter: user_presenter}
         - else
           %h4= t '.no_results'
-  .row.justify-content-center
-    .col-lg-6.col-sm-12.mx-auto
-      = paginate @users
+      .col-lg-6.col-sm-12.mx-auto
+        = paginate @users
