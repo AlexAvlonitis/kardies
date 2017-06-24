@@ -1,9 +1,9 @@
 .container-fluid.mt-3
-  .row
+  .row.justify-content-center
     = render 'search'
     .col-lg-9.col-md-12.col-sm-12
       #message-modal
-      .card-deck
+      .card-deck.justify-content-center
         - if ! @users.map {|f| f}.blank?
           - @users.each do |user|
             - if user && !user.deleted_at && !(user == current_user)

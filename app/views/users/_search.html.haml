@@ -1,4 +1,4 @@
-.col-sm-12.col-md-12.col-lg-3.side-search.effect2
+.col-sm-12.col-md-12.col-lg-2.side-search.effect2
   %h4.text-center.orange-text= t ".search"
   = form_tag search_criteria_path, id: "search" do
     .form-group
@@ -10,19 +10,18 @@
                           class: 'city-selection form-control form-control-lg',
                           include_blank: " "
     .form-group
-      = label_tag :gender, "#{t '.gender'}"
       = select_tag :gender, options_for_select([["#{t '.gender_man'}", "male"],
                                                 ["#{t '.gender_woman'}", "female"],
                                                 ["#{t '.gender_other'}", "other"]],
                                                 @search.gender),
                             class: 'form-control form-control-lg',
-                            include_blank: true
+                            include_blank: "#{t '.gender'}"
     %label= t '.age'
     .form-group
       %label= t '.age_from'
-      = number_field_tag :age_from, @search.age_from, min: 16, max: 99, class: "form-control form-control-lg"
+      = number_field_tag :age_from, @search.age_from, min: 18, max: 99, class: "form-control form-control-lg"
       %label= t '.age_to'
-      = number_field_tag :age_to, @search.age_to, min: 16, max: 99, class: "form-control form-control-lg"
+      = number_field_tag :age_to, @search.age_to, min: 18, max: 99, class: "form-control form-control-lg"
 
     .form-group
       %label.custom-control.custom-checkbox
