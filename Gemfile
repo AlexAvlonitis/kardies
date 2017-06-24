@@ -42,6 +42,7 @@ gem 'pry-rails'
 gem "lazyload-rails"
 gem 'canonical-rails', github: 'jumph4x/canonical-rails'
 gem 'toastr-rails'
+gem 'sitemap_generator'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'

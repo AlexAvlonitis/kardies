@@ -53,8 +53,8 @@ Rails.application.routes.draw do
 
     get 'cities/:state', to: 'places#cities'
 
-    get 'messages/:username/new', to: 'messages#new', as: :new_message
-    post 'messages', to: 'messages#create', as: :messages
+    get 'messages/:username/new', to: 'messages#new',    as: :new_message
+    post 'messages',              to: 'messages#create', as: :messages
 
     # removed IDs
     get 'about/edit', to: 'abouts#edit',   as: :edit_about
@@ -62,7 +62,6 @@ Rails.application.routes.draw do
 
     get 'email_preferences/edit', to: 'email_preferences#edit',   as: :edit_email_preferences
     put 'email_preferences',      to: 'email_preferences#update', as: :email_preferences
-
 
     get 'terms', to: 'terms#index', as: :terms
   end

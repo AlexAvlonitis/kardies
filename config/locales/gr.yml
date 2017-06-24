@@ -6,10 +6,12 @@ gr:
   contacts:
     index:
       contact: 'Επικοινωνία'
+      contact_header: 'Επικοινωνήστε μαζί μας'
       name: 'Όνομα'
       name_placeholder: 'Το όνομά σας'
       email: 'Email'
       email_placeholder: 'Το email σας'
+      contact_description: "Για οποιαδήποτε πληροφορία μην διστάσετε να επικοινωνήσετε μαζί μας"
     create:
       contact_sent: 'Το μήνυμά σας στάλθηκε με επιτυχία'
       contact_not_sent: 'Το μήνυμά σας δεν στάλθηκε'

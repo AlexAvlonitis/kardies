@@ -3,6 +3,7 @@ class ContactsController < ApplicationController
 
   def index
     @contact = Contact.new
+    @user = User.new unless user_signed_in?
   end
 
   def create

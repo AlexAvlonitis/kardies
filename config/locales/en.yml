@@ -6,10 +6,12 @@ en:
   contacts:
     index:
       contact: 'Contact'
+      contact_header: 'Contact with us!'
       name: 'Name'
       name_placeholder: 'Enter your name'
       email: 'Email'
       email_placeholder: 'Enter your email'
+      contact_description: "For any inquiries don't hesitate to contact us via the form below"
     create:
       contact_sent: 'Your message has been sent successfully'
       contact_not_sent: "Your message has not been sent"
