@@ -1,6 +1,6 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
-gr:
+el:
   devise:
     confirmations:
       confirmed: 'Ο λογαριασμός σας επιβεβαιώθηκε με επιτυχία. Είστε συνδεδεμένος/η.'

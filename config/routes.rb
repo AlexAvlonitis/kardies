@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/google24de39283b44c66d.html',
     to: proc { |env| [200, {}, ["google-site-verification: google24de39283b44c66d.html"]] }
 
-  scope "(:locale)", locale: /gr|en/ do
+  scope "(:locale)", locale: /el|en/ do
     namespace :admin do
       get 'application/index'
       resources :reports, only: :index
