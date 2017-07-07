@@ -17,9 +17,12 @@ class MessageBroadcastJob < ApplicationJob
   end
 
   def render_message(conversation)
-    ApplicationController.renderer.render(partial: 'conversations/message',
-                                          locals: { message: conversation.messages.last,
-                                                    conversation: conversation })
+    ApplicationController.renderer
+                         .render(
+                           partial: 'conversations/message',
+                           locals: { message: conversation.messages.last,
+                                     conversation: conversation }
+                          )
   end
 
 end

@@ -11,7 +11,8 @@ class MessageChannel < ApplicationCable::Channel
     decrypted_id = decrypt_obj_id(data['conversation_id'])
     conversation = find_conversation(decrypted_id)
     current_user.reply_to_conversation(conversation, data['message'])
-    MessageBroadcastJob.perform_later conversation
+    MessageBroadcastJob.perform_later(conversation)
+    NotificationBroadcastJob.perform_later(conversation, current_user)
   end
 
   private
@@ -23,5 +24,4 @@ class MessageChannel < ApplicationCable::Channel
   def decrypt_obj_id(conversation_id)
     EncryptId.new(conversation_id).decrypt
   end
-
 end
