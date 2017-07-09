@@ -153,3 +153,5 @@ en:
       subject_placeholder: "Conversation subject"
       message_placeholder: "Type your message"
       send: 'Send Message'
+    create:
+      sent: 'The message has been sent'

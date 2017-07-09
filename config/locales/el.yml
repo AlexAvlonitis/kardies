@@ -154,6 +154,8 @@ el:
       subject_placeholder: "Θέμα συνομιλίας"
       message_placeholder: "Γράψτε το μήνυμά σας"
       send: 'Αποστολή μηνύματος'
+    create:
+      sent: 'Το μήνυμα εστάλη'
   activerecord:
     errors:
       models:
