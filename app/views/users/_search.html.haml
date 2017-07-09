@@ -6,10 +6,6 @@
                            include_blank: "#{t '.state'}",
                            class: 'state-selection form-control form-control-lg'
     .form-group
-      = select_tag :city, options_for_select(''),
-                          class: 'city-selection form-control form-control-lg',
-                          include_blank: " "
-    .form-group
       = select_tag :gender, options_for_select([["#{t '.gender_man'}", "male"],
                                                 ["#{t '.gender_woman'}", "female"],
                                                 ["#{t '.gender_other'}", "other"]],
