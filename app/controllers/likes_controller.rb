@@ -30,7 +30,7 @@ class LikesController < ApplicationController
   private
 
   def set_user
-    @user = User.find_by_username(params[:username])
+    @user = User.find_by(username: params[:username])
     rescue_error unless @user
   end
 
@@ -44,5 +44,4 @@ class LikesController < ApplicationController
     vote = VoteNotification.find_by(voted_by_id: current_user.id)
     vote ? vote.destroy! : return
   end
-
 end

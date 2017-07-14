@@ -11,5 +11,4 @@ class OnlineStatusChannel < ApplicationCable::Channel
       current_user.update(is_signed_in: false) if current_user.is_signed_in == true
     end
   end
-
 end

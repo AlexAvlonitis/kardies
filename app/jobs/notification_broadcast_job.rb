@@ -7,13 +7,12 @@ class NotificationBroadcastJob < ApplicationJob
   end
 
   def find_recipient(conversation, current_user)
-    conversation.participants.select { |user| user != current_user }
+    conversation.participants.reject { |user| user == current_user }
   end
 
   def add_conversation_notification(recipient, current_user)
     ConversationNotification.create(user_id: recipient.id,
                                     receiver_id: current_user.id,
-                                    received: true )
+                                    received: true)
   end
-
 end

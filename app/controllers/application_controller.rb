@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_cookie(user = nil)
-    cookies.signed["user_id"] = user.id
+    cookies.signed['user_id'] = user.id
   end
 
   def rescue_error
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_deleted_check
-    rescue_error if ! @user.deleted_at.nil?
+    rescue_error unless @user.deleted_at.nil?
   end
 
   private
@@ -34,12 +34,12 @@ class ApplicationController < ActionController::Base
     I18n.locale = params[:locale] || I18n.default_locale
   end
 
-  def default_url_options(option= {})
-    {locale: I18n.locale}
+  def default_url_options(_option = {})
+    { locale: I18n.locale }
   end
 
   def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
-    redirect_to(request.referrer || root_path)
+    flash[:alert] = 'You are not authorized to perform this action.'
+    redirect_to(request.referer || root_path)
   end
 end

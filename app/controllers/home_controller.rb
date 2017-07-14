@@ -6,5 +6,4 @@ class HomeController < ApplicationController
     @user = User.new
     @user.build_user_detail
   end
-
 end

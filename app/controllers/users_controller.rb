@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_action :set_user, except: [:index]
 
   def index
@@ -23,7 +22,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find_by_username(params[:username])
+    @user = User.find_by(username: params[:username])
     rescue_error unless @user
   end
 end

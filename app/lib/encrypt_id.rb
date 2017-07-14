@@ -1,5 +1,4 @@
 class EncryptId
-
   def initialize(object_id)
     @object_id = object_id
   end
@@ -23,5 +22,4 @@ class EncryptId
     c.key = Digest::SHA256.digest(cipher_key)
     c.update(Base64.decode64(@object_id.to_s)) + c.final
   end
-
 end

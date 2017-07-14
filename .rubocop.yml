@@ -1,0 +1,23 @@
+Rails:
+  Enabled: true
+
+Metrics/LineLength:
+  Max: 100
+
+Style/Documentation:
+  Enabled: false
+
+Lint/ShadowingOuterLocalVariable:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    - 'config/**/*'
+    - 'app/presenters/**/*'
+    - 'db/**/*'
+
+Metrics/ClassLength:
+  Max: 1500

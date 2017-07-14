@@ -1,5 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-
   def new
     super do
       resource.build_user_detail
@@ -18,11 +17,11 @@ class RegistrationsController < Devise::RegistrationsController
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
     set_flash_message :notice, :destroyed if is_flashing_format?
     yield resource if block_given?
-    respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
+    respond_with_navigational(resource) { redirect_to after_sign_out_path_for(resource_name) }
   end
 
   def admin_destroy
-    user = User.find_by_username(params[:username])
+    user = User.find_by(username: params[:username])
     if current_user.admin?
       user.soft_delete
       flash['success'] = 'User has been blocked'
@@ -34,7 +33,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def admin_unblock
-    user = User.find_by_username(params[:username])
+    user = User.find_by(username: params[:username])
     if current_user.admin?
       user.update(deleted_at: nil)
       flash['success'] = 'User has been unblocked'
@@ -52,7 +51,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def join_username
-    params[:user][:username] = params[:user][:username].split(" ").join("_")
+    params[:user][:username] = params[:user][:username].split(' ').join('_')
   end
 
   def account_update_params
@@ -66,8 +65,8 @@ class RegistrationsController < Devise::RegistrationsController
   def allow_params
     [
       :username, :email, :password, :password_confirmation, :current_password,
-      user_detail_attributes: [
-        :id, :city, :state, :gender, :age, :profile_picture
+      user_detail_attributes: %i[
+        id city state gender age profile_picture
       ]
     ]
   end

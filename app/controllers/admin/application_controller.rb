@@ -1,8 +1,7 @@
 class Admin::ApplicationController < ApplicationController
   before_action :authorize_admin!
-  
-  def index
-  end
+
+  def index; end
 
   private
 
@@ -10,7 +9,7 @@ class Admin::ApplicationController < ApplicationController
     authenticate_user!
 
     unless current_user.admin?
-      redirect_to root_path, alert: "You must be an Admin to view this page"
+      redirect_to root_path, alert: 'You must be an Admin to view this page'
     end
   end
 end

@@ -1,5 +1,4 @@
 class GalleriesController < ApplicationController
-
   def index
     @galleries = current_user.galleries.all
     @gallery = Gallery.new
@@ -26,7 +25,7 @@ class GalleriesController < ApplicationController
   end
 
   def destroy
-    Gallery.find_by_id(params[:id]).destroy
+    Gallery.find_by(id: params[:id]).destroy
     flash[:success] = t '.gallery_deleted'
     redirect_to galleries_path
   end
@@ -38,6 +37,6 @@ class GalleriesController < ApplicationController
   end
 
   def allow_params
-    [:name, :description, :pictures]
+    %i[name description pictures]
   end
 end

@@ -1,5 +1,4 @@
 class HeartsNotificationEmail
-
   def initialize(user)
     @user = user
   end
@@ -7,17 +6,16 @@ class HeartsNotificationEmail
   def send
     if likes_email_allowed? && user_not_online
       HeartsMailer.new_hearts_notification(user).deliver_later
-    else
-      nil
     end
   end
 
   private
+
   attr_reader :user
 
   def likes_email_allowed?
     if user.email_preference.present?
-      !!user.email_preference.likes
+      user.email_preference.likes
     else
       true
     end

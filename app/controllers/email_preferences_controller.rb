@@ -1,8 +1,7 @@
 class EmailPreferencesController < ApplicationController
   before_action :set_email_preference
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @email_preferences.update(email_preferences_params)
@@ -17,11 +16,11 @@ class EmailPreferencesController < ApplicationController
   private
 
   def set_email_preference
-    if current_user.email_preference
-      @email_preferences = current_user.email_preference
-    else
-      @email_preferences = current_user.build_email_preference
-    end
+    @email_preferences = if current_user.email_preference
+                           current_user.email_preference
+                         else
+                           current_user.build_email_preference
+                         end
   end
 
   def email_preferences_params
@@ -29,6 +28,6 @@ class EmailPreferencesController < ApplicationController
   end
 
   def allow_params
-    [:likes, :messages, :news]
+    %i[likes messages news]
   end
 end

@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :get_mailbox, :get_messages
-  before_action :get_conversation, except: [:index, :empty_trash]
+  before_action :get_conversation, except: %i[index empty_trash]
 
   def index
     @conversations = @messages
@@ -21,13 +21,13 @@ class ConversationsController < ApplicationController
 
   def destroy
     @conversation.move_to_trash(current_user)
-    flash[:success] = "#{ t '.convo_trashed' }"
+    flash[:success] = (t '.convo_trashed').to_s
     redirect_to conversations_path
   end
 
   def restore
     @conversation.untrash(current_user)
-    flash[:success] = "#{ t '.convo_restored' }"
+    flash[:success] = (t '.convo_restored').to_s
     redirect_to conversations_path
   end
 
@@ -35,7 +35,7 @@ class ConversationsController < ApplicationController
     @mailbox.trash.each do |conversation|
       conversation.receipts_for(current_user).mark_as_deleted
     end
-    flash[:success] = "#{ t '.trash_cleaned' }"
+    flash[:success] = (t '.trash_cleaned').to_s
     redirect_to conversations_path
   end
 
@@ -47,7 +47,7 @@ class ConversationsController < ApplicationController
 
   def get_messages
     messages = @mailbox.inbox + @mailbox.sentbox
-    @messages = messages.flatten.uniq { |m| m.id } #remove duplicate IDs
+    @messages = messages.flatten.uniq(&:id) # remove duplicate IDs
   end
 
   def get_conversation

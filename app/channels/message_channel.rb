@@ -4,8 +4,7 @@ class MessageChannel < ApplicationCable::Channel
     stream_from "conversation_#{params[:conversation_id]}"
   end
 
-  def unsubscribed
-  end
+  def unsubscribed; end
 
   def speak(data)
     decrypted_id = decrypt_obj_id(data['conversation_id'])
@@ -18,7 +17,7 @@ class MessageChannel < ApplicationCable::Channel
   private
 
   def find_conversation(conversation_id)
-    current_user.mailbox.conversations.find_by_id(conversation_id)
+    current_user.mailbox.conversations.find_by(id: conversation_id)
   end
 
   def decrypt_obj_id(conversation_id)

@@ -1,5 +1,4 @@
 class YoutubeCodeExtractor
-
   def initialize(youtube_url)
     @youtube_url = youtube_url
   end
@@ -17,18 +16,18 @@ class YoutubeCodeExtractor
   end
 
   private
+
   attr_reader :youtube_url
 
   def youtube_url_string
-    "youtube.com"
+    'youtube.com'
   end
 
   def youtube_mobile_url_string
-    "youtu.be"
+    'youtu.be'
   end
 
   def convert_code_to_embedded_link(code)
     "https://www.youtube.com/embed/#{code}"
   end
-
 end

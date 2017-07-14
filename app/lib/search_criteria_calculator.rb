@@ -1,11 +1,10 @@
 class SearchCriteriaCalculator
-
   def initialize(user)
     @user = user
   end
 
   def state
-    if !@user.search_criteria.blank? && @user.search_criteria.last.state
+    if @user.search_criteria.present? && @user.search_criteria.last.state
       @user.search_criteria.last.state
     else
       ''
@@ -13,7 +12,7 @@ class SearchCriteriaCalculator
   end
 
   def city
-    if !@user.search_criteria.blank? && @user.search_criteria.last.city
+    if @user.search_criteria.present? && @user.search_criteria.last.city
       @user.search_criteria.last.city
     else
       ''
@@ -21,7 +20,7 @@ class SearchCriteriaCalculator
   end
 
   def gender
-    if !@user.search_criteria.blank? && @user.search_criteria.last.gender
+    if @user.search_criteria.present? && @user.search_criteria.last.gender
       @user.search_criteria.last.gender
     else
       ''
@@ -29,7 +28,7 @@ class SearchCriteriaCalculator
   end
 
   def age_from
-    if !@user.search_criteria.blank? && @user.search_criteria.last.age_from
+    if @user.search_criteria.present? && @user.search_criteria.last.age_from
       @user.search_criteria.last.age_from
     else
       18
@@ -37,7 +36,7 @@ class SearchCriteriaCalculator
   end
 
   def age_to
-    if !@user.search_criteria.blank? && @user.search_criteria.last.age_to
+    if @user.search_criteria.present? && @user.search_criteria.last.age_to
       @user.search_criteria.last.age_to
     else
       99
@@ -45,10 +44,10 @@ class SearchCriteriaCalculator
   end
 
   def is_signed_in
-    if !@user.search_criteria.blank? && @user.search_criteria.last.is_signed_in
+    if @user.search_criteria.present? && @user.search_criteria.last.is_signed_in
       @user.search_criteria.last.is_signed_in
     else
-      "false"
+      'false'
     end
   end
 
@@ -62,5 +61,4 @@ class SearchCriteriaCalculator
     all_values[:is_signed_in] = is_signed_in if is_signed_in || is_signed_in == ''
     all_values
   end
-
 end

@@ -1,3 +1,3 @@
 class Contact < ApplicationRecord
-  validates_presence_of :name, :email, :subject, :description
+  validates :name, :email, :subject, :description, presence: true
 end

@@ -25,5 +25,4 @@ class About < ApplicationRecord
   def flush_description_cache
     Rails.cache.delete([:about, id, :description]) if description_changed?
   end
-
 end

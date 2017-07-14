@@ -27,24 +27,26 @@ class User < ApplicationRecord
 
   # Validations
   validates :username, presence: true, uniqueness: true
-  validates_format_of :username,
-                      with: /\A[a-z0-9A-Z\_]*\Z/
+  validates :username,
+            format: { with: /\A[a-z0-9A-Z\_]*\Z/ }
   validates :username, length: { in: 3..40 }
 
   def self.find_for_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0, 20]
       user.username = create_username(auth.info.email)
     end
   end
 
   def self.search(query)
-    scope = UsersIndex::User.filter{ ( state == query.state ) &
-                                     ( city == query.city ) &
-                                     ( is_signed_in == query.is_signed_in ) &
-                                     ( gender == query.gender ) &
-                                     ( age >= query.age_from ) & ( age <= query.age_to ) }
+    scope = UsersIndex::User.filter do
+      (state == query.state) &
+        (city == query.city) &
+        (is_signed_in == query.is_signed_in) &
+        (gender == query.gender) &
+        (age >= query.age_from) & (age <= query.age_to)
+    end
                             .order(created: :desc)
     scope.only(:id).load
   end
@@ -63,78 +65,72 @@ class User < ApplicationRecord
     !deleted_at ? super : :deleted_account
   end
 
-  def city
-    self.user_detail.city
-  end
+  delegate :city, to: :user_detail
 
-  def state
-    self.user_detail.state
-  end
+  delegate :state, to: :user_detail
 
-  def gender
-    self.user_detail.gender
-  end
+  delegate :gender, to: :user_detail
 
   def job
-    if self.about && !self.about.job.blank?
+    if about && about.job.present?
       Rails.cache.fetch([:about, about.id, :job], expires_in: 1.day) do
-        self.about.job
+        about.job
       end
     end
   end
 
   def hobby
-    if self.about && !self.about.hobby.blank?
+    if about && about.hobby.present?
       Rails.cache.fetch([:about, about.id, :hobby], expires_in: 1.day) do
-        self.about.hobby
+        about.hobby
       end
     end
   end
 
   def relationship_status
-    if self.about && !self.about.relationship_status.blank?
+    if about && about.relationship_status.present?
       Rails.cache.fetch([:about, about.id, :relationship_status], expires_in: 1.day) do
-        self.about.relationship_status
+        about.relationship_status
       end
     end
   end
 
   def looking_for
-    if self.about && !self.about.looking_for.blank?
+    if about && about.looking_for.present?
       Rails.cache.fetch([:about, about.id, :looking_for], expires_in: 1.day) do
-        self.about.looking_for
+        about.looking_for
       end
     end
   end
 
   def description
-    if self.about && !self.about.description.blank?
+    if about && about.description.present?
       Rails.cache.fetch([:about, about.id, :description], expires_in: 1.day) do
-        self.about.description
+        about.description
       end
     end
   end
 
   def age
     Rails.cache.fetch([:user_detail, user_detail.id, :age], expires_in: 1.day) do
-      self.user_detail.age
+      user_detail.age
     end
   end
 
   def profile_picture(size = :thumb)
-    self.user_detail.profile_picture.url(size)
+    user_detail.profile_picture.url(size)
   end
 
   def youtube_url
-    self.about.youtube_url if self.about && !self.about.youtube_url.blank?
+    about.youtube_url if about && about.youtube_url.present?
   end
 
   def to_param
     username
   end
 
-  def mailboxer_email(object)
-    self.email
+  def mailboxer_email(_object)
+    email
   end
 
   private
@@ -144,6 +140,6 @@ class User < ApplicationRecord
   end
 
   def self.create_username(email)
-    email.scan(/\A(.+?)@/).join.gsub(".", "_")
+    email.scan(/\A(.+?)@/).join.tr('.', '_')
   end
 end
