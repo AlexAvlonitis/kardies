@@ -7,7 +7,7 @@ class UsersIndex < Chewy::Index
     }
   }
 
-  define_type do
+  define_type User do
     field :username, :email, :deleted_at
     field :is_signed_in, type: :boolean
     field :state, value: ->(user) { user.state }
