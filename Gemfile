@@ -72,7 +72,7 @@ group :development do
 
   gem 'capistrano'
   gem 'capistrano-rbenv'
-  gem 'capistrano-nginx'
+  gem 'capistrano3-nginx'
   gem 'capistrano3-puma'
   gem 'capistrano-rails'
   gem 'capistrano-rails-db'
