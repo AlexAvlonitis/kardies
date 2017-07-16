@@ -30,6 +30,7 @@ class User < ApplicationRecord
   validates :username,
             format: { with: /\A[a-z0-9A-Z\_]*\Z/ }
   validates :username, length: { in: 3..40 }
+  validates_email_format_of :email, message: 'Λάθος email'
 
   def self.find_for_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

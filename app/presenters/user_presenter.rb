@@ -58,7 +58,7 @@ class UserPresenter < BasePresenter
   end
 
   def about_info(data)
-    if user.send(data).nil? || user.send(data).empty?
+    if user.send(data).blank?
       no_post
     else
       h.content_tag(:p, h.content_tag(:em, user.send(data)), class: "lead")
@@ -66,7 +66,7 @@ class UserPresenter < BasePresenter
   end
 
   def youtube_url
-    if user.youtube_url.nil? || user.youtube_url.blank?
+    if user.youtube_url.blank?
       no_post
     else
       h.content_tag :div, class: "video-container" do
@@ -86,5 +86,4 @@ class UserPresenter < BasePresenter
   def no_post
     h.content_tag(:p, h.content_tag(:em, "#{h.t 'users.show.no_post'}"), class: "aluminium-text")
   end
-
 end

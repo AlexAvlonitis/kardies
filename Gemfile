@@ -42,6 +42,7 @@ gem 'pundit'
 gem 'redis-rails'
 gem 'sitemap_generator'
 gem 'toastr-rails'
+gem 'validates_email_format_of'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'

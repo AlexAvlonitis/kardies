@@ -52,7 +52,7 @@ el:
         age: 'Ηλικία'
         gender: 'Φύλο'
         username: 'Ψευδώνυμο'
-        email: 'Email - Διεύθυνση ηλεκτρονικού ταχυδρομείου'
+        email: 'Email'
         change_password: "Αλλαγή κωδικού"
         new_password: "Νέος κωδικός"
         new_password_confirmation: "Επαλήθευση νέου κωδικού"
