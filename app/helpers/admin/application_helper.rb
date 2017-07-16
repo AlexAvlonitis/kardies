@@ -1,2 +1,4 @@
-module Admin::ApplicationHelper
+module Admin
+  module ApplicationHelper
+  end
 end

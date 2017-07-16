@@ -4,9 +4,8 @@ class HeartsNotificationEmail
   end
 
   def send
-    if likes_email_allowed? && user_not_online
-      HeartsMailer.new_hearts_notification(user).deliver_later
-    end
+    return unless likes_email_allowed? && user_not_online
+    HeartsMailer.new_hearts_notification(user).deliver_later
   end
 
   private
@@ -22,10 +21,6 @@ class HeartsNotificationEmail
   end
 
   def user_not_online
-    if user.is_signed_in
-      false
-    elsif user.is_signed_in == false
-      true
-    end
+    user.is_signed_in ? false : true
   end
 end

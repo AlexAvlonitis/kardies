@@ -7,9 +7,9 @@ class Picture < ApplicationRecord
     thumb: '100x100>'
   }
 
-  validates_attachment_content_type :picture, content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :picture, content_type: %r{\Aimage\/.*\Z}
 
   validates_attachment :picture,
                        size:         { in: 0..10.megabytes },
-                       content_type: { content_type: /^image\/(jpeg|jpg|png|gif|tiff)$/ }
+                       content_type: { content_type: %r{^image\/(jpeg|jpg|png|gif|tiff)$} }
 end

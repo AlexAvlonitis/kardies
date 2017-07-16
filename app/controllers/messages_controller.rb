@@ -23,7 +23,11 @@ class MessagesController < ApplicationController
     if conversation && !conversation_deleted?(conversation)
       current_user.reply_to_conversation(conversation, params[:message][:body])
     else
-      conversation = current_user.send_message(@recipient, params[:message][:body], current_user.username).conversation
+      conversation = current_user.send_message(
+        @recipient,
+        params[:message][:body],
+        current_user.username
+      ).conversation
       flash[:success] = t '.sent'
     end
     redirect_to conversation_path(conversation)

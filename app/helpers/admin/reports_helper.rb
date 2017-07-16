@@ -1,2 +1,4 @@
-module Admin::ReportsHelper
+module Admin
+  module ReportsHelper
+  end
 end

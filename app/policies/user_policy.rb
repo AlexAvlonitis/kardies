@@ -1,19 +1,19 @@
 class UserPolicy < ApplicationPolicy
   def index?
-    is_owner?
+    owner?
   end
 
   def create?
-    is_not_owner?
+    not_owner?
   end
 
   private
 
-  def is_owner?
+  def owner?
     record == user
   end
 
-  def is_not_owner?
+  def not_owner?
     record != user
   end
 end

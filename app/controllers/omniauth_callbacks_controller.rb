@@ -22,8 +22,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user
   end
 
-  private
-
   def add_user_details(user)
     UserDetail.find_or_create_by(user_id: user.id) do |user|
       user.state = 'att'

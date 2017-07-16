@@ -46,13 +46,12 @@ class User < ApplicationRecord
         (is_signed_in == query.is_signed_in) &
         (gender == query.gender) &
         (age >= query.age_from) & (age <= query.age_to)
-    end
-                            .order(created: :desc)
+    end.order(created: :desc)
     scope.only(:id).load
   end
 
   def soft_delete
-    update_attribute(:deleted_at, Time.current)
+    update!(:deleted_at, Time.current)
   end
 
   # ensure user account is active
@@ -72,42 +71,37 @@ class User < ApplicationRecord
   delegate :gender, to: :user_detail
 
   def job
-    if about && about.job.present?
-      Rails.cache.fetch([:about, about.id, :job], expires_in: 1.day) do
-        about.job
-      end
+    return unless about && about.job.present?
+    Rails.cache.fetch([:about, about.id, :job], expires_in: 1.day) do
+      about.job
     end
   end
 
   def hobby
-    if about && about.hobby.present?
-      Rails.cache.fetch([:about, about.id, :hobby], expires_in: 1.day) do
-        about.hobby
-      end
+    return unless about && about.hobby.present?
+    Rails.cache.fetch([:about, about.id, :hobby], expires_in: 1.day) do
+      about.hobby
     end
   end
 
   def relationship_status
-    if about && about.relationship_status.present?
-      Rails.cache.fetch([:about, about.id, :relationship_status], expires_in: 1.day) do
-        about.relationship_status
-      end
+    return unless about && about.relationship_status.present?
+    Rails.cache.fetch([:about, about.id, :relationship_status], expires_in: 1.day) do
+      about.relationship_status
     end
   end
 
   def looking_for
-    if about && about.looking_for.present?
-      Rails.cache.fetch([:about, about.id, :looking_for], expires_in: 1.day) do
-        about.looking_for
-      end
+    return unless about && about.looking_for.present?
+    Rails.cache.fetch([:about, about.id, :looking_for], expires_in: 1.day) do
+      about.looking_for
     end
   end
 
   def description
-    if about && about.description.present?
-      Rails.cache.fetch([:about, about.id, :description], expires_in: 1.day) do
-        about.description
-      end
+    return unless about && about.description.present?
+    Rails.cache.fetch([:about, about.id, :description], expires_in: 1.day) do
+      about.description
     end
   end
 
@@ -135,11 +129,11 @@ class User < ApplicationRecord
 
   private
 
-  def send_admin_mail
-    UserMailer.welcome_email(self).deliver_now
+  def create_username(email)
+    email.scan(/\A(.+?)@/).join.tr('.', '_')
   end
 
-  def self.create_username(email)
-    email.scan(/\A(.+?)@/).join.tr('.', '_')
+  def send_admin_mail
+    UserMailer.welcome_email(self).deliver_later
   end
 end

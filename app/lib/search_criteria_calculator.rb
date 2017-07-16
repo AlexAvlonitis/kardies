@@ -43,7 +43,7 @@ class SearchCriteriaCalculator
     end
   end
 
-  def is_signed_in
+  def signed_in?
     if @user.search_criteria.present? && @user.search_criteria.last.is_signed_in
       @user.search_criteria.last.is_signed_in
     else
@@ -53,12 +53,12 @@ class SearchCriteriaCalculator
 
   def jsonfy
     all_values = {}
-    all_values[:state] = state if state || state == ''
-    all_values[:city] = city if city || city == ''
-    all_values[:gender] = gender if gender || gender == ''
-    all_values[:age_from] = age_from if age_from || age_from == ''
-    all_values[:age_to] = age_to if age_to || age_to == ''
-    all_values[:is_signed_in] = is_signed_in if is_signed_in || is_signed_in == ''
+    all_values[:state] = state
+    all_values[:city] = city
+    all_values[:gender] = gender
+    all_values[:age_from] = age_from
+    all_values[:age_to] = age_to
+    all_values[:is_signed_in] = signed_in?
     all_values
   end
 end
