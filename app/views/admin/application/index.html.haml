@@ -1,9 +1,10 @@
-.col
-  %h1 Admin Console
-  %ul.nav.flex-column
-    %li.nav-item
-      = link_to 'Reports', admin_reports_path, class: "nav-link"
-    %li.nav-item
-      = link_to 'All users', admin_users_path, class: "nav-link"
-    %li.nav-item
-    = link_to 'Contacts', admin_contacts_path, class: "nav-link"
+.container
+  .col.bg-white.effect2.mt-3
+    %h1 Admin Console
+    %ul.nav.flex-column
+      %li.nav-item
+        = link_to 'Reports', admin_reports_path, class: "nav-link"
+      %li.nav-item
+        = link_to 'All users', admin_users_path, class: "nav-link"
+      %li.nav-item
+      = link_to 'Contacts', admin_contacts_path, class: "nav-link"
