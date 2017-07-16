@@ -9,7 +9,6 @@
         %th{"width" => "150"} Delete Account
     %tbody
       - @users.each do |user|
-        -logger.info "========= #{user} ==========="
         %tr
           %td
             = link_to user_path(user) do

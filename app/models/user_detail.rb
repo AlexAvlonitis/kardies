@@ -1,5 +1,5 @@
 class UserDetail < ApplicationRecord
-  belongs_to :user, optional: true
+  belongs_to :user
   after_update :flush_age_cache, :flush_profile_picture_cache
 
   update_index('users#user') { self }
