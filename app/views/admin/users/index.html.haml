@@ -11,8 +11,9 @@
       - @users.each do |user|
         %tr
           %td
-            = link_to user_path(user) do
-              = image_tag user.profile_picture, class: "icon-size"
+            - if user.try(:profile_picture)
+              = link_to user_path(user) do
+                = image_tag user.profile_picture, class: "icon-size"
           %td= user.username
           %td= user.email
           %td
