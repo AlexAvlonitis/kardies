@@ -73,5 +73,5 @@
             %p.error= show_errors(@user, :password_confirmation)
 
         .form-group
-          = f.submit "Sign up", class: "btn btn-primary btn-block"
+          = f.submit "#{t 'home.index.register'}", class: "btn btn-primary btn-block"
         = link_to "#{t 'abouts.edit.back'}", :back, class: 'button primary small'
