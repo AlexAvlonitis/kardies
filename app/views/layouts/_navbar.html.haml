@@ -45,5 +45,5 @@
       %ul.navbar-nav.nav-justified.mr-auto
       %ul.navbar-nav
         %li.ml-2
-          %button.btn-sm.btn-orange{"data-toggle" => "modal", "data-target" => "#registrationModal"}
+          = link_to '/user/sign_up', class: "btn-sm btn-orange" do
             = t 'home.index.register_button'

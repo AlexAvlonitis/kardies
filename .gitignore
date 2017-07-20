@@ -21,5 +21,6 @@
 .byebug_history
 .env
 .ruby-version
+Dockerfile
 /config/database.production.yml
 /config/secrets.production.yml
