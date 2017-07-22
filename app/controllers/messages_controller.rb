@@ -53,6 +53,6 @@ class MessagesController < ApplicationController
 
   def conversation_deleted?(conversation)
     conversation.is_trashed?(current_user) ||
-      conversation.is_deleted(current_user)
+      conversation.is_deleted?(current_user)
   end
 end

@@ -13,27 +13,17 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def admin_destroy
-    user = User.find_by(username: params[:username])
-    if current_user.admin?
-      user.soft_delete
-      flash['success'] = 'User has been blocked'
-      redirect_to admin_reports_path
-    else
-      flash['alert'] = 'You do not have permission to do that'
-      redirect_to root_path
-    end
+    user = authorize User.find_by(username: params[:username])
+    user.soft_delete
+    flash['success'] = 'User has been blocked'
+    redirect_to admin_users_path
   end
 
   def admin_unblock
-    user = User.find_by(username: params[:username])
-    if current_user.admin?
-      user.update(deleted_at: nil)
-      flash['success'] = 'User has been unblocked'
-      redirect_to admin_reports_path
-    else
-      flash['alert'] = 'You do not have permission to do that'
-      redirect_to root_path
-    end
+    user = authorize User.find_by(username: params[:username])
+    user.update(deleted_at: nil)
+    flash['success'] = 'User has been unblocked'
+    redirect_to admin_users_path
   end
 
   private

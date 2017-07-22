@@ -7,7 +7,23 @@ class UserPolicy < ApplicationPolicy
     not_owner?
   end
 
+  def authorize_admin?
+    admin?
+  end
+
+  def admin_unblock?
+    admin?
+  end
+
+  def admin_destroy?
+    admin?
+  end
+
   private
+
+  def admin?
+    user.admin?
+  end
 
   def owner?
     record == user

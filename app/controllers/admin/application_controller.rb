@@ -9,7 +9,7 @@ module Admin
     def authorize_admin!
       authenticate_user!
       return if current_user.admin?
-      redirect_to root_path, alert: 'You must be an Admin to view this page'
+      redirect_to root_path, alert: 'You are not authorized to access this page'
     end
   end
 end

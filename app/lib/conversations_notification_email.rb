@@ -4,7 +4,7 @@ class ConversationsNotificationEmail
   end
 
   def send_email
-    if user.is_signed_in || email_has_been_sent
+    if user.is_signed_in?
       nil
     elsif email_allowed?
       ConversationMailer.message_notification(user).deliver_later
@@ -21,9 +21,5 @@ class ConversationsNotificationEmail
     else
       true
     end
-  end
-
-  def email_has_been_sent
-    user.conversation_notifications.present?
   end
 end
