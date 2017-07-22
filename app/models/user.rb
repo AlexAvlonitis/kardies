@@ -18,11 +18,11 @@ class User < ApplicationRecord
   has_one :about, dependent: :destroy
   has_one :user_detail, dependent: :destroy
   has_many :galleries, dependent: :destroy
-  has_many :reports
-  has_many :search_criteria
+  has_many :reports, dependent: :destroy
+  has_many :search_criteria, dependent: :destroy
   has_many :vote_notifications, dependent: :destroy
   has_one :email_preference, dependent: :destroy
-  has_many :conversation_notifications
+  has_many :conversation_notifications, dependent: :destroy
   accepts_nested_attributes_for :user_detail
 
   # Validations
@@ -52,7 +52,7 @@ class User < ApplicationRecord
   end
 
   def soft_delete
-    update!(:deleted_at, Time.current)
+    update!(deleted_at: Time.current)
   end
 
   # ensure user account is active
