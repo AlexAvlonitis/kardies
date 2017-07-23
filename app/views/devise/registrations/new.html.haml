@@ -1,7 +1,7 @@
 #bg
   .container
-    .col-6.mx-auto.whitesmoke-bg
-      %h2.orange-text= t 'home.index.register'
+    .col-lg-6.col-sm-12.mx-auto.whitesmoke-bg
+      %h2.orange-text.text-center= t 'home.index.register'
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
 
         = f.fields_for :user_detail do |d|
@@ -45,8 +45,11 @@
           %label.col-sm-3.col-form-label.col-form-label-lg{for: "lgUsername"}
             = t 'devise.registrations.edit.username'
           .col-sm-9
-            = f.text_field :username, placeholder: "#{t 'devise.registrations.edit.only_latin'}", class: "form-control form-control-lg", id: "lgUsername"
+            = f.text_field :username, class: "form-control form-control-lg", id: "lgUsername",
+                           "aria-describedby" => "emailHelp"
             %p.error= show_errors(@user, :username)
+            %small.form-text.text-muted{id: "emailHelp"}
+              = t 'devise.registrations.edit.only_latin'
 
         .form-group.row
           %label.col-sm-3.col-form-label.col-form-label-lg{for: "lgEmail"}
