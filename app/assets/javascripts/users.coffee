@@ -4,8 +4,6 @@
 $(document).on "turbolinks:load", ->
 
   $('.gallery').jGallery()
-  $('.city-selection').hide()
-  $('.city-selection-label').hide()
   $('#change-password').hide()
 
   $("#message-modal").dialog({
@@ -39,13 +37,9 @@ $(document).on "turbolinks:load", ->
     $.getJSON '/cities/' + $(this).val(), (data) ->
 
       $('.city-selection').empty()
-      $('.city-selection-not-hidden').empty()
       $.each data, (key, val) ->
         opt = '<option value=' + val[1] + '>' + val[0] + '</option>'
         $('.city-selection').append opt
-        $('.city-selection-not-hidden').append opt
-    $('.city-selection').show()
-    $('.city-selection-label').show()
 
   @previewProfilePic = ->
     preview = document.querySelector('img')

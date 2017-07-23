@@ -17,14 +17,14 @@
             %label.col-sm-3.col-form-label.col-form-label-lg{for: "lgState"}
               = t 'devise.registrations.edit.state'
             .col-sm-9
-              = d.select :state, GC.states, {include_blank: true}, {class: "form-control form-control-lg state-selection", id: "lgState"}
+              = d.select :state, GC.states, {}, {class: "form-control form-control-lg state-selection", id: "lgState"}
               %p.error= show_errors(@user.user_detail, :state)
 
           .form-group.row
             %label.col-sm-3.col-form-label.col-form-label-lg.city-selection-label{for: "lgCity"}
               = t 'devise.registrations.edit.city'
             .col-sm-9
-              = d.select :city, GC.cities('att'), {include_blank: "Πόλη"}, {class: "city-selection form-control form-control-lg", id: "lgCity"}
+              = d.select :city, GC.cities('ait'), {}, {class: "city-selection form-control form-control-lg", id: "lgCity"}
               %p.error= show_errors(@user.user_detail, :city)
 
           .form-group.row

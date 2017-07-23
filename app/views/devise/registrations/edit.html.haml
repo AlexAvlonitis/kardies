@@ -26,7 +26,7 @@
 
         .form-group
           %label= t '.city'
-          = d.select :city,  GC.cities(current_user.state), {selected: current_user.city}, {class: "city-selection-not-hidden form-control"}
+          = d.select :city,  GC.cities(current_user.state), {selected: current_user.city}, {class: "city-selection form-control"}
           %p.error= show_errors(@user.user_detail, :city)
 
         .form-group
