@@ -130,7 +130,7 @@ class User < ApplicationRecord
 
   private
 
-  def create_username(email)
+  def self.create_username(email)
     email.scan(/\A(.+?)@/).join.tr('.', '_')
   end
 
