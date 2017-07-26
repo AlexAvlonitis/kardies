@@ -12,22 +12,6 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def admin_destroy
-    user = User.find_by(username: params[:username])
-    authorize user
-    user.soft_delete
-    flash['success'] = 'User has been blocked'
-    redirect_to admin_users_path
-  end
-
-  def admin_unblock
-    user = User.find_by(username: params[:username])
-    authorize user
-    user.update(deleted_at: nil)
-    flash['success'] = 'User has been unblocked'
-    redirect_to admin_users_path
-  end
-
   private
 
   def sign_up_params

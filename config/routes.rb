@@ -12,16 +12,17 @@ Rails.application.routes.draw do
       resources :reports, only: :index
       resources :users, only: :index
       resources :contacts, only: :index
+
+
+      delete 'delete_user/:username', to: "users#admin_destroy", as: :destroy
+      post 'unblock_user/:username', to: "users#admin_unblock", as: :unblock
+      post 'create_admin/:username', to: "users#create_admin", as: :create_admin
+      post 'undo_admin/:username', to: "users#undo_admin", as: :undo_admin
     end
 
     get 'omniauth/:provider' => 'omniauth#localized', as: :localized_omniauth
 
     devise_for :user, skip: :omniauth_callbacks, controllers: { registrations: 'registrations' }
-
-    devise_scope :user do
-      delete 'delete_user/:username', to: "registrations#admin_destroy", as: :admin_destroy
-      post 'unblock_user/:username', to: "registrations#admin_unblock", as: :admin_unblock
-    end
 
     root 'home#index'
 

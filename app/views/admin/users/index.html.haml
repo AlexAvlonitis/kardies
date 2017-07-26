@@ -8,6 +8,7 @@
           %th{"width" => "150"} Username
           %th{"width" => "150"} Email
           %th{"width" => "150"} Delete Account
+          %th{"width" => "150"} Admin
       %tbody
         - @users.each do |user|
           %tr
@@ -17,7 +18,7 @@
             %td= user.username
             %td= user.email
             %td
-              - if ! user.deleted_at
+              - if ! user.deleted_at?
                 = link_to "Block Account", admin_destroy_path(user),
                                            data: { confirm: "Προσοχή, ο λογαριασμός Θα διαγραφεί" },
                                            method: :delete,
@@ -26,4 +27,14 @@
                 = link_to "Unblock Account", admin_unblock_path(user),
                                              method: :post,
                                              class: 'btn btn-primary btn-sm'
+            %td
+              - if user.admin?
+                = link_to "Undo admin", admin_undo_admin_path(user),
+                                        data: { confirm: "Προσοχή, ο λογαριασμός Θα διαγραφεί" },
+                                        method: :post,
+                                        class: 'btn btn-primary btn-sm'
+              - else
+                = link_to "Make admin", admin_create_admin_path(user),
+                                        method: :post,
+                                        class: 'btn btn-danger btn-sm'
     = paginate @users
