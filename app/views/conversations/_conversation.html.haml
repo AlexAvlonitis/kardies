@@ -1,24 +1,25 @@
-%tr
-  %td
-    = link_to conversation_path(conversation), {"data-turbolinks" => "false"} do
-      - if conversation.is_unread?(current_user)
-        = fa_icon 'envelope 2x'
+- if conversation.participants.count > 1
+  %tr
+    %td
+      = link_to conversation_path(conversation), {"data-turbolinks" => "false"} do
+        - if conversation.is_unread?(current_user)
+          = fa_icon 'envelope 2x'
+        - else
+          = fa_icon 'envelope-o 2x'
+      - conversation.participants.each do |participant|
+        - unless participant == current_user
+          = link_to user_path(participant) do
+            = image_tag participant.profile_picture, class: "tiny-size"
+            = participant.username
+    %td= conversation.created_at.to_formatted_s(:short)
+
+    %td
+      .pull-right
+      - if conversation.is_trashed?(current_user)
+        = link_to "#{t '.restore'}", restore_conversation_path(conversation),
+                                     class: 'button secondary small',
+                                     method: :post
+
       - else
-        = fa_icon 'envelope-o 2x'
-    - conversation.participants.each do |participant|
-      - unless participant == current_user
-        = link_to user_path(participant) do
-          = image_tag participant.profile_picture, class: "tiny-size"
-          = participant.username
-  %td= conversation.created_at.to_formatted_s(:short)
-
-  %td
-    .pull-right
-    - if conversation.is_trashed?(current_user)
-      = link_to "#{t '.restore'}", restore_conversation_path(conversation),
-                                   class: 'button secondary small',
-                                   method: :post
-
-    - else
-      = link_to conversation_path(conversation), method: :delete, class: "button alert", title: "#{t '.delete'}", data: {confirm: "#{t '.delete_confirm'}"} do
-        = fa_icon "trash"
+        = link_to conversation_path(conversation), method: :delete, class: "button alert", title: "#{t '.delete'}", data: {confirm: "#{t '.delete_confirm'}"} do
+          = fa_icon "trash"
