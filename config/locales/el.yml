@@ -73,6 +73,7 @@ el:
       new_password: 'Νέος κωδικός'
       new_password_confirmation: 'Νέος κωδικός επανάληψη'
       change_password: "Αλλαγή κωδικού"
+      registration_form: "Φόρμα Εγγραφής"
   users:
     index:
       area: "Περιοχή"

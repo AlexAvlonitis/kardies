@@ -1,8 +1,20 @@
 #bg
   .container
-    .col-lg-6.col-sm-12.mx-auto.whitesmoke-bg
+    .col-lg-6.col-sm-12.mx-auto.whitesmoke-bg.p-2
       %h2.orange-text.text-center= t 'home.index.register'
-      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+
+      .form-group.row
+        = link_to user_facebook_omniauth_authorize_path, class: 'btn btn-primary btn-block' do
+          = fa_icon 'facebook-official lg'
+          = t 'home.index.fb_sign_in'
+
+      %p.text-center= t "home.index.or"
+
+      .form-group.row
+        %button.btn-block.btn.btn-success.hidden-form.registration-button
+          =t "home.index.registration_form"
+
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "hidden-registration-form"}) do |f|
 
         = f.fields_for :user_detail do |d|
           .form-group.row
