@@ -100,7 +100,7 @@ el:
       search: "Αναζήτηση"
       filters: "Φίλτρα"
       username: "Ψευδώνυμο"
-      state: "Νομός"
+      state: "Ελλάδα"
       online_now: "Συνδεδεμένοι τώρα"
       online_yes: "Ναί"
       online_no: "Οχι"

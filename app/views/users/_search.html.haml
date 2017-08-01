@@ -2,7 +2,7 @@
   %h4.text-center.orange-text= t ".search"
   = form_tag search_criteria_path, id: "search" do
     .form-group
-      = select_tag :state, options_for_select(GC.states),
+      = select_tag :state, options_for_select(GC.states, @search.state),
                            include_blank: "#{t '.state'}",
                            class: 'state-selection form-control form-control-lg'
     .form-group
