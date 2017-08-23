@@ -26,7 +26,6 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :user_detail
 
   # Validations
-  validates_presence_of :user_detail
   validates :username, presence: true, uniqueness: true
   validates :username,
             format: { with: /\A[a-z0-9A-Z\_]*\Z/ }
