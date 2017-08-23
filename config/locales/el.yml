@@ -159,6 +159,8 @@ el:
       sent: 'Το μήνυμα εστάλη'
   activerecord:
     errors:
+      messages:
+        record_invalid: "Κάτι πήγε στραβά, δοκιμάστε ξανά"
       models:
         contact:
           attributes:

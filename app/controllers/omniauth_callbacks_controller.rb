@@ -9,6 +9,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # Use the session locale set earlier; use the default if it isn't available.
     I18n.locale = session[:omniauth_login_locale] || I18n.default_locale
     if omniauth_values.info.email.present?
+      user = find_user
       sign_in_and_redirect user, event: :authentication
       set_flash_message(:notice, :success, kind: kind) if is_navigational_format?
     else
@@ -16,22 +17,11 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  def user
-    user = User.find_for_oauth(omniauth_values)
-    add_user_details(user)
-    user
-  end
-
-  def add_user_details(user)
-    UserDetail.find_or_create_by(user_id: user.id) do |user|
-      user.state = 'att'
-      user.city = 'athina-ATT'
-      user.gender = 'female'
-      user.age = 30
-    end
+  def find_user
+    User.find_for_oauth(omniauth_values)
   end
 
   def omniauth_values
-    env['omniauth.auth']
+    request.env['omniauth.auth']
   end
 end

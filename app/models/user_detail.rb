@@ -2,23 +2,36 @@ class UserDetail < ApplicationRecord
   belongs_to :user
   after_update :flush_age_cache, :flush_profile_picture_cache
 
+  DEFAULT_MISSING_PICTURE_URL =
+    'https://s3-eu-west-1.amazonaws.com/imisi/user_details/profile_pictures/images/thumb/missing.png'
+
+  VALID_IMAGES_REGEX = /^image\/(jpeg|jpg|png|gif|tiff)$/
+
   update_index('users#user') { self }
 
-  has_attached_file :profile_picture, styles: {
-    medium: '300x300>',
-    thumb: '100x100>'
-  }, default_url: 'https://s3-eu-west-1.amazonaws.com/imisi/user_details/profile_pictures/images/thumb/missing.png'
+  has_attached_file :profile_picture,
+                    styles: {
+                      medium: '300x300>',
+                      thumb: '100x100>'
+                    },
+                    default_url: DEFAULT_MISSING_PICTURE_URL
+
   validates_attachment_content_type :profile_picture, content_type: %r{\Aimage\/.*\Z}
-
   validates_attachment :profile_picture,
-                       size:         { in: 0..10.megabytes },
-                       content_type: { content_type: %r{^image\/(jpeg|jpg|png|gif|tiff)$} }
+                       size: { in: 0..10.megabytes },
+                       content_type: { content_type: VALID_IMAGES_REGEX }
 
-  validates :city, :age, :gender, :state, presence: true
-  validates :gender, inclusion: {
-    in: %w[male female other],
-    message: '%<value>s is not a valid gender'
-  }
+  validates :city,
+            :age,
+            :gender,
+            :state,
+            presence: true
+
+  validates :gender,
+            inclusion: {
+              in: %w[male female other],
+              message: '%<value>s is not a valid gender'
+            }
 
   validate :states_are_included_in_the_list
 

@@ -2,6 +2,8 @@ class User < ApplicationRecord
   update_index 'users#user', :self
   after_create :send_admin_mail
 
+  ALPHANUMERIC_REGEX = /\A[a-z0-9A-Z\_]*\Z/
+
   acts_as_votable
   acts_as_voter
   acts_as_messageable
@@ -26,18 +28,37 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :user_detail
 
   # Validations
-  validates :username, presence: true, uniqueness: true
-  validates :username,
-            format: { with: /\A[a-z0-9A-Z\_]*\Z/ }
+  validates :user_detail,
+            :username,
+            :email,
+            presence: true
+
+  validates :username, uniqueness: true
+  validates :username, format: { with: ALPHANUMERIC_REGEX }
   validates :username, length: { in: 3..40 }
   validates_email_format_of :email, message: 'Λάθος email'
 
   def self.find_for_oauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      user.username = create_username(auth.info.email)
+    user = find_by(provider: auth.provider, uid: auth.uid)
+    unless user
+      email = auth.info.email
+      password = Devise.friendly_token[0, 20]
+      username = create_username(auth.info.email)
+      user = User.create(
+               provider: auth.provider,
+               uid: auth.uid,
+               email: email,
+               password: password,
+               username: username,
+               user_detail_attributes: {
+                 state: 'att',
+                 city: 'athina-ATT',
+                 age: 30,
+                 gender: 'female'
+               }
+             )
     end
+    user
   end
 
   def self.search(query)
