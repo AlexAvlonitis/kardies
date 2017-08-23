@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   update_index 'users#user', :self
-  after_create :send_admin_mail
+  after_create :send_welcome_mail
 
   ALPHANUMERIC_REGEX = /\A[a-z0-9A-Z\_]*\Z/
 
@@ -155,7 +155,7 @@ class User < ApplicationRecord
     email.scan(/\A(.+?)@/).join.tr('.', '_')
   end
 
-  def send_admin_mail
+  def send_welcome_mail
     UserMailer.welcome_email(self).deliver_later
   end
 end
