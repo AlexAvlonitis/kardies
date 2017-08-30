@@ -24,8 +24,13 @@
 
     - if user_signed_in?
       #wrap
-        = render 'layouts/navbar'
-        = yield
+        .container-fluid
+          .row
+            .col-lg-2.col-md-12.col-sm-12
+              = render 'layouts/sidebar'
+            .col-lg-10.col-md-12.col-sm-12
+              #main-content
+                = yield
     - else
       = render 'layouts/navbar'
       = yield

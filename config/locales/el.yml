@@ -113,7 +113,7 @@ el:
       age_from: "Από"
       age_to: "Μέχρι"
   layouts:
-    navbar:
+    sidebar:
       messages: "Μηνύματα"
       users: "Μέλη"
       likes: "Καρδιές"

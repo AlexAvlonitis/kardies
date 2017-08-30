@@ -112,7 +112,7 @@ en:
       age_from: "From"
       age_to: "Up to"
   layouts:
-    navbar:
+    sidebar:
       messages: "Messages"
       users: "Users"
       likes: "Hearts"

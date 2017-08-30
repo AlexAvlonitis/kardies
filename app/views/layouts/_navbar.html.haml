@@ -6,42 +6,7 @@
       = image_tag 'hearts_only.png', class: 'icon-size'
       Kardies.gr
   #navbarNavDropdown.collapse.navbar-collapse
-    - if user_signed_in?
-      %ul.navbar-nav.mr-auto
-
-        %li.nav-item
-          = link_to conversations_path, class: "nav-link" do
-            - if current_user.conversation_notifications.count > 0
-              = fa_icon "comments-o 2x", class: "blink-blink"
-            - else
-              = fa_icon "comments-o 2x"
-            = t '.messages'
-        %li.nav-item
-          = link_to users_path, class: "nav-link" do
-            = fa_icon "users 2x"
-            = t '.users'
-        %li.nav-item
-          = link_to my_likes_path, class: "nav-link" do
-            - if current_user.vote_notifications.count > 0
-              = fa_icon "gratipay 2x", class: "blink-blink"
-            - else
-              = fa_icon "gratipay 2x"
-            = t '.likes'
-        - admins_only do
-          %li.nav-item
-            = link_to admin_application_index_path, class: "nav-link" do
-              = fa_icon "key 2x"
-      %ul.navbar-nav
-        %li.nav-item
-          = link_to edit_user_registration_path, class: "nav-link" do
-            = fa_icon "cogs"
-            %span= t '.profile'
-        %li.nav-item
-          = link_to destroy_user_session_path, method: :delete, class: "nav-link" do
-            = fa_icon "power-off"
-            %span= t '.sign_out'
-
-    - else
+    - unless user_signed_in?
       %ul.navbar-nav.nav-justified.mr-auto
       %ul.navbar-nav
         %li.ml-2

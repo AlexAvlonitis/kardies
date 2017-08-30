@@ -1,0 +1,25 @@
+%aside.sidebar-left
+  = link_to root_path do
+    = image_tag 'hearts_only.png', class: 'company-logo', alt: 'kardies.gr'
+  .sidebar-links
+    = link_to users_path, class: "link-blue" do
+      = fa_icon "users 2x"
+      = t '.users'
+    = link_to my_likes_path, class: "link-red" do
+      - if current_user.vote_notifications.count > 0
+        = fa_icon "heart 2x"
+      - else
+        = fa_icon "heart-o 2x"
+      = t '.likes'
+    = link_to conversations_path, class: "link-yellow" do
+      - if current_user.conversation_notifications.count > 0
+        = fa_icon "comments 2x"
+      - else
+        = fa_icon "comments-o 2x"
+      = t '.messages'
+    = link_to edit_user_registration_path, class: "link-green" do
+      = fa_icon "cogs 2x"
+      = t '.profile'
+    = link_to destroy_user_session_path, method: :delete, class: "link-purple" do
+      = fa_icon "power-off"
+      = t '.sign_out'
