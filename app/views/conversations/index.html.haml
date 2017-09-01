@@ -1,34 +1,33 @@
-.container
-  .row
-    .col-12.bg-white.effect2.mt-3
-      %ul.nav.nav-tabs{ role: "tablist" }
-        %li.nav-item
-          %a.nav-link.active{ "data-toggle" => "tab", href: "#messages", role: "tab" }= t '.messages'
-        %li.nav-item
-          %a.nav-link{ "data-toggle" => "tab", href: "#trash", role: "tab" }= t '.trash'
+.row
+  .col-12.bg-white.effect2.mt-3
+    %ul.nav.nav-tabs{ role: "tablist" }
+      %li.nav-item
+        %a.nav-link.active{ "data-toggle" => "tab", href: "#messages", role: "tab" }= t '.messages'
+      %li.nav-item
+        %a.nav-link{ "data-toggle" => "tab", href: "#trash", role: "tab" }= t '.trash'
 
-      .tab-content
-        .tab-pane.active{ id: "messages", role: "tabpanel" }
-          %table.table
-            %thead
-              %strong.orange-text= t '.messages'
-              %tr
-                %th= t '.conversation'
-                %th= t '.conversation_at'
-                %th= t '.conversation_action'
-            %tbody
-              = render partial: 'conversations/conversation', collection: @conversations
-        .tab-pane{ id: "trash", role: "tabpanel" }
-          %table.table
-            %thead
-              %p
-                %strong.orange-text= t '.trash'
-              %tr
-                %th= t '.conversation'
-                %th= t '.conversation_at'
-                %th= t '.conversation_action'
-            %tbody
-              = link_to empty_trash_conversations_path, class: 'btn btn-sm btn-outline-danger', method: :delete, data: {confirm: "#{t '.empty_trash_confirm'}"} do
-                = fa_icon 'trash-o'
-                = t '.empty_trash'
-              = render partial: 'conversations/conversation', collection: @conversations_trash
+    .tab-content
+      .tab-pane.active{ id: "messages", role: "tabpanel" }
+        %table.table
+          %thead
+            %strong.orange-text= t '.messages'
+            %tr
+              %th= t '.conversation'
+              %th= t '.conversation_at'
+              %th= t '.conversation_action'
+          %tbody
+            = render partial: 'conversations/conversation', collection: @conversations
+      .tab-pane{ id: "trash", role: "tabpanel" }
+        %table.table
+          %thead
+            %p
+              %strong.orange-text= t '.trash'
+            %tr
+              %th= t '.conversation'
+              %th= t '.conversation_at'
+              %th= t '.conversation_action'
+          %tbody
+            = link_to empty_trash_conversations_path, class: 'btn btn-sm btn-outline-danger', method: :delete, data: {confirm: "#{t '.empty_trash_confirm'}"} do
+              = fa_icon 'trash-o'
+              = t '.empty_trash'
+            = render partial: 'conversations/conversation', collection: @conversations_trash

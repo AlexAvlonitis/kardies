@@ -1,7 +1,9 @@
 .row
-  .col-lg-3.col-md-12.col-sm-12.side-search.effect2
-    = render 'search'
-  .col-lg-9.col-sm-12.col-md-12
+  .col
+    .side-search.effect2
+      = render 'search'
+.row
+  .col
     #message-modal
     .card-deck.justify-content-center
       - if ! @users.map {|f| f}.blank?

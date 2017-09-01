@@ -1,6 +1,6 @@
 %aside.sidebar-left
-  = link_to root_path do
-    = image_tag 'hearts_only.png', class: 'company-logo', alt: 'kardies.gr'
+  = link_to user_path(current_user) do
+    = image_tag current_user.profile_picture, class: 'company-logo img-circle'
   .sidebar-links
     = link_to users_path, class: "link-blue" do
       = fa_icon "users 2x"

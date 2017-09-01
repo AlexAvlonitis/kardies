@@ -1,31 +1,34 @@
 %h4.text-center.orange-text= t ".search"
 = form_tag search_criteria_path, id: "search" do
-  .form-group
-    = select_tag :state, options_for_select(GC.states, @search.state),
-                         include_blank: "#{t '.state'}",
-                         class: 'state-selection form-control form-control-lg'
-  .form-group
-    = select_tag :gender, options_for_select([["#{t '.gender_man'}", "male"],
-                                              ["#{t '.gender_woman'}", "female"],
-                                              ["#{t '.gender_other'}", "other"]],
-                                              @search.gender),
-                          class: 'form-control form-control-lg',
-                          include_blank: "#{t '.gender'}"
-  %label= t '.age'
-  .form-group
-    %label= t '.age_from'
-    = number_field_tag :age_from, @search.age_from, min: 18, max: 99, class: "form-control form-control-lg"
-    %label= t '.age_to'
-    = number_field_tag :age_to, @search.age_to, min: 18, max: 99, class: "form-control form-control-lg"
+  .form-group.row
+    .form-group.col-md-6
+      = select_tag :state, options_for_select(GC.states, @search.state),
+                           include_blank: "#{t '.state'}",
+                           class: 'state-selection form-control form-control-lg'
+    .form-group.col-md-6
+      = select_tag :gender, options_for_select([["#{t '.gender_man'}", "male"],
+                                                ["#{t '.gender_woman'}", "female"],
+                                                ["#{t '.gender_other'}", "other"]],
+                                                @search.gender),
+                            class: 'form-control form-control-lg',
+                            include_blank: "#{t '.gender'}"
 
-  .form-group
-    %label.custom-control.custom-checkbox
-      -if @search.is_signed_in
-        = check_box_tag :is_signed_in, @search.is_signed_in, true, class: "custom-control-input"
-      -else
-        = check_box_tag :is_signed_in, 'true', false, class: "custom-control-input"
-      %span.custom-control-indicator
-      %span.custom-control-description= t ".online_now"
+  .form-group.row
+    .form-group.col-md-6
+      %label= "#{t '.age'} #{t '.age_from'}"
+      = number_field_tag :age_from, @search.age_from, min: 18, max: 99, class: "form-control form-control-lg"
+    .form-group.col-md-6
+      %label= "#{t '.age'} #{t '.age_to'}"
+      = number_field_tag :age_to, @search.age_to, min: 18, max: 99, class: "form-control form-control-lg"
 
-  .row
-    = submit_tag "#{t '.update'}", class: "btn btn-primary btn-block"
+  = t ".online_now"
+  .form-group.row
+    .form-group.col-md-6
+      %label.switch
+        -if @search.is_signed_in
+          = check_box_tag :is_signed_in, @search.is_signed_in, true
+        -else
+          = check_box_tag :is_signed_in, 'true', false
+        %span.slider.round
+    .form-group.col-md-6
+      = submit_tag "#{t '.update'}", class: "btn btn-primary btn-block"

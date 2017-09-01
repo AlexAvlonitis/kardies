@@ -1,29 +1,30 @@
-.col
-  %ol.breadcrumb
-    %li.breadcrumb-item= link_to "#{t 'abouts.edit.profile'}", edit_user_registration_path
-    %li.breadcrumb-item= link_to "#{t 'abouts.edit.about_me'}", edit_about_path
-    %li.breadcrumb-item.active=t 'abouts.edit.galleries'
-    %li.breadcrumb-item= link_to "#{t 'email_preferences.edit.notifications'}", edit_email_preferences_path
+.row
+  .col
+    %ol.breadcrumb
+      %li.breadcrumb-item= link_to "#{t 'abouts.edit.profile'}", edit_user_registration_path
+      %li.breadcrumb-item= link_to "#{t 'abouts.edit.about_me'}", edit_about_path
+      %li.breadcrumb-item.active=t 'abouts.edit.galleries'
+      %li.breadcrumb-item= link_to "#{t 'email_preferences.edit.notifications'}", edit_email_preferences_path
 
-  .col-lg-6.col-sm-12.bg-white.effect2
-    %h2.orange-text=t 'users.show.galleries'
-    %h5.subheader
-      = link_to "#{t 'users.show.create_gallery'}", class: "create-gallery" do
-        = fa_icon "plus-square 2x"
+    .col-lg-6.col-sm-12.bg-white.effect2
+      %h2.orange-text=t 'users.show.galleries'
+      %h5.subheader
+        = link_to "#{t 'users.show.create_gallery'}", class: "create-gallery" do
+          = fa_icon "plus-square 2x"
 
-    .hidden-gallery-form
-      = render 'galleries/form', {gallery: @gallery}
+      .hidden-gallery-form
+        = render 'galleries/form', {gallery: @gallery}
 
-    %hr
-    %h4.orange-text=t 'users.show.my_galleries'
-    - if @galleries
-      - @galleries.each do |gallery|
-        %h5
-          = gallery.name
-          = link_to gallery_path(gallery), method: :delete, data: {confirm: "#{t '.gallery_delete_confirmation'}"} do
-            = fa_icon 'trash'
+      %hr
+      %h4.orange-text=t 'users.show.my_galleries'
+      - if @galleries
+        - @galleries.each do |gallery|
+          %h5
+            = gallery.name
+            = link_to gallery_path(gallery), method: :delete, data: {confirm: "#{t '.gallery_delete_confirmation'}"} do
+              = fa_icon 'trash'
 
-        - gallery.pictures.each do |pic|
-          = image_tag pic.picture.url(:thumb), class: "img-thumbnail"
+          - gallery.pictures.each do |pic|
+            = image_tag pic.picture.url(:thumb), class: "img-thumbnail"
 
-    %p= link_to "#{t 'abouts.edit.back'}", :back
+      %p= link_to "#{t 'abouts.edit.back'}", :back
