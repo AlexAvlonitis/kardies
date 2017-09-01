@@ -49,6 +49,7 @@ en:
       likes_label: 'Receive emails when i get new hearts'
       messages_label: 'Receive emails when i receive new messages'
       news_label: 'Receive emails for general news'
+      notifications: 'NOTIFICATIONS'
     update:
       settings_saved: 'Changes have been saved'
       settings_not_saved: 'Changes have not been saves, try again'
