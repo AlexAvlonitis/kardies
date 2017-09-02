@@ -6,14 +6,14 @@
   .card-block
     = user_presenter.gender_type
     %h5.card-title
-      - if user.try(:username) && user.try(:age)
-        = user.username.capitalize + " " + user.age
+      - unless user == current_user
+        %span.message= user_presenter.new_message
+        %span.like= user_presenter.like_status
     .card-text
+      - if user.try(:username) && user.try(:age)
+        %h5
+          %strong= user.username.capitalize + " " + user.age
       -if user.try(:state) && user.try(:city)
         %p= user_presenter.display_city_info
-    - unless user == current_user
-      %span.message= user_presenter.new_message
-      %span.vertical-border
-      %span.like= user_presenter.like_status
     .card-footer
       = user_presenter.online_status

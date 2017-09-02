@@ -23,10 +23,10 @@ $(document).on "turbolinks:load", ->
     url = this.href
     if url.includes("dislike")
       this.href = '/users/' + username[1] + "/like"
-      $('#'+getID).html('<i class="fa fa-heart-o fa-2x"></i>')
+      $('#'+getID).html('<i class="fa fa-heart-o"></i>')
     else
       this.href = '/users/' + username[1] + "/dislike"
-      $('#'+getID).html('<i class="fa fa-heart fa-2x"></i>')
+      $('#'+getID).html('<i class="fa fa-heart"></i>')
   ).on "ajax:error", (e, xhr, status, error) ->
     getID = this.id
     alert('Something went wrong, check your internet connection')

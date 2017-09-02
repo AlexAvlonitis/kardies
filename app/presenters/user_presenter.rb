@@ -3,12 +3,12 @@ class UserPresenter < BasePresenter
 
   def like_status
     if ! h.current_user.voted_for? user
-      h.link_to h.like_user_path(user), method: :put, remote: true, class: 'like-link faa-parent animated-hover', id: "like__#{user.username}" do
-        h.fa_icon "heart-o 2x", class: "faa-pulse faa-fast"
+      h.link_to h.like_user_path(user), method: :put, remote: true, class: 'icon-round-like like-link faa-parent animated-hover', id: "like__#{user.username}" do
+        h.fa_icon "heart-o", class: "faa-pulse faa-fast"
       end
     else
-      h.link_to h.dislike_user_path(user), method: :put, remote: true, class: 'like-link faa-parent animated-hover', id: "like__#{user.username}" do
-        h.fa_icon "heart 2x", class: "faa-pulse faa-fast"
+      h.link_to h.dislike_user_path(user), method: :put, remote: true, class: 'icon-round-like like-link faa-parent animated-hover', id: "like__#{user.username}" do
+        h.fa_icon "heart", class: "faa-pulse faa-fast"
       end
     end
   end
@@ -52,8 +52,8 @@ class UserPresenter < BasePresenter
   end
 
   def new_message
-    h.link_to h.new_message_path(user), remote: true do
-      h.fa_icon "envelope 2x"
+    h.link_to h.new_message_path(user), remote: true, class: "icon-round-message" do
+      h.fa_icon "comment-o"
     end
   end
 
