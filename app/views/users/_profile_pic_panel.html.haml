@@ -1,0 +1,34 @@
+.gallery
+  = link_to @user.profile_picture(:original) do
+    = image_tag @user.profile_picture(:medium), class: "profile-pic"
+
+%h3.mt-2
+  %strong.narrow= "#{@user.username.capitalize} - #{@user.age}"
+  = user_presenter.online_status
+
+%p= user_presenter.display_city_info
+
+- if current_user == @user
+  = link_to edit_user_registration_path, class: "btn btn-primary btn-round-lg" do
+    = fa_icon 'gears'
+    = t '.edit_profile'
+
+- unless @user == current_user
+  %p
+    = link_to new_message_path(@user), remote: true, class: "btn btn-sm nice-blue-bg btn-round-lg" do
+      = fa_icon "comment-o"
+      = t '.send_message'
+  %p
+  - if ! current_user.voted_for? @user
+    = link_to like_user_path(@user), method: :put, remote: true, class: 'btn btn-sm btn-danger btn-round-lg animated-hover', id: "like__#{@user.username}" do
+      = fa_icon "heart-o"
+      = t '.send_like'
+  - else
+    = link_to dislike_user_path(@user), method: :put, remote: true, class: 'btn btn-sm btn-danger btn-round-lg animated-hover', id: "like__#{@user.username}" do
+      = fa_icon "heart"
+      = t '.send_like'
+
+  %hr
+  = link_to report_path(@user), class: "btn btn-sm btn-outline-danger" do
+    = fa_icon "frown-o"
+    = t 'users.index.report'

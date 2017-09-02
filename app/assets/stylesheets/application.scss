@@ -24,7 +24,7 @@
 @import "conversations";
 @import "abouts";
 @import "jgallery";
-@import "users";
+@import "users/*";
 @import "home";
 @import "rounded_toggle_button";
 @import "footer";
@@ -203,4 +203,8 @@ table tr:nth-of-type(even) {
   height: 70px;
   overflow: hidden;
   border-radius: 50%;
+}
+
+.nice-blue-bg {
+  background-color: $nice-blue
 }

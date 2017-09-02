@@ -1,0 +1,103 @@
+.card {
+
+  background-color: $white;
+  min-width: 250px;
+  max-width: 250px;
+  text-align: center;
+  position: relative;
+
+  .card-text {
+    font-size: small;
+  }
+
+  .card-bg {
+    max-width: 300px;
+    height: 210px;
+    background-size:cover;
+    background-position:50% 50%;
+  }
+
+  .card-block {
+    padding: 0;
+  }
+
+  .card-footer {
+    margin-top: 0.5rem;
+  }
+
+  .card-title {
+    margin-bottom: 1.5rem;
+    margin-top: -10px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    /* OLD IE */
+    zoom: 1;
+	  filter: alpha(opacity=0);
+  }
+
+  .icon-round-message {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    padding: 8px 10px;
+    color: $white;
+    background-color: $nice-blue;
+  }
+
+  .icon-round-like {
+    @extend .icon-round-message;
+    background-color: $red;
+  }
+
+  .card-top {
+    height: 220px;
+    border-bottom: 1px solid $whitesmoke;
+  }
+
+  span.vertical-border {
+    position: absolute;
+    height: 2rem;
+    border-right: 1px solid $whitesmoke;
+  }
+
+  span.message {
+    margin-right: 20px;
+  }
+
+  span.like {
+    margin-left: 20px;
+  }
+
+  .offline {
+    background-color: $red;
+    margin: 0.3rem;
+    padding: 0.4rem;
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  .gender {
+    z-index: -1;
+    width: 1.5rem;
+    font-weight: bold;
+    background-color: $aluminium;
+    padding: 0.4rem;
+    float: left;
+    margin-left: -1.52rem;
+    color: $light_blue;
+  }
+
+  .female {
+    color: $pink;
+  }
+
+  .other {
+    color: $orange;
+  }
+}

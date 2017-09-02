@@ -81,6 +81,9 @@ el:
       no_results: "Δεν βρέθηκαν χρήστες, παρακαλούμε δοκιμάστε διαφορετική αναζήτηση."
     card:
       age_text: 'χρονών'
+    profile_pic_panel:
+      send_message: 'Αποστολή μηνύματος'
+      send_like: 'Αποστολή καρδιάς'
     show:
       upload_pictures: 'Επιλογή φωτογραφιών'
       album_name: 'Όνομα άλμπουμ'

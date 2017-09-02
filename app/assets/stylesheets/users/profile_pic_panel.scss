@@ -1,0 +1,29 @@
+.profile-pic {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.btn-round-lg {
+  width: 220px;
+  border-radius: 22.5px;
+  padding: 0.5rem 2rem;
+  color: $white;
+}
+
+.btn-round {
+  border-radius: 17px;
+  padding: 0.5rem 2rem;
+}
+
+.btn-round-sm {
+  border-radius: 15px;
+  padding: 0.5rem 2rem;
+}
+
+.btn-round-xs {
+  border-radius: 11px;
+  padding: 0.5rem 2rem;
+}

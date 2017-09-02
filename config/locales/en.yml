@@ -81,6 +81,9 @@ en:
       no_results: "No results found, please try a different search."
     card:
       age_text: 'years old'
+    profile_pic_panel:
+      send_message: 'Send message'
+      send_like: 'Send heart'
     show:
       upload_pictures: 'Select pictures'
       album_name: 'Album name'

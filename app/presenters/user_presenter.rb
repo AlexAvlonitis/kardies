@@ -24,9 +24,7 @@ class UserPresenter < BasePresenter
   end
 
   def online_status
-    if user.is_signed_in
-      h.content_tag(:span, "", class: "online-now")
-    end
+    h.content_tag(:span, "", class: "online-now") if user.is_signed_in?
   end
 
   def gender_type

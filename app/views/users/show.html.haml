@@ -1,41 +1,15 @@
 - present @user do |user_presenter|
   #message-modal
   .row
-    .col-sm-12.col-lg-4.bg-white.m-2.effect2.p-4
-      .text-center.gallery
-        = link_to @user.profile_picture(:original) do
-          = image_tag @user.profile_picture(:medium), class: "img-thumbnail"
-      %h3.text-center.mt-2
-        = @user.username.capitalize
-      - if current_user == @user
-        = link_to edit_user_registration_path, class: "btn btn-sm btn-primary btn-block" do
-          = fa_icon 'gears'
-          = t '.edit_profile'
-      - unless @user == current_user
-        %ul.nav.nav-fill
-          %li.nav-item= user_presenter.new_message
-          %li.nav-item.red-text= user_presenter.like_status
-        %hr
-        = link_to "#{t 'users.index.report'}", report_path(@user), class: "btn btn-sm btn-outline-danger btn-block"
+    .col-sm-12.col-md-12.col-lg-4.bg-white.m-2.p-2.effect2.text-center
+      = render partial: 'profile_pic_panel',
+          locals: { user_presenter: user_presenter }
 
-      %table.table.table-sm.table-bordered
-        %tbody
-          %tr
-            %th.orange-text{ scope: "row"}
-              %h5= t 'users.index.area'
-            %td= user_presenter.display_city_info
-          %tr
-            %th.orange-text{ scope: "row"}
-              %h5= t 'users.search.age'
-            %td= @user.age
-          %tr
-            %th.orange-text{ scope: "row"}
-              %h5= t 'users.search.gender'
-            %td= user_presenter.gender_type
-
+    .col
       %h4= t '.youtube'
       %p.mb-0= user_presenter.youtube_url
 
+  .row
     .col.bg-white.m-2.effect2.p-4
       %h1.display-5.orange-text= t '.about'
       %h4= t '.job'
