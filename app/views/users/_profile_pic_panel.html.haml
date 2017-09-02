@@ -1,6 +1,7 @@
-.gallery.mt-2
-  = link_to @user.profile_picture(:original) do
-    = image_tag @user.profile_picture(:medium), class: "profile-pic"
+.row.justify-content-center
+  .gallery.mt-2
+    = link_to @user.profile_picture(:original) do
+      .profile-pic{ style: "background-image: url(#{@user.profile_picture(:medium)})"}
 
 %h3.mt-2
   %strong.narrow= "#{@user.username.capitalize} - #{@user.age}"
