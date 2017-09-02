@@ -25,19 +25,7 @@ class UserPresenter < BasePresenter
 
   def online_status
     if user.is_signed_in
-      h.content_tag(:p, "", class: 'card-text, pull-left') do
-        h.content_tag(:span, "", class: "online-now")
-      end +
-      h.content_tag(:p, "", class: 'card-text') do
-        h.content_tag(:small, "Online now", class: "text-muted")
-      end
-    else
-      h.content_tag(:p, "", class: 'card-text, pull-left') do
-        h.content_tag(:span, "", class: "offline")
-      end +
-      h.content_tag(:p, "", class: 'card-text') do
-        h.content_tag(:small, "Offline", class: "text-muted")
-      end
+      h.content_tag(:span, "", class: "online-now")
     end
   end
 

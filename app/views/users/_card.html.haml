@@ -10,10 +10,13 @@
         %span.message= user_presenter.new_message
         %span.like= user_presenter.like_status
     .card-text
-      - if user.try(:username) && user.try(:age)
+      - if user.try(:username)
         %h5
-          %strong= user.username.capitalize + " " + user.age
+          %strong= user.username.capitalize
+          = user_presenter.online_status
+
+      -if user.try(:age)
+        = "#{user.age}  #{t '.age_text'}"
+
       -if user.try(:state) && user.try(:city)
         %p= user_presenter.display_city_info
-    .card-footer
-      = user_presenter.online_status

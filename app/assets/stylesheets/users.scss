@@ -77,6 +77,10 @@
     margin-left: 20px;
   }
 
+  .narrow {
+    transform: scaleX(0.9);
+  }
+
   .online-now {
     background-color: $online_green;
     margin: 0.3rem;
