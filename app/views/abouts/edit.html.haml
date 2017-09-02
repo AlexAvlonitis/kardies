@@ -9,11 +9,11 @@
     .col-lg-6.col-sm-12.bg-white.effect2
       %h2.orange-text= t '.details'
       = simple_form_for @about, url: about_path, html: { method: :put } do |f|
-        = f.input :job, placeholder: "#{t '.job_placeholder'}", label: "#{t 'users.show.job'}", error_html: { class: 'red-text' }
-        = f.input :hobby, placeholder: "#{t '.hobby_placeholder'}", label: "#{t 'users.show.hobby'}", error_html: { class: 'red-text' }
-        = f.input :relationship_status, placeholder: "#{t '.relationship_status_placeholder'}", label: "#{t 'users.show.relationship_status'}", error_html: { class: 'red-text' }
-        = f.input :looking_for, placeholder: "#{t '.looking_for_placeholder'}", label: "#{t 'users.show.looking_for'}", error_html: { class: 'red-text' }
-        = f.input :description, placeholder: "#{t '.about_me_placeholder'}", label: "#{t 'users.show.about_me'}", error_html: { class: 'red-text' }
+        = f.input :job, placeholder: "#{t '.job_placeholder'}", label: "#{t 'users.details_panel.job'}", error_html: { class: 'red-text' }
+        = f.input :hobby, placeholder: "#{t '.hobby_placeholder'}", label: "#{t 'users.details_panel.hobby'}", error_html: { class: 'red-text' }
+        = f.input :relationship_status, placeholder: "#{t '.relationship_status_placeholder'}", label: "#{t 'users.details_panel.relationship_status'}", error_html: { class: 'red-text' }
+        = f.input :looking_for, placeholder: "#{t '.looking_for_placeholder'}", label: "#{t 'users.details_panel.looking_for'}", error_html: { class: 'red-text' }
+        = f.input :description, placeholder: "#{t '.about_me_placeholder'}", label: "#{t 'users.details_panel.about_me'}", error_html: { class: 'red-text' }
 
         .form-group
           %label.pull-left= t 'users.show.youtube'

@@ -84,23 +84,26 @@ el:
     profile_pic_panel:
       send_message: 'Αποστολή μηνύματος'
       send_like: 'Αποστολή καρδιάς'
+      edit_profile: "Επεξεργασία προφίλ"
     show:
       upload_pictures: 'Επιλογή φωτογραφιών'
       album_name: 'Όνομα άλμπουμ'
       my_galleries: 'Τα άλμπουμ μου'
       create_gallery: 'Δημιουργία άλμπουμ'
+      no_post: "Ο χρήστης δεν έχει αναρτήσει κάτι ακόμα"
+      no_albums: "Ο χρήστης δεν έχει αναρτήσει άλμπουμ ακόμα"
+      youtube_instructions: "Εισάγετε μόνο τον κωδικό που βρίσκεται στο τέλος της ηλεκτρονικής διεύθυνσης (URL) από το youtube. Παράδειγμα (https://www.youtube.com/watch?v=YQHsXMglC9A), εισάγετε μόνο το YQHsXMglC9A"
+    gallery_panel:
+      galleries: "Άλμπουμ"
+    youtube_panel:
+      youtube: "Τραγούδι που με εκπροσωπεί"
+    details_panel:
       job: "Επάγγελμα"
       hobby: "Χόμπυ"
       relationship_status: "Κατάσταση σχέσης"
       looking_for: "Αναζητώ..."
       about_me: "Λίγα πράγματα για μένα"
-      galleries: "Άλμπουμ"
       about: "Τα στοιχεία μου"
-      no_post: "Ο χρήστης δεν έχει αναρτήσει κάτι ακόμα"
-      no_albums: "Ο χρήστης δεν έχει αναρτήσει άλμπουμ ακόμα"
-      edit_profile: "Επεξεργασία προφίλ"
-      youtube: "Τραγούδι που με εκπροσωπεί"
-      youtube_instructions: "Εισάγετε μόνο τον κωδικό που βρίσκεται στο τέλος της ηλεκτρονικής διεύθυνσης (URL) από το youtube. Παράδειγμα (https://www.youtube.com/watch?v=YQHsXMglC9A), εισάγετε μόνο το YQHsXMglC9A"
     search:
       search: "Αναζήτηση"
       filters: "Φίλτρα"

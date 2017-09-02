@@ -1,4 +1,4 @@
-.gallery
+.gallery.mt-2
   = link_to @user.profile_picture(:original) do
     = image_tag @user.profile_picture(:medium), class: "profile-pic"
 
@@ -20,11 +20,11 @@
       = t '.send_message'
   %p
   - if ! current_user.voted_for? @user
-    = link_to like_user_path(@user), method: :put, remote: true, class: 'btn btn-sm btn-danger btn-round-lg animated-hover', id: "like__#{@user.username}" do
+    = link_to like_user_path(@user), method: :put, remote: true, class: 'like-link btn btn-sm btn-danger btn-round-lg animated-hover', id: "like__#{@user.username}" do
       = fa_icon "heart-o"
       = t '.send_like'
   - else
-    = link_to dislike_user_path(@user), method: :put, remote: true, class: 'btn btn-sm btn-danger btn-round-lg animated-hover', id: "like__#{@user.username}" do
+    = link_to dislike_user_path(@user), method: :put, remote: true, class: 'like-link btn btn-sm btn-danger btn-round-lg animated-hover', id: "like__#{@user.username}" do
       = fa_icon "heart"
       = t '.send_like'
 

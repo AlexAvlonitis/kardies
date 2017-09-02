@@ -84,11 +84,18 @@ en:
     profile_pic_panel:
       send_message: 'Send message'
       send_like: 'Send heart'
+      edit_profile: "Edit Profile"
     show:
       upload_pictures: 'Select pictures'
       album_name: 'Album name'
       my_galleries: 'My galleries'
       create_gallery: 'Create gallery'
+      no_post: "The user hasn't posted anything yet"
+      no_albums: "The user hasn't posted any albums yet"
+      youtube_instructions: "Only enter the code that is at the end of the youtube URL. e.g (https://www.youtube.com/watch?v=YQHsXMglC9A), enter: YQHsXMglC9A"
+    youtube_panel:
+      youtube: "A song that represents me"
+    details_panel:
       job: "Occupation"
       hobby: "Hobbies"
       relationship_status: "Relationship status"
@@ -96,11 +103,6 @@ en:
       about_me: "A little about myself"
       galleries: "Albums"
       about: "About me"
-      no_post: "The user hasn't posted anything yet"
-      no_albums: "The user hasn't posted any albums yet"
-      edit_profile: "Edit Profile"
-      youtube: "A song that represents me"
-      youtube_instructions: "Only enter the code that is at the end of the youtube URL. e.g (https://www.youtube.com/watch?v=YQHsXMglC9A), enter: YQHsXMglC9A"
     search:
       search: "Search"
       filters: "Filters"

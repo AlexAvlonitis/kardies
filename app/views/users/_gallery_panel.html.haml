@@ -1,0 +1,12 @@
+%h1.display-5= t '.galleries'
+- if @user.galleries.empty? || @user.galleries.nil?
+  = image_tag 'no_uploaded.png', class: "img-thumbnail"
+.polaroid-images
+  - @user.galleries.each.with_index(1) do |gallery, index|
+    %hr
+    %h4= gallery.name.capitalize
+    .row
+      %li.list-unstyled.gallery
+        - gallery.pictures.each do |pic|
+          = link_to pic.picture.url, title: "Album-#{index}"  do
+            = image_tag pic.picture.url

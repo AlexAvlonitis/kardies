@@ -1,0 +1,19 @@
+.media
+  %blockquote
+    %p.quotation-mark “
+  .media-body
+    %p= user_presenter.about_info('description')
+%hr
+
+%dl.row
+  %dt.col-sm-4= t '.job'
+  %dd.col-sm-8= user_presenter.about_info('job')
+%dl.row
+  %dt.col-sm-4= t '.hobby'
+  %dd.col-sm-8= user_presenter.about_info('hobby')
+%dl.row
+  %dt.col-sm-4= t '.relationship_status'
+  %dd.col-sm-8= user_presenter.about_info('relationship_status')
+%dl.row
+  %dt.col-sm-4= t '.looking_for'
+  %dd.col-sm-8= user_presenter.about_info('looking_for')
