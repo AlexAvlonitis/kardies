@@ -2,16 +2,12 @@ class UsersController < ApplicationController
   before_action :set_user, except: [:index]
 
   def index
-    if current_user.search_criteria.present?
-      @users = User.search(current_user.search_criteria.last).page params[:page]
-      @search ||= current_user.search_criteria.last
+    if search_present?
+      @users ||= get_all_indexed_users
+      @search ||= search_criteria
     else
-      @users = User.all_except(current_user)
-                   .includes(:user_detail)
-                   .not_blocked
-                   .order(created_at: :desc)
-                   .page params[:page]
-      @search ||= SearchCriterium.new
+      @users ||= get_all_users
+      @search ||= search_criteria
     end
   end
 
@@ -24,5 +20,30 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find_by(username: params[:username])
     rescue_error unless @user
+  end
+
+  def search_criteria
+    search_present? ? last_search : SearchCriterium.new
+  end
+
+  def search_present?
+    current_user.search_criteria.present?
+  end
+
+  def get_all_users
+    User.all_except(current_user)
+        .includes(:user_detail)
+        .not_blocked
+        .shuffle
+        .page params[:page]
+  end
+
+  def get_all_indexed_users
+     User.search(last_search)
+         .page params[:page]
+  end
+
+  def last_search
+    current_user.search_criteria.last
   end
 end

@@ -10,7 +10,8 @@
         - @users.each do |user|
           - if user && !user.deleted_at && !(user == current_user)
             - present user do |user_presenter|
-              = render partial: 'card', locals: {user: user, user_presenter: user_presenter}
+              = render partial: 'card',
+                  locals: {user: user, user_presenter: user_presenter}
       - else
         %h4= t '.no_results'
     .col-lg-6.col-sm-12.mx-auto
