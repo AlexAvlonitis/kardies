@@ -14,5 +14,6 @@
                   locals: {user: user, user_presenter: user_presenter}
       - else
         %h4= t '.no_results'
-    .col-lg-6.col-sm-12.mx-auto
-      = paginate @users, window: 2
+
+.row.justify-content-center
+  = paginate @users, window: 2
