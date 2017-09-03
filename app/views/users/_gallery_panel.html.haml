@@ -1,4 +1,4 @@
-%h1.display-5= t '.galleries'
+%h2.display-5= t '.galleries'
 - if @user.galleries.empty? || @user.galleries.nil?
   = image_tag 'no_uploaded.png', class: "img-thumbnail"
 .polaroid-images

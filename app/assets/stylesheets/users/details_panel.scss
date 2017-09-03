@@ -7,3 +7,8 @@
   font-size: 100px;
   font-family: "Times New Roman", Georgia, Serif;
 }
+
+.break-word {
+  width: 13em;
+  overflow-wrap: break-word;
+}

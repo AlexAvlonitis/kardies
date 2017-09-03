@@ -1,10 +1,9 @@
 .media
   %blockquote
     %p.quotation-mark “
-  .media-body
+  .media-body.break-word
     %p= user_presenter.about_info('description')
 %hr
-
 %dl.row
   %dt.col-sm-4= t '.job'
   %dd.col-sm-8= user_presenter.about_info('job')
