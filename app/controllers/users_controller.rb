@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     User.all_except(current_user)
         .includes(:user_detail)
         .not_blocked
-        .shuffle
+        .order(created_at: :desc)
         .page params[:page]
   end
 
