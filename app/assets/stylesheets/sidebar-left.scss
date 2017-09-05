@@ -9,20 +9,18 @@
 	width: 180px;
 	height: 100%;
 	padding: 20px 0;
-}
 
-.sidebar-left img.company-logo {
-	display: block;
-	text-decoration: none;
-	font-family: Cookie, cursive;
-	width: 76px;
-	margin: 0 auto;
-	padding: 0;
-	text-align: center;
-	color:  #ffffff;
-	font-size: 28px;
-	font-weight: normal;
-	line-height: 2.6;
+	.profile-pic {
+		display: block;
+		width: 76px;
+		height: 76px;
+		overflow: hidden;
+		border-radius: 50%;
+		background-size: cover;
+		background-position: center center;
+		margin: 0 auto;
+		padding: 0;
+	}
 }
 
 .sidebar-left .sidebar-links {
