@@ -152,7 +152,10 @@ class User < ApplicationRecord
   private
 
   def self.create_username(email)
-    email.scan(/\A(.+?)@/).join.tr('.', '_')
+    email = email.scan(/\A(.+?)@/).join.tr('.', '_')
+    email_chars_count = email.split('').count
+    return email.slice(0..20) if email_chars_count > 20
+    email
   end
 
   def send_welcome_mail
