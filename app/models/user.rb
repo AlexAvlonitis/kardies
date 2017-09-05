@@ -35,7 +35,7 @@ class User < ApplicationRecord
 
   validates :username, uniqueness: true
   validates :username, format: { with: ALPHANUMERIC_REGEX }
-  validates :username, length: { in: 3..40 }
+  validates :username, length: { in: 3..20 }
   validates_email_format_of :email, message: 'Λάθος email'
 
   def self.find_for_oauth(auth)

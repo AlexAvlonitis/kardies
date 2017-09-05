@@ -1,7 +1,7 @@
-%aside.sidebar-left
+%aside.sidebar-left.break-word
   = link_to user_path(current_user) do
     .profile-pic{ style: "background-image: url(#{current_user.profile_picture})"}
-    %p.text-center.white-text= current_user.username
+    %p.text-center.white-text= current_user.username.capitalize
   .sidebar-links
     = link_to users_path, class: "link-blue" do
       = fa_icon "users 2x"
