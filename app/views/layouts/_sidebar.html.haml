@@ -1,4 +1,4 @@
-%aside.sidebar-left.break-word
+%aside.sidebar-left
   = link_to user_path(current_user) do
     .profile-pic{ style: "background-image: url(#{current_user.profile_picture})"}
     %p.text-center.white-text= current_user.username.capitalize
