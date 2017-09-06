@@ -1,13 +1,17 @@
-%p
-  = image_tag user.profile_picture, class: "icon-size img-thumbnail"
-  = user.username.capitalize
-%h3.orange-text= t 'messages.new.send'
-= form_tag messages_path, method: :post do
-  .form-group
-    = text_area_tag 'message[body]', nil, cols: 5, class: 'form-control',
-                                                   required: true,
-                                                   placeholder: "#{t 'messages.new.message_placeholder'}"
+#messageModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "messageModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5#messageModal.modal-title= t '.send_message'
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        .form-group
+          = form_tag messages_path, method: :post do
+            = text_area_tag 'message[body]', nil, cols: 5, class: 'form-control',
+                                                           required: true,
+                                                           placeholder: "#{t 'messages.new.message_placeholder'}"
 
-  = hidden_field_tag "message[username]", user.username
-
-  = submit_tag 'Send', class: 'btn btn-primary btn-block'
+            = hidden_field_tag "message[username]"
+            %hr
+            = submit_tag "#{t '.send'}", class: 'btn btn-primary float-right'

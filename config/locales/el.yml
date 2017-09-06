@@ -165,6 +165,9 @@ el:
       send: 'Αποστολή μηνύματος'
     create:
       sent: 'Το μήνυμα εστάλη'
+    message_modal:
+      send_message: 'Αποστολή μηνύματος'
+      send: 'Αποστολή'
   activerecord:
     errors:
       messages:

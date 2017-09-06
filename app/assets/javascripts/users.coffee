@@ -6,16 +6,13 @@ $(document).on "turbolinks:load", ->
   $('.gallery').jGallery()
   $('#change-password').hide()
 
-  $("#message-modal").dialog({
-    autoOpen: false,
-    width: 'auto',
-    maxWidth: 450,
-    height: 'auto',
-    modal: true,
-    resizable: false,
-    draggable: false,
-    fluid: true
-  })
+  $('#messageModal').on('show.bs.modal', (event) ->
+    button = $(event.relatedTarget)
+    recipient = button.data('whatever')
+    modal = $(this)
+    modal.find('.modal-title').text("Αποστολή μηνύματος: " + recipient)
+    modal.find('input[type="hidden"][name="message[username]"]').val(recipient)
+  )
 
   $('.like-link').on("ajax:success", (e, data, status, xhr) ->
     username  = this.id.split("__");

@@ -164,3 +164,6 @@ en:
       send: 'Send Message'
     create:
       sent: 'The message has been sent'
+    message_modal:
+      send_message: 'Send Message'
+      send: 'Send'

@@ -1,12 +1,5 @@
 class MessagesController < ApplicationController
-  def new
-    @recipient = User.find_by(username: params[:username])
-    redirect_to users_path if @recipient == current_user
-    respond_to do |format|
-      format.html
-      format.js
-    end
-  end
+  skip_before_filter :verify_authenticity_token, only: :create
 
   def create
     @recipient ||= User.find_by(username: params[:message][:username])

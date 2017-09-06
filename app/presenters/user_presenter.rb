@@ -38,7 +38,7 @@ class UserPresenter < BasePresenter
   end
 
   def new_message
-    h.link_to h.new_message_path(user), remote: true, class: "icon-round-message" do
+    h.link_to nil, class: "icon-round-message", "data-toggle" => "modal", "data-target" => "#messageModal", "data-whatever" => "#{user.username}" do
       h.fa_icon "comment-o"
     end
   end

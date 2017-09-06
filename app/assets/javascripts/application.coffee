@@ -20,7 +20,6 @@
 #= require turbolinks
 #= require jgallery
 #= require tinycolor.min
-#= require jquery-ui/dialog
 #= require_tree .
 
 $(document).on "turbolinks:load", ->

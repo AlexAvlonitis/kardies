@@ -16,7 +16,7 @@
 
 - unless @user == current_user
   %p
-    = link_to new_message_path(@user), remote: true, class: "btn btn-sm nice-blue-bg btn-round-lg" do
+    = link_to nil, class: "btn btn-sm nice-blue-bg btn-round-lg", "data-toggle" => "modal", "data-target" => "#messageModal", "data-whatever" => "#{@user.username}" do
       = fa_icon "comment-o"
       = t '.send_message'
   %p
