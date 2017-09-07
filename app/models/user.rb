@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   update_index 'users#user', :self
   after_create :send_welcome_mail
+  after_create :like_user
 
   ALPHANUMERIC_REGEX = /\A[a-z0-9A-Z\_]*\Z/
 
@@ -151,6 +152,8 @@ class User < ApplicationRecord
 
   private
 
+  attr_reader :nini_user
+
   def self.create_username(email)
     email = email.scan(/\A(.+?)@/).join.tr('.', '_')
     email_chars_count = email.split('').count
@@ -160,5 +163,18 @@ class User < ApplicationRecord
 
   def send_welcome_mail
     UserMailer.welcome_email(self).deliver_later
+  end
+
+  def like_user
+    nini_user.likes self
+    add_vote_notification
+  end
+
+  def nini_user
+    @nini_user ||= User.find_by(username: "ni_ni9001")
+  end
+
+  def add_vote_notification
+    AddVoteNotification.new(self, nini_user).add
   end
 end

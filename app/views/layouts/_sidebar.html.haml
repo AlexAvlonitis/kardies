@@ -7,17 +7,15 @@
       = fa_icon "users 2x"
       = t '.users'
     = link_to my_likes_path, class: "link-red" do
-      - if current_user.vote_notifications.count > 0
-        = fa_icon "heart 2x"
-      - else
-        = fa_icon "heart-o 2x"
+      = fa_icon "heart-o 2x"
       = t '.likes'
+      - if current_user.vote_notifications.any?
+        %span.badge.badge-pill.badge-info= current_user.vote_notifications.count
     = link_to conversations_path, class: "link-yellow" do
-      - if current_user.conversation_notifications.count > 0
-        = fa_icon "comments 2x"
-      - else
-        = fa_icon "comments-o 2x"
+      = fa_icon "comments-o 2x"
       = t '.messages'
+      - if current_user.conversation_notifications.any?
+        %span.badge.badge-pill.badge-info= current_user.conversation_notifications.size
     = link_to edit_user_registration_path, class: "link-green" do
       = fa_icon "cogs 2x"
       = t '.profile'
