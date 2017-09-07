@@ -1,6 +1,6 @@
 %aside.sidebar-left
   = link_to user_path(current_user) do
-    .profile-pic{ style: "background-image: url(#{current_user.profile_picture})"}
+    .profile-pic-round-sm{ style: "background-image: url(#{current_user.profile_picture})"}
     %p.text-center.white-text= current_user.username.capitalize
   .sidebar-links
     = link_to users_path, class: "link-blue" do

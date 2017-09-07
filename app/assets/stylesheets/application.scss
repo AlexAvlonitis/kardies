@@ -207,3 +207,15 @@ table tr:nth-of-type(even) {
 .nice-blue-bg {
   background-color: $nice-blue
 }
+
+.profile-pic-round-sm {
+  display: block;
+  width: 76px;
+  height: 76px;
+  overflow: hidden;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center center;
+  margin: 0 auto;
+  padding: 0;
+}
