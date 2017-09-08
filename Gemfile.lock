@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/jumph4x/canonical-rails.git
-  revision: 005948c706892df1ed859523e2bf1413972b2a56
+  remote: http://github.com/jumph4x/canonical-rails
+  revision: caedc2380da6cbb1b3ad9b1e0972912d01870455
   specs:
     canonical-rails (0.2.0)
       rails (>= 4.1, < 5.2)
