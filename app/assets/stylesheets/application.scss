@@ -67,6 +67,10 @@ body {
   text-shadow: 1px 1px $dark_gray;
 }
 
+.light-grey-bg {
+  background-color: $light_grey;
+}
+
 .red-text {
   color: $red;
 }
@@ -126,7 +130,7 @@ body {
   background-size: cover;
   -o-background-size: cover;
   background-position: center;
-  background-image: asset-data-url('couple_2.jpg');
+  background-image: asset-data-url('hands_bg.jpg');
 }
 
 .custom_header {
@@ -218,4 +222,8 @@ table tr:nth-of-type(even) {
   background-position: center center;
   margin: 0 auto;
   padding: 0;
+}
+
+.logo {
+  max-width: 300px;
 }

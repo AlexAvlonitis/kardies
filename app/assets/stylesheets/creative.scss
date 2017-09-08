@@ -52,44 +52,8 @@ aside {
   padding: 0;
 }
 
-.navbar {
-  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-  font-weight: 700;
-  background-color: $fbblue ;
-
-  a {
-    text-decoration: none;
-    color: $white;
-  }
-
-  a:hover {
-    color: $aluminium;
-  }
-}
-.navbar .navbar-header .navbar-brand {
-  color: $white;
-}
-
 .fa-reorder {
   color: $aluminium;
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    background-color: $whitesmoke;
-    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-    -webkit-transition: all 0.35s;
-    -moz-transition: all 0.35s;
-    transition: all 0.35s;
-
-    a {
-      text-decoration: none;
-      color: $fbblue;
-    }
-  }
-  .navbar .navbar-header .navbar-brand {
-    color: $fbblue;
-  }
 }
 
 header {
@@ -103,7 +67,7 @@ header {
   background-size: cover;
   -o-background-size: cover;
   background-position: center;
-  background-image: asset-data-url('couple_2.jpg');
+  background-image: asset-data-url('hands_bg.jpg');
   text-align: center;
   color: $white;
 }
@@ -117,7 +81,7 @@ header .header-content .header-content-inner h1 {
   font-weight: 700;
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 30px;
+  font-size: 40px;
 }
 header .header-content .header-content-inner hr {
   margin: 30px auto;
@@ -153,6 +117,8 @@ header .header-content .header-content-inner p {
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
+    font-weight: bold;
+    color: $white;
   }
 }
 .section-heading {

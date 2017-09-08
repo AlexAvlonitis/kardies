@@ -38,22 +38,6 @@ $(document).on "turbolinks:load", ->
         opt = '<option value=' + val[1] + '>' + val[0] + '</option>'
         $('.city-selection').append opt
 
-  @previewProfilePic = ->
-    preview = document.querySelector('img')
-    file = document.querySelector('input[type=file]').files[0]
-    profPic = $('.previewProfilePic')
-    reader = new FileReader
-    reader.addEventListener 'load', (->
-      image = new Image()
-      image.className = 'thumbnail thumb-size'
-      image.style.display = "block"
-      image.title = file.name
-      image.src = this.result
-      profPic.html image
-    ), false
-    if file
-      reader.readAsDataURL file
-
   $('#edit-submit').on 'click', ->
     $body = $("body")
     $body.addClass("loading");

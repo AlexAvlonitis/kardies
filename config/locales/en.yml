@@ -62,13 +62,15 @@ en:
       login: 'Sign in'
       login_button: 'Sign in with Email'
       register: "Register"
+      register_form: "Register form"
       register_button: "Register here"
       fb_sign_in: "Sign in with Facebook"
+      pic_upload: "Select a picture"
       first_timer: "First time on our site?"
       or: "OR"
       next: "Next"
       previous: "Previous"
-      forgot_password: 'Forgot your password??'
+      forgot_password: 'Forgot your password?'
       send_pass_instructions: "Send password reset instructions"
       new_password: 'New password'
       new_password_confirmation: 'New password confirmation'

@@ -1,25 +1,18 @@
 %header
+  .float-right.m-4
+    = link_to user_session_path, class: "btn btn-orange" do
+      = t 'home.index.login'
   .header-content
     .header-content-inner
+      = link_to root_path do
+        = image_tag 'hearts_logo.png', class: "logo"
       %h1.white-text{ id: "homeHeading" }= t '.kardies-text'
       %hr.custom
-      %p.white-text= t '.kardies-subtext'
+      %p= t '.kardies-subtext'
 
       .col-sm-12.col-md-6.col-lg-4.mx-auto
-        = link_to user_facebook_omniauth_authorize_path, class: 'btn btn-primary btn-block' do
-          = fa_icon 'facebook-official lg'
-          = t 'home.index.fb_sign_in'
-
-      .col-sm-12.col-md-6.col-lg-4.mx-auto
-        .white-text.text-center= t "home.index.or"
-
-      .col-sm-12.col-md-6.col-lg-4.mx-auto
-        = simple_form_for(@user, url: session_path(@user)) do |f|
-          = f.input :email, input_html: { autofocus: true, placeholder: "Email" }, label: false
-          = f.input :password, input_html: { autocomplete: "off", placeholder: "#{t 'devise.registrations.edit.password'}" }, label: false
-          = f.submit "#{t "home.index.login"}", class: "btn-orange btn-sm btn-block"
-          %p.home-p.white.text-center= link_to "#{t '.forgot_password'}", new_user_password_url
-
+        = link_to new_user_registration_path, class: "btn btn-orange btn-lg btn-block" do
+          = t 'home.index.register'
 
 %section.bg-orange{ id: "about" }
   .container

@@ -1,17 +1,16 @@
 #bg
-  #wrap
-    .col
-      .col.text-center
-        = link_to root_path do
-          = image_tag 'hearts_2.png', class: "img-fluid"
-      .col-lg-4.col-sm-12.mx-auto.text-center
-        %h2.white-text.mb-4= t 'home.index.forgot_password'
-        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-          = devise_error_messages!
-          .form-group
-            = f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email"
-          .form-group
-            = f.submit "#{t 'home.index.send_pass_instructions'}", class: "btn btn-primary"
+  .row.justify-content-center
+    = link_to root_path, class: "mt-4" do
+      = image_tag 'hearts_logo.png', class: "logo"
+  .row.justify-content-center
+    .col-xs-12.col-sm-8.col-md-4.light-grey-bg.p-4.effect1.m-4
+      %h1= t 'home.index.forgot_password'
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        = devise_error_messages!
+        .form-group
+          = f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email"
+        .form-group
+          = f.submit "#{t 'home.index.send_pass_instructions'}", class: "btn btn-success"
 
-        = link_to user_facebook_omniauth_authorize_path, class: "white-text" do
-          = t 'home.index.fb_sign_in'
+      = link_to user_facebook_omniauth_authorize_path, class: 'btn btn-primary btn-sm ' do
+        = t 'home.index.fb_sign_in'

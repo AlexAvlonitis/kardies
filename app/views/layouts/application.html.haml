@@ -32,10 +32,7 @@
               #main-content
                 = yield
     - else
-      = render 'layouts/navbar'
       = yield
 
     = render 'layouts/footer'
-    - unless user_signed_in?
-      = render 'devise/sessions/signup_modal'
     .loading-modal

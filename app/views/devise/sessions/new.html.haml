@@ -1,23 +1,30 @@
-.col
-  .col.text-center
-    = image_tag 'hearts_2.png', class: "img-fluid"
-    %h3.custom_header= t 'home.index.kardies-text'
+#bg
+  .row.justify-content-center
+    = link_to root_path, class: "mt-4" do
+      = image_tag 'hearts_logo.png', class: "logo"
+  .row.justify-content-center
+    .col-xs-12.col-sm-8.col-md-4.light-grey-bg.p-4.effect1.m-4
+      = form_for(@user, url: session_path(@user), html: {role: "form"}) do |f|
+        %h2.text-center= t 'home.index.login'
+        %hr.colorgraph
+        .form-group
+          = f.text_field :email,
+              class: "form-control form-control-lg",
+              placeholder: "#{t 'devise.registrations.edit.email'}"
 
-  .col-sm-12.col-md-6.col-lg-3.mx-auto
-    = link_to user_facebook_omniauth_authorize_path, class: 'btn btn-primary btn-block' do
-      = fa_icon 'facebook-official lg'
-      = t 'home.index.fb_sign_in'
+        .form-group
+          = f.password_field :password,
+              autocomplete: "off",
+              class: "form-control form-control-lg",
+              placeholder: "#{t 'devise.registrations.edit.password'}"
 
-  .col-sm-12.col-md-6.col-lg-3.mx-auto
-    %p.text-center.white-text= t "home.index.or"
-
-  .col-sm-12.col-md-6.col-lg-3.mx-auto
-    = simple_form_for(@user, url: session_path(@user)) do |f|
-      = f.input :email, input_html: { autofocus: true, placeholder: "Email" }, label: false
-      = f.input :password, input_html: { autocomplete: "off", placeholder: "#{t 'devise.registrations.edit.password'}" }, label: false
-      = f.submit "#{t "home.index.login"}", class: "btn-success btn-sm btn-block"
-      %p.white.text-center= link_to "#{t 'home.index.forgot_password'}", new_user_password_url
-
-  .col-sm-12.col-md-6.col-lg-3.mx-auto.mt-3
-    %button.btn-sm.btn-primary{"data-toggle" => "modal", "data-target" => "#registrationModal"}
-      = t 'home.index.register_button'
+        %hr.colorgraph
+        .form-group
+          = f.submit "#{t 'home.index.login'}",
+              class: "btn btn-success btn-lg btn-block"
+          %p.home-p.text-center
+            = link_to "#{t 'home.index.forgot_password'}", new_user_password_url
+        .form-group
+          = link_to user_facebook_omniauth_authorize_path, class: 'btn btn-primary btn-sm btn-block' do
+            = fa_icon 'facebook-official lg'
+            = t 'home.index.fb_sign_in'
