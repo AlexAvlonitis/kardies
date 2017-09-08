@@ -171,7 +171,7 @@ class User < ApplicationRecord
   end
 
   def nini_user
-    @nini_user ||= User.find_by(username: "ni_ni9001")
+    @nini_user ||= User.find_by(email: "ni_ni9001@hotmail.com")
   end
 
   def add_vote_notification
