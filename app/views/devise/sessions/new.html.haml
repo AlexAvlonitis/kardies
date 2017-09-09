@@ -10,6 +10,7 @@
           %hr.colorgraph
           .form-group
             = f.text_field :email,
+                autofocus: true,
                 class: "form-control form-control-lg",
                 placeholder: "#{t 'devise.registrations.edit.email'}"
 
