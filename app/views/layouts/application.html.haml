@@ -7,8 +7,10 @@
     %meta{charset: "utf-8"}
     %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible", }
     %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}
-    %meta{name: "description", content: "Γνωριμίες Ελλάδα, το νέο απολύτως δωρεάν 100% Ελληνικό site γνωριμιών. Γίνε κι εσύ μέλος σήμερα για να γνωρίσεις τον επόμενο έρωτά σου. Γιατί όλοι έχουν δικαίωμα στην αγάπη!"}
-    %title Γνωριμίες Ελλάδα | Kardies.gr
+    %meta{name: "description", content: "#{yield_meta_tag(:description)}"}
+    %title
+      = if content_for?(:title) then yield(:title) + ' | ' end
+      Kardies.gr
 
     = csrf_meta_tags
 

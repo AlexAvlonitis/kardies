@@ -2,6 +2,7 @@ class ContactsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
+    redirect_to root_path if user_signed_in?
     @contact = Contact.new
     @user = User.new unless user_signed_in?
   end

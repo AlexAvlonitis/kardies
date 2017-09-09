@@ -9,6 +9,8 @@ en-gb:
       contact_header: 'Contact us!'
       name: 'Name'
       name_placeholder: 'Enter your name'
+      meta_contact_title: 'Meet singles in Greece, contact us'
+      meta_contact_description: 'Meet singles in Greece, contact us for any information you might need'
       email: 'Email'
       email_placeholder: 'Enter your email'
       contact_description: "For any inquiries don't hesitate to contact us via the form below"
@@ -53,6 +55,10 @@ en-gb:
     update:
       settings_saved: 'Changes have been saved'
       settings_not_saved: 'Changes have not been saves, try again'
+  terms:
+    index:
+      meta_terms_title: 'Meet singles in Greece, terms of use'
+      meta_terms_description: 'Meet singles in Greece, terms and rules for the website'
   home:
     index:
       kardies-text: "Meet singles for free in Greece"
@@ -61,7 +67,11 @@ en-gb:
       kardies-subbottom: "On Κardies.gr you can meet a new person very easily. Do you like someone? Just send them a heart or an instant message and get ready to fall in love!"
       login: 'Sign in'
       login_button: 'Sign in with Email'
+      meta_login_title: 'Meet singles in Greece, sign in and meet new people'
+      meta_login_description: 'Meet singles in Greece, sign in today and meet singles for free from Greece'
       register: "Register"
+      meta_register_title: 'Meet singles in Greece, sign up today and meet singles'
+      meta_register_description: 'Meet singles in Greece, sign up today and meet singles from Greece'
       register_form: "Register form"
       register_button: "Register here"
       fb_sign_in: "Sign in with Facebook"

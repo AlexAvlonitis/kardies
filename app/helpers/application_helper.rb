@@ -15,4 +15,21 @@ module ApplicationHelper
     return if object.errors.messages[field_name].blank?
     object.errors.messages[field_name].join(', ')
   end
+
+  def title(text)
+    content_for :title, text
+  end
+
+  def meta_tag(tag, text)
+    content_for :"meta_#{tag}", text
+  end
+
+  def yield_meta_tag(tag, default_text= DEFAULT_DESCRIPTION)
+    content_for?(:"meta_#{tag}") ? content_for(:"meta_#{tag}") : default_text
+  end
+
+  DEFAULT_DESCRIPTION = "Γνωριμίες Ελλάδα, το νέο απολύτως δωρεάν 100% " \
+                        "Ελληνικό site γνωριμιών. Γίνε κι εσύ μέλος σήμερα " \
+                        "για να γνωρίσεις τον επόμενο έρωτά σου. Γιατί όλοι " \
+                        "έχουν δικαίωμα στην αγάπη!"
 end
