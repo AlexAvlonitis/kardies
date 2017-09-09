@@ -1,7 +1,8 @@
 %header
-  .float-right.m-4
-    = link_to user_session_path, class: "btn btn-orange" do
-      = t 'home.index.login'
+  .row.justify-content-end.mr-4
+    .mt-4
+      = link_to user_session_path, class: "btn btn-orange" do
+        = t 'home.index.login'
   .header-content
     .header-content-inner
       = link_to root_path do
