@@ -10,7 +10,10 @@
     %meta{name: "description", content: "#{yield_meta_tag(:description)}"}
     %title
       = if content_for?(:title) then yield(:title) + ' | ' end
-      Kardies.gr
+      - if content_for?(:title)
+        Kardies.gr
+      - else
+        Γνωριμίες Ελλάδα | Kardies.gr
 
     = csrf_meta_tags
 
