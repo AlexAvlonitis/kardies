@@ -81,7 +81,9 @@ en-gb:
       next: "Next"
       previous: "Previous"
       forgot_password: 'Forgot your password?'
-      send_pass_instructions: "Send password reset instructions"
+      meta_forgot_password_title: 'Meets singles in Greece, change password'
+      meta_forgot_password_description: 'Meets singles in Greece, forgot your password? Change it by providing your email and instructions will be sent'
+      send_pass_instructions: "Send instructions"
       new_password: 'New password'
       new_password_confirmation: 'New password confirmation'
       change_password: "Change password"

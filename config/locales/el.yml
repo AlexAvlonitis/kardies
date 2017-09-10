@@ -81,7 +81,9 @@ el:
       next: "Συνέχεια"
       previous: "Πίσω"
       forgot_password: 'Ξεχάσατε τον κωδικό σας?'
-      send_pass_instructions: "Αποστολή οδηγιών για αλλαγή κωδικού"
+      meta_forgot_password_title: 'Γνωριμίες Ελλάδα, αλλαγή κωδικού'
+      meta_forgot_password_description: 'Γνωριμίες Ελλάδα, ξεχάσατε τον κωδικό σας? αλλαγή κωδικού με την φόρμα αποστολής οδηγιών'
+      send_pass_instructions: "Αποστολή οδηγιών"
       new_password: 'Νέος κωδικός'
       new_password_confirmation: 'Νέος κωδικός επανάληψη'
       change_password: "Αλλαγή κωδικού"
