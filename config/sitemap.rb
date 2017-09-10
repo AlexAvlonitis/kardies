@@ -15,6 +15,9 @@ SitemapGenerator::Sitemap.create do
   #
   # Examples:
   #
+
+  add user_session_path, priority: 0.0
+  add user_registration_path, priority: 0.0
   add contacts_path, priority: 0.0
   add '/terms', priority: 0.0
   #
