@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
+  let(:user) { FactoryGirl.create(:user) }
+  let(:user2) { FactoryGirl.create(:user) }
 
   describe 'GET #index' do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:user2) { FactoryGirl.create(:user) }
-
     before do
       sign_in user
       get :index
@@ -21,8 +20,6 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:user) { FactoryGirl.create(:user) }
-
     before do
       sign_in user
       get :show, params: { username: user.username }
@@ -38,5 +35,4 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
-
 end

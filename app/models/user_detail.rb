@@ -36,8 +36,8 @@ class UserDetail < ApplicationRecord
   validate :states_are_included_in_the_list
 
   validates :age, inclusion: {
-    in: (16...99).map(&:to_s),
-    message: '%<value>s is not a valid age, must be between 16 and 99'
+    in: (18...99).map(&:to_s),
+    message: '%<value>s is not a valid age, must be between 18 and 99'
   }
 
   private

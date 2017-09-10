@@ -53,7 +53,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
-  gem 'ffaker'
+  gem 'faker'
   gem 'rspec-rails', '~> 3.5'
 end
 
