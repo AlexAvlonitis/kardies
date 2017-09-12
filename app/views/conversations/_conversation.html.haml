@@ -1,25 +1,25 @@
 - if conversation.participants.count > 1
+  - participant = conversation.participants.reject { |user| current_user == user }.first
   %tr
     %td
-      = link_to conversation_path(conversation), {"data-turbolinks" => "false"} do
-        - if conversation.is_unread?(current_user)
-          = fa_icon 'envelope 2x'
-        - else
-          = fa_icon 'envelope-o 2x'
-      - conversation.participants.each do |participant|
-        - unless participant == current_user
-          = link_to user_path(participant) do
-            = image_tag participant.profile_picture, class: "tiny-size"
-            = participant.username
-    %td= conversation.created_at.to_formatted_s(:short)
+      .row
+        .col-lg-2.col-md-2.col-sm-12
+          = link_to conversation_path(conversation) do
+            .pic-round-sm{ style: "background-image: url(#{participant.profile_picture})"}
+        .col-lg-8.col-md-8.col-sm-12
+          %p.strong.pt-2= participant.username.capitalize
+          %p.small
+            = conversation.created_at.to_formatted_s(:short)
+            - if conversation.is_unread?(current_user)
+              %span.badge.badge-pill.badge-success= t '.new_message'
 
-    %td
-      .pull-right
-      - if conversation.is_trashed?(current_user)
-        = link_to "#{t '.restore'}", restore_conversation_path(conversation),
-                                     class: 'button secondary small',
-                                     method: :post
+        .col-lg-2.col-md-2.col-sm-12
+          - if conversation.is_trashed?(current_user)
+            = link_to "#{t '.restore'}", restore_conversation_path(conversation),
+                                         class: 'btn btn-outline-primary btn-sm btn-primary',
+                                         method: :post
 
-      - else
-        = link_to conversation_path(conversation), method: :delete, class: "button alert", title: "#{t '.delete'}", data: {confirm: "#{t '.delete_confirm'}"} do
-          = fa_icon "trash"
+          - else
+            .red-text
+              = link_to conversation_path(conversation), method: :delete, class: "btn", title: "#{t '.delete'}", data: {confirm: "#{t '.delete_confirm'}"} do
+                = fa_icon "times 2x"

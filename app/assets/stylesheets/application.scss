@@ -224,6 +224,17 @@ table tr:nth-of-type(even) {
   padding: 0;
 }
 
+.pic-round-sm {
+  display: block;
+  width: 76px;
+  height: 76px;
+  overflow: hidden;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center center;
+  padding: 0;
+}
+
 .logo {
   max-width: 300px;
 }

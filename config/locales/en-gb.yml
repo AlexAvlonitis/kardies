@@ -169,6 +169,7 @@ en-gb:
       delete: "Delete"
       delete_confirm: "This conversation will be deleted!"
       restore: "Restore"
+      new_message: "New message"
   messages:
     new:
       subject: 'Subject'

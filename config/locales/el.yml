@@ -170,6 +170,7 @@ el:
       delete: "Διαγραφή"
       delete_confirm: "Η συνομιλία θα διαγραφεί!"
       restore: "Επαναφορά"
+      new_message: "Νέο μήνυμα"
   messages:
     new:
       subject: 'Θέμα'
