@@ -9,21 +9,13 @@
     .tab-content
       .tab-pane.active{ id: "messages", role: "tabpanel" }
         %table.table
-          %thead
-            %strong.orange-text= t '.messages'
-            %tr
-              %th= t '.conversation'
           %tbody
             = render partial: 'conversations/conversation', collection: @conversations
       .tab-pane{ id: "trash", role: "tabpanel" }
         %table.table
-          %thead
-            %p
-              %strong.orange-text= t '.trash'
-            %tr
-              %th= t '.conversation'
           %tbody
-            = link_to empty_trash_conversations_path, class: 'btn btn-sm btn-outline-danger', method: :delete, data: {confirm: "#{t '.empty_trash_confirm'}"} do
-              = fa_icon 'trash-o'
-              = t '.empty_trash'
+            .m-2
+              = link_to empty_trash_conversations_path, class: 'btn btn-sm btn-outline-danger', method: :delete, data: {confirm: "#{t '.empty_trash_confirm'}"} do
+                = fa_icon 'trash-o'
+                = t '.empty_trash'
             = render partial: 'conversations/conversation', collection: @conversations_trash
