@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   def show
     user_deleted_check
+    profile_pic_exists?
   end
 
   private
@@ -45,5 +46,12 @@ class UsersController < ApplicationController
 
   def last_search
     current_user.search_criteria.last
+  end
+
+  def profile_pic_exists?
+    unless current_user.profile_picture_exists?
+      redirect_to users_path
+      flash[:error] = t '.profile_pic_needed'
+    end
   end
 end

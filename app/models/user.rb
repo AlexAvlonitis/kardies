@@ -117,6 +117,10 @@ class User < ApplicationRecord
     user_detail.profile_picture.url(size)
   end
 
+  def profile_picture_exists?
+    user_detail.profile_picture.exists?
+  end
+
   def youtube_url
     about.youtube_url if about && about.youtube_url.present?
   end
