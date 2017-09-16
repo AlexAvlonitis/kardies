@@ -22,13 +22,17 @@ class RegistrationsController < Devise::RegistrationsController
     params[:user][:username] = params[:user][:username].split(' ').join('_')
   end
 
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+
   def account_update_params
     params.require(:user).permit(allow_params)
   end
 
   def allow_params
     [
-      :username, :email, :password, :password_confirmation, :current_password,
+      :username, :email, :password, :password_confirmation,
       user_detail_attributes: %i[
         id city state gender age profile_picture
       ]
