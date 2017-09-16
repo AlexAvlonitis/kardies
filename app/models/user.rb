@@ -40,26 +40,7 @@ class User < ApplicationRecord
   validates_email_format_of :email, message: 'Λάθος email'
 
   def self.find_for_oauth(auth)
-    user = find_by(provider: auth.provider, uid: auth.uid)
-    unless user
-      email = auth.info.email
-      password = Devise.friendly_token[0, 20]
-      username = create_username(auth.info.email)
-      user = User.create(
-               provider: auth.provider,
-               uid: auth.uid,
-               email: email,
-               password: password,
-               username: username,
-               user_detail_attributes: {
-                 state: 'att',
-                 city: 'athina-ATT',
-                 age: 30,
-                 gender: 'female'
-               }
-             )
-    end
-    user
+    find_by(provider: auth.provider, uid: auth.uid) || create_user(auth)
   end
 
   def self.search(query)
@@ -176,5 +157,24 @@ class User < ApplicationRecord
 
   def add_vote_notification
     AddVoteNotification.new(self, nini_user).add
+  end
+
+  def self.create_user(auth)
+    email = auth.info.email
+    password = Devise.friendly_token[0, 20]
+    username = create_username(auth.info.email)
+    User.create(
+      provider: auth.provider,
+      uid: auth.uid,
+      email: email,
+      password: password,
+      username: username,
+      user_detail_attributes: {
+        state: 'att',
+        city: 'athina-ATT',
+        age: 30,
+        gender: 'female'
+      }
+    )
   end
 end

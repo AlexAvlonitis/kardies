@@ -6,7 +6,7 @@
       %li.breadcrumb-item= link_to "#{t '.galleries'}", galleries_path
       %li.breadcrumb-item= link_to "#{t 'email_preferences.edit.notifications'}", edit_email_preferences_path
 
-    .col-lg-6.col-sm-12.bg-white.effect2
+    .col-lg-6.col-sm-12.bg-white.effect2.p-4
       %h2.orange-text= t '.my_profile'
       = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
 
@@ -18,28 +18,27 @@
             %label.button{"for" => "picUpload"}=t '.change_prof_pic'
             = d.file_field :profile_picture, as: :file, class: "show-for-sr form-control-file", id: "picUpload", onchange: "previewProfilePic()"
             %small.form-text.text-muted= t '.ten_mb_limit'
-            %p.error= show_errors(@user.user_detail, :profile_picture)
+            %p.error= show_errors(current_user.user_detail, :profile_picture)
 
-          .form-group
-            %label= t '.state'
-            = d.select :state, GC.states, {selected: current_user.state}, {class: "state-selection form-control"}
-            %p.error= show_errors(@user.user_detail, :state)
+          .row
+            .col-xs-12.col-sm-6.col-md-6
+              .form-group
+                = d.select :state, GC.states, {}, {class: "form-control form-control-lg state-selection", id: "lgState"}
+                %p.error= show_errors(current_user.user_detail, :state)
+            .col-xs-12.col-sm-6.col-md-6
+              .form-group
+                = d.select :city, GC.cities('ait'), {}, {class: "city-selection form-control form-control-lg", id: "lgCity"}
+                %p.error= show_errors(current_user.user_detail, :city)
 
-          .form-group
-            %label= t '.city'
-            = d.select :city,  GC.cities(current_user.state), {selected: current_user.city}, {class: "city-selection form-control"}
-            %p.error= show_errors(@user.user_detail, :city)
-
-          .form-group
-            %label= t '.age'
-            = d.select :age, options_for_select((16..99).step(1), current_user.age), class: "form-control"
-            %p.error= show_errors(@user.user_detail, :age)
-
-          .form-group.row
-            .col-lg-6
-              .form-check.form-check-inline
-                = d.collection_radio_buttons :gender, [['male', "#{t '.male'}"], ['female', "#{t '.female'}"], ['other', "#{t '.other'}"]], :first, :last, class: "form-check-input"
-                %p.error= show_errors(@user.user_detail, :gender)
+          .row
+            .col-xs-12.col-sm-6.col-md-6
+              .form-group
+                = d.select :gender, [["#{t 'devise.registrations.edit.male'}", 'male'], ["#{t 'devise.registrations.edit.female'}", 'female'], ["#{t 'devise.registrations.edit.other'}", 'other']], {}, {class: "form-control form-control-lg", id: "lgGender"}
+                %p.error= show_errors(current_user.user_detail, :gender)
+            .col-xs-12.col-sm-6.col-md-6
+              .form-group
+                = d.select :age, options_for_select((18..99).step(1), 30), {}, {class: "form-control form-control-lg", id: "lgAge"}
+                %p.error= show_errors(current_user.user_detail, :age)
 
 
         =f.input :username, label: "#{t '.username'}", error_html: { class: 'red-text' }
@@ -61,13 +60,12 @@
           .col-sm-6
             %label= t '.new_password_confirmation'
             = f.password_field :password_confirmation, class: "form-control"
-            %p.error= show_errors(@user, :password_confirmation)
+            %p.error= show_errors(current_user, :password_confirmation)
 
         = f.submit "#{t '.update'}", class: "btn btn-primary btn-block", id: "edit-submit"
       %hr
-      %p.orange-text= t '.cancel_account'
+      %p.strong= t '.cancel_account'
       = button_to "#{t '.cancel_account'}", registration_path(resource_name),
                                        data: { confirm: "Προσοχή, ο λογαριασμός σας θα διαγραφεί ολοκληρωτικά" },
                                        method: :delete,
-                                       class: 'btn btn-danger btn-sm'
-      = link_to "#{t '.back'}", :back
+                                       class: 'btn btn-outline-danger btn-sm'
