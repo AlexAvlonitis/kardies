@@ -37,7 +37,7 @@
                 %p.error= show_errors(current_user.user_detail, :gender)
             .col-xs-12.col-sm-6.col-md-6
               .form-group
-                = d.select :age, options_for_select((18..99).step(1), 30), {}, {class: "form-control form-control-lg", id: "lgAge"}
+                = d.select :age, options_for_select((18..99).step(1), current_user.age), {}, {class: "form-control form-control-lg", id: "lgAge"}
                 %p.error= show_errors(current_user.user_detail, :age)
 
 
