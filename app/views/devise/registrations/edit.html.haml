@@ -23,11 +23,11 @@
           .row
             .col-xs-12.col-sm-6.col-md-6
               .form-group
-                = d.select :state, GC.states, {}, {class: "form-control form-control-lg state-selection", id: "lgState"}
+                = d.select :state, GC.states, {selected: current_user.state}, {class: "form-control form-control-lg state-selection", id: "lgState"}
                 %p.error= show_errors(current_user.user_detail, :state)
             .col-xs-12.col-sm-6.col-md-6
               .form-group
-                = d.select :city, GC.cities('ait'), {}, {class: "city-selection form-control form-control-lg", id: "lgCity"}
+                = d.select :city, GC.cities(current_user.state), {selected: current_user.city}, {class: "city-selection form-control form-control-lg", id: "lgCity"}
                 %p.error= show_errors(current_user.user_detail, :city)
 
           .row
