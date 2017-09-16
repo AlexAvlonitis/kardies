@@ -56,6 +56,8 @@ en-gb:
         change_password: "Change password"
         new_password: "New password"
         new_password_confirmation: "New password confirmation"
+        current_password: 'Current password'
+        current_password_description: 'Confirm your password before any changes'
         password: 'Password'
         password_confirmation: 'Password confirmation'
         password_placeholder: "Leave it blank if you don't want to change your password"

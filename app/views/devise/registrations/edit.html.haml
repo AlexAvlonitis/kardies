@@ -41,12 +41,14 @@
                 %p.error= show_errors(current_user.user_detail, :age)
 
 
-        =f.input :username, label: "#{t '.username'}", error_html: { class: 'red-text' }
-        =f.input :email, label: "#{t '.email'}", error_html: { class: 'red-text' }
+        = f.input :username, label: "#{t '.username'}", error_html: { class: 'red-text' }
+        = f.input :email, label: "#{t '.email'}", error_html: { class: 'red-text' }
+        = f.input :current_password, label: "#{t '.current_password'} (#{t '.current_password_description'})", error_html: { class: 'red-text' }
 
         - if devise_mapping.confirmable? && resource.pending_reconfirmation?
           %div
             Currently waiting confirmation for: #{resource.unconfirmed_email}
+
 
         %p
           %strong

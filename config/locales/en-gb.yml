@@ -182,3 +182,11 @@ en-gb:
     message_modal:
       send_message: 'Send Message'
       send: 'Send'
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              blank: 'Please enter your current password'
+              invalid: "Wrong password"

@@ -214,6 +214,9 @@ el:
               blank: "Ο κωδικός δεν μπορεί να είναι κενός"
             password_confirmation:
               confirmation: "Ο κωδικός επιβεβαίωσης δεν είναι ίδιος με τον κωδικό"
+            current_password:
+              blank: "Πρέπει να επαληθεύσετε τον κωδικό σας"
+              invalid: "Λάθος κωδικός"
         user_detail:
           attributes:
             state:
