@@ -40,7 +40,8 @@ class User < ApplicationRecord
   validates_email_format_of :email, message: 'Λάθος email'
 
   def self.find_for_oauth(auth)
-    find_by(provider: auth.provider, uid: auth.uid) || create_user(auth)
+    user = find_by(provider: auth.provider, uid: auth.uid)
+    user || create_user(auth)
   end
 
   def self.search(query)
