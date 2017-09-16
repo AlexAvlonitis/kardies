@@ -14,6 +14,13 @@ $(document).on "turbolinks:load", ->
     modal.find('input[type="hidden"][name="message[username]"]').val(recipient)
   )
 
+  $('#imageModal').on('show.bs.modal', (event) ->
+    button = $(event.relatedTarget)
+    recipient = button.data('whatever')
+    modal = $(this)
+    modal.find('.profile-pic-modal').attr("src", recipient);
+  )
+
   $('.like-link').on("ajax:success", (e, data, status, xhr) ->
     username  = this.id.split("__");
     getID = this.id
