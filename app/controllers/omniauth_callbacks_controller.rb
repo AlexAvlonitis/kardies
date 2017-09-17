@@ -1,12 +1,6 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
-    handle_redirect('devise.facebook_data', 'Facebook')
-  end
 
-  private
-
-  def handle_redirect(_session_variable, kind)
-    # Use the session locale set earlier; use the default if it isn't available.
     I18n.locale = session[:omniauth_login_locale] || I18n.default_locale
 
     @user = User.from_omniauth(omniauth_values)
@@ -20,15 +14,13 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  def find_user
-    User.find_for_oauth(omniauth_values)
+  def failure
+    redirect_to root_path
   end
+
+  private
 
   def omniauth_values
     request.env['omniauth.auth']
-  end
-
-  def failure
-    redirect_to root_path
   end
 end
