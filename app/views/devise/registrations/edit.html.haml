@@ -65,7 +65,6 @@
 
         = f.submit "#{t '.update'}", class: "btn btn-primary btn-block", id: "edit-submit"
       %hr
-      %p.strong= t '.cancel_account'
       = button_to "#{t '.cancel_account'}", registration_path(resource_name),
                                        data: { confirm: "Προσοχή, ο λογαριασμός σας θα διαγραφεί ολοκληρωτικά" },
                                        method: :delete,

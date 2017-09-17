@@ -39,7 +39,7 @@ class User < ApplicationRecord
   validates :username, length: { in: 3..20 }
   validates_email_format_of :email, message: 'Λάθος email'
 
-  def self.find_for_oauth(auth)
+  def self.from_omniauth(auth)
     user = find_by(provider: auth.provider, uid: auth.uid)
     user || create_user(auth)
   end

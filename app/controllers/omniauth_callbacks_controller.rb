@@ -8,12 +8,15 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def handle_redirect(_session_variable, kind)
     # Use the session locale set earlier; use the default if it isn't available.
     I18n.locale = session[:omniauth_login_locale] || I18n.default_locale
-    if omniauth_values.info.email.present?
-      user = find_user
-      sign_in_and_redirect user, event: :authentication
-      set_flash_message(:notice, :success, kind: kind) if is_navigational_format?
+
+    @user = User.from_omniauth(omniauth_values)
+
+    if @user.persisted?
+      sign_in_and_redirect @user, event: :authentication
+      set_flash_message(:notice, :success, kind: "Facebook") if is_navigational_format?
     else
-      redirect_to root_path
+      session["devise.facebook_data"] = omniauth_values
+      redirect_to new_user_registration_url
     end
   end
 
@@ -23,5 +26,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def omniauth_values
     request.env['omniauth.auth']
+  end
+
+  def failure
+    redirect_to root_path
   end
 end
