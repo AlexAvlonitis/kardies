@@ -10,7 +10,9 @@ class UserDetail < ApplicationRecord
   update_index('users#user') { self }
 
   has_attached_file :profile_picture,
+                    source_file_options: { all: '-auto-orient' },
                     styles: {
+                      original: '',
                       medium: '300x300>',
                       thumb: '100x100>'
                     },
