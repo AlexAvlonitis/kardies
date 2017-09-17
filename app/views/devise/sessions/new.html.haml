@@ -9,7 +9,7 @@
     .row.justify-content-center
       .col-xs-12.col-sm-8.col-md-4.light-grey-bg.p-4.effect1.m-4
         = form_for(@user, url: session_path(@user), html: {role: "form"}) do |f|
-          %h2.text-center= t 'home.index.login'
+          %h1.text-center= t 'home.index.login'
           %hr.colorgraph
           .form-group
             = f.text_field :email,
