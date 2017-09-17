@@ -66,7 +66,7 @@ en-gb:
         pass_validation: "characters at least"
         only_latin: "Only latin characters (abc...)"
         back: 'Back'
-        ten_mb_limit: "Up to 10 ΜΒ"
+        ten_mb_limit: "Up to 10 ΜΒ. Allowed files: (.jpeg, .jpg, .png, .gif, .tiff)"
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
       signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
