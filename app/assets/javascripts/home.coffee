@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on "turbolinks:load", ->
-  $(':file').filestyle input: false, buttonText: 'Επιλογή φωτογραφίας προφίλ', buttonName: "btn-primary", iconName: 'fa fa-camera'
+  $(':file').filestyle input: false, buttonText: 'Επιλογή φωτογραφίας', buttonName: "btn-primary", iconName: 'fa fa-camera'
 
   @previewProfilePic = ->
     preview = document.querySelector('img')
