@@ -15,7 +15,6 @@
             .previewProfilePic
               = image_tag current_user.profile_picture(:thumb), class: "img-thumbnail thumb-size form-control"
           .form-group
-            %label.button{"for" => "picUpload"}=t '.change_prof_pic'
             = d.file_field :profile_picture, as: :file, class: "show-for-sr form-control-file", id: "picUpload", onchange: "previewProfilePic()"
             %small.form-text.text-muted= t '.ten_mb_limit'
             %p.error= show_errors(current_user.user_detail, :profile_picture)
