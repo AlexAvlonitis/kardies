@@ -138,7 +138,7 @@ el:
   suggested_people:
     list:
       suggested_people_header: 'Ίσως ενδιαφέρεστε'
-      suggested_people_description: 'Μέλη που βρίκαμε κοντά σας και μπορεί να ενδιαφέρεστε'
+      suggested_people_description: 'Μέλη που βρήκαμε κοντά σας και μπορεί να ενδιαφέρεστε'
   layouts:
     sidebar:
       messages: "Μηνύματα"
