@@ -5,10 +5,11 @@ class SuggestedUsers
   end
 
   def process
-    unless find_by_state_and_prefered_gender.empty?
+    if find_by_state_and_prefered_gender.empty?
+      users << find_by_gender
+    else
       users << find_by_state_and_prefered_gender
     end
-    users << find_by_gender
     normalize_users
   end
 
