@@ -7,7 +7,7 @@ class SuggestedUsers
   def process
     users << find_by_state_and_prefered_gender
     users << find_by_gender if users.empty?
-    normalize_and_shuffle_users
+    normalize_users
   end
 
   private
@@ -20,7 +20,9 @@ class SuggestedUsers
         gender: gender_of_interest,
         state: current_user.state
       }
-    ).limit(4)
+    )
+    .order("RAND()")
+    .limit(4)
   end
 
   def find_by_gender
@@ -28,7 +30,9 @@ class SuggestedUsers
       user_details: {
         gender: gender_of_interest
       }
-    ).limit(4)
+    )
+    .order("RAND()")
+    .limit(4)
   end
 
   def gender_of_interest
@@ -36,7 +40,7 @@ class SuggestedUsers
     'male'
   end
 
-  def normalize_and_shuffle_users
-    users.flatten.shuffle.uniq
+  def normalize_users
+    users.flatten.uniq
   end
 end
