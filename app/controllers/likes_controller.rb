@@ -4,6 +4,7 @@ class LikesController < ApplicationController
   def index
     current_user.vote_notifications.destroy_all
     @likes = current_user.votes_for.order(created_at: :desc).voters
+    suggested_users
   end
 
   def like
@@ -29,7 +30,7 @@ class LikesController < ApplicationController
 
   private
 
-  attr_reader :add_vote_notification
+  attr_reader :add_vote_notification, :suggested_users
 
   def add_vote_notification
     @add_vote_notification ||= AddVoteNotification.new(@user, current_user).add
@@ -43,5 +44,9 @@ class LikesController < ApplicationController
   def delete_vote_notification
     vote = VoteNotification.find_by(voted_by_id: current_user.id)
     vote ? vote.destroy! : return
+  end
+
+  def suggested_users
+    @suggested_users ||= SuggestedUsers.new(current_user).process
   end
 end

@@ -135,6 +135,10 @@ el:
       age: "Ηλικία"
       age_from: "Από"
       age_to: "Μέχρι"
+  suggested_people:
+    list:
+      suggested_people_header: 'Ίσως ενδιαφέρεστε'
+      suggested_people_description: 'Μέλη που βρίκαμε κοντά σας και μπορεί να ενδιαφέρεστε'
   layouts:
     sidebar:
       messages: "Μηνύματα"
