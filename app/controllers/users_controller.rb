@@ -2,13 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, except: [:index]
 
   def index
-    if search_present?
-      @users ||= get_all_indexed_users
-      @search ||= search_criteria
-    else
-      @users ||= get_all_users
-      @search ||= search_criteria
-    end
+    @users ||= search_present? ? get_all_indexed_users : get_all_users
+    @search ||= search_criteria
   end
 
   def show
@@ -40,8 +35,7 @@ class UsersController < ApplicationController
   end
 
   def get_all_indexed_users
-     User.search(last_search)
-         .page params[:page]
+    User.search(last_search).page params[:page]
   end
 
   def last_search

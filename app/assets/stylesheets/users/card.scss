@@ -102,3 +102,17 @@
     color: $orange;
   }
 }
+
+.suggested_people {
+  min-width: 150px;
+  max-width: 150px;
+  background-color: $whitesmoke;
+
+  .card-bg {
+    max-width: 150px;
+    height: 100px;
+    background-size:cover;
+    background-position:50% 50%;
+    background-color: $aluminium;
+  }
+}

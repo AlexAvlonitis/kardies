@@ -2,7 +2,7 @@
   .col
     .side-search.effect2
       = render partial: 'search'
-.row.justify-content-center
+.row
   .card-deck.justify-content-center
     - if ! @users.map {|f| f}.blank?
       - @users.each do |user|
