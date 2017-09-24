@@ -55,6 +55,36 @@ class User < ApplicationRecord
     scope.only(:id).load
   end
 
+  def self.get_all(current_user)
+    includes(:user_detail)
+      .all_except(current_user)
+      .not_blocked
+      .order(created_at: :desc)
+  end
+
+  def self.get_by_state_and_prefered_gender(current_user, gender_of_interest)
+    includes(:user_detail).where(
+      user_details: {
+        gender: gender_of_interest,
+        state: current_user.state
+      }
+    ).all_except(current_user)
+    .not_blocked
+    .order("RAND()")
+    .limit(4)
+  end
+
+  def self.get_by_gender(current_user, gender_of_interest)
+    includes(:user_detail).where(
+      user_details: {
+        gender: gender_of_interest
+      }
+    ).all_except(current_user)
+    .not_blocked
+    .order("RAND()")
+    .limit(4)
+  end
+
   def soft_delete
     update!(deleted_at: Time.current)
   end

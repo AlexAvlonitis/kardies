@@ -27,11 +27,7 @@ class UsersController < ApplicationController
   end
 
   def get_all_users
-    User.all_except(current_user)
-        .includes(:user_detail)
-        .not_blocked
-        .order(created_at: :desc)
-        .page params[:page]
+    User.get_all(current_user).page params[:page]
   end
 
   def get_all_indexed_users
