@@ -6,6 +6,7 @@ class ConversationsController < ApplicationController
     @conversations
     @conversations_trash = @mailbox.trash.page(params[:page]).per(10)
     delete_conversation_notifications
+    suggested_users
   end
 
   def show
@@ -41,6 +42,8 @@ class ConversationsController < ApplicationController
 
   private
 
+  attr_reader :suggested_users
+
   def get_mailbox
     @mailbox ||= current_user.mailbox
   end
@@ -56,5 +59,9 @@ class ConversationsController < ApplicationController
 
   def delete_conversation_notifications
     current_user.conversation_notifications.destroy_all
+  end
+
+  def suggested_users
+    @suggested_users ||= SuggestedUsers.new(current_user).process
   end
 end

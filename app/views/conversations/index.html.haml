@@ -1,5 +1,5 @@
 .row
-  .col-lg-6.col-md-12.col-sm-12.bg-white.effect2.mt-3
+  .col-lg-6.col-md-12.col-sm-12.bg-white.effect2.m-3.p-4
     %ul.nav.nav-tabs{ role: "tablist" }
       %li.nav-item
         %a.nav-link.active{ "data-toggle" => "tab", href: "#messages", role: "tab" }= t '.messages'
@@ -19,3 +19,7 @@
                 = fa_icon 'trash-o'
                 = t '.empty_trash'
             = render partial: 'conversations/conversation', collection: @conversations_trash
+
+  .col-lg-5.col-md-12.col-sm-12.bg-white.effect2.m-3.p-4
+    = render partial: 'suggested_people/list',
+      locals: { users: @suggested_users }
