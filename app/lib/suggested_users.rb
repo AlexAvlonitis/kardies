@@ -5,8 +5,11 @@ class SuggestedUsers
   end
 
   def process
-    users << find_by_state_and_prefered_gender
-    users << find_by_gender if users.empty?
+    if find_by_state_and_prefered_gender.empty?
+      users << find_by_gender
+    else
+      users << find_by_state_and_prefered_gender
+    end
     normalize_users
   end
 
@@ -15,24 +18,11 @@ class SuggestedUsers
   attr_reader :current_user, :users
 
   def find_by_state_and_prefered_gender
-    User.includes(:user_detail).where(
-      user_details: {
-        gender: gender_of_interest,
-        state: current_user.state
-      }
-    )
-    .order("RAND()")
-    .limit(4)
+    User.get_by_state_and_prefered_gender(current_user, gender_of_interest)
   end
 
   def find_by_gender
-    User.includes(:user_detail).where(
-      user_details: {
-        gender: gender_of_interest
-      }
-    )
-    .order("RAND()")
-    .limit(4)
+    User.get_by_gender(current_user, gender_of_interest)
   end
 
   def gender_of_interest
