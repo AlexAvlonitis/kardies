@@ -11,7 +11,7 @@
       = render 'galleries/form', { gallery: @gallery }
 
       %hr
-      %h4=t 'users.show.my_galleries'
+      %h4= t 'users.show.my_galleries'
       - if @galleries
         - @galleries.each do |gallery|
           %h5
