@@ -2,7 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on "turbolinks:load", ->
-  $('.hidden-gallery-form').hide()
 
   @previewFiles = ->
 
@@ -30,7 +29,3 @@ $(document).on "turbolinks:load", ->
   $('#gallery-submit').on 'click', ->
     $body = $("body")
     $body.addClass("loading");
-
-  $('.create-gallery').on 'click', (e) ->
-    e.preventDefault()
-    $('.hidden-gallery-form').toggle()

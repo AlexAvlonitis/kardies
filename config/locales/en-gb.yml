@@ -108,6 +108,7 @@ en-gb:
       no_albums: "The user hasn't posted any albums yet"
       youtube_instructions: "Only enter the code that is at the end of the youtube URL. e.g (https://www.youtube.com/watch?v=YQHsXMglC9A), enter: YQHsXMglC9A"
       profile_pic_needed: "You need to have a profile picture, to be able to view other profiles"
+      galleries: 'Create a gallery'
     youtube_panel:
       youtube: "A song that represents me"
     details_panel:
