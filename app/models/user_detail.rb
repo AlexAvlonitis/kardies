@@ -2,9 +2,6 @@ class UserDetail < ApplicationRecord
   belongs_to :user
   after_update :flush_age_cache, :flush_profile_picture_cache
 
-  DEFAULT_MISSING_PICTURE_URL =
-    'https://s3-eu-west-1.amazonaws.com/imisi/user_details/profile_pictures/images/thumb/missing.png'
-
   VALID_IMAGES_REGEX = /^image\/(jpeg|jpg|png|gif|tiff)$/
 
   update_index('users#user') { self }
@@ -16,7 +13,7 @@ class UserDetail < ApplicationRecord
                       medium: '300x300>',
                       thumb: '100x100>'
                     },
-                    default_url: DEFAULT_MISSING_PICTURE_URL
+                    default_url: '/images/missing.png'
 
   validates_attachment_content_type :profile_picture, content_type: %r{\Aimage\/.*\Z}
   validates_attachment :profile_picture,
