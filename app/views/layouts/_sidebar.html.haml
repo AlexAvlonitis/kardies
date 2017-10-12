@@ -19,6 +19,10 @@
     = link_to edit_user_registration_path, class: "link-green" do
       = fa_icon "cogs 2x"
       = t '.profile'
+    - if current_user.admin?
+      = link_to admin_application_index_path do
+        = fa_icon "key 2x"
+        = t '.admin'
     = link_to destroy_user_session_path, method: :delete, class: "link-purple" do
       = fa_icon "power-off"
       = t '.sign_out'
