@@ -196,6 +196,7 @@ class User < ApplicationRecord
 
   def self.create_user(auth)
     email = auth.info.email
+    profile_picture = auth.info.image
     password = Devise.friendly_token[0, 20]
     username = create_username(auth.info.email)
     User.create(
@@ -205,6 +206,7 @@ class User < ApplicationRecord
       password: password,
       username: username,
       user_detail_attributes: {
+        profile_picture: profile_picture,
         state: 'att',
         city: 'athina-ATT',
         age: 30,

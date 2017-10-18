@@ -249,7 +249,9 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
-  config.omniauth :facebook, "#{ENV.fetch('FB_APP_ID')}", "#{ENV.fetch('FB_APP_SECRET')}"
+  config.omniauth :facebook, "#{ENV.fetch('FB_APP_ID')}", "#{ENV.fetch('FB_APP_SECRET')}",
+                             image_size: { width: 500, height: 500 },
+                             secure_image_url: true
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
