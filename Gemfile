@@ -43,7 +43,6 @@ gem 'sitemap_generator'
 gem 'toastr-rails'
 gem 'validates_email_format_of'
 gem 'bootstrap-filestyle-rails'
-gem 'ads-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
