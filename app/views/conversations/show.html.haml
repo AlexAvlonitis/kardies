@@ -2,9 +2,8 @@
   .ui
     .left-menu
       = link_to "#{t 'abouts.edit.back'}", conversations_path, class: "btn btn-primary btn-sm btn-block"
-      = javascript_include_tag "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", async: true
-      %ins.adsbygoogle{ style: "display:block", "data-ad-client" => "ca-pub-6929844255027064", "data-ad-slot" => "3312852531", "data-ad-format" => "auto" }
-      = javascript_include_tag 'chatbox_ad'
+      .chatbox_ad
+        = render 'chatbox_ad'
     .chat
       .top{"id" => "conversation", "conversation-id" => "#{@hashed_conversation}"}
         .avatar
