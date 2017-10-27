@@ -19,5 +19,9 @@
                                          method: :post
           - else
             .red-text
-              = link_to conversation_path(conversation), method: :delete, class: "btn btn-outline-danger", title: "#{t '.delete'}", data: {confirm: "#{t '.delete_confirm'}"} do
+              = link_to conversation_path(conversation), method: :delete,
+                                                         remote: true,
+                                                         class: "btn btn-outline-danger",
+                                                         title: "#{t '.delete'}",
+                                                         data: {confirm: "#{t '.delete_confirm'}"} do
                 = fa_icon "times"

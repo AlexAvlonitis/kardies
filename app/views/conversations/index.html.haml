@@ -15,7 +15,11 @@
         %table.table
           %tbody
             .m-2
-              = link_to empty_trash_conversations_path, class: 'btn btn-sm btn-outline-danger', method: :delete, data: {confirm: "#{t '.empty_trash_confirm'}"} do
+              = link_to empty_trash_conversations_path,
+                  class: 'btn btn-sm btn-outline-danger',
+                  method: :delete,
+                  remote: true,
+                  data: {confirm: "#{t '.empty_trash_confirm'}"} do
                 = fa_icon 'trash-o'
                 = t '.empty_trash'
             = render partial: 'conversation', collection: @conversations_trash

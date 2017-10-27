@@ -22,7 +22,10 @@ class ConversationsController < ApplicationController
   def destroy
     @conversation.move_to_trash(current_user)
     flash[:success] = (t '.convo_trashed').to_s
-    redirect_to conversations_path
+    respond_to do |format|
+      format.html { redirect_to conversations_path }
+      format.json { head :ok }
+    end
   end
 
   def restore
@@ -36,7 +39,10 @@ class ConversationsController < ApplicationController
       conversation.receipts_for(current_user).mark_as_deleted
     end
     flash[:success] = (t '.trash_cleaned').to_s
-    redirect_to conversations_path
+    respond_to do |format|
+      format.html { redirect_to conversations_path }
+      format.json { head :ok }
+    end
   end
 
   private
