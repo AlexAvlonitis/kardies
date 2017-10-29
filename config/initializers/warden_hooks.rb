@@ -1,7 +1,7 @@
 Warden::Manager.after_set_user do |user,auth,opts|
   scope = opts[:scope]
   auth.cookies.signed["#{scope}_id"] = user.id
-  auth.cookies.signed["#{scope}_expires_at"] = 30.minutes.from_now
+  auth.cookies.signed["#{scope}_expires_at"] = 24.hours.from_now
 end
 
 Warden::Manager.before_logout do |user, auth, opts|
