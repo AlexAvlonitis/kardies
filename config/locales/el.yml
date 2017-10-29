@@ -45,6 +45,7 @@ el:
       about_me_placeholder: "Χρυσό παιδί..."
       youtube_placeholder: "YQHsXMglC9A"
       back: 'Πίσω'
+      character_length: 'χαρακτήρες είναι το όριο'
   email_preferences:
     edit:
       notifications: 'ΕΙΔΟΠΟΙΗΣΕΙΣ'

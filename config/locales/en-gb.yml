@@ -46,6 +46,7 @@ en-gb:
       about_me_placeholder: "Very good person..."
       youtube_placeholder: "YQHsXMglC9A"
       back: 'Back'
+      character_length: 'characters is the limit'
   email_preferences:
     edit:
       likes_label: 'Receive emails when i get new hearts'

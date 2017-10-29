@@ -4,6 +4,9 @@ class About < ApplicationRecord
                :flush_relationship_status_cache, :flush_looking_for_cache,
                :flush_description_cache
 
+  validates :description, length: { maximum: 1000,
+    too_long: "%{count} #{I18n.t 'abouts.edit.character_length'}" }
+
   private
 
   def flush_job_cache
