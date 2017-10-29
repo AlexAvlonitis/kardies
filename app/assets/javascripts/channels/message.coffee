@@ -23,10 +23,10 @@ $(document).on "turbolinks:load", ->
       unless sanitizeInput(messageValue) == ""
         App.message.speak messageValue, conversation_id
       event.target.value = ""
-      event.preventDefault()
+      event.defaultPrevented
 
   $('#conversation-form').submit (e) ->
-    e.preventDefault()
+    e.defaultPrevented
     messageValue = $('.conversation-message').val()
     unless sanitizeInput(messageValue) == ""
       App.message.speak messageValue, conversation_id

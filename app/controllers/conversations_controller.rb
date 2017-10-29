@@ -20,11 +20,11 @@ class ConversationsController < ApplicationController
   end
 
   def destroy
-    @conversation.move_to_trash(current_user)
-    flash[:success] = (t '.convo_trashed').to_s
-    respond_to do |format|
-      format.html { redirect_to conversations_path }
-      format.json { head :ok }
+    begin
+      @conversation.move_to_trash(current_user)
+      render json: @conversation, status: 201
+    rescue StandardError => e
+      render json: { errors: e.message }, status: 422
     end
   end
 

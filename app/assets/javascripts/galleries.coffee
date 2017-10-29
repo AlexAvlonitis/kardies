@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on "turbolinks:load", ->
 
+  $('.gallery').jGallery()
   @previewFiles = ->
 
     preview = document.querySelector('#preview')
@@ -25,6 +26,13 @@ $(document).on "turbolinks:load", ->
 
     if (files)
       [].forEach.call(files, readAndPreview)
+
+  $('#imageModal').on('show.bs.modal', (event) ->
+    button = $(event.relatedTarget)
+    recipient = button.data('whatever')
+    modal = $(this)
+    modal.find('.profile-pic-modal').attr("src", recipient);
+  )
 
   $('#gallery-submit').on 'click', ->
     $body = $("body")
