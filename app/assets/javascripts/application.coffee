@@ -13,6 +13,7 @@
 #= require jquery
 #= require tether
 #= require bootstrap
+#= require cookies_eu
 #= require jquery_ujs
 #= require toastr
 #= require lazyload
