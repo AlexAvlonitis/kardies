@@ -1,7 +1,11 @@
 .row
   .col
-    .side-search.effect2
+    .top-search.effect2
       = render partial: 'search'
+.row
+  .col
+    .users-ad
+      = render partial: 'conversations/chatbox_ad'
 .row.justify-content-center
   .card-deck.justify-content-center
     - if ! @users.map {|f| f}.blank?
