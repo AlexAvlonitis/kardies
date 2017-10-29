@@ -14,5 +14,5 @@ $(document).on "turbolinks:load", ->
     $body.addClass("loading");
 
   $('.change-password-link').on 'click', (e) ->
-    e.defaultPrevented
+    e.preventDefault
     $('#change-password').toggle()

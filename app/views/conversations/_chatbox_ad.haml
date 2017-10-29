@@ -2,4 +2,8 @@
   = javascript_include_tag "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", async: true
   -# kardies-ad
   %ins.adsbygoogle{ style: "display:block", "data-ad-client" => "ca-pub-6929844255027064", "data-ad-slot" => "1180596914", "data-ad-format" => "auto" }
-  = javascript_include_tag 'chatbox_ad'
+  :javascript
+    (adsbygoogle = window.adsbygoogle || []).push({});
+- else
+  .ad-fake-container
+    .white-text This is an Ad
