@@ -26,7 +26,8 @@
 $(document).on "turbolinks:load", ->
   $(".lazy").Lazy(
     scrollDirection: 'vertical',
-    effect : "fadeIn"
+    effect : "fadeIn",
+    effectTime: 500
   )
 
   toastr.options =

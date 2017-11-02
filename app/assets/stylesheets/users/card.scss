@@ -16,10 +16,12 @@
     background-size:cover;
     background-position:50% 50%;
     background-color: $aluminium;
+    z-index: -1;
   }
 
   .card-block {
     padding: 0;
+    z-index: 0;
   }
 
   .card-footer {
