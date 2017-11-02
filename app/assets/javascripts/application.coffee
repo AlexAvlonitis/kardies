@@ -24,8 +24,8 @@
 #= require_tree .
 
 $(document).on "turbolinks:load", ->
-  $("img").lazyload(
-    threshold : 500,
+  $(".lazy").Lazy(
+    scrollDirection: 'vertical',
     effect : "fadeIn"
   )
 
