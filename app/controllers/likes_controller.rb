@@ -3,7 +3,7 @@ class LikesController < ApplicationController
 
   def index
     current_user.vote_notifications.destroy_all
-    @likes = current_user.votes_for.order(created_at: :desc).voters
+    @likes = all_likes_sorted
     suggested_users
   end
 
@@ -48,5 +48,10 @@ class LikesController < ApplicationController
 
   def suggested_users
     @suggested_users ||= SuggestedUsers.new(current_user).process
+  end
+
+  def all_likes_sorted
+    @all_likes_sorted ||=
+      current_user.votes_for.limit(20).order(created_at: :desc).voters
   end
 end
