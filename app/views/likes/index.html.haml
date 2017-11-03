@@ -6,9 +6,7 @@
     .row
       - @likes.each do |user|
         = link_to user_path(user) do
-          = image_tag user.username,
-              data: { src: user.profile_picture },
-              class: "profile-pic-round-sm m-2 lazy"
+          .profile-pic-round-sm.m-2.lazy{ "data-src" => "#{user.profile_picture}" }
 
   .col-lg-5.col-md-12.col-sm-12.bg-white.effect2.m-3.p-4
     = render partial: 'suggested_people/list',
