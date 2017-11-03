@@ -6,7 +6,7 @@
       %li.breadcrumb-item= link_to "#{t 'abouts.edit.galleries'}", galleries_path
       %li.breadcrumb-item.active= t '.notifications'
 
-    .col-lg-6.col-sm-12.bg-white.effect2
+    .col-lg-6.col-sm-12.bg-white.effect2.p-4
       %h2.orange-text.mb-4= t '.email_notifications'
       = form_for @email_preferences, html: { method: :put } do |f|
         .form-group

@@ -6,7 +6,7 @@
       %li.breadcrumb-item.active=t 'abouts.edit.galleries'
       %li.breadcrumb-item= link_to "#{t 'email_preferences.edit.notifications'}", edit_email_preferences_path
 
-    .col-lg-6.col-sm-12.bg-white.effect2
+    .col-lg-6.col-sm-12.bg-white.effect2.p-4
       %h2.orange-text=t 'users.show.galleries'
       = render 'galleries/form', { gallery: @gallery }
 

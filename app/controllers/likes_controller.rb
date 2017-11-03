@@ -12,7 +12,7 @@ class LikesController < ApplicationController
     if @user.liked_by current_user
       render json: @user, status: 201
       add_vote_notification
-      HeartsNotificationEmail.new(@user).send
+      send_notification_email
     else
       render json: { errors: @user.errors }, status: 422
     end
@@ -30,8 +30,6 @@ class LikesController < ApplicationController
 
   private
 
-  attr_reader :add_vote_notification, :suggested_users
-
   def add_vote_notification
     @add_vote_notification ||= AddVoteNotification.new(@user, current_user).add
   end
@@ -44,6 +42,10 @@ class LikesController < ApplicationController
   def delete_vote_notification
     vote = VoteNotification.find_by(voted_by_id: current_user.id)
     vote ? vote.destroy! : return
+  end
+
+  def send_notification_email
+    HeartsNotificationEmail.new(@user).send
   end
 
   def suggested_users
