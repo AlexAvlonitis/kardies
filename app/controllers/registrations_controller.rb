@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   before_action :set_user_about, only: [:edit, :update]
+  before_action :set_user_email_preferences, only: [:edit, :update]
 
   def new
     super do
@@ -43,5 +44,10 @@ class RegistrationsController < Devise::RegistrationsController
 
   def set_user_about
     @about = current_user.about || current_user.build_about
+  end
+
+  def set_user_email_preferences
+    @email_preferences =
+      current_user.email_preference || current_user.build_email_preference
   end
 end

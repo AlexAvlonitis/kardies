@@ -1,21 +1,17 @@
 class EmailPreferencesController < ApplicationController
-  before_action :set_email_preference
-
-  def edit; end
+  before_action :set_email_preferences
 
   def update
     if @email_preferences.update(email_preferences_params)
-      flash[:success] = t '.settings_saved'
-      redirect_to edit_email_preferences_path
+      render json: @email_preferences, status: :ok
     else
-      flash.now[:alert] = t '.settings_not_saved'
-      render :edit
+      render json: { errors: @email_preferences.errors }, status: 402
     end
   end
 
   private
 
-  def set_email_preference
+  def set_email_preferences
     @email_preferences = if current_user.email_preference
                            current_user.email_preference
                          else

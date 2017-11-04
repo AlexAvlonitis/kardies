@@ -54,6 +54,6 @@ $(document).on "turbolinks:load", ->
         $("#about-submit").removeAttr("disabled")
     .fail (xhr, status, error) ->
       swal(
-        text: `Κάτι πήγε στραβά, ${error}`
+        text: "Κάτι πήγε στραβά, #{error}"
         type: 'warning'
       )

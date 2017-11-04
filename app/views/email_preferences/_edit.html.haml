@@ -1,0 +1,28 @@
+%h2.orange-text.mb-4.pull-left= t '.email_notifications'
+= link_to nil,
+    class: "show-email-preferences-form pull-right dark-gray-text" do
+  = fa_icon "caret-square-o-down 3x"
+.clearfix
+%hr
+= form_for @email_preferences, html: { method: :put, id: "email-preferences-form" } do |f|
+  .form-group
+    %label.custom-control.custom-checkbox
+      = f.check_box :likes, class: "custom-control-input"
+      %span.custom-control-indicator
+      %span.custom-control-description= t '.likes_label'
+
+  .form-group
+    %label.custom-control.custom-checkbox
+      = f.check_box :messages, class: "custom-control-input"
+      %span.custom-control-indicator
+      %span.custom-control-description= t '.messages_label'
+
+  .form-group
+    %label.custom-control.custom-checkbox
+      = f.check_box :news, class: "custom-control-input"
+      %span.custom-control-indicator
+      %span.custom-control-description= t '.news_label'
+
+  = f.submit "#{t 'abouts.edit.save'}",
+      class: "btn btn-primary btn-block",
+      id: "email-preferences-submit"
