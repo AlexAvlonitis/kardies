@@ -19,9 +19,7 @@ gem 'simple_form'
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
-# Use Redis adapter to run Action Cable in production
+gem 'simple_form'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'aws-sdk', '~> 2.3.0'
 gem 'bootstrap', '~> 4.0.0.alpha6'
@@ -43,13 +41,13 @@ gem 'toastr-rails'
 gem 'validates_email_format_of'
 gem 'bootstrap-filestyle-rails'
 gem 'cookies_eu'
+gem 'es6-promise-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'dotenv-rails'
   gem 'factory_girl_rails'

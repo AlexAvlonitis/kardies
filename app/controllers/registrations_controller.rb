@@ -1,4 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
+  before_action :set_user_about, only: [:edit, :update]
+
   def new
     super do
       resource.build_user_detail
@@ -37,5 +39,9 @@ class RegistrationsController < Devise::RegistrationsController
         id city state gender age profile_picture
       ]
     ]
+  end
+
+  def set_user_about
+    @about = current_user.about || current_user.build_about
   end
 end

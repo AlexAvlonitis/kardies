@@ -1,15 +1,18 @@
-%h2.orange-text= t 'devise.registrations.edit.my_profile'
+%h2.orange-text.pull-left= t 'devise.registrations.edit.my_profile'
+= link_to nil, class: "show-user-form pull-right dark-gray-text" do
+  = fa_icon "caret-square-o-down 3x"
+.clearfix
 %hr
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, id: 'user-form' }) do |f|
 
   = f.fields_for :user_detail do |d|
     .row
-      .col-xs-12.col-sm-6.col-md-6
+      .col-xs-12.col-sm-5.col-md-5
         .form-group
           .previewProfilePic.pull-left.p-2
             = image_tag current_user.profile_picture(:thumb),
                 class: "profile-pic-round-sm form-control"
-      .col-xs-12.col-sm-6.col-md-6
+      .col-xs-12.col-sm-7.col-md-7
         .form-group
           = d.file_field :profile_picture,
               as: :file,
@@ -21,9 +24,9 @@
           %p.error= show_errors(current_user.user_detail, :profile_picture)
     %hr
     .row
-      .col-xs-12.col-sm-6.col-md-6
+      .col-xs-12.col-sm-5.col-md-5
         %strong= t 'users.index.area'
-      .col-xs-12.col-sm-6.col-md-6
+      .col-xs-12.col-sm-7.col-md-7
         .form-group
           = d.select :state,
               GC.states,
@@ -38,9 +41,9 @@
           %p.error= show_errors(current_user.user_detail, :city)
     %hr
     .row
-      .col-xs-12.col-sm-6.col-md-6
+      .col-xs-12.col-sm-5.col-md-5
         %strong= t 'users.search.gender'
-      .col-xs-12.col-sm-6.col-md-6
+      .col-xs-12.col-sm-7.col-md-7
         .form-group
           = d.select :gender,
               [["#{t 'devise.registrations.edit.male'}", 'male'], ["#{t 'devise.registrations.edit.female'}", 'female'], ["#{t 'devise.registrations.edit.other'}", 'other']],
@@ -49,9 +52,9 @@
           %p.error= show_errors(current_user.user_detail, :gender)
     %hr
     .row
-      .col-xs-12.col-sm-6.col-md-6
+      .col-xs-12.col-sm-5.col-md-5
         %strong= t 'users.search.age'
-      .col-xs-12.col-sm-6.col-md-6
+      .col-xs-12.col-sm-7.col-md-7
         .form-group
           = d.select :age,
               options_for_select((18..99).step(1), current_user.age),
@@ -60,16 +63,16 @@
           %p.error= show_errors(current_user.user_detail, :age)
     %hr
   .row
-    .col-xs-12.col-sm-6.col-md-6
+    .col-xs-12.col-sm-5.col-md-5
       %strong= t 'devise.registrations.edit.username'
-    .col-xs-12.col-sm-6.col-md-6
+    .col-xs-12.col-sm-7.col-md-7
       = f.text_field :username, class: "form-control form-control-lg"
       %p.error= show_errors(current_user, :username)
   %hr
   .row
-    .col-xs-12.col-sm-6.col-md-6
+    .col-xs-12.col-sm-5.col-md-5
       %strong= t 'devise.registrations.edit.email'
-    .col-xs-12.col-sm-6.col-md-6
+    .col-xs-12.col-sm-7.col-md-7
       = f.email_field :email, class: "form-control form-control-lg"
       %p.error= show_errors(current_user, :email)
 
@@ -93,9 +96,6 @@
   = f.submit "#{t 'devise.registrations.edit.update'}",
       class: "btn btn-primary btn-block",
       id: "edit-submit"
-%hr
-= button_to "#{t 'devise.registrations.edit.cancel_account'}",
-    registration_path(resource_name),
-    data: { confirm: "Προσοχή, ο λογαριασμός σας θα διαγραφεί ολοκληρωτικά" },
-    method: :delete,
-    class: 'btn btn-outline-danger btn-sm'
+  %hr
+  = button_to "#{t 'devise.registrations.edit.cancel_account'}", {},
+      class: 'btn btn-outline-danger btn-sm delete-confirmation'

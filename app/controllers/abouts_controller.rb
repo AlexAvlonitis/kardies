@@ -1,18 +1,13 @@
 class AboutsController < ApplicationController
-  def edit
-    @about = current_user.about ? current_user.about : current_user.build_about
-  end
-
   def update
-    youtube_url = params[:about][:youtube_url]
-    params[:about][:youtube_url] = youtube_url.gsub(/\s+/, '') if youtube_url
+    clean_youtube_url
     @about = current_user.build_about
     save_about
   end
 
   private
 
-  def abouts_params
+  def about_params
     params.require(:about).permit(allow_params)
   end
 
@@ -20,13 +15,16 @@ class AboutsController < ApplicationController
     %i[job hobby relationship_status looking_for description youtube_url]
   end
 
+  def clean_youtube_url
+    youtube_url = params[:about][:youtube_url]
+    params[:about][:youtube_url] = youtube_url.gsub(/\s+/, '') if youtube_url
+  end
+
   def save_about
-    if @about.update(abouts_params)
-      flash[:success] = 'Changes have been saved.'
-      redirect_to edit_about_path
+    if @about.update(about_params)
+      render json: @about, status: 200
     else
-      flash.now[:alert] = 'Changes have not been saved.'
-      render :edit
+      render json: { errors: @about.errors }, status: 402
     end
   end
 end

@@ -10,17 +10,19 @@
 # // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 # // about supported directives.
 # //
+#= require sweetalert2
 #= require jquery
 #= require tether
 #= require bootstrap
-#= require cookies_eu
 #= require jquery_ujs
-#= require toastr
-#= require lazyload
-#= require turbolinks
 #= require jgallery
-#= require tinycolor.min
 #= require bootstrap-filestyle
+#= require cookies_eu
+#= require lazyload
+#= require promise
+#= require tinycolor.min
+#= require toastr
+#= require turbolinks
 #= require_tree .
 
 $(document).on "turbolinks:load", ->

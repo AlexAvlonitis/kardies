@@ -1,0 +1,41 @@
+%h2.orange-text.pull-left= t '.details'
+= link_to nil, class: "show-abouts-form pull-right dark-gray-text" do
+  = fa_icon "caret-square-o-down 3x"
+.clearfix
+%hr
+= simple_form_for @about, url: about_url, html: { method: :put, id: "abouts-form" } do |f|
+  = f.input :job,
+      label: "#{t 'users.details_panel.job'}",
+      error_html: { class: 'red-text' }
+  = f.input :hobby,
+      label: "#{t 'users.details_panel.hobby'}",
+      error_html: { class: 'red-text' }
+  = f.input :relationship_status,
+      label: "#{t 'users.details_panel.relationship_status'}",
+      error_html: { class: 'red-text' }
+  = f.input :looking_for,
+      label: "#{t 'users.details_panel.looking_for'}",
+      error_html: { class: 'red-text' }
+  = f.input :description,
+      label: "#{t 'users.details_panel.about_me'}",
+      input_html: { rows: 10, onkeyup: "countChar()", id: 'abouts-description'},
+      error_html: { class: 'red-text' }
+  %strong.pull-right{ id: 'charNum' }
+
+  .form-group
+    %label.pull-left= t 'users.show.youtube'
+    .help-tip
+      %p= t 'users.show.youtube_instructions'
+  .form-group.row
+    .col-sm-6.col-form-label.orange-text https://youtube.com/watch?=
+    .col-sm-6
+      = f.text_field :youtube_url,
+          placeholder: "#{t '.youtube_placeholder'}",
+          class: 'form-control'
+
+  - present current_user do |user_presenter|
+    %p= user_presenter.youtube_url
+
+  = f.submit "#{t '.save'}",
+      class: "btn btn-primary btn-block",
+      id: "about-submit"

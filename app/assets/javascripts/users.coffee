@@ -1,6 +1,11 @@
 $(document).on "turbolinks:load", ->
 
   $('#change-password').hide()
+  $('#user-form').hide()
+
+  $(".show-user-form").on 'click', (e) ->
+    e.preventDefault()
+    $("#user-form").toggle("fast")
 
   $('.state-selection').change ->
     $.getJSON '/cities/' + $(this).val(), (data) ->

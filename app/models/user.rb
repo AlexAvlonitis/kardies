@@ -187,7 +187,7 @@ class User < ApplicationRecord
   end
 
   def send_welcome_mail
-    UserMailer.welcome_email(self).deliver_later
+    UserMailer.welcome_email(self).deliver_later unless Rails.env == 'development'
   end
 
   def auto_like
