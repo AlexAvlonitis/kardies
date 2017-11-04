@@ -61,7 +61,7 @@
               {},
               { class: "form-control custom-select form-control-lg", id: "lgAge" }
           %p.error= show_errors(current_user.user_detail, :age)
-    %hr
+  %hr
   .row
     .col-xs-12.col-sm-5.col-md-5
       %strong= t 'devise.registrations.edit.username'
@@ -80,10 +80,10 @@
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
   %hr
-    %strong
-      = link_to nil, class: "change-password-link" do
-        = t 'devise.registrations.edit.change_password'
-        = fa_icon "plus"
+  %strong
+    = link_to nil, class: "change-password-link" do
+      = t 'devise.registrations.edit.change_password'
+      = fa_icon "plus"
   #change-password.form-group.row
     .col-sm-6
       %label= t 'devise.registrations.edit.new_password'
@@ -97,5 +97,5 @@
       class: "btn btn-primary btn-block",
       id: "edit-submit"
   %hr
-  = button_to "#{t 'devise.registrations.edit.cancel_account'}", {},
-      class: 'btn btn-outline-danger btn-sm delete-confirmation'
+= button_to "#{t 'devise.registrations.edit.cancel_account'}", {},
+    class: 'btn btn-outline-danger btn-sm delete-confirmation'
