@@ -1,10 +1,14 @@
 .row
   .col
     %ol.breadcrumb
-      %li.breadcrumb-item= link_to "#{t 'abouts.edit.profile'}", edit_user_registration_path
-      %li.breadcrumb-item= link_to "#{t 'abouts.edit.about_me'}", edit_about_path
+      %li.breadcrumb-item
+        = link_to "#{t 'abouts.edit.profile'}", edit_user_registration_path
+      %li.breadcrumb-item
+        = link_to "#{t 'abouts.edit.about_me'}", edit_about_path
       %li.breadcrumb-item.active=t 'abouts.edit.galleries'
-      %li.breadcrumb-item= link_to "#{t 'email_preferences.edit.notifications'}", edit_email_preferences_path
+      %li.breadcrumb-item
+        = link_to "#{t 'email_preferences.edit.notifications'}",
+            edit_email_preferences_path
 
     .col-lg-6.col-sm-12.bg-white.effect2.p-4
       %h2.orange-text=t 'users.show.galleries'
@@ -16,7 +20,9 @@
         - @galleries.each do |gallery|
           %h5
             = gallery.name
-            = link_to gallery_path(gallery), method: :delete, data: {confirm: "#{t '.gallery_delete_confirmation'}"} do
+            = link_to gallery_path(gallery),
+                method: :delete,
+                data: {confirm: "#{t '.gallery_delete_confirmation'}"} do
               = fa_icon 'trash'
 
           - gallery.pictures.each do |pic|

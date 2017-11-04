@@ -1,0 +1,101 @@
+%h2.orange-text= t 'devise.registrations.edit.my_profile'
+%hr
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+
+  = f.fields_for :user_detail do |d|
+    .row
+      .col-xs-12.col-sm-6.col-md-6
+        .form-group
+          .previewProfilePic.pull-left.p-2
+            = image_tag current_user.profile_picture(:thumb),
+                class: "profile-pic-round-sm form-control"
+      .col-xs-12.col-sm-6.col-md-6
+        .form-group
+          = d.file_field :profile_picture,
+              as: :file,
+              class: "show-for-sr form-control-file",
+              id: "picUpload",
+              onchange: "previewProfilePic()"
+          %small.form-text.text-muted
+            = t 'devise.registrations.edit.ten_mb_limit'
+          %p.error= show_errors(current_user.user_detail, :profile_picture)
+    %hr
+    .row
+      .col-xs-12.col-sm-6.col-md-6
+        %strong= t 'users.index.area'
+      .col-xs-12.col-sm-6.col-md-6
+        .form-group
+          = d.select :state,
+              GC.states,
+              { selected: current_user.state },
+              { class: "form-control  custom-select form-control-lg state-selection", id: "lgState" }
+          %p.error= show_errors(current_user.user_detail, :state)
+        .form-group
+          = d.select :city,
+              GC.cities(current_user.state),
+              { selected: current_user.city },
+              { class: "city-selection custom-select form-control form-control-lg", id: "lgCity" }
+          %p.error= show_errors(current_user.user_detail, :city)
+    %hr
+    .row
+      .col-xs-12.col-sm-6.col-md-6
+        %strong= t 'users.search.gender'
+      .col-xs-12.col-sm-6.col-md-6
+        .form-group
+          = d.select :gender,
+              [["#{t 'devise.registrations.edit.male'}", 'male'], ["#{t 'devise.registrations.edit.female'}", 'female'], ["#{t 'devise.registrations.edit.other'}", 'other']],
+              {},
+              { class: "form-control custom-select form-control-lg", id: "lgGender" }
+          %p.error= show_errors(current_user.user_detail, :gender)
+    %hr
+    .row
+      .col-xs-12.col-sm-6.col-md-6
+        %strong= t 'users.search.age'
+      .col-xs-12.col-sm-6.col-md-6
+        .form-group
+          = d.select :age,
+              options_for_select((18..99).step(1), current_user.age),
+              {},
+              { class: "form-control custom-select form-control-lg", id: "lgAge" }
+          %p.error= show_errors(current_user.user_detail, :age)
+    %hr
+  .row
+    .col-xs-12.col-sm-6.col-md-6
+      %strong= t 'devise.registrations.edit.username'
+    .col-xs-12.col-sm-6.col-md-6
+      = f.text_field :username, class: "form-control form-control-lg"
+      %p.error= show_errors(current_user, :username)
+  %hr
+  .row
+    .col-xs-12.col-sm-6.col-md-6
+      %strong= t 'devise.registrations.edit.email'
+    .col-xs-12.col-sm-6.col-md-6
+      = f.email_field :email, class: "form-control form-control-lg"
+      %p.error= show_errors(current_user, :email)
+
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    %div
+      Currently waiting confirmation for: #{resource.unconfirmed_email}
+  %hr
+    %strong
+      = link_to nil, class: "change-password-link" do
+        = t 'devise.registrations.edit.change_password'
+        = fa_icon "plus"
+  #change-password.form-group.row
+    .col-sm-6
+      %label= t 'devise.registrations.edit.new_password'
+      = f.password_field :password, class: "form-control"
+    .col-sm-6
+      %label= t 'devise.registrations.edit.new_password_confirmation'
+      = f.password_field :password_confirmation, class: "form-control"
+      %p.error= show_errors(current_user, :password_confirmation)
+  %hr
+  = f.submit "#{t 'devise.registrations.edit.update'}",
+      class: "btn btn-primary btn-block",
+      id: "edit-submit"
+%hr
+= button_to "#{t 'devise.registrations.edit.cancel_account'}",
+    registration_path(resource_name),
+    data: { confirm: "Προσοχή, ο λογαριασμός σας θα διαγραφεί ολοκληρωτικά" },
+    method: :delete,
+    class: 'btn btn-outline-danger btn-sm'

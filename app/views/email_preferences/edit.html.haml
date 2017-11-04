@@ -1,9 +1,12 @@
 .row
   .col
     %ol.breadcrumb
-      %li.breadcrumb-item= link_to "#{t 'abouts.edit.profile'}", edit_user_registration_path
-      %li.breadcrumb-item= link_to "#{ t 'abouts.edit.about_me'}", edit_about_path
-      %li.breadcrumb-item= link_to "#{t 'abouts.edit.galleries'}", galleries_path
+      %li.breadcrumb-item
+        = link_to "#{t 'abouts.edit.profile'}", edit_user_registration_path
+      %li.breadcrumb-item
+        = link_to "#{ t 'abouts.edit.about_me'}", edit_about_path
+      %li.breadcrumb-item
+        = link_to "#{t 'abouts.edit.galleries'}", galleries_path
       %li.breadcrumb-item.active= t '.notifications'
 
     .col-lg-6.col-sm-12.bg-white.effect2.p-4
