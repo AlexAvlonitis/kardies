@@ -57,3 +57,4 @@ $(document).on "turbolinks:load", ->
         text: "Κάτι πήγε στραβά, #{error}"
         type: 'warning'
       )
+      $("#about-submit").removeAttr("disabled")
