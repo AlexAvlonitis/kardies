@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'simple_form'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem "jquery-fileupload-rails"
 gem 'turbolinks', '~> 5'
 gem 'simple_form'
 gem 'acts_as_votable', '~> 0.10.0'

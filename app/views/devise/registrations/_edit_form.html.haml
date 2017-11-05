@@ -14,14 +14,16 @@
                 class: "profile-pic-round-sm form-control"
       .col-xs-12.col-sm-7.col-md-7
         .form-group
+          #status
           = d.file_field :profile_picture,
               as: :file,
               class: "show-for-sr form-control-file",
-              id: "picUpload",
+              id: "fileupload",
               onchange: "previewProfilePic()"
           %small.form-text.text-muted
             = t 'devise.registrations.edit.ten_mb_limit'
           %p.error= show_errors(current_user.user_detail, :profile_picture)
+          #progress
     %hr
     .row
       .col-xs-12.col-sm-5.col-md-5
@@ -95,7 +97,7 @@
   %hr
   = f.submit "#{t 'devise.registrations.edit.update'}",
       class: "btn btn-primary btn-block",
-      id: "edit-submit"
+      id: "user-submit"
   %hr
 = button_to "#{t 'devise.registrations.edit.cancel_account'}", {},
     class: 'btn btn-outline-danger btn-sm delete-confirmation'

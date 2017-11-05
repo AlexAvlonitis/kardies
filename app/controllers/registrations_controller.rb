@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+  respond_to :json
   before_action :set_user_about, only: [:edit, :update]
   before_action :set_user_email_preferences, only: [:edit, :update]
 

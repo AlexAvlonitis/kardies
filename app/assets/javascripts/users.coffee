@@ -21,3 +21,24 @@ $(document).on "turbolinks:load", ->
   $('.change-password-link').on 'click', (e) ->
     e.preventDefault()
     $('#change-password').toggle()
+
+  $('#user-form').submit (e) ->
+    e.preventDefault()
+    valuesToSubmit = $(this).serialize()
+
+    $.ajax('/user',
+      type: "PUT"
+      data: valuesToSubmit
+      dataType: "json"
+    )
+    .done ->
+      swal(
+        text: "Η αλλαγή σας σώθηκε"
+        type: "success"
+      ).then ->
+        $("#user-submit").removeAttr("disabled")
+    .fail (xhr, status, error) ->
+      swal(
+        text: "Κάτι πήγε στραβά, #{error}"
+        type: 'warning'
+      )

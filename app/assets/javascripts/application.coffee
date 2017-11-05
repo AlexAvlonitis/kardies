@@ -16,6 +16,7 @@
 #= require bootstrap
 #= require jquery_ujs
 #= require jgallery
+#= require jquery-fileupload/basic
 #= require bootstrap-filestyle
 #= require cookies_eu
 #= require lazyload

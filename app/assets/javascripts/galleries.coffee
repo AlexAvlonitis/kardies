@@ -37,3 +37,24 @@ $(document).on "turbolinks:load", ->
   $('#gallery-submit').on 'click', ->
     $body = $("body")
     $body.addClass("loading");
+
+  $('#fileupload').fileupload(
+    dataType: 'json'
+    add: (e, data) ->
+      data.context = $('<button/>').text('Αποθηκεύστε').addClass('btn btn-success')
+        .appendTo("#progress")
+      .click ->
+        data.context = $('#progress').text('Παρακαλώ περιμένετε...').addClass('loading-gif')
+        data.submit()
+    done: (e, data) ->
+      swal(
+        text: "Η αλλαγή σας σώθηκε"
+        type: "success"
+      ).then ->
+        data.context.text('Αποθηκεύτηκε!').removeClass('loading-gif')
+    fail: (e, data) ->
+      swal(
+        text: "Κάτι πήγε στραβά, #{data.errorThrown}"
+        type: 'warning'
+      )
+  )

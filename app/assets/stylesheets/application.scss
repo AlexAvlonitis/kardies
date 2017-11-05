@@ -12,18 +12,21 @@
 *
 *= require jgallery
 *= require toastr
+*= require jquery.fileupload
+*= require jquery.fileupload-ui
 */
 @import "colors";
 @import "bootstrap";
 @import "cookies_eu";
+@import "galleries";
 @import "font-awesome";
 @import "sidebar-left";
 @import "forms";
 @import "creative";
 @import "help_tip";
 @import "conversations";
-@import "abouts";
 @import "jgallery";
+@import "abouts";
 @import "users/*";
 @import "home";
 @import "rounded_toggle_button";
