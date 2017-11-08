@@ -89,10 +89,10 @@
   #change-password.form-group.row
     .col-sm-6
       %label= t 'devise.registrations.edit.new_password'
-      = f.password_field :password, class: "form-control"
+      = f.password_field :password, class: "form-control", autocomplete: "off"
     .col-sm-6
       %label= t 'devise.registrations.edit.new_password_confirmation'
-      = f.password_field :password_confirmation, class: "form-control"
+      = f.password_field :password_confirmation, class: "form-control", autocomplete: "off"
       %p.error= show_errors(current_user, :password_confirmation)
   %hr
   = f.submit "#{t 'devise.registrations.edit.update'}",

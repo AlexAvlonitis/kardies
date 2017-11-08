@@ -38,8 +38,13 @@ $(document).on "turbolinks:load", ->
       ).then ->
         $("#user-submit").removeAttr("disabled")
     .fail (xhr, status, error) ->
+      errors = JSON.parse(xhr.responseText).errors
+      e = ''
+      for error of errors
+        if errors.hasOwnProperty(error)
+          e += ", #{errors[error][0]}"
       swal(
-        text: "Κάτι πήγε στραβά, #{error}"
+        text: "Κάτι πήγε στραβά#{e}"
         type: 'warning'
       )
       $("#user-submit").removeAttr("disabled")
