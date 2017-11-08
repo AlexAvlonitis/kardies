@@ -40,7 +40,6 @@ gem 'sitemap_generator'
 gem 'toastr-rails'
 gem 'validates_email_format_of'
 gem 'bootstrap-filestyle-rails'
-gem 'cookies_eu'
 gem 'es6-promise-rails'
 
 source 'https://rails-assets.org' do

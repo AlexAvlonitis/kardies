@@ -18,7 +18,8 @@
 #= require jgallery
 #= require jquery-fileupload/basic
 #= require bootstrap-filestyle
-#= require cookies_eu
+#= require cookieconsent.min
+#= require cookieconsent_code
 #= require lazyload
 #= require promise
 #= require tinycolor.min
