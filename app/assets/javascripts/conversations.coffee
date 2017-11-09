@@ -1,7 +1,35 @@
 $(document).on "turbolinks:load", ->
 
-  $("a[data-remote]").on("ajax:success", (e, data, status, xhr) ->
+  $(".delete-convo").on 'click', (e) ->
     e.preventDefault()
-    $(this).closest('tr').fadeOut();
-  ).on "ajax:error", (e, xhr, status, error) ->
-    alert('Something went wrong, please refresh the page')
+    that = $(this)
+    url = that.context.pathname
+    swal(
+      text: 'Η συνομιλία θα διαγραφεί!'
+      type: 'warning'
+      showCancelButton: true
+      confirmButtonColor: '#3085d6'
+      cancelButtonColor: '#d33'
+      confirmButtonText: 'OK'
+    ).then ->
+      $.ajax(url,
+        type: "DELETE"
+        dataType: "json"
+      )
+      .done ->
+        swal(
+          text: "Η συνομιλία μεταφέρθηκε στον κάδο ανακύκλωσης"
+          type: "success"
+        ).then ->
+          that.closest('tr').fadeOut()
+      .fail (xhr, status, error) ->
+        errors = JSON.parse(xhr.responseText).errors
+        e = ''
+        for error of errors
+          if errors.hasOwnProperty(error)
+            e += ", #{errors[error][0]}"
+        swal(
+          text: "Κάτι πήγε στραβά#{e}"
+          type: 'warning'
+        )
+        $(".delete-convo").removeAttr("disabled")
