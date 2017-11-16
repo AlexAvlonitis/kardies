@@ -13,20 +13,25 @@
 
   .form-group.row
     .form-group.col-md-6
-      %label= "#{t '.age'} #{t '.age_from'}"
-      = number_field_tag :age_from, @search.age_from, min: 18, max: 99, class: "form-control form-control-lg"
-    .form-group.col-md-6
-      %label= "#{t '.age'} #{t '.age_to'}"
-      = number_field_tag :age_to, @search.age_to, min: 18, max: 99, class: "form-control form-control-lg"
+      #slider-range
+      %label.small= "#{t '.age'} #{t '.age_from'}: "
+      = number_field_tag :age_from,
+          @search.age_from,
+          class: 'form-control',
+          id: "slider-limit-value-min"
 
-  = t ".online_now"
-  .form-group.row
+      %label.small= "#{t '.age'} #{t '.age_to'}: "
+      = number_field_tag :age_to,
+          @search.age_to,
+          class: 'form-control',
+          id: "slider-limit-value-max"
     .form-group.col-md-6
+      %p= t ".online_now"
       %label.switch
         -if @search.is_signed_in
           = check_box_tag :is_signed_in, @search.is_signed_in, true
         -else
           = check_box_tag :is_signed_in, 'true', false
         %span.slider.round
-    .form-group.col-md-6
+      %hr
       = submit_tag "#{t '.update'}", class: "btn btn-primary btn-block"

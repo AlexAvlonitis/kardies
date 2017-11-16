@@ -1,0 +1,12 @@
+#slider-range {
+  margin-bottom: 0.5rem;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: textfield;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}

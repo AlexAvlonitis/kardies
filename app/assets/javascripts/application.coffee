@@ -17,6 +17,7 @@
 #= require jquery_ujs
 #= require jgallery
 #= require jquery-fileupload/basic
+#= require nouislider
 #= require bootstrap-filestyle
 #= require cookieconsent.min
 #= require cookieconsent_code
@@ -25,6 +26,7 @@
 #= require tinycolor.min
 #= require toastr
 #= require turbolinks
+#= require wNumb
 #= require_tree .
 
 $(document).on "turbolinks:load", ->
