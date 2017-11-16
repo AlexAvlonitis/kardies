@@ -1,4 +1,5 @@
-$(document).on "turbolinks:load", ->
+$ ->
+
   window.cookieconsent.initialise
     'palette':
       'popup':

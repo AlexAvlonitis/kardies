@@ -1,4 +1,4 @@
-$(document).on "turbolinks:load", ->
+$ ->
 
   slider = document.getElementById('slider-range')
   if slider

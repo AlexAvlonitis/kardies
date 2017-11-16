@@ -1,4 +1,4 @@
-$(document).on "turbolinks:load", ->
+$ ->
 
   $("#email-preferences-form").hide()
 

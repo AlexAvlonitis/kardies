@@ -1,4 +1,4 @@
-$(document).on "turbolinks:load", ->
+$ ->
 
   $('#change-password').hide()
   $('#user-form').hide()

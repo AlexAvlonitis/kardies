@@ -1,7 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-$(document).on "turbolinks:load", ->
+$ ->
   $(':file').filestyle input: false, buttonText: 'Επιλογή φωτογραφίας', buttonName: "btn-primary", iconName: 'fa fa-camera'
 
   @previewProfilePic = ->

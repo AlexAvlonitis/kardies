@@ -1,4 +1,5 @@
-$(document).on "turbolinks:load", ->
+$ ->
+
   return if App.cable.subscriptions.subscriptions.length > 1
 
   App.online_status = App.cable.subscriptions.create { channel: "OnlineStatusChannel" },

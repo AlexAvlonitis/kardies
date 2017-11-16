@@ -1,4 +1,4 @@
-$(document).on "turbolinks:load", ->
+$ ->
 
   $(".delete-convo").on 'click', (e) ->
     e.preventDefault()

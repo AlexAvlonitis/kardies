@@ -25,11 +25,11 @@
 #= require promise
 #= require tinycolor.min
 #= require toastr
-#= require turbolinks
 #= require wNumb
 #= require_tree .
 
-$(document).on "turbolinks:load", ->
+$ ->
+
   $(".lazy").Lazy(
     scrollDirection: 'vertical',
     effect : "fadeIn",

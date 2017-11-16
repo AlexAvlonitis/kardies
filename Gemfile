@@ -18,7 +18,6 @@ gem 'simple_form'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem "jquery-fileupload-rails"
-gem 'turbolinks', '~> 5'
 gem 'simple_form'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'aws-sdk', '~> 2.3.0'

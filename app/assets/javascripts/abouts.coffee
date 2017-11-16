@@ -1,4 +1,4 @@
-$(document).on "turbolinks:load", ->
+$ ->
 
   $("#abouts-form").hide()
 

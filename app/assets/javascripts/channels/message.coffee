@@ -1,4 +1,5 @@
-$(document).on "turbolinks:load", ->
+$ ->
+
   return unless $(".chat").length > 0
 
   conversation_id = $('#conversation').attr('conversation-id')
