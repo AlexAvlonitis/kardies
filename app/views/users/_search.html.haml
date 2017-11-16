@@ -1,16 +1,14 @@
 %h4.text-center.orange-text= t ".search"
+%hr
 = form_tag search_criteria_path, id: "search" do
   .form-group.row
     .form-group.col-md-6
       = select_tag :state, options_for_select(GC.states, @search.state),
                            include_blank: "#{t '.state'}",
-                           class: 'state-selection form-control form-control-lg'
+                           class: 'state-selection form-control form-control-lg custom-select'
     .form-group.col-md-6
-      = select_tag :gender, options_for_select([["#{t '.gender_man'}", "male"],
-                                                ["#{t '.gender_woman'}", "female"],
-                                                ["#{t '.gender_other'}", "other"]],
-                                                @search.gender),
-                            class: 'form-control form-control-lg',
+      = select_tag :gender, options_for_select(gender_types, @search.gender),
+                            class: 'form-control form-control-lg custom-select',
                             include_blank: "#{t '.gender'}"
 
   .form-group.row
