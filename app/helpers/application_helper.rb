@@ -28,6 +28,17 @@ module ApplicationHelper
     content_for?(:"meta_#{tag}") ? content_for(:"meta_#{tag}") : default_text
   end
 
+  def show_flash_message
+    flash_messages = []
+    flash.each do |type, message|
+      type = 'success' if type == 'notice'
+      type = 'error'   if type == 'alert'
+      text = "<script>toastr.#{type}('#{message}');</script>"
+      flash_messages << text.html_safe if message
+    end
+    flash_messages.join('/n').html_safe
+  end
+
   DEFAULT_DESCRIPTION = "Γνωριμίες Ελλάδα, το νέο απολύτως δωρεάν 100% " \
                         "Ελληνικό site γνωριμιών. Γίνε κι εσύ μέλος σήμερα " \
                         "για να γνωρίσεις τον επόμενο έρωτά σου. Γιατί όλοι " \

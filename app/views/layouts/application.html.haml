@@ -20,11 +20,7 @@
     = javascript_include_tag 'application'
 
   %body
-    - unless flash.empty?
-      - flash.each do |f|
-        - type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info')
-        = javascript_tag do
-          toastr["#{type}"]("#{f[1]}")
+    = show_flash_message
 
     - if user_signed_in?
       .container-fluid
