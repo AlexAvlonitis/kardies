@@ -1,7 +1,8 @@
-%aside.sidebar-left
-  = link_to user_path(current_user) do
-    .profile-pic-round-sm{ style: "background-image: url(#{current_user.profile_picture})"}
-    %p.text-center.white-text= current_user.username.capitalize
+%nav.sidebar-left.col-lg-2.col-sm-12.col-md-12
+  .logo
+    = link_to user_path(current_user) do
+      .profile-pic-round-sm{ style: "background-image: url(#{current_user.profile_picture})"}
+      %p.text-center.white-text= current_user.username.capitalize
 
   .sidebar-links
     = link_to users_path, class: "link-blue" do
