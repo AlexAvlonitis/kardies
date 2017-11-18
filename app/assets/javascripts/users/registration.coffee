@@ -1,5 +1,5 @@
 $ ->
-  $('#new_user').submit (e) ->
+  $('#new_user_registration').submit (e) ->
     e.preventDefault()
     valuesToSubmit = $(this).serialize()
 

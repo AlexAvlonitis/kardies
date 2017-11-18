@@ -8,7 +8,7 @@
         = image_tag 'hearts_logo.png', class: "logo"
     .row.justify-content-center
       .col-xs-12.col-sm-8.col-md-6.col-md-offset-3.light-grey-bg.p-4.effect1.m-4
-        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {role: "form"}) do |f|
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {role: "form", id: "new_user_registration"}) do |f|
           %h1.text-center= t 'home.index.register_form'
           %hr.colorgraph
           = f.fields_for :user_detail do |d|
