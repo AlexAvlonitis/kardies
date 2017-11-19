@@ -23,11 +23,13 @@
             .row
               .col-xs-12.col-sm-6.col-md-6
                 .form-group
-                  = d.select :state, GC.states, {}, {class: "form-control form-control-lg state-selection", id: "lgState"}
+                  = d.select :state, GC.states, {},
+                      { class: "form-control custom-select form-control-lg state-selection", id: "lgState" }
                   %p.error= show_errors(@user.user_detail, :state)
               .col-xs-12.col-sm-6.col-md-6
                 .form-group
-                  = d.select :city, GC.cities('ait'), {}, {class: "city-selection form-control form-control-lg", id: "lgCity"}
+                  = d.select :city, GC.cities('ait'), {},
+                      { class: "city-selection custom-select form-control form-control-lg", id: "lgCity" }
                   %p.error= show_errors(@user.user_detail, :city)
 
             .form-group
@@ -46,11 +48,16 @@
             .row
               .col-xs-12.col-sm-6.col-md-6
                 .form-group
-                  = d.select :gender, [["#{t 'devise.registrations.edit.male'}", 'male'], ["#{t 'devise.registrations.edit.female'}", 'female'], ["#{t 'devise.registrations.edit.other'}", 'other']], {}, {class: "form-control form-control-lg", id: "lgGender"}
+                  = d.select :gender,
+                      [["#{t 'devise.registrations.edit.male'}", 'male'], ["#{t 'devise.registrations.edit.female'}", 'female'], ["#{t 'devise.registrations.edit.other'}", 'other']],
+                      {},
+                      { class: "form-control custom-select form-control-lg", id: "lgGender" }
                   %p.error= show_errors(@user.user_detail, :gender)
               .col-xs-12.col-sm-6.col-md-6
                 .form-group
-                  = d.select :age, options_for_select((18..99).step(1), 30), {}, {class: "form-control form-control-lg", id: "lgAge"}
+                  = d.select :age, options_for_select((18..99).step(1), 30),
+                      {},
+                      { class: "form-control custom-select form-control-lg", id: "lgAge" }
                   %p.error= show_errors(@user.user_detail, :age)
 
             .form-group

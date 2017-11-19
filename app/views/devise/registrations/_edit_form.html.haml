@@ -33,7 +33,7 @@
           = d.select :state,
               GC.states,
               { selected: current_user.state },
-              { class: "form-control  custom-select form-control-lg state-selection", id: "lgState" }
+              { class: "form-control custom-select form-control-lg state-selection", id: "lgState" }
           %p.error= show_errors(current_user.user_detail, :state)
         .form-group
           = d.select :city,
