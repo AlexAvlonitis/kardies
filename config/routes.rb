@@ -25,7 +25,9 @@ Rails.application.routes.draw do
 
     get 'omniauth/:provider' => 'omniauth#localized', as: :localized_omniauth
 
-    devise_for :user, skip: :omniauth_callbacks, controllers: { registrations: 'registrations' }
+    devise_for :user,
+      skip: :omniauth_callbacks,
+      controllers: { registrations: 'registrations', sessions: 'sessions' }
 
     root 'home#index'
 
