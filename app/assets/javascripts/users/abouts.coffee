@@ -33,7 +33,7 @@ $ ->
           data: {"_method":"delete"}
         )
         .done ->
-          location.reload()
+          window.location.href = "/"
         .fail ->
           swal("Κάτι πήγε στραβά, παρακαλούμε ελέγξτε την σύνδεσή σας")
 
