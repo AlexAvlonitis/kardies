@@ -1,4 +1,7 @@
-%h4.text-center.orange-text= t ".search"
+%h3#search-collapse.text-center.p-2
+  = t ".search"
+  = fa_icon 'search-plus', class: "search-icon"
+
 %hr
 = form_tag search_criteria_path, id: "search" do
   .form-group.row

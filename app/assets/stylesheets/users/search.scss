@@ -16,3 +16,14 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.top-search {
+  padding: 1rem;
+  padding-bottom: 0;
+  background-color: $light_grey;
+  margin-bottom: 1rem;
+
+  .filters {
+    margin-top: 3rem;
+  }
+}

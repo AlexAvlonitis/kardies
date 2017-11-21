@@ -1,5 +1,7 @@
 $ ->
 
+  $('#search').hide()
+
   slider = document.getElementById('slider-range')
   if slider
     snapValues = [
@@ -31,3 +33,10 @@ $ ->
 
     snapValues[1].addEventListener 'change', ->
       slider.noUiSlider.set([null, this.value])
+
+  $('#search-collapse').on 'click', ->
+    $('#search').toggle('fast')
+    $('.search-icon').toggleClass('fa-search-plus fa-search-minus')
+
+  $('#search-collapse').hover ->
+    $(this).css('cursor','pointer')
