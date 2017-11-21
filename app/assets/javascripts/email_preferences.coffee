@@ -2,9 +2,12 @@ $ ->
 
   $("#email-preferences-form").hide()
 
-  $(".show-email-preferences-form").on 'click', (e) ->
-    e.preventDefault()
+  $("#show-email-preferences-form").click ->
     $('#email-preferences-form').toggle("fast")
+    $('.email-toggle-icon').toggleClass("fa-caret-down fa-caret-up")
+
+  $("#show-email-preferences-form").hover ->
+    $(this).css('cursor','pointer')
 
   $('#email-preferences-form').submit (e) ->
     e.preventDefault()

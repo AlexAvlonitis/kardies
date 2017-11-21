@@ -1,10 +1,9 @@
-%h2.orange-text.mb-4.pull-left= t '.email_notifications'
-= link_to nil,
-    class: "show-email-preferences-form pull-right dark-gray-text" do
-  = fa_icon "caret-square-o-down 3x"
+#show-email-preferences-form.dark-gray-text
+  %h2.orange-text.mb-4.pull-left= t '.email_notifications'
+  = fa_icon "caret-down 3x", class: 'email-toggle-icon pull-right'
 .clearfix
-%hr
 = form_for @email_preferences, html: { method: :put, id: "email-preferences-form" } do |f|
+  %hr
   .form-group
     %label.custom-control.custom-checkbox
       = f.check_box :likes, class: "custom-control-input"

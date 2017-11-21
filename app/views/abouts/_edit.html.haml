@@ -1,9 +1,9 @@
-%h2.orange-text.pull-left= t '.details'
-= link_to nil, class: "show-abouts-form pull-right dark-gray-text" do
-  = fa_icon "caret-square-o-down 3x"
+#show-abouts-form.dark-gray-text
+  %h2.orange-text.pull-left= t '.details'
+  = fa_icon "caret-down 3x", class: 'abouts-toggle-icon pull-right'
 .clearfix
-%hr
 = simple_form_for @about, url: about_url, html: { method: :put, id: "abouts-form" } do |f|
+  %hr
   = f.input :job,
       label: "#{t 'users.details_panel.job'}",
       error_html: { class: 'red-text' }

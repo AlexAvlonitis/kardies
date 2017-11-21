@@ -2,9 +2,12 @@ $ ->
 
   $("#abouts-form").hide()
 
-  $(".show-abouts-form").on 'click', (e) ->
-    e.preventDefault()
+  $("#show-abouts-form").click ->
     $("#abouts-form").toggle("fast")
+    $('.abouts-toggle-icon').toggleClass("fa-caret-down fa-caret-up")
+
+  $("#show-abouts-form").hover ->
+    $(this).css('cursor','pointer')
 
   @countChar = () ->
     val = document.getElementById("abouts-description")

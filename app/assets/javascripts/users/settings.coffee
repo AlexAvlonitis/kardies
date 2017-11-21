@@ -3,9 +3,12 @@ $ ->
   $('#change-password').hide()
   $('#user-form').hide()
 
-  $(".show-user-form").on 'click', (e) ->
-    e.preventDefault()
+  $("#show-user-form").click ->
     $("#user-form").toggle("fast")
+    $('.settings-toggle-icon').toggleClass("fa-caret-down fa-caret-up")
+
+  $("#show-user-form").hover ->
+    $(this).css('cursor','pointer')
 
   $('.state-selection').change ->
     $.getJSON '/cities/' + $(this).val(), (data) ->
