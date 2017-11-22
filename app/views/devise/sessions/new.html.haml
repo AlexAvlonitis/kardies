@@ -15,12 +15,14 @@
             = f.text_field :email,
                 autofocus: true,
                 class: "form-control form-control-lg",
+                name: 'email',
                 placeholder: "#{t 'devise.registrations.edit.email'}"
 
           .form-group
             = f.password_field :password,
                 autocomplete: "off",
                 class: "form-control form-control-lg",
+                name: 'password',
                 placeholder: "#{t 'devise.registrations.edit.password'}"
 
           %hr.colorgraph
