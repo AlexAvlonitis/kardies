@@ -16,7 +16,6 @@ Rails.application.routes.draw do
       resources :users, only: :index
       resources :contacts, only: :index
 
-
       delete 'delete_user/:username', to: "users#admin_destroy", as: :destroy
       post 'unblock_user/:username', to: "users#admin_unblock", as: :unblock
       post 'create_admin/:username', to: "users#create_admin", as: :create_admin
@@ -47,10 +46,6 @@ Rails.application.routes.draw do
     resources :conversations, only: [:index, :show, :destroy] do
       member do
         post :reply
-        post :restore
-      end
-      collection do
-        delete :empty_trash
       end
     end
 

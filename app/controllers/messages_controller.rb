@@ -9,8 +9,6 @@ class MessagesController < ApplicationController
 
   private
 
-  attr_reader :conversation_notification_email
-
   def send_message
     conversation = find_existing_conversation
     if conversation && !conversation_deleted?(conversation)
@@ -40,12 +38,12 @@ class MessagesController < ApplicationController
   end
 
   def find_existing_conversation
-    Mailboxer::Conversation.between(current_user, @recipient)
-                           .find { |c| c.participants.count == 2 }
+    Mailboxer::Conversation
+      .between(current_user, @recipient)
+      .find { |c| c.participants.count == 2 }
   end
 
   def conversation_deleted?(conversation)
-    conversation.is_trashed?(current_user) ||
-      conversation.is_deleted?(current_user)
+    conversation.is_deleted?(current_user)
   end
 end

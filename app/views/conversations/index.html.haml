@@ -1,25 +1,10 @@
 .row
-  .col.bg-white.effect2.m-3.p-4
-    %ul.nav.nav-tabs{ role: "tablist" }
-      %li.nav-item
-        %a.nav-link.active{ "data-toggle" => "tab", href: "#messages", role: "tab" }= t '.messages'
-      %li.nav-item
-        %a.nav-link{ "data-toggle" => "tab", href: "#trash", role: "tab" }= t '.trash'
-
-    .tab-content
-      .tab-pane.active{ id: "messages", role: "tabpanel" }
-        %table.table
-          %tbody
-            = render partial: 'conversation', collection: @conversations
-      .tab-pane{ id: "trash", role: "tabpanel" }
-        %table.table
-          %tbody
-            .m-2
-              = link_to empty_trash_conversations_path,
-                  class: 'btn btn-sm btn-outline-danger',
-                  method: :delete,
-                  remote: true,
-                  data: {confirm: "#{t '.empty_trash_confirm'}"} do
-                = fa_icon 'trash-o'
-                = t '.empty_trash'
-            = render partial: 'conversation', collection: @conversations_trash
+  .col.bg-white.effect2.margin-3
+    %table.table
+      %thead
+        %tr
+          %th
+            %small
+              %strong= t '.sender'
+      %tbody
+        = render partial: 'conversation', collection: @conversations

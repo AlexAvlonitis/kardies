@@ -21,7 +21,7 @@ class ConversationsController < ApplicationController
 
   def destroy
     begin
-      @conversation.move_to_trash(current_user)
+      @conversation.mark_as_deleted(current_user)
       render json: @conversation, status: 201
     rescue StandardError => e
       render json: { errors: e.message }, status: 422
@@ -32,17 +32,6 @@ class ConversationsController < ApplicationController
     @conversation.untrash(current_user)
     flash[:success] = (t '.convo_restored').to_s
     redirect_to conversations_path
-  end
-
-  def empty_trash
-    @mailbox.trash.each do |conversation|
-      conversation.receipts_for(current_user).mark_as_deleted
-    end
-    flash[:success] = (t '.trash_cleaned').to_s
-    respond_to do |format|
-      format.html { redirect_to conversations_path }
-      format.json { head :ok }
-    end
   end
 
   private

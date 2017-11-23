@@ -18,7 +18,7 @@ $ ->
       )
       .done ->
         swal(
-          text: "Η συνομιλία μεταφέρθηκε στον κάδο ανακύκλωσης"
+          text: "Η συνομιλία διαγράφηκε"
           type: "success"
         ).then ->
           that.closest('tr').fadeOut()

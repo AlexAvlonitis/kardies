@@ -159,6 +159,9 @@ el:
       conversation_at: "Ημερομηνία"
       conversation_action: "Ενέργεια"
       messages: "Μηνύματα"
+      sender: 'Αποστολέας'
+      details: 'Λεπτομέρειες'
+      action: 'Ενέργεια'
       sent: "Εξερχόμενα"
       trash: "Κάδος ανακύκλωσης"
     show:
