@@ -8,3 +8,4 @@
               %strong= t '.sender'
       %tbody
         = render partial: 'conversation', collection: @conversations
+    = paginate @conversations, window: 1

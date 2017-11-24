@@ -250,6 +250,11 @@ table tr:nth-of-type(even) {
   height: 100%;
 }
 
+.page-item.active .page-link{
+  background: $orange;
+  border-color: $orange;
+}
+
 .margin-3 {
 	margin: 1rem;
 }

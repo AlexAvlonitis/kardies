@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, except: [:index]
 
   def index
-    @users ||= search_present? ? get_all_indexed_users : get_all_users
+    @users  ||= search_present? ? get_all_indexed_users : get_all_users
     @search ||= search_criteria
   end
 

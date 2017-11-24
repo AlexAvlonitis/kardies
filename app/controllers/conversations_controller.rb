@@ -4,7 +4,6 @@ class ConversationsController < ApplicationController
 
   def index
     @conversations
-    @conversations_trash = @mailbox.trash.page(params[:page]).per(10)
     delete_conversation_notifications
   end
 
@@ -36,7 +35,9 @@ class ConversationsController < ApplicationController
 
   def get_messages
     messages = @mailbox.inbox + @mailbox.sentbox
-    @conversations = messages.flatten.uniq(&:id) # remove duplicate IDs
+    conversations = messages.flatten.uniq(&:id) # remove duplicate IDs
+    @conversations =
+      Kaminari.paginate_array(conversations).page(params[:page]).per(8)
   end
 
   def get_conversation

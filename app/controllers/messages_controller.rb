@@ -44,6 +44,7 @@ class MessagesController < ApplicationController
   end
 
   def conversation_deleted?(conversation)
-    conversation.is_deleted?(current_user)
+    conversation.is_deleted?(current_user) ||
+      conversation.is_deleted?(@recipient)
   end
 end
