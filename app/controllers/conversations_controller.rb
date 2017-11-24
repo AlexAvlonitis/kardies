@@ -28,12 +28,6 @@ class ConversationsController < ApplicationController
     end
   end
 
-  def restore
-    @conversation.untrash(current_user)
-    flash[:success] = (t '.convo_restored').to_s
-    redirect_to conversations_path
-  end
-
   private
 
   def get_mailbox
