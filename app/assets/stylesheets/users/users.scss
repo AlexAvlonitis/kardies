@@ -174,18 +174,3 @@
   width: 100%;
   max-height: auto;
 }
-
-.users-ad {
-  margin: 0 auto;
-  text-align: center;
-  width: 728px;
-  height: 90px;
-  padding-bottom: 1rem;
-}
-
-@media all and (max-width: 800px) {
-  .users-ad {
-    width: 320px;
-    height: 50px;
-  }
-}
