@@ -3,18 +3,7 @@
   %small= t '.suggested_people_description'
 %hr
 .row.justify-content-center
-  .card-deck
   - users.each do |user|
-    - present user do |user_presenter|
-      .card.effect2.suggested_people.m-3
-        .card-img-top
-          - if user.try(:profile_picture)
-            = link_to user_path(user) do
-              .card-bg{style: "background-image:url(#{user.profile_picture(:medium)})"}
-        .card-block
-          .card-text
-            -if user.try(:age)
-              %strong= user.age
-
-            -if user.try(:state) && user.try(:city)
-              %p= user_presenter.display_city_info
+    - if user.try(:profile_picture)
+      = link_to user_path(user) do
+        .profile-pic-round-sm.m-2.lazy{ "data-src" => "#{user.profile_picture}" }
