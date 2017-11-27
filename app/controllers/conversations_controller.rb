@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :get_mailbox, :get_messages
-  before_action :get_conversation, except: %i[index empty_trash]
+  before_action :get_conversation, except: :index
 
   def index
     @conversations
