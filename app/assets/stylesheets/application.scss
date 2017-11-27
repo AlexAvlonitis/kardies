@@ -256,8 +256,8 @@ table tr:nth-of-type(even) {
 .ad-fake-container {
   background-color: $black;
   color: $white;
-  width: 728px;
-  height: 90px;
+  width: 320px;
+  height: 100px;
   text-align: center;
   margin: 0 auto;
   margin-bottom: 1rem;
@@ -276,10 +276,20 @@ table tr:nth-of-type(even) {
     width: 468px;
     height: 60px;
   }
+
+  .ad-fake-container {
+    width: 468px;
+    height: 60px;
+  }
 }
 
 @media(min-width: 800px) {
   .kardies_ad {
+    width: 728px;
+    height: 90px;
+  }
+
+  .ad-fake-container {
     width: 728px;
     height: 90px;
   }
@@ -289,9 +299,4 @@ table tr:nth-of-type(even) {
 	.margin-3 {
 		margin: 0;
 	}
-
-  .ad-fake-container {
-    width: 320px;
-    height: 100px;
-  }
 }

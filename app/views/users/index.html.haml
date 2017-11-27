@@ -3,8 +3,7 @@
     .top-search.effect2
       = render partial: 'search'
 .row
-  .col
-    = render partial: 'layouts/kardies_ad'
+  = render partial: 'layouts/kardies_ad'
 .row.justify-content-center
   .card-deck.justify-content-center
     - if ! @users.map {|f| f}.blank?
