@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     end
 
     get "likes", to: "likes#index", as: :my_likes
-    resources :reports, param: :username, only: [:new, :create, :show]
+    resources :reports, param: :username, only: [:create, :show]
 
     resources :galleries
     resources :search_criteria, only: [:new, :create]

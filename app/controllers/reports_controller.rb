@@ -4,22 +4,19 @@ class ReportsController < ApplicationController
     report = reportee.reports.new(report_params)
 
     if report.save
-      flash[:success] = 'Report has been sent'
-      redirect_to users_path
+      flash[:success] = t '.sent'
+      redirect_to user_path(reportee)
     else
-      flash[:alert] = 'Report has not been sent'
+      flash[:alert] = t '.not_sent'
       render 'show'
     end
-  end
-
-  def show
-    @report = Report.new
   end
 
   private
 
   def report_params
-    params.require(:report).permit(:reason, :description)
+    params.require(:report)
+          .permit(:reason, :description)
           .merge(reporter_id: current_user.id)
   end
 end

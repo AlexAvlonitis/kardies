@@ -30,8 +30,9 @@
       = t '.send_like'
 
   %hr
-  = link_to report_path(@user), class: "btn btn-sm btn-outline-danger" do
+  = link_to report_path(@user), class: "btn btn-sm btn-outline-danger", "data-toggle" => "modal", "data-target" => "#reportModal", "data-whatever" => "#{@user.username}" do
     = fa_icon "frown-o"
     = t 'users.index.report'
 
 = render partial: 'image_modal'
+= render partial: 'reports/report_modal'

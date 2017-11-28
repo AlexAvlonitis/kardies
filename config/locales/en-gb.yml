@@ -23,6 +23,10 @@ en-gb:
       reason: "Reason"
       details: "Details"
       send_report: "Send Report"
+      description: "Is there an inappropriate photo? Fake profile? Offensive messages?"
+    create:
+      sent: 'Report has been sent'
+      not_sent: "Report hasn't been sent"
   galleries:
     destroy:
       gallery_deleted: 'Gallery has been deleted successfully'
