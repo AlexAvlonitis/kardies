@@ -13,5 +13,6 @@ module Travelhub
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = :el
     config.autoload_paths += %W(#{config.root}/lib)
+    config.middleware.use Rack::Attack
   end
 end

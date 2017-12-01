@@ -14,6 +14,9 @@
       - else
         Γνωριμίες Ελλάδα | Kardies.gr
 
+    - if user_signed_in?
+      = tag :meta, name: "current-user", data: {id: current_user.id}
+
     = csrf_meta_tags
 
     = stylesheet_link_tag 'application'
