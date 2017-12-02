@@ -9,6 +9,11 @@
         - current_user.gallery.pictures.each do |pic|
           %tr
             %td= image_tag pic.picture.url(:thumb), class: "pic-round-sm"
+            %td
+              = link_to destroy_picture_path(pic),
+                  class: "btn btn-danger delete-picture",
+                  title: "#{t '.delete'}" do
+                = fa_icon "trash"
   %hr
   .form-group
     %label= t 'users.show.upload_pictures'

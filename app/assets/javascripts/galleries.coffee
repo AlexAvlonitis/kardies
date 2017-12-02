@@ -60,6 +60,40 @@ $ ->
       )
   )
 
+  $(".delete-picture").on 'click', (e) ->
+    e.preventDefault()
+    that = $(this)
+    url = that.context.pathname
+    swal(
+      text: 'Η φωτογραφία θα διαγραφεί!'
+      type: 'warning'
+      showCancelButton: true
+      confirmButtonColor: '#3085d6'
+      cancelButtonColor: '#d33'
+      confirmButtonText: 'OK'
+    ).then ->
+      $.ajax(url,
+        type: "DELETE"
+        dataType: "json"
+      )
+      .done ->
+        swal(
+          text: "Η φωτογραφία διαγράφηκε"
+          type: "success"
+        ).then ->
+          that.closest('tr').fadeOut()
+      .fail (xhr, status, error) ->
+        errors = JSON.parse(xhr.responseText).errors
+        e = ''
+        for error of errors
+          if errors.hasOwnProperty(error)
+            e += ", #{errors[error][0]}"
+        swal(
+          text: "Κάτι πήγε στραβά#{e}"
+          type: 'warning'
+        )
+        $(".delete-picture").removeAttr("disabled")
+
   $('.slick-images').slick
     lazyLoad: 'ondemand'
     dots: true

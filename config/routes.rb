@@ -61,7 +61,8 @@ Rails.application.routes.draw do
 
     get 'gallery/edit', to: 'galleries#edit',   as: :edit_gallery
     put 'gallery',      to: 'galleries#update', as: :gallery
-    delete 'delete_gallery', to: "galleries#destroy", as: :destroy_gallery
+
+    delete 'delete_picture/:id', to: "pictures#destroy", as: :destroy_picture
 
     get 'email_preferences/edit', to: 'email_preferences#edit',   as: :edit_email_preferences
     put 'email_preferences',      to: 'email_preferences#update', as: :email_preferences
