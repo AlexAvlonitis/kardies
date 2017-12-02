@@ -1,12 +1,12 @@
 %h2.display-5= t '.galleries'
 - if @user.galleries.blank?
   .slick-images
-    %img{ src: "http://via.placeholder.com/250/E8117F/ffffff?text=No+Photos" }
-    %img{ src: "http://via.placeholder.com/120/E8117F/ffffff?text=No+Photos" }
-    %img{ src: "http://via.placeholder.com/100/E8117F/ffffff?text=No+Photos" }
-    %img{ src: "http://via.placeholder.com/350/E8117F/ffffff?text=No+Photos" }
-    %img{ src: "http://via.placeholder.com/500/E8117F/ffffff?text=No+Photos" }
-    %img{ src: "http://via.placeholder.com/120/E8117F/ffffff?text=No+Photos" }
+    = holder_tag '300x200', 'No photo :(', nil, {}, { bg: '#E8117F' }
+    = holder_tag '100', 'No photo :(', nil, {}, { bg: '#E8117F' }
+    = holder_tag '300', 'No photo :(', nil, {}, { bg: '#E8117F' }
+    = holder_tag '200', 'No photo :(', nil, {}, { bg: '#E8117F' }
+    = holder_tag '150', 'No photo :(', nil, {}, { bg: '#E8117F' }
+    = holder_tag '500', 'No photo :(', nil, {}, { bg: '#E8117F' }
 - else
 - @user.galleries.each.with_index(1) do |gallery, index|
   %hr

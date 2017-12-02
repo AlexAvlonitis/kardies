@@ -14,6 +14,7 @@
 #= require jquery
 #= require tether
 #= require bootstrap
+#= require holder
 #= require jquery_ujs
 #= require jgallery
 #= require jquery-fileupload/basic

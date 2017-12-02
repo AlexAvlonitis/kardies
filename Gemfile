@@ -44,6 +44,7 @@ gem 'es6-promise-rails'
 gem 'nouislider-rails'
 gem 'mailgun_rails'
 gem "jquery-slick-rails"
+gem 'holder_rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
