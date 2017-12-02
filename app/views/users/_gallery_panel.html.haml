@@ -7,4 +7,5 @@
 - else
   .slick-images
     - @user.gallery.pictures.each do |pic|
-      %img.gallery-dimensions{ 'data-lazy' => "#{pic.picture.url}" }
+      = link_to nil, 'data-toggle' => 'modal', 'data-target' => '#imageModal', "data-whatever" => "#{pic.picture.url}" do
+        %img.gallery-dimensions{ 'data-lazy' => "#{pic.picture.url}" }
