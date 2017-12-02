@@ -20,7 +20,7 @@ class User < ApplicationRecord
   # Relations
   has_one :about, dependent: :destroy
   has_one :user_detail, dependent: :destroy
-  has_many :galleries, dependent: :destroy
+  has_one :gallery, dependent: :destroy
   has_many :reports, dependent: :destroy
   has_many :search_criteria, dependent: :destroy
   has_many :vote_notifications, dependent: :destroy

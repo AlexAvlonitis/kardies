@@ -1,39 +1,13 @@
 $ ->
 
-  $('.gallery').jGallery()
-  @previewFiles = ->
+  $("#gallery-form").hide()
 
-    preview = document.querySelector('#preview')
-    files   = document.querySelector('input[type=file]').files
+  $("#show-gallery-form").click ->
+    $('#gallery-form').toggle("fast")
+    $('.gallery-toggle-icon').toggleClass("fa-caret-down fa-caret-up")
 
-    readAndPreview = (file) ->
-
-      if /\.(jpe?g|png|gif)$/i.test(file.name)
-        reader = new FileReader();
-
-        reader.addEventListener "load", (->
-          image = new Image()
-          image.className = 'thumbnail thumb-size'
-          image.style.display = "block"
-          image.title = file.name
-          image.src = this.result
-          preview.appendChild image
-        ), false
-        reader.readAsDataURL(file)
-
-    if (files)
-      [].forEach.call(files, readAndPreview)
-
-  $('#imageModal').on('show.bs.modal', (event) ->
-    button = $(event.relatedTarget)
-    recipient = button.data('whatever')
-    modal = $(this)
-    modal.find('.profile-pic-modal').attr("src", recipient);
-  )
-
-  $('#gallery-submit').on 'click', ->
-    $body = $("body")
-    $body.addClass("loading");
+  $("#show-gallery-form").hover ->
+    $(this).css('cursor','pointer')
 
   $('#fileupload').fileupload(
     dataType: 'json'
@@ -56,12 +30,40 @@ $ ->
       )
   )
 
+  $('#gallery-fileupload').fileupload(
+    dataType: 'json'
+    add: (e, data) ->
+      data.context = $('<button/>').text('Αποθηκεύστε').addClass('btn btn-success')
+        .appendTo("#gallery-progress")
+      .click ->
+        data.context = $('#gallery-progress').text('Παρακαλώ περιμένετε...').addClass('loading-gif')
+        data.submit()
+    done: (e, data) ->
+      url = data.result.url
+      swal(
+        text: "Η αλλαγή σας σώθηκε"
+        type: "success"
+      ).then ->
+        $('#galleries-table tr:last')
+          .after(
+            '<tr>' +
+            '<td>' +
+            "<img class='pic-round-sm' src=" + url + "/>"
+            '<td>' +
+            '</tr>'
+          )
+        data.context.text('Αποθηκεύτηκε!').removeClass('loading-gif')
+    fail: (e, data) ->
+      swal(
+        text: "Κάτι πήγε στραβά, #{data.errorThrown}"
+        type: 'warning'
+      )
+  )
+
   $('.slick-images').slick
-    lazyLoad: 'ondemand',
-    dots: true,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 1,
-    centerMode: true,
-    variableWidth: true
+    lazyLoad: 'ondemand'
+    dots: true
+    infiniteScroll: true
+    slidesToShow: 3
+    slidesToScroll: 1
     adaptiveHeight: true

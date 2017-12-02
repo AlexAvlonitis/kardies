@@ -1,5 +1,5 @@
 class EmailPreferencesController < ApplicationController
-  before_action :set_email_preferences
+  before_action :set_email_preferences, only: :update
 
   def update
     if @email_preferences.update(email_preferences_params)

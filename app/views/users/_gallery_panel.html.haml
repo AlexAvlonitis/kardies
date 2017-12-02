@@ -1,18 +1,10 @@
 %h2.display-5= t '.galleries'
-- if @user.galleries.blank?
+%hr
+- if @user.gallery.blank?
   .slick-images
-    = holder_tag '300x200', 'No photo :(', nil, {}, { bg: '#E8117F' }
-    = holder_tag '100', 'No photo :(', nil, {}, { bg: '#E8117F' }
-    = holder_tag '300', 'No photo :(', nil, {}, { bg: '#E8117F' }
-    = holder_tag '200', 'No photo :(', nil, {}, { bg: '#E8117F' }
-    = holder_tag '150', 'No photo :(', nil, {}, { bg: '#E8117F' }
-    = holder_tag '500', 'No photo :(', nil, {}, { bg: '#E8117F' }
+    - 6.times do
+      = holder_tag '300', "#{t '.empty'}", nil, {}, { bg: '#E8117F' }
 - else
-- @user.galleries.each.with_index(1) do |gallery, index|
-  %hr
-  %h4= gallery.name.capitalize
-  .row
-    %li.list-unstyled.gallery
-      - gallery.pictures.each do |pic|
-        = link_to pic.picture.url, title: "Album-#{index}"  do
-          = image_tag pic.picture.url
+  .slick-images
+    - @user.gallery.pictures.each do |pic|
+      %img.gallery-dimensions{ 'data-lazy' => "#{pic.picture.url}" }

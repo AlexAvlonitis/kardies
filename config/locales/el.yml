@@ -137,6 +137,7 @@ el:
       age_to: "Μέχρι"
     gallery_panel:
       galleries: 'Άλμπουμ'
+      empty: 'Κενή :('
   suggested_people:
     list:
       suggested_people_header: 'Ίσως ενδιαφέρεστε'

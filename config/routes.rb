@@ -37,11 +37,10 @@ Rails.application.routes.draw do
       end
     end
 
-    get "likes", to: "likes#index", as: :my_likes
     resources :reports, param: :username, only: [:create, :show]
-
-    resources :galleries
     resources :search_criteria, only: [:new, :create]
+    resources :contacts, only: [:index, :create]
+    resources :email_preferences, only: [:edit, :update]
 
     resources :conversations, only: [:index, :show, :destroy] do
       member do
@@ -49,21 +48,22 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :contacts, only: [:index, :create]
-    resources :email_preferences, only: [:edit, :update]
-
+    get "likes", to: "likes#index", as: :my_likes
     get 'cities/:state', to: 'places#cities'
-
     get 'messages/:username/new', to: 'messages#new',    as: :new_message
-    post 'messages',              to: 'messages#create', as: :messages
+    get 'terms', to: 'terms#index', as: :terms
+
+    post 'messages', to: 'messages#create', as: :messages
 
     # removed IDs
     get 'about/edit', to: 'abouts#edit',   as: :edit_about
     put 'about',      to: 'abouts#update', as: :about
 
+    get 'gallery/edit', to: 'galleries#edit',   as: :edit_gallery
+    put 'gallery',      to: 'galleries#update', as: :gallery
+    delete 'delete_gallery', to: "galleries#destroy", as: :destroy_gallery
+
     get 'email_preferences/edit', to: 'email_preferences#edit',   as: :edit_email_preferences
     put 'email_preferences',      to: 'email_preferences#update', as: :email_preferences
-
-    get 'terms', to: 'terms#index', as: :terms
   end
 end

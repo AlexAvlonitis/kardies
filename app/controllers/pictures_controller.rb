@@ -1,5 +1,6 @@
-class GalleriesController < ApplicationController
+class PicturesController < ApplicationController
   def update
+    current_user.gallery || current_user.build_gallery
     save_gallery
   end
 
@@ -21,14 +22,10 @@ class GalleriesController < ApplicationController
       return
     end
 
-    unless current_user.gallery
-      Gallery.create(user: current_user)
-    end
-
-    begin
-      pic = current_user.gallery.pictures.create(picture: params[:picture])
-      render json: { "url": pic.picture.url }, status: 200
-    rescue => e
+    if @gallery.update(gallery_params)
+      @gallery.pictures.create(picture: params[:picture])
+      render json: 'success', status: 200
+    else
       render json: { errors: e + 'hhhey' }, status: 402
     end
   end
