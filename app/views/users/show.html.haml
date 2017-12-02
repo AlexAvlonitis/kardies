@@ -2,16 +2,16 @@
   #message-modal
 
   .row.justify-content-center
-    .col-sm-12.col-md-5.col-lg-4.bg-white.m-2.p-2.effect2.text-center
+    .col-md-12.col-lg-4.my-2.p-4.effect2.text-center.bg-white
       = render partial: 'profile_pic_panel',
           locals: { user_presenter: user_presenter }
 
-    .col-sm-12.col-md-6.col-lg-7.m-2.p-4.effect2.bg-white
+    .col-md-12.col-lg-7.my-2.p-4.effect2.bg-white
       = render partial: 'details_panel',
           locals: { user_presenter: user_presenter }
 
   .row.justify-content-center
-    .col-12.bg-white.m-2.p-2.effect2.text-center
+    .col-md-12.col-lg-11.my-2.p-4.effect2.text-center.bg-white
       = render partial: 'gallery_panel',
           locals: { user_presenter: user_presenter }
 
