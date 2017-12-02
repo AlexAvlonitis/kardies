@@ -35,6 +35,8 @@ en-gb:
     create:
       no_picture_error: "Please select one picture at least"
       no_save_error: "Something went wrong, please check all the fields and try again"
+    edit:
+      gallery: 'Gallery'
   abouts:
     edit:
       about_me: 'DETAILS'
