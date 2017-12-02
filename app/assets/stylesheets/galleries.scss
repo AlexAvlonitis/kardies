@@ -1,3 +1,20 @@
 .loading-gif {
   background: asset-data-url('ajax-loader.gif') no-repeat right center;
 }
+
+.slick-arrow::before {
+  opacity: 1;
+  color: $orange;
+}
+
+.slick-slide {
+  margin: 0 10px;
+}
+
+.slick-list {
+  margin: 0 -10px;
+}
+
+.slick-dots li.slick-active button::before {
+  color: $orange;
+}

@@ -23,6 +23,7 @@
 #= require cookieconsent_code
 #= require lazyload
 #= require promise
+#= require jquery.slick
 #= require tinycolor.min
 #= require toastr
 #= require wNumb

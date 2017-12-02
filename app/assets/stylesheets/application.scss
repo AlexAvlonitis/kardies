@@ -19,7 +19,6 @@
 */
 @import "colors";
 @import "bootstrap";
-@import "galleries";
 @import "font-awesome";
 @import "sidebar-left";
 @import "forms";
@@ -30,6 +29,9 @@
 @import "abouts";
 @import "users/*";
 @import "home";
+@import "slick";
+@import 'slick-theme';
+@import "galleries";
 @import "rounded_toggle_button";
 @import "footer";
 
@@ -86,6 +88,10 @@ body {
 
 .bg-lightblue {
   background-color: $light_blue;
+}
+
+.bg-dark-blue {
+  background-color: $orange;
 }
 
 .blue-text {

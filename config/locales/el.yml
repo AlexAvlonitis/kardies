@@ -135,6 +135,8 @@ el:
       age: "Ηλικία"
       age_from: "Από"
       age_to: "Μέχρι"
+    gallery_panel:
+      galleries: 'Άλμπουμ'
   suggested_people:
     list:
       suggested_people_header: 'Ίσως ενδιαφέρεστε'

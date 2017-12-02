@@ -136,6 +136,8 @@ en-gb:
       gender_other: "Other"
       age_from: "From"
       age_to: "Up to"
+    gallery_panel:
+      galleries: 'Άλμπουμ'
   suggested_people:
     list:
       suggested_people_header: 'You might be interested'
