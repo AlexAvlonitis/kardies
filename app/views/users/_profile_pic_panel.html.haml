@@ -1,6 +1,6 @@
 .row.justify-content-center
   .gallery.mt-2
-    = link_to nil, 'data-toggle' => 'modal', 'data-target' => '#imageModal', "data-whatever" => "#{@user.profile_picture}" do
+    = link_to nil, 'data-toggle' => 'modal', 'data-target' => '#imageModal', "data-whatever" => "#{@user.profile_picture(:original)}" do
       .profile-pic{ style: "background-image: url(#{@user.profile_picture(:medium)})"}
 
 %h3.mt-2
