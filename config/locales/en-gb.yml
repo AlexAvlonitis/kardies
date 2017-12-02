@@ -48,7 +48,6 @@ en-gb:
       relationship_status_placeholder: "Single, Married..."
       looking_for_placeholder: "My other half, Friendship..."
       about_me_placeholder: "Very good person..."
-      youtube_placeholder: "YQHsXMglC9A"
       back: 'Back'
       character_length: 'characters is the limit'
   email_preferences:
@@ -111,11 +110,8 @@ en-gb:
       create_gallery: 'Create gallery'
       no_post: "The user hasn't posted anything yet"
       no_albums: "The user hasn't posted any albums yet"
-      youtube_instructions: "Only enter the code that is at the end of the youtube URL. e.g (https://www.youtube.com/watch?v=YQHsXMglC9A), enter: YQHsXMglC9A"
       profile_pic_needed: "You need to have a profile picture, to be able to view other profiles"
       galleries: 'Create a gallery'
-    youtube_panel:
-      youtube: "A song that represents me"
     details_panel:
       job: "Occupation"
       hobby: "Hobbies"

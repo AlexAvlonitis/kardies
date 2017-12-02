@@ -47,7 +47,6 @@ el:
       relationship_status_placeholder: "Ελεύθερος/η, Παντρεμένος/η..."
       looking_for_placeholder: "Το άλλο μου μισό, Φιλία..."
       about_me_placeholder: "Χρυσό παιδί..."
-      youtube_placeholder: "YQHsXMglC9A"
       back: 'Πίσω'
       character_length: 'χαρακτήρες είναι το όριο'
   email_preferences:
@@ -111,11 +110,8 @@ el:
       create_gallery: 'Δημιουργία άλμπουμ'
       no_post: "Ο χρήστης δεν έχει αναρτήσει κάτι ακόμα"
       no_albums: "Ο χρήστης δεν έχει αναρτήσει άλμπουμ ακόμα"
-      youtube_instructions: "Εισάγετε μόνο τον κωδικό που βρίσκεται στο τέλος της ηλεκτρονικής διεύθυνσης (URL) από το youtube. Παράδειγμα (https://www.youtube.com/watch?v=YQHsXMglC9A), εισάγετε μόνο το YQHsXMglC9A"
       profile_pic_needed: "Πρέπει να έχετε φωτογραφία προφίλ, για να έχετε το δικαίωμα να βλέπετε άλλα προφίλ."
       galleries: "Δημιουργία άλμπουμ"
-    youtube_panel:
-      youtube: "Τραγούδι που με εκπροσωπεί"
     details_panel:
       job: "Επάγγελμα"
       hobby: "Χόμπυ"

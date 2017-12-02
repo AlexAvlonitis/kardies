@@ -51,16 +51,6 @@ class UserPresenter < BasePresenter
     end
   end
 
-  def youtube_url
-    if user.youtube_url.blank?
-      no_post
-    else
-      h.content_tag :div, class: "video-container" do
-        h.content_tag(:iframe, "", src: "#{YoutubeCodeExtractor.new(user.youtube_url).extract}", frameborder: 0)
-      end
-    end
-  end
-
   def profile_picture_link(size = :thumb)
     h.link_to h.user_path(user) do
       h.image_tag user.profile_picture(size), class: "icon-size"

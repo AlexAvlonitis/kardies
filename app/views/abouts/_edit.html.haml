@@ -22,20 +22,6 @@
       error_html: { class: 'red-text' }
   %strong.pull-right{ id: 'charNum' }
 
-  .form-group
-    %label.pull-left= t 'users.show.youtube'
-    .help-tip
-      %p= t 'users.show.youtube_instructions'
-  .form-group.row
-    .col-sm-6.col-form-label.orange-text https://youtube.com/watch?=
-    .col-sm-6
-      = f.text_field :youtube_url,
-          placeholder: "#{t '.youtube_placeholder'}",
-          class: 'form-control'
-
-  - present current_user do |user_presenter|
-    %p= user_presenter.youtube_url
-
   = f.submit "#{t '.save'}",
       class: "btn btn-primary btn-block",
       id: "about-submit"
