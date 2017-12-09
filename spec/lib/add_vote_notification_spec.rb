@@ -5,7 +5,6 @@ RSpec.describe AddVoteNotification do
 
   let(:user) { instance_double(User) }
   let(:current_user) { instance_double(User) }
-  let(:create_vote_notification) { class_double(VoteNotification) }
 
   it 'sends a vote notification' do
     expect(subject).to receive(:create_vote_notification)
