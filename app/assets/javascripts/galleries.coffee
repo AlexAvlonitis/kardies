@@ -101,3 +101,5 @@ $ ->
     slidesToShow: 3
     slidesToScroll: 1
     adaptiveHeight: true
+
+  $('.swipebox').swipebox()

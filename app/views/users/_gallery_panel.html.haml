@@ -7,5 +7,5 @@
 - else
   .slick-images
     - @user.gallery.pictures.each do |pic|
-      = link_to nil, 'data-toggle' => 'modal', 'data-target' => '#imageModal', "data-whatever" => "#{pic.picture.url}" do
+      = link_to pic.picture.url, class: 'swipebox' do
         %img.img-thumbnail{ 'data-lazy' => "#{pic.picture.url}" }

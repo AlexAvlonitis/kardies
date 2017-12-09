@@ -25,6 +25,7 @@
 #= require lazyload
 #= require promise
 #= require jquery.slick
+#= require swipebox
 #= require tinycolor.min
 #= require toastr
 #= require wNumb
