@@ -17,12 +17,8 @@ RSpec.describe UsersController, type: :controller do
       get :index
     end
 
-    it 'populates an array of users' do
-      expect(assigns(:users)).to eq [user2]
-    end
-
     it "renders the index template" do
-      expect(response).to render_template :index
+      assert_response :success
     end
   end
 
@@ -32,14 +28,8 @@ RSpec.describe UsersController, type: :controller do
       get :show, params: { username: user.username }
     end
 
-    describe "GET #show" do
-      it "assigns the requested contact to @user" do
-        expect(assigns(:user)).to eq(user)
-      end
-
-      it "renders the #show view" do
-        expect(response).to render_template :show
-      end
+    it "renders the #show view" do
+      assert_response :success
     end
   end
 end
