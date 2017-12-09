@@ -7,12 +7,17 @@ RSpec.describe User do
   it { is_expected.to have_db_index(:username) }
   it { is_expected.to validate_presence_of(:username) }
   it { is_expected.to validate_presence_of(:email) }
-  it { should have_many(:messages) }
-  it { should have_one(:gallery) }
-  it { should have_one(:user_detail) }
-  it { should have_one(:about) }
 
- describe 'persistense in db' do
+  it { should have_many(:reports).dependent(:destroy) }
+  it { should have_many(:search_criteria).dependent(:destroy) }
+  it { should have_many(:vote_notifications).dependent(:destroy) }
+  it { should have_many(:conversation_notifications).dependent(:destroy) }
+  it { should have_one(:gallery).dependent(:destroy) }
+  it { should have_one(:email_preference).dependent(:destroy) }
+  it { should have_one(:user_detail).dependent(:destroy) }
+  it { should have_one(:about).dependent(:destroy) }
+
+ describe 'db persistense' do
    subject { FactoryBot.build(:user) }
 
    before do
@@ -25,8 +30,13 @@ RSpec.describe User do
    end
 
    context 'callbacks' do
-     it 'sends an auto like after creation' do
+     it 'calls #auto_like after creation' do
        expect(subject).to receive(:auto_like)
+       subject.save
+     end
+
+     it 'calls #send_welcome_mail after creation' do
+       expect(subject).to receive(:send_welcome_mail)
        subject.save
      end
    end
