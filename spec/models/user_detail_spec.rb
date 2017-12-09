@@ -6,6 +6,7 @@ RSpec.describe UserDetail do
   it { is_expected.to validate_presence_of(:city) }
   it { is_expected.to validate_presence_of(:gender) }
   it { is_expected.to validate_presence_of(:age) }
+  it { is_expected.to validate_presence_of(:state) }
 
   describe 'state' do
     it "does not allow a state that's not in the gem list" do
@@ -47,6 +48,17 @@ RSpec.describe UserDetail do
       %w(18 34 99).each do |age|
         user_detail = FactoryBot.build(:user_detail, age: age)
         expect(user_detail).to be_valid
+      end
+    end
+  end
+
+  describe 'callbacks' do
+    let(:user_detail) { FactoryBot.build(:user_detail) }
+
+    it 'has after_update callbacks' do
+      %i(flush_age_cache flush_profile_picture_cache).each do |c|
+        expect(user_detail).to receive(c)
+        user_detail.save
       end
     end
   end
