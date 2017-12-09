@@ -32,10 +32,14 @@ class UserDetail < ApplicationRecord
               message: '%<value>s is not a valid gender'
             }
 
-  validate :states_are_included_in_the_list
+  validates :state,
+            inclusion: {
+              in: GC.states.map { |s| s[1] },
+              message: '%<value>s is not a valid state'
+            }
 
   validates :age, inclusion: {
-    in: (18...99).map(&:to_s),
+    in: (18..99).map(&:to_s),
     message: '%<value>s is not a valid age, must be between 18 and 99'
   }
 
@@ -47,9 +51,5 @@ class UserDetail < ApplicationRecord
 
   def flush_profile_picture_cache
     Rails.cache.delete([:user_detail, id, :profile_picture]) if profile_picture?
-  end
-
-  def states_are_included_in_the_list
-    GC.states.select { |x| x.include?(state) }.empty?
   end
 end

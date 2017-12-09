@@ -2,7 +2,14 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
-  let(:user2) { FactoryGirl.create(:user) }
+  let(:user2) do
+    FactoryGirl.create(:user, username: 'zxc', email: 'zxc@zxc.com')
+  end
+
+  before do
+    allow_any_instance_of(User).to receive(:auto_like) { true }
+    allow_any_instance_of(User).to receive(:send_welcome_mail) { true }
+  end
 
   describe 'GET #index' do
     before do
