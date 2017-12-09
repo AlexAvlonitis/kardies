@@ -22,12 +22,3 @@
 .slick-dots li.slick-active button::before {
   color: $orange;
 }
-
-.gallery-dimensions {
-  max-width: 300px;
-  max-height: 500px;
-  display: block;
-  padding: 1px;
-  border: 1px solid $black;
-  background-color: $white;
-}

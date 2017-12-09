@@ -8,4 +8,4 @@
   .slick-images
     - @user.gallery.pictures.each do |pic|
       = link_to nil, 'data-toggle' => 'modal', 'data-target' => '#imageModal', "data-whatever" => "#{pic.picture.url}" do
-        %img.gallery-dimensions{ 'data-lazy' => "#{pic.picture.url}" }
+        %img.img-thumbnail{ 'data-lazy' => "#{pic.picture.url}" }
