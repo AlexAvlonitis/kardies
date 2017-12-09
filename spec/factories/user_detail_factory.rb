@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user_detail do
     state       'att'
     city        'holargos-ATT'

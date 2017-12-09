@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  subject { FactoryGirl.build_stubbed(:user) }
+  subject { FactoryBot.build_stubbed(:user) }
 
   it { is_expected.to have_db_index(:email) }
   it { is_expected.to have_db_index(:username) }
@@ -13,7 +13,7 @@ RSpec.describe User do
   it { should have_one(:about) }
 
  describe 'persistense in db' do
-   subject { FactoryGirl.build(:user) }
+   subject { FactoryBot.build(:user) }
 
    before do
      allow(subject).to receive(:auto_like) { true }

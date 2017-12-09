@@ -52,7 +52,7 @@ end
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'dotenv-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails'
 end
