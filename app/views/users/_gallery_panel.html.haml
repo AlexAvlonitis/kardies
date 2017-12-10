@@ -3,7 +3,7 @@
 - if @user.gallery.blank? || @user.gallery.pictures.empty?
   .slick-images
     - 6.times do
-      = holder_tag '300', "#{t '.empty'}", nil, {}, { bg: '#E8117F' }
+      = holder_tag '300', "#{t '.empty'}", nil, {}, { auto: 'yes', bg: '#E8117F' }
 - else
   .slick-images
     - @user.gallery.pictures.each do |pic|
