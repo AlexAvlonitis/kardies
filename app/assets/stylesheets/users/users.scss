@@ -179,3 +179,13 @@
   width: 100%;
   max-height: auto;
 }
+
+.my-profile a {
+  display: block;
+  color: $black;
+}
+
+.my-profile a:hover {
+  text-decoration: none;
+  color: $orange;
+}

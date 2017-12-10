@@ -1,0 +1,4 @@
+.my-profile
+  = link_to user_path(current_user) do
+    .profile-pic-round-lg{ style: "background-image: url(#{current_user.profile_picture})"}
+    %h3.text-center.mt-2= current_user.username.capitalize

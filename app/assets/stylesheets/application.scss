@@ -240,6 +240,18 @@ table tr:nth-of-type(even) {
   padding: 0;
 }
 
+.profile-pic-round-lg {
+  display: block;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center center;
+  margin: 0 auto;
+  padding: 0;
+}
+
 .pic-round-sm {
   display: block;
   width: 76px;
