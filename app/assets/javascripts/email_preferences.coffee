@@ -3,8 +3,8 @@ $ ->
   $("#email-preferences-form").hide()
 
   $("#show-email-preferences-form").click ->
-    $('#email-preferences-form').toggle("fast")
-    $('.email-toggle-icon').toggleClass("fa-caret-down fa-caret-up")
+    $('#email-preferences-form').slideToggle("fast")
+    $('.email-toggle-icon').toggleClass("fa-chevron-circle-down fa-chevron-circle-up")
 
   $("#show-email-preferences-form").hover ->
     $(this).css('cursor','pointer')

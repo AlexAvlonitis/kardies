@@ -1,6 +1,6 @@
 #show-user-form.dark-gray-text
   %h2.orange-text.pull-left= t 'devise.registrations.edit.my_profile'
-  = fa_icon "caret-down 3x", class: 'settings-toggle-icon pull-right'
+  = fa_icon "chevron-circle-down 2x", class: 'settings-toggle-icon pull-right'
 .clearfix
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, id: 'user-form' }) do |f|
   %hr

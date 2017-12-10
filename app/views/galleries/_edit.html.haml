@@ -1,6 +1,6 @@
 #show-gallery-form.dark-gray-text
   %h2.orange-text.mb-4.pull-left= t '.gallery'
-  = fa_icon "caret-down 3x", class: 'gallery-toggle-icon pull-right'
+  = fa_icon "chevron-circle-down 2x", class: 'gallery-toggle-icon pull-right'
 .clearfix
 = form_tag gallery_path, method: :put, id: 'gallery-form' do |f|
   - unless current_user.gallery.blank?

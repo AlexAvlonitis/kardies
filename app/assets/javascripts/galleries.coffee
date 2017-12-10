@@ -3,8 +3,8 @@ $ ->
   $("#gallery-form").hide()
 
   $("#show-gallery-form").click ->
-    $('#gallery-form').toggle("fast")
-    $('.gallery-toggle-icon').toggleClass("fa-caret-down fa-caret-up")
+    $('#gallery-form').slideToggle("fast")
+    $('.gallery-toggle-icon').toggleClass("fa-chevron-circle-down fa-chevron-circle-up")
 
   $("#show-gallery-form").hover ->
     $(this).css('cursor','pointer')

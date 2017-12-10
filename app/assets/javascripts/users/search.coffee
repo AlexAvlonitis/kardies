@@ -35,7 +35,7 @@ $ ->
       slider.noUiSlider.set([null, this.value])
 
   $('#search-collapse').on 'click', ->
-    $('#search').toggle('fast')
+    $('#search').slideToggle('fast')
     $('.search-icon').toggleClass('fa-search-plus fa-search-minus')
 
   $('#search-collapse').hover ->

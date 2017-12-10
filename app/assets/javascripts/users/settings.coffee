@@ -4,8 +4,9 @@ $ ->
   $('#user-form').hide()
 
   $("#show-user-form").click ->
-    $("#user-form").toggle("fast")
-    $('.settings-toggle-icon').toggleClass("fa-caret-down fa-caret-up")
+    $("#user-form").slideToggle("fast")
+    $('.settings-toggle-icon')
+      .toggleClass("fa-chevron-circle-down fa-chevron-circle-up")
 
   $("#show-user-form").hover ->
     $(this).css('cursor','pointer')
