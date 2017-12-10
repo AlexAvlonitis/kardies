@@ -245,6 +245,7 @@ table tr:nth-of-type(even) {
   width: 150px;
   height: 150px;
   overflow: hidden;
+  border: 1px $white solid;
   border-radius: 50%;
   background-size: cover;
   background-position: center center;
