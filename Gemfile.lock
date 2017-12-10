@@ -120,6 +120,7 @@ GEM
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
+    database_cleaner (1.6.2)
     debug_inspector (0.0.2)
     devise (4.2.0)
       bcrypt (~> 3.0)
@@ -435,6 +436,7 @@ DEPENDENCIES
   capistrano3-puma
   chewy
   coffee-rails (~> 4.2)
+  database_cleaner
   devise
   dotenv-rails
   es6-promise-rails
