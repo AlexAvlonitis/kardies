@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, except: [:index]
 
   def index
-    @users  ||= search_present? ? get_all_indexed_users : get_all_users
+    @users ||= search_present? ? get_all_indexed_users : get_all_users
+    @filtered_users ||= filter_users
     @search ||= search_criteria
   end
 
@@ -36,6 +37,10 @@ class UsersController < ApplicationController
 
   def last_search
     current_user.search_criteria.last
+  end
+
+  def filter_users
+    @users.reject { |x| x == current_user }.reject { |y| y.deleted_at }
   end
 
   def show_only_if_profile_pic_exists
