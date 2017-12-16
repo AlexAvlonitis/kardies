@@ -12,7 +12,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :timeoutable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:facebook]
+         :confirmable, :omniauthable, omniauth_providers: [:facebook]
 
   scope :all_except, ->(user) { where.not(id: user) }
   scope :not_blocked, -> { where(deleted_at: nil) }

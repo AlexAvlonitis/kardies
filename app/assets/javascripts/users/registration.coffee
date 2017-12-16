@@ -9,7 +9,12 @@ $ ->
       dataType: "json"
     )
     .done ->
-      window.location.href = "/users"
+      swal(
+        text: "Ο λογαριασμός σας χρειάζεται ενεργοποίηση για να συνδεθείτε. Σε λίγα λεπτά θα λάβετε email με οδηγίες."
+        type: 'warning'
+      )
+      .then ->
+        window.location.href = "/"
     .fail (xhr, status, error) ->
       errors = JSON.parse(xhr.responseText).errors
       e = ''
