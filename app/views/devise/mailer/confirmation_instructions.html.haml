@@ -1,4 +1,6 @@
-%p
-  Welcome #{@email}!
-%p You can confirm your account email through the link below:
-%p= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
+= image_tag attachments['hearts-logo-small.png'].url
+
+%h3
+  Καλώς ήλθατε στην παρέα μας #{@email}!
+%p Επιβεβαιώστε τον λογαριασμό σας κάνοντας κλίκ στον παρακάτω σύνδεσμο:
+%p= link_to 'Επιβαίωση λογαριασμού', confirmation_url(@resource, confirmation_token: @token)
