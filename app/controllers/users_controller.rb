@@ -40,7 +40,9 @@ class UsersController < ApplicationController
   end
 
   def filter_users
-    @users.reject { |x| x == current_user }.reject { |y| y.deleted_at }
+    @users.reject { |x| x == current_user }
+          .reject { |y| y.deleted_at }
+          .reject { |y| y.confirmed_at == nil }
   end
 
   def show_only_if_profile_pic_exists

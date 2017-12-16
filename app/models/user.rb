@@ -16,6 +16,7 @@ class User < ApplicationRecord
 
   scope :all_except, ->(user) { where.not(id: user) }
   scope :not_blocked, -> { where(deleted_at: nil) }
+  scope :confirmed, -> { where.not(confirmed_at: nil) }
 
   # Relations
   has_one :about, dependent: :destroy
@@ -59,6 +60,7 @@ class User < ApplicationRecord
     includes(:user_detail)
       .all_except(current_user)
       .not_blocked
+      .confirmed
       .order(created_at: :desc)
   end
 
@@ -70,6 +72,7 @@ class User < ApplicationRecord
       }
     ).all_except(current_user)
     .not_blocked
+    .confirmed
     .order("RAND()")
     .limit(4)
   end
@@ -81,6 +84,7 @@ class User < ApplicationRecord
       }
     ).all_except(current_user)
     .not_blocked
+    .confirmed
     .order("RAND()")
     .limit(4)
   end
