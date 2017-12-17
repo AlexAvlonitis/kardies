@@ -25,12 +25,7 @@
                       class: "icon-size"
               %td= report.created_at.strftime("%B %d, %Y")
               %td
-                - if ! report.user.deleted_at
-                  = link_to "Block Account", admin_destroy_path(report.user),
-                      data: { confirm: "Προσοχή, ο λογαριασμός Θα διαγραφεί" },
-                      method: :delete,
-                      class: 'button alert small'
-                - else
-                  = link_to "Unblock Account", admin_unblock_path(report.user),
-                      method: :post,
-                      class: 'button primary small'
+                = link_to "Delete Account", admin_destroy_path(report.user),
+                    data: { confirm: "Προσοχή, ο λογαριασμός Θα διαγραφεί" },
+                    method: :delete,
+                    class: 'button alert small'

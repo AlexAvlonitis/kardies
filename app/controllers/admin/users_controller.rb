@@ -7,8 +7,9 @@ module Admin
 
     def admin_destroy
       user = User.find_by(username: params[:username])
-      user.soft_delete
-      flash['success'] = 'User has been blocked'
+      add_user_to_block_list(user)
+      user.destroy
+      flash['success'] = 'User has been destroyed'
       redirect_to admin_users_path
     end
 
@@ -31,6 +32,12 @@ module Admin
       user.update(admin: false)
       flash['success'] = "#{user.username} is not an admin"
       redirect_to admin_users_path
+    end
+
+    private
+
+    def add_user_to_block_list(user)
+      BlockedEmail.create(email: user.email)
     end
   end
 end

@@ -8,7 +8,6 @@ class LikesController < ApplicationController
   end
 
   def like
-    user_deleted_check
     if @user.liked_by current_user
       render json: @user, status: 201
       add_vote_notification
@@ -19,7 +18,6 @@ class LikesController < ApplicationController
   end
 
   def unlike
-    user_deleted_check
     delete_vote_notification
     if @user.unliked_by current_user
       render json: @user, status: 201

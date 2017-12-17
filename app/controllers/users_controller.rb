@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    user_deleted_check
     show_only_if_profile_pic_exists
   end
 
@@ -41,7 +40,6 @@ class UsersController < ApplicationController
 
   def filter_users
     @users.reject { |x| x == current_user }
-          .reject { |y| y.deleted_at }
           .reject { |y| y.confirmed_at == nil }
   end
 

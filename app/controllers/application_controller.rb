@@ -24,10 +24,6 @@ class ApplicationController < ActionController::Base
     redirect_to users_path
   end
 
-  def user_deleted_check
-    rescue_error unless @user.deleted_at.nil?
-  end
-
   private
 
   def set_locale

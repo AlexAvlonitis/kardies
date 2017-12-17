@@ -15,7 +15,6 @@ class User < ApplicationRecord
          :confirmable, :omniauthable, omniauth_providers: [:facebook]
 
   scope :all_except, ->(user) { where.not(id: user) }
-  scope :not_blocked, -> { where(deleted_at: nil) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
 
   # Relations
@@ -39,6 +38,7 @@ class User < ApplicationRecord
   validates :username, format: { with: ALPHANUMERIC_REGEX }
   validates :username, length: { in: 3..20 }
   validates_email_format_of :email, message: 'Λάθος email'
+  validates :email, exclusion: BlockedEmail.email_list
 
   def self.from_omniauth(auth)
     user = find_by(provider: auth.provider, uid: auth.uid)
@@ -59,7 +59,6 @@ class User < ApplicationRecord
   def self.get_all(current_user)
     includes(:user_detail)
       .all_except(current_user)
-      .not_blocked
       .confirmed
       .order(created_at: :desc)
   end
@@ -71,7 +70,6 @@ class User < ApplicationRecord
         state: current_user.state
       }
     ).all_except(current_user)
-    .not_blocked
     .confirmed
     .order("RAND()")
     .limit(4)
@@ -83,24 +81,9 @@ class User < ApplicationRecord
         gender: gender_of_interest
       }
     ).all_except(current_user)
-    .not_blocked
     .confirmed
     .order("RAND()")
     .limit(4)
-  end
-
-  def soft_delete
-    update!(deleted_at: Time.current)
-  end
-
-  # ensure user account is active
-  def active_for_authentication?
-    super && !deleted_at
-  end
-
-  # provide a custom message for a deleted account
-  def inactive_message
-    !deleted_at ? super : :deleted_account
   end
 
   delegate :city, to: :user_detail
