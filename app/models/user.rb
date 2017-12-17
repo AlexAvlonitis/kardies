@@ -38,7 +38,7 @@ class User < ApplicationRecord
   validates :username, format: { with: ALPHANUMERIC_REGEX }
   validates :username, length: { in: 3..20 }
   validates_email_format_of :email, message: 'Λάθος email'
-  validates :email, exclusion: BlockedEmail.email_list
+  validates :email, exclusion: { in: BlockedEmail.email_list }
 
   def self.from_omniauth(auth)
     user = find_by(provider: auth.provider, uid: auth.uid)

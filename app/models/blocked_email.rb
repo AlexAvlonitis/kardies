@@ -1,5 +1,9 @@
 class BlockedEmail < ApplicationRecord
   def self.email_list
-    all.map(&:email)
+    if ActiveRecord::Base.connection.table_exists? 'blocked_emails'
+      all.map(&:email)
+    else
+      []
+    end
   end
 end
