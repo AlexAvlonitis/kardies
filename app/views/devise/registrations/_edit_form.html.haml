@@ -21,6 +21,8 @@
               onchange: "previewProfilePic()"
           %small.form-text.text-muted
             = t 'devise.registrations.edit.ten_mb_limit'
+          %small.form-text.text-muted
+            = t 'devise.registrations.edit.no_nudes'
           %p.error= show_errors(current_user.user_detail, :profile_picture)
           #progress
     %hr
