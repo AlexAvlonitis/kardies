@@ -188,6 +188,7 @@ class User < ApplicationRecord
       email: email,
       password: password,
       username: username,
+      confirmed_at: Time.now,
       user_detail_attributes: {
         profile_picture: profile_picture,
         state: 'att',
