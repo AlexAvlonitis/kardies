@@ -1,8 +1,13 @@
 module Admin
-  class UsersController < ApplicationController
+  class UsersController < AdminController
     def index
-      @users = User.all.order(created_at: :desc).page params[:page]
-      @user_count = User.all.count
+      @users ||= User.get_all.page(params[:page])
+      @user_count ||= User.all.count
+    end
+
+    def show
+      @user = User.find_by(username: params[:username])
+      @conversations ||= @user.mailbox.conversations
     end
 
     def admin_destroy

@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def get_all_users
-    User.get_all(current_user).page params[:page]
+    User.get_all.except_user(current_user).confirmed.page(params[:page])
   end
 
   def get_all_indexed_users

@@ -14,7 +14,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: [:facebook]
 
-  scope :all_except, ->(user) { where.not(id: user) }
+  scope :except_user, ->(user) { where.not(id: user) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
 
   # Relations
@@ -56,11 +56,8 @@ class User < ApplicationRecord
     scope.only(:id).load
   end
 
-  def self.get_all(current_user)
-    includes(:user_detail)
-      .all_except(current_user)
-      .confirmed
-      .order(created_at: :desc)
+  def self.get_all
+    includes(:user_detail).order(created_at: :desc)
   end
 
   def self.get_by_state_and_prefered_gender(current_user, gender_of_interest)

@@ -1,5 +1,5 @@
 module Admin
-  class ReportsController < Admin::ApplicationController
+  class ReportsController < AdminController
     def index
       @reports = Report.all
     end

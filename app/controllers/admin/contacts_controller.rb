@@ -1,5 +1,5 @@
 module Admin
-  class ContactsController < Admin::ApplicationController
+  class ContactsController < AdminController
     def index
       @contacts = Contact.all
     end

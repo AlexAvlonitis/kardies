@@ -5,20 +5,27 @@
       %thead
         %tr
           %th{"width" => "150"} Profile Picture
-          %th{"width" => "150"} Username
-          %th{"width" => "150"} Email
+          %th{"width" => "150"} Details
           %th{"width" => "150"} Delete Account
           %th{"width" => "150"} Admin
       %tbody
         - @users.each do |user|
           %tr
             %td
-              = link_to user_path(user) do
+              = link_to admin_user_path(user) do
                 = image_tag user.username,
                     data: { src: user.profile_picture },
                     class: "icon-size lazy"
-            %td= user.username
-            %td= user.email
+            %td
+              %p
+                %b Username:
+                = user.username
+              %p
+                %b Email:
+                = user.email
+              %p
+                %b Last login
+                = user.updated_at
             %td
               = link_to "Delete Account", admin_destroy_path(user),
                   data: { confirm: "Προσοχή, ο λογαριασμός Θα διαγραφεί" },

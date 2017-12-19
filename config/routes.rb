@@ -11,10 +11,11 @@ Rails.application.routes.draw do
 
   scope "(:locale)", locale: /el|en-gb/ do
     namespace :admin do
-      get 'application/index'
+      get 'application/index', to: 'homes#index'
       resources :reports, only: :index
-      resources :users, only: :index
+      resources :users, param: :username, only: [:index, :show]
       resources :contacts, only: :index
+      resources :conversations, only: :show
 
       delete 'delete_user/:username', to: "users#admin_destroy", as: :destroy
       post 'unblock_user/:username', to: "users#admin_unblock", as: :unblock
