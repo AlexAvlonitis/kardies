@@ -66,7 +66,7 @@ class User < ApplicationRecord
         gender: gender_of_interest,
         state: current_user.state
       }
-    ).all_except(current_user)
+    ).except_user(current_user)
     .confirmed
     .order("RAND()")
     .limit(4)
@@ -77,7 +77,7 @@ class User < ApplicationRecord
       user_details: {
         gender: gender_of_interest
       }
-    ).all_except(current_user)
+    ).except_user(current_user)
     .confirmed
     .order("RAND()")
     .limit(4)

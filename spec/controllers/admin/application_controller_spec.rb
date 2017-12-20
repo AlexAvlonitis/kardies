@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Admin::ApplicationController, type: :controller do
+RSpec.describe AdminController, type: :controller do
 
   describe "GET #index" do
     let(:user) { FactoryBot.create(:user, admin: true) }
