@@ -1,9 +1,6 @@
 !!! 5
 %html
   %head
-    - I18n.available_locales.each do |locale|
-      %link{rel: 'alternate', hreflang: locale, href: url_for(locale: locale, only_path: false)}
-    = canonical_tag
     = favicon_link_tag 'favicon.png', type: 'img/png'
     %meta{charset: "utf-8"}
     %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible", }

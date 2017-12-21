@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   include Pundit
-  before_action :set_locale
   before_action :authenticate_user!, except: [:cities]
   protect_from_forgery with: :exception
 
@@ -25,14 +24,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
-  def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
-  end
-
-  def default_url_options(_option = {})
-    { locale: I18n.locale }
-  end
 
   def user_not_authorized
     flash[:alert] = 'You are not authorized to perform this action.'
