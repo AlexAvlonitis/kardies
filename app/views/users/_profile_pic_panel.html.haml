@@ -1,6 +1,6 @@
 .row.justify-content-center
   .gallery.mt-2
-    = link_to nil, 'data-toggle' => 'modal', 'data-target' => '#imageModal', "data-whatever" => "#{@user.profile_picture(:original)}" do
+    = link_to @user.profile_picture(:original), class: 'swipebox' do
       .profile-pic{ style: "background-image: url(#{@user.profile_picture(:medium)})"}
 
 %h3.mt-2
@@ -34,5 +34,4 @@
     = fa_icon "frown-o"
     = t 'users.index.report'
 
-= render partial: 'image_modal'
 = render partial: 'reports/report_modal'
