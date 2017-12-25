@@ -1,4 +1,8 @@
-.my-profile
+.my-profile.text-center
   = link_to user_path(current_user) do
-    .profile-pic-round-lg{ style: "background-image: url(#{current_user.profile_picture})"}
-    %h3.text-center.mt-2= current_user.username.capitalize
+    .profile-pic-round-lg.mb-2{ style: "background-image: url(#{current_user.profile_picture})"}
+    - present(current_user) do |user|
+      %strong
+        = "#{current_user.username.capitalize} /"
+        = "#{current_user.age} /"
+        = user.gender_type
