@@ -1,6 +1,7 @@
 module Validators
   class BlackListValidator < ActiveModel::Validator
     def validate(record)
+      return unless record
       black_list = BlockedEmail.all
       b_email = black_list.map(&:email)
       b_domain = black_list.map(&:domain)
