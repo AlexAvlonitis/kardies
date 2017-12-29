@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :users, param: :username, only: [:index, :show]
     resources :contacts, only: :index
     resources :conversations, only: :show
+    resources :blocked_emails, only: :index
 
     delete 'delete_user/:username', to: "users#admin_destroy", as: :destroy
     post 'unblock_user/:username', to: "users#admin_unblock", as: :unblock

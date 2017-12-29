@@ -1,0 +1,13 @@
+.container-fluid
+  .col.bg-white.effect2.mt-3
+    %h1 Blocked emails and domains list
+    %table.table
+      %thead
+        %tr
+          %th Blocked email
+          %th Blocked Domain
+      %tbody
+        - @blocked_emails.each do |blocked|
+          %tr
+            %td= blocked.email
+            %td= blocked.domain
