@@ -3,12 +3,6 @@ class GalleriesController < ApplicationController
     save_gallery
   end
 
-  def destroy
-    current_user.gallery.destroy
-    flash[:success] = t '.gallery_deleted'
-    redirect_to galleries_path
-  end
-
   private
 
   def gallery_params
