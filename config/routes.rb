@@ -60,4 +60,7 @@ Rails.application.routes.draw do
 
   get 'email_preferences/edit', to: 'email_preferences#edit',   as: :edit_email_preferences
   put 'email_preferences',      to: 'email_preferences#update', as: :email_preferences
+
+  # seo
+  get 'site-gnorimion/σιτε-γνωριμιών', to: "gnorimies#site_gnorimion"
 end
