@@ -63,4 +63,6 @@ Rails.application.routes.draw do
 
   # seo
   get 'site-gnorimion/σιτε-γνωριμιών', to: "gnorimies#site_gnorimion"
+  get 'gnorimies-gamou/γνωριμίες-γάμου', to: "gnorimies#gnorimies_gamou"
+  get 'gnorimies-athina/γνωριμίες-αθήνα', to: "gnorimies#gnorimies_athina"
 end
