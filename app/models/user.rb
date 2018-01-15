@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   include ActiveModel::Validations
 
-  update_index 'users#user', :self
+  update_index('users#user') { self }
+
   after_create :send_welcome_mail
   after_create :auto_like
 
