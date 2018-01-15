@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def get_all_indexed_users
-    User.search(last_search)
+    User.search(last_search).page(params[:page])
   end
 
   def last_search
