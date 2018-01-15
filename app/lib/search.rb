@@ -5,10 +5,10 @@ class Search
   end
 
   def call
-    users = users_index.query(bool: { must: final_query })
-                       .filter(range: age_range)
-                       .order(created: :desc)
-    users.objects
+    users_index
+      .query(bool: { must: final_query })
+      .filter(range: age_range)
+      .order(created: :desc)
   end
 
   private
