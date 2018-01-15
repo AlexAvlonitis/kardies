@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.1.4'
 # Mysql
 gem 'mysql2'
 # Use Puma as the app server
@@ -71,14 +71,14 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'bullet'
-  gem 'capistrano'
-  gem 'capistrano-nginx'
-  gem 'capistrano-rails'
-  gem 'capistrano-rails-console'
-  gem 'capistrano-rails-db'
-  gem 'capistrano-rbenv'
-  gem 'capistrano-upload-config'
-  gem 'capistrano3-puma'
+  gem 'capistrano', '~> 3.6.1'
+  gem 'capistrano-nginx', '~> 1.0.0'
+  gem 'capistrano-rails', '~> 1.1.8'
+  gem 'capistrano-rails-console', '~> 2.1.1'
+  gem 'capistrano-rails-db', '~> 0.0.2'
+  gem 'capistrano-rbenv', '~> 2.0.4'
+  gem 'capistrano-upload-config', '~> 0.7.0'
+  gem 'capistrano3-puma', '~> 1.2.1'
   gem 'sshkit-sudo'
 end
 
