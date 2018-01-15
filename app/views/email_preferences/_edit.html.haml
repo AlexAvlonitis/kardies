@@ -4,24 +4,19 @@
 .clearfix
 = form_for @email_preferences, html: { method: :put, id: "email-preferences-form" } do |f|
   %hr
-  .form-group
-    %label.custom-control.custom-checkbox
-      = f.check_box :likes, class: "custom-control-input"
-      %span.custom-control-indicator
-      %span.custom-control-description= t '.likes_label'
+  .form-check
+    = f.check_box :likes, class: "form-check-input", id: "likesCheck"
+    %label.form-check-label{for: "likesCheck"}= t '.likes_label'
 
-  .form-group
-    %label.custom-control.custom-checkbox
-      = f.check_box :messages, class: "custom-control-input"
-      %span.custom-control-indicator
-      %span.custom-control-description= t '.messages_label'
+  .form-check
+    = f.check_box :messages, class: "form-check-input", id: "messagesCheck"
+    %label.form-check-label{for: "messagesCheck"}= t '.messages_label'
 
-  .form-group
-    %label.custom-control.custom-checkbox
-      = f.check_box :news, class: "custom-control-input"
-      %span.custom-control-indicator
-      %span.custom-control-description= t '.news_label'
+  .form-check
+    = f.check_box :news, class: "form-check-input", id: "newsCheck"
+    %label.form-check-label{for: "newsCheck"}= t '.news_label'
 
+  %hr
   = f.submit "#{t 'abouts.edit.save'}",
       class: "btn btn-primary btn-block",
       id: "email-preferences-submit"
