@@ -96,9 +96,10 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
       mimemagic (>= 0.3.0)
-    chewy (0.8.4)
-      activesupport (>= 3.2)
-      elasticsearch (>= 1.0.0)
+    chewy (0.10.1)
+      activesupport (>= 4.0)
+      elasticsearch (>= 2.0.0)
+      elasticsearch-dsl
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -128,12 +129,13 @@ GEM
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
       railties (>= 4.0, < 5.1)
-    elasticsearch (2.0.0)
-      elasticsearch-api (= 2.0.0)
-      elasticsearch-transport (= 2.0.0)
-    elasticsearch-api (2.0.0)
+    elasticsearch (6.0.0)
+      elasticsearch-api (= 6.0.0)
+      elasticsearch-transport (= 6.0.0)
+    elasticsearch-api (6.0.0)
       multi_json
-    elasticsearch-transport (2.0.0)
+    elasticsearch-dsl (0.1.5)
+    elasticsearch-transport (6.0.0)
       faraday
       multi_json
     erubis (2.7.0)
@@ -213,8 +215,8 @@ GEM
     mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
     mini_portile2 (2.1.0)
-    minitest (5.10.3)
-    multi_json (1.12.1)
+    minitest (5.11.1)
+    multi_json (1.13.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.4.5)
@@ -472,4 +474,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.16.0
+   1.16.1

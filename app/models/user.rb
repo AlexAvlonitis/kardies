@@ -48,14 +48,7 @@ class User < ApplicationRecord
   end
 
   def self.search(query)
-    scope = UsersIndex::User.filter do
-      (state == query.state) &
-        (city == query.city) &
-        (is_signed_in == query.is_signed_in) &
-        (gender == query.gender) &
-        (age >= query.age_from) & (age <= query.age_to)
-    end.order(created: :desc)
-    scope.only(:id).load
+    Search.new(query).call
   end
 
   def self.get_all
