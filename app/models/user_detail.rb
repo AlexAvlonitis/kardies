@@ -4,10 +4,7 @@ class UserDetail < ApplicationRecord
 
   VALID_IMAGES_REGEX = /^image\/(jpeg|jpg|png|gif|tiff)$/
 
-  update_index('user_details#user_detail') { self }
-  update_index 'users#user' do
-    previous_changes['user_id'] || user
-  end
+  update_index('users#user') { self }
 
   has_attached_file :profile_picture,
                     source_file_options: { all: '-auto-orient' },
