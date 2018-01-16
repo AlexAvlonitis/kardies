@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 
   def index
     @users ||= search_present? ? get_all_indexed_users : get_all_users
-    @filtered_users ||= filter_users
     @search ||= search_criteria
   end
 
@@ -31,16 +30,11 @@ class UsersController < ApplicationController
   end
 
   def get_all_indexed_users
-    User.search(last_search).page(params[:page]).objects
+    User.search(last_search, current_user).page(params[:page]).objects
   end
 
   def last_search
     current_user.search_criteria.last
-  end
-
-  def filter_users
-    @users.reject { |x| x == current_user }
-          .reject { |y| y.confirmed_at == nil }
   end
 
   def show_only_if_profile_pic_exists

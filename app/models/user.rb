@@ -48,8 +48,8 @@ class User < ApplicationRecord
     user || create_user(auth)
   end
 
-  def self.search(query)
-    Search.new(query).call
+  def self.search(query, current_user)
+    Search.new(query, current_user).call
   end
 
   def self.get_all

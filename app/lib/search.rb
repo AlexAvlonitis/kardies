@@ -1,19 +1,22 @@
 class Search
 
-  def initialize(query)
+  def initialize(query, current_user)
     @query = query
+    @current_user = current_user
   end
 
   def call
     users_index
       .query(bool: { must: final_query })
       .filter(range: age_range)
+      .filter(bool: must_not_be_current_user)
+      .confirmed
       .order(created: :desc)
   end
 
   private
 
-  attr_reader :query
+  attr_reader :query, :current_user
 
   def users_index
     UsersIndex::User
@@ -42,5 +45,9 @@ class Search
 
   def age_range
     { age: { gt: query.age_from, lt: query.age_to } }
+  end
+
+  def must_not_be_current_user
+    { must_not: [{term: {username: current_user.username}}]}
   end
 end
