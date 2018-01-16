@@ -3,7 +3,7 @@
     .left-menu
       = link_to "#{t 'abouts.edit.back'}", conversations_path, class: "btn btn-primary btn-sm btn-block"
     .chat
-      .top{"id" => "conversation", "conversation-id" => "#{@hashed_conversation}"}
+      .top{"id" => "conversation", "conversation-id" => "#{@conversation.id}"}
         .avatar
           .info
             - @conversation.participants.each do |participant|
