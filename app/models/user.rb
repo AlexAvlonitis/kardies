@@ -82,6 +82,8 @@ class User < ApplicationRecord
   delegate :city, to: :user_detail
   delegate :state, to: :user_detail
   delegate :gender, to: :user_detail
+  delegate :personalities, to: :user_detail
+  delegate :personalities_detail, to: :user_detail
 
   def job
     return unless about && about.job.present?

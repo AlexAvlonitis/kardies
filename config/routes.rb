@@ -61,6 +61,9 @@ Rails.application.routes.draw do
   get 'email_preferences/edit', to: 'email_preferences#edit',   as: :edit_email_preferences
   put 'email_preferences',      to: 'email_preferences#update', as: :email_preferences
 
+  get 'test-prosopikotitas', to: 'personalities#index', as: :get_personalities
+  post 'test-prosopikotitas', to: 'personalities#create', as: :personalities
+
   # seo
   get 'site-gnorimion/σιτε-γνωριμιών', to: "gnorimies#site_gnorimion"
   get 'gnorimies-gamou/γνωριμίες-γάμου', to: "gnorimies#gnorimies_gamou"

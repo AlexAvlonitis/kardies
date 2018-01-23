@@ -18,6 +18,9 @@
       - if current_user.conversation_notifications.any?
         %span.badge.badge-pill.badge-info
           = current_user.conversation_notifications.size
+    = link_to get_personalities_path, class: "link-white" do
+      = fa_icon "flask 2x"
+      = t '.personalities'
     = link_to edit_user_registration_path, class: "link-green" do
       = fa_icon "cogs 2x"
       = t '.profile'

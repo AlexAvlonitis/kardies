@@ -162,6 +162,7 @@ el:
       admin_area: "Διαχείριση"
       profile: "Ρυθμίσεις"
       sign_out: "Αποσύνδεση"
+      personalities: "Προσωπικότητα"
     footer:
       terms: 'Όροι χρήσης'
       copyright: 'Δικαιώματα'
