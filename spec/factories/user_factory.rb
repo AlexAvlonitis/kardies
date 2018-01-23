@@ -5,5 +5,6 @@ FactoryBot.define do
     password 'asdasdasd'
     admin false
     user_detail
+    confirmed_at DateTime.now
   end
 end
