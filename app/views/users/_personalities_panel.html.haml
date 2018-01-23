@@ -1,10 +1,10 @@
-- if current_user.personalities
+- if user.personalities
   .row.justify-content-center
     .col-md-12.col-lg-11.my-2.p-4.effect2.text-center.bg-lightblue
       %h3
         %strong
           Τύπος προσωπικότητας:
-          %span.orange-text= current_user.personalities
+          %span.orange-text= user.personalities
       %hr
       %p
-        = current_user.personalities_detail
+        = user.personalities_detail
