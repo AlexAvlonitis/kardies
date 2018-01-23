@@ -11,7 +11,7 @@
           locals: { user_presenter: user_presenter }
 
   = render partial: 'personalities_panel',
-      locals: { user_presenter: user_presenter }
+      locals: { user: @user, user_presenter: user_presenter }
 
   .row.justify-content-center
     .col-md-12.col-lg-11.my-2.p-4.effect2.text-center.bg-white
