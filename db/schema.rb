@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20180122193222) do
 
   create_table "blocked_emails", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email"
-    t.string "domain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "domain"
   end
 
   create_table "contacts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -165,7 +165,7 @@ ActiveRecord::Schema.define(version: 20180122193222) do
     t.datetime "profile_picture_updated_at"
     t.string "state", default: "ATT", null: false
     t.string "personalities"
-    t.string "personalities_detail"
+    t.text "personalities_detail"
     t.index ["user_id"], name: "index_user_details_on_user_id"
   end
 
@@ -188,6 +188,7 @@ ActiveRecord::Schema.define(version: 20180122193222) do
     t.datetime "updated_at"
     t.string "provider"
     t.string "uid"
+    t.text "tokens"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

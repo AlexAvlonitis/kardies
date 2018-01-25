@@ -28,8 +28,8 @@
           %hr.colorgraph
           .form-group
             = f.submit "#{t 'home.index.login'}",
-                id: 'user-session-submit',
-                class: "btn btn-success btn-lg btn-block"
+                class: "btn btn-success btn-lg btn-block white-text",
+                id: 'user-session-submit'
             %p.home-p.text-center
               = link_to "#{t 'home.index.forgot_password'}", new_user_password_url
           .form-group

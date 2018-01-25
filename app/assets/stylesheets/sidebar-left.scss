@@ -29,8 +29,7 @@
 .sidebar-left .sidebar-links a {
 	display: block;
 	text-decoration: none;
-	max-width: 240px;
-	width: auto;
+	width: 100%;
 	vertical-align: middle;
 	margin: 0 auto 5px;
 	padding: 10px 25px;
@@ -123,5 +122,9 @@
 	.sidebar-left .sidebar-links {
 		text-align: center;
 		margin: 20px auto 0;
+	}
+
+	.sidebar-left .sidebar-links a {
+		max-width: 240px;
 	}
 }
