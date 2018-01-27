@@ -82,12 +82,12 @@ class User < ApplicationRecord
   delegate :city, to: :user_detail
   delegate :state, to: :user_detail
   delegate :gender, to: :user_detail
-  delegate :hobby, to: :about
-  delegate :job, to: :about
-  delegate :relationship_status, to: :about
-  delegate :looking_for, to: :about
-  delegate :description, to: :about
-  delegate :age, to: :user_detail
+  delegate :hobby, to: :about, allow_nil: true
+  delegate :job, to: :about, allow_nil: true
+  delegate :relationship_status, to: :about, allow_nil: true
+  delegate :looking_for, to: :about, allow_nil: true
+  delegate :description, to: :about, allow_nil: true
+  delegate :age, to: :user_detail, allow_nil: true
   delegate :personality_type, to: :user_detail
 
   def profile_picture(size = :thumb)
