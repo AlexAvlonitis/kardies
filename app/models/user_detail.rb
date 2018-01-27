@@ -1,6 +1,5 @@
 class UserDetail < ApplicationRecord
   belongs_to :user
-  after_update :flush_age_cache, :flush_profile_picture_cache
 
   VALID_IMAGES_REGEX = /^image\/(jpeg|jpg|png|gif|tiff)$/
 
@@ -42,14 +41,4 @@ class UserDetail < ApplicationRecord
     in: (18..99).map(&:to_s),
     message: '%<value>s is not a valid age, must be between 18 and 99'
   }
-
-  private
-
-  def flush_age_cache
-    Rails.cache.delete([:user_detail, id, :age]) if age_changed?
-  end
-
-  def flush_profile_picture_cache
-    Rails.cache.delete([:user_detail, id, :profile_picture]) if profile_picture?
-  end
 end

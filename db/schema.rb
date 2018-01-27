@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180122193222) do
+ActiveRecord::Schema.define(version: 20180127231450) do
 
   create_table "abouts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id"
@@ -120,6 +120,13 @@ ActiveRecord::Schema.define(version: 20180122193222) do
     t.index ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
   end
 
+  create_table "personalities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "code"
+    t.text "detail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pictures", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "picture_file_name"
     t.string "picture_content_type"
@@ -164,8 +171,7 @@ ActiveRecord::Schema.define(version: 20180122193222) do
     t.integer "profile_picture_file_size"
     t.datetime "profile_picture_updated_at"
     t.string "state", default: "ATT", null: false
-    t.string "personalities"
-    t.text "personalities_detail"
+    t.string "personality_type"
     t.index ["user_id"], name: "index_user_details_on_user_id"
   end
 

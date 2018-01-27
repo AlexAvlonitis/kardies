@@ -51,15 +51,4 @@ RSpec.describe UserDetail do
       end
     end
   end
-
-  describe 'callbacks' do
-    let(:user_detail) { FactoryBot.build(:user_detail) }
-
-    it 'has after_update callbacks' do
-      %i(flush_age_cache flush_profile_picture_cache).each do |c|
-        expect(user_detail).to receive(c)
-        user_detail.save
-      end
-    end
-  end
 end

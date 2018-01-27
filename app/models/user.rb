@@ -82,49 +82,13 @@ class User < ApplicationRecord
   delegate :city, to: :user_detail
   delegate :state, to: :user_detail
   delegate :gender, to: :user_detail
-  delegate :personalities, to: :user_detail
-  delegate :personalities_detail, to: :user_detail
-
-  def job
-    return unless about && about.job.present?
-    Rails.cache.fetch([:about, about.id, :job], expires_in: 1.day) do
-      about.job
-    end
-  end
-
-  def hobby
-    return unless about && about.hobby.present?
-    Rails.cache.fetch([:about, about.id, :hobby], expires_in: 1.day) do
-      about.hobby
-    end
-  end
-
-  def relationship_status
-    return unless about && about.relationship_status.present?
-    Rails.cache.fetch([:about, about.id, :relationship_status], expires_in: 1.day) do
-      about.relationship_status
-    end
-  end
-
-  def looking_for
-    return unless about && about.looking_for.present?
-    Rails.cache.fetch([:about, about.id, :looking_for], expires_in: 1.day) do
-      about.looking_for
-    end
-  end
-
-  def description
-    return unless about && about.description.present?
-    Rails.cache.fetch([:about, about.id, :description], expires_in: 1.day) do
-      about.description
-    end
-  end
-
-  def age
-    Rails.cache.fetch([:user_detail, user_detail.id, :age], expires_in: 1.day) do
-      user_detail.age
-    end
-  end
+  delegate :hobby, to: :about
+  delegate :job, to: :about
+  delegate :relationship_status, to: :about
+  delegate :looking_for, to: :about
+  delegate :description, to: :about
+  delegate :age, to: :user_detail
+  delegate :personality_type, to: :user_detail
 
   def profile_picture(size = :thumb)
     user_detail.profile_picture.url(size)
