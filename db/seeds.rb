@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Personality.destroy_all
+
 PERSONALITIES.each do |personality|
   Personality.create(
     code: personality.first,
