@@ -29,9 +29,9 @@ class UserPresenter < BasePresenter
 
   def gender_type
     if user.gender == "male"
-      h.fa_icon 'mars', class: "gender"
+      h.fa_icon 'male', class: "gender"
     elsif user.gender == "female"
-      h.fa_icon 'venus', class: "gender female"
+      h.fa_icon 'female', class: "gender female"
     else
       h.fa_icon 'transgender', class: "gender other"
     end

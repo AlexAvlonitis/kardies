@@ -1,5 +1,4 @@
 .card {
-
   background-color: $white;
   min-width: 250px;
   max-width: 250px;
@@ -22,14 +21,15 @@
   .card-block {
     padding: 0;
     z-index: 0;
-  }
 
-  .card-footer {
-    margin-top: 0.5rem;
+    hr {
+      width: 90%;
+    }
   }
 
   .card-title {
-    margin-bottom: 1.5rem;
+    max-height: 70px;
+    margin-bottom: 0;
     margin-top: -10px;
   }
 
@@ -87,13 +87,7 @@
 
   .gender {
     z-index: -1;
-    width: 1.5rem;
-    font-weight: bold;
-    background-color: $aluminium;
-    padding: 0.4rem;
-    float: left;
-    margin-left: -1.52rem;
-    color: $light_blue;
+    color: $fbblue;
   }
 
   .female {
