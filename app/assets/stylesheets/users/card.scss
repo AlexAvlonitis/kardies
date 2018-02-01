@@ -99,6 +99,10 @@
   }
 }
 
+.card:hover {
+  transform: scale(1.1);
+}
+
 .suggested_people {
   min-width: 150px;
   max-width: 150px;

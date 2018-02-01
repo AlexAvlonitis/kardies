@@ -6,19 +6,18 @@
         .card-bg.lazy{"data-src" => "#{user.profile_picture(:medium)}"}
   .card-block
     .card-title
-      %span.message= user_presenter.new_message
-      %span.like= user_presenter.like_status
       .row.mt-3
         .col-10
           %p.orange-text.text-left.pl-2
             %strong= user.username.capitalize
-            %span
         .col-2.pl-1
           = user_presenter.gender_type
-    %hr.mt-2.mb-2
-    .card-text
+    .card-text.text-left.pl-2
       -if user.try(:age)
         = "#{user.age}  #{t '.age_text'}"
 
       -if user.try(:state) && user.try(:city)
         %p= user_presenter.display_city_info
+    .card-footer
+      %span.message= user_presenter.new_message
+      %span.like= user_presenter.like_status
