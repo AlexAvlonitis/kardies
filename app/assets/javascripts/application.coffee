@@ -23,6 +23,7 @@
 #= require cookieconsent.min
 #= require cookieconsent_code
 #= require lazyload
+#= require infinite_scroll
 #= require promise
 #= require jquery.slick
 #= require swipebox

@@ -3,7 +3,7 @@
     .float-left= user_presenter.online_status
     - if user.try(:profile_picture)
       = link_to user_path(user) do
-        .card-bg.lazy{"data-src" => "#{user.profile_picture(:medium)}"}
+        .card-bg{style: "display: block; background-image: url(#{user.profile_picture(:medium)})"}
   .card-block
     .card-title
       .row.mt-3
