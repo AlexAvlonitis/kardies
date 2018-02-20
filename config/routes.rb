@@ -65,7 +65,7 @@ Rails.application.routes.draw do
   post 'test-prosopikotitas', to: 'personalities#create', as: :personalities
 
   # seo
-  get 'site-gnorimion/σιτε-γνωριμιών', to: "gnorimies#site_gnorimion"
-  get 'gnorimies-gamou/γνωριμίες-γάμου', to: "gnorimies#gnorimies_gamou"
-  get 'gnorimies-athina/γνωριμίες-αθήνα', to: "gnorimies#gnorimies_athina"
+  get 'site-gnorimion', to: "gnorimies#site_gnorimion"
+  get 'gnorimies-gamou', to: "gnorimies#gnorimies_gamou"
+  get 'gnorimies-athina', to: "gnorimies#gnorimies_athina"
 end
