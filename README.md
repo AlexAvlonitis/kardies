@@ -1,4 +1,4 @@
-![Kardies logo](https://github.com/AlexAvlonitis/kardies/blob/master/app/assets/images/kardies-logo-small.png)
+![Kardies logo](/logo_cover.jpg)
 
 An opensource dating website. [Kardies.gr](https://kardies.gr)
 
