@@ -1,11 +1,38 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 Personality.destroy_all
+
+Chewy.strategy(:atomic) do
+  User.destroy_all
+end
+
+Chewy.strategy(:atomic) do
+  User.create(
+    username: 'nini',
+    email: 'ni_ni9001@hotmail.com',
+    password: 'password',
+    confirmed_at: Time.now,
+    user_detail_attributes: {
+      state: 'att',
+      city: 'athina-ATT',
+      age: 30,
+      gender: 'female'
+    }
+  )
+
+  3.times do |index|
+    User.create(
+      username: "test_#{index}",
+      email: "test_#{index}@test.com",
+      password: 'password',
+      confirmed_at: Time.now,
+      user_detail_attributes: {
+        state: 'att',
+        city: 'athina-ATT',
+        age: 30,
+        gender: 'male'
+      }
+    )
+  end
+end
 
 PERSONALITIES.each do |personality|
   Personality.create(
