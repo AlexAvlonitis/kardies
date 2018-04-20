@@ -22,6 +22,9 @@ RSpec.describe User do
 
    before do
      allow(subject).to receive(:auto_like) { true }
+     allow(UserMailer)
+      .to receive_message_chain(:welcome_email, :deliver_later)
+      .and_return(true)
    end
 
    context 'uniqueness' do
