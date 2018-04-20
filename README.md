@@ -35,3 +35,6 @@ All Pull Requests are welcome, from a simple typo to a new feature.
 * Run the tests with ```bundle exec rspec```
 * Create a new branch, add your changes with tests when necessary
 * Submit a Pull Request
+
+## License
+[GNU AFFERO GENERAL PUBLIC LICENSE](/LICENSE)
