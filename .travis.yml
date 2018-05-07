@@ -9,3 +9,10 @@ script:
 branches:
   only:
     - master
+env:
+  FB_APP_ID=test
+  FB_APP_SECRET=secret
+  S3_BUCKET_NAME=s3_aws_bucket
+  AWS_ACCESS_KEY_ID=aws_id
+  AWS_SECRET_ACCESS_KEY=aws_secret
+  AWS_REGION=aws_region
