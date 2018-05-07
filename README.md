@@ -1,4 +1,5 @@
 ## ![Kardies logo](/logo_cover.jpg)
+[![Build Status](https://travis-ci.org/AlexAvlonitis/kardies.svg?branch=master)](https://travis-ci.org/AlexAvlonitis/kardies)
 ### An opensource Greek dating website. [Kardies.gr](https://kardies.gr)
 
 ## How to run locally
