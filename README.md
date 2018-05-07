@@ -1,4 +1,5 @@
-## ![Kardies logo](/logo_cover.jpg) An opensource Greek dating website. [Kardies.gr](https://kardies.gr)
+## ![Kardies logo](/logo_cover.jpg)
+### An opensource Greek dating website. [Kardies.gr](https://kardies.gr)
 
 ## How to run locally
 
