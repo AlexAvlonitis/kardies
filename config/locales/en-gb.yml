@@ -150,6 +150,7 @@ en-gb:
       messages: "Messages"
       users: "Users"
       likes: "Hearts"
+      admin: "Administration"
       admin_area: "Administration"
       profile: "Settings"
       sign_out: "Sign out"

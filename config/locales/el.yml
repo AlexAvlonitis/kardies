@@ -159,6 +159,7 @@ el:
       messages: "Μηνύματα"
       users: "Μέλη"
       likes: "Καρδιές"
+      Admin: "Διαχείριση"
       admin_area: "Διαχείριση"
       profile: "Ρυθμίσεις"
       sign_out: "Αποσύνδεση"
