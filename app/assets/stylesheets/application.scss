@@ -21,7 +21,7 @@
 @import "colors";
 @import "bootstrap";
 @import "font-awesome";
-@import "sidebar-left";
+@import "navbar";
 @import "forms";
 @import "creative";
 @import "help_tip";
@@ -39,7 +39,7 @@
 html,
 body {
   font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
-  background-color: #f3f5f9;
+  background-color: $bg-body;
   height: 100%;
   width: 100%;
   margin: 0;

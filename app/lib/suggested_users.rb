@@ -31,6 +31,6 @@ class SuggestedUsers
   end
 
   def normalize_users
-    users.flatten.uniq
+    users&.flatten&.uniq
   end
 end

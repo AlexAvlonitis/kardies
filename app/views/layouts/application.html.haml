@@ -24,11 +24,9 @@
     = show_flash_message
 
     - if user_signed_in?
+      = render 'layouts/navbar'
       .container-fluid
-        .row
-          = render 'layouts/sidebar'
-          %main.col-lg-10.offset-lg-2.col-sm-12.col-md-12.pt-3
-            = yield
+        = yield
     - else
       = yield
       = render 'layouts/footer'

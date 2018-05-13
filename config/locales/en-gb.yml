@@ -146,7 +146,7 @@ en-gb:
       suggested_people_header: 'You might be interested'
       suggested_people_description: 'Users that we found near you that might be of interest'
   layouts:
-    sidebar:
+    navbar:
       messages: "Messages"
       users: "Users"
       likes: "Hearts"

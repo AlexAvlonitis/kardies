@@ -1,11 +1,12 @@
-.row
-  .col.bg-white.effect2.margin-3
-    %table.table
-      %thead
-        %tr
-          %th
-            %small
-              %strong= t '.sender'
-      %tbody
-        = render partial: 'conversation', collection: @conversations
-    = paginate @conversations, window: 1
+.container
+  .row
+    .col.bg-white.effect2.margin-3
+      %table.table
+        %thead
+          %tr
+            %th
+              %small
+                %strong= t '.sender'
+        %tbody
+          = render partial: 'conversation', collection: @conversations
+      = paginate @conversations, window: 1

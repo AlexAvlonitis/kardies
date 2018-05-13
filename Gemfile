@@ -20,7 +20,7 @@ gem "jquery-fileupload-rails"
 gem 'simple_form'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'aws-sdk-s3', '~> 1'
-gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'bootstrap', '~> 4.1.1'
 gem 'chewy'
 gem 'devise'
 gem 'font-awesome-rails'
@@ -70,7 +70,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'bullet'
   gem 'capistrano'
   gem 'capistrano-nginx'
   gem 'capistrano-rails'

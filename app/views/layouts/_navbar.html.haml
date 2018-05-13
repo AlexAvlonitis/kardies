@@ -1,0 +1,41 @@
+%nav.navbar.navbar-expand-md.navbar-dark.bg-orange
+  .container
+    %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNav", "data-toggle" => "collapse", type: "button"}
+      %span.navbar-toggler-icon
+    .navbar-brand
+      = link_to root_path do
+        = image_tag "kardies-logo-small.png", class: 'logo-small'
+    #navbarNav.collapse.navbar-collapse
+      %ul.navbar-nav.ml-auto
+        %li#users.nav-item
+          = link_to users_path, class: "nav-link" do
+            = t '.users'
+        %li#likes.nav-item
+          = link_to my_likes_path, class: "nav-link" do
+            = t '.likes'
+            - if current_user.vote_notifications.any?
+              %span.badge.badge-pill.badge-info
+                = current_user.vote_notifications.count
+        %li#conversations.nav-item
+          = link_to conversations_path, class: "nav-link" do
+            = t '.messages'
+            - if current_user.conversation_notifications.any?
+              %span.badge.badge-pill.badge-info
+                = current_user.conversation_notifications.size
+        %li#personalities.nav-item
+          = link_to get_personalities_path, class: "nav-link" do
+            = t '.personalities'
+        %li.nav-item.dropdown.ml-2
+          %a#navbarDropdownMenuLink.nav-link{ 'data-toggle' => "dropdown", 'aria-haspopup' => "true", 'aria-expanded' => "false" }
+            .profile-pic-round-xs.lazy{ "data-src" => "#{current_user.profile_picture}" }
+          .dropdown-menu{ 'aria-labelledby' => "navbarDropdownMenuLink" }
+            = link_to edit_user_registration_path, class: "dropdown-item" do
+              = fa_icon "cogs"
+              = t '.profile'
+            - if current_user.admin?
+              = link_to admin_application_index_path do
+                = fa_icon "key"
+                = t '.admin'
+            = link_to destroy_user_session_path, method: :delete, class: "dropdown-item red-text" do
+              = fa_icon "power-off"
+              = t '.sign_out'

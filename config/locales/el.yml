@@ -155,7 +155,7 @@ el:
       suggested_people_header: 'Ίσως ενδιαφέρεστε'
       suggested_people_description: 'Μέλη που βρήκαμε κοντά σας και μπορεί να ενδιαφέρεστε'
   layouts:
-    sidebar:
+    navbar:
       messages: "Μηνύματα"
       users: "Μέλη"
       likes: "Καρδιές"
