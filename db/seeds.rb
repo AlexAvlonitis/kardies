@@ -18,7 +18,7 @@ Chewy.strategy(:atomic) do
     }
   )
 
-  3.times do |index|
+  100.times do |index|
     User.create(
       username: "test_#{index}",
       email: "test_#{index}@test.com",

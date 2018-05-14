@@ -13,6 +13,14 @@
       %h4= t '.no_results'
 
 .row.justify-content-center
+  .page-load-status
+    %p.infinite-scroll-request= image_tag("ajax-loader.gif")
+    %strong.infinite-scroll-last= t '.end_content'
+    %strong.infinite-scroll-error= t '.no_pages'
+
+.row.justify-content-center
   = paginate @users, window: 1
+
+  %button.view-more-button.btn.btn-outline-primary.mb-3= t '.more'
 
 = render partial: 'messages/message_modal'

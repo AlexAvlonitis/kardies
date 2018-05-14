@@ -99,6 +99,9 @@ en-gb:
       area: 'Area'
       report: 'Report user'
       no_results: "No results found, please try a different search."
+      end_content: 'End of content'
+      no_pages: 'No more pages to show'
+      more: 'Load more...'
     card:
       age_text: 'years old'
     profile_pic_panel:

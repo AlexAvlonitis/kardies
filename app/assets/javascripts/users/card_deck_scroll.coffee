@@ -1,8 +1,13 @@
 $ ->
+
 	$('.card-deck').infiniteScroll({
 	  path: 'users?page={{#}}',
 	  append: '.card',
 	  history: false,
-		hideNav: '.pagination'
-		loadingText: 'Loading new items…'
+		hideNav: '.pagination',
+		button: '.view-more-button',
+		scrollThreshold: false,
+		status: '.page-load-status',
+		checkLastPage: '.page-next',
+		loadOnScroll: false
 	});
