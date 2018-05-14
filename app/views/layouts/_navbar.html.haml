@@ -9,24 +9,28 @@
       %ul.navbar-nav.ml-auto
         %li#users.nav-item
           = link_to users_path, class: "nav-link" do
+            = fa_icon "users"
             = t '.users'
         %li#likes.nav-item
           = link_to my_likes_path, class: "nav-link" do
+            = fa_icon "heart"
             = t '.likes'
             - if current_user.vote_notifications.any?
               %span.badge.badge-pill.badge-info
                 = current_user.vote_notifications.count
         %li#conversations.nav-item
           = link_to conversations_path, class: "nav-link" do
+            = fa_icon "envelope"
             = t '.messages'
             - if current_user.conversation_notifications.any?
               %span.badge.badge-pill.badge-info
                 = current_user.conversation_notifications.size
         %li#personalities.nav-item
           = link_to get_personalities_path, class: "nav-link" do
+            = fa_icon "flask"
             = t '.personalities'
         %li.nav-item.dropdown.ml-2
-          %a#navbarDropdownMenuLink.nav-link{ 'data-toggle' => "dropdown", 'aria-haspopup' => "true", 'aria-expanded' => "false" }
+          #navbarDropdownMenuLink.nav-link{ 'data-toggle' => "dropdown", 'aria-haspopup' => "true", 'aria-expanded' => "false" }
             .profile-pic-round-xs.lazy{ "data-src" => "#{current_user.profile_picture}" }
           .dropdown-menu{ 'aria-labelledby' => "navbarDropdownMenuLink" }
             = link_to edit_user_registration_path, class: "dropdown-item" do
