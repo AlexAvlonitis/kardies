@@ -8,20 +8,22 @@ class LikesController < ApplicationController
   end
 
   def like
-    if @user.liked_by current_user
-      render json: @user, status: 201
-      add_vote_notification
-      send_notification_email
-    else
-      render json: { errors: @user.errors }, status: 422
-    end
-  end
+    begin
+      if current_user.voted_for? @user
+        delete_vote_notification
+        @user.unliked_by current_user
+        render json: { "heart": 'fa-heart-o' }, status: 201
+        return
+      end
 
-  def unlike
-    delete_vote_notification
-    if @user.unliked_by current_user
-      render json: @user, status: 201
-    else
+      if ! current_user.voted_for? @user
+        @user.liked_by current_user
+        add_vote_notification
+        send_notification_email
+        render json: { "heart": 'fa-heart' }, status: 201
+        return
+      end
+    rescue
       render json: { errors: @user.errors }, status: 422
     end
   end
