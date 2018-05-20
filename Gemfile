@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem "jquery-fileupload-rails"
 gem 'simple_form'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'active_model_serializers'
 gem 'aws-sdk-s3', '~> 1'
 gem 'bootstrap', '~> 4.1.1'
 gem 'chewy'
