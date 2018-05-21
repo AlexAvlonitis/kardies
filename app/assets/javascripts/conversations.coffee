@@ -1,9 +1,13 @@
 $ ->
 
+  $('#conversation-form :input').prop("disabled", true);
+
   $(".delete-convo").click (e) ->
     e.preventDefault()
     that = $(this)
     url = that.context.pathname
+    conversationId = that.context.getAttribute('data-conversation-id')
+
     swal(
       text: 'Η συνομιλία θα διαγραφεί!'
       type: 'warning'
@@ -11,6 +15,7 @@ $ ->
       confirmButtonColor: '#3085d6'
       cancelButtonColor: '#d33'
       confirmButtonText: 'OK'
+      cancelButtonText: 'Ακύρωση'
     ).then ->
       $.ajax(url,
         type: "DELETE"
@@ -21,7 +26,10 @@ $ ->
           text: "Η συνομιλία διαγράφηκε"
           type: "success"
         ).then ->
-          that.closest('tr').fadeOut()
+          App.message.unsubscribe() if App.message
+          $('#messages').empty()
+          $('#conversation-form :input').prop("disabled", true);
+          $("a[data-conversation-id=#{conversationId}]").fadeOut()
       .fail (xhr, status, error) ->
         errors = JSON.parse(xhr.responseText).errors
         e = ''
@@ -45,6 +53,7 @@ $ ->
       '</p>'
     )
 
+    $('#conversation-form :input').prop("disabled", false);
     App.message.unsubscribe() if App.message
 
     $(document).unbind()

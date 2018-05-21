@@ -1,6 +1,5 @@
 .ui {
 	margin: 0 auto 10px auto;
-	height: 45rem;
 	background-color: $white;
 	border-radius: 3px;
 	flex-direction: row;
@@ -8,19 +7,11 @@
 	overflow: hidden;
 
 	.left-menu {
-		width: 29%;
-		padding: 0.5% 1%;
-		height: 100%;
 		background: #434753;
-	}
-
-	.chatbox_ad {
-		margin-top: 10px;
 	}
 
 	.chat {
 		width: 100%;
-		height: 100%;
 		background: $whitesmoke;
 
 		.info {
@@ -48,19 +39,12 @@
 		margin: 0;
 	}
 
-	.avatar>img {
-		border-radius: 50%;
-		border: 3px solid #696c75;
-	}
-	.top{
-		height: 70px;
-	}
 	.messages {
 		height: 530px;
+		width: 100%;
 		list-style: none;
 		border: 2px solid #fff;
-		border-left: none;
-		border-right: none;
+		border: none;
 
 		li {
 			margin: 10px;
@@ -156,12 +140,14 @@
 				}
 			}
 		}
+
 		.write-form {
-			height: 150px;
+			width: 100%;
+
 			textarea {
-				height:75px;
-				margin: 17px 5%;
-				width: 90%;
+				height: 75px;
+				margin: 20px;
+				width: 100%;
 				outline: none;
 				padding: 15px;
 				border: none;
@@ -182,15 +168,6 @@
 		.avatar {
 			display: inline-block;
 			width: 100%;
-		}
-		.send {
-			color: #7ac5ef;
-			text-transform: uppercase;
-			font-weight: 700;
-			float: right;
-			margin-right: 5%;
-			cursor: pointer;
-			user-select:none;
 		}
 }
 
