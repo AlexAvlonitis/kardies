@@ -43,9 +43,7 @@ class ConversationsController < ApplicationController
 
   def get_messages
     messages = @mailbox.inbox + @mailbox.sentbox
-    conversations = messages.flatten.uniq(&:id) # remove duplicate IDs
-    @conversations =
-      Kaminari.paginate_array(conversations).page params[:page]
+    @conversations = messages.flatten.uniq(&:id) # remove duplicate IDs
   end
 
   def get_conversation

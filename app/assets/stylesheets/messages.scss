@@ -6,8 +6,22 @@
 	display: flex;
 	overflow: hidden;
 
-	.left-menu {
+	#left-menu {
+		height: 645px;
+		min-width: 250px;
+    max-width: 250px;
+
 		background: #434753;
+		overflow-y: scroll;
+	}
+
+	.toggle-left-menu {
+		z-index: 1;
+		background: $whitesmoke;
+
+		a {
+			color: $fbblue;
+		}
 	}
 
 	.chat {
@@ -40,11 +54,12 @@
 	}
 
 	.messages {
-		height: 530px;
+		height: 550px;
 		width: 100%;
 		list-style: none;
 		border: 2px solid #fff;
 		border: none;
+		padding-left: 0px;
 
 		li {
 			margin: 10px;
@@ -146,13 +161,13 @@
 
 			textarea {
 				height: 75px;
-				margin: 20px;
 				width: 100%;
 				outline: none;
 				padding: 15px;
 				border: none;
 				border-radius: 3px;
 				resize: none;
+				margin: 10px 0 10px 0;
 
 				&:before {
 					content: '';
@@ -169,10 +184,4 @@
 			display: inline-block;
 			width: 100%;
 		}
-}
-
-@media all and (max-width: 800px) {
-	.left-menu {
-		display: none;
-	}
 }

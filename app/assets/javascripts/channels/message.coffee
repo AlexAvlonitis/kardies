@@ -29,7 +29,7 @@ $ ->
       )
 
     listenToKeyboard = (conversationId) ->
-      $(document).on 'keypress', '[data-behaviour~=message_speaker]', (event) ->
+      $(document).on 'keypress.myEvents', '[data-behaviour~=message_speaker]', (event) ->
         if event.keyCode is 13
           messageValue = event.target.value
           unless sanitizeInput(messageValue) == ""
@@ -38,7 +38,7 @@ $ ->
           event.preventDefault()
 
     submitForm = (conversationId) ->
-      $('#conversation-form').submit (e) ->
+      $('#conversation-form').on 'submit.myEvents', (e) ->
         e.preventDefault()
         messageValue = $('.conversation-message').val()
         unless sanitizeInput(messageValue) == ""

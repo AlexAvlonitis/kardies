@@ -1,21 +1,17 @@
 - if conversation.participants.count > 1
   - participant = remove_current_user(conversation)
-  .row
-    .col-1.p-1
-      = link_to conversation_path(conversation),
-          class: "delete-convo pull-right",
-          'data-conversation-id': conversation.id,
-          title: "#{t '.delete'}" do
-        = fa_icon "times"
-    .col-11
-      = link_to conversation_path(conversation), class: 'get-convo', 'data-conversation-id': conversation.id do
-        %li.list-group-item.mt-1
-          .row
-            .col-lg-4
-              .pic-round-xs.lazy{ "data-src" => "#{participant.profile_picture}" }
-            .col-lg-8
-              %strong.pt-2= participant.username.capitalize
-              %p.small
-                = conversation.created_at.to_formatted_s(:short)
-                - if conversation.is_unread?(current_user)
-                  %span.badge.badge-pill.badge-success= t '.new_message'
+
+  %li.list-group-item.m-1
+    .row
+      .col-2
+        = link_to conversation_path(conversation), class: "delete-convo", 'data-conversation-id': conversation.id, title: "#{t '.delete'}" do
+          = fa_icon "times"
+      .col-10.offset-2
+        = link_to conversation_path(conversation), class: 'get-convo', 'data-conversation-id': conversation.id do
+          .pic-round-xs.lazy{ "data-src" => "#{participant.profile_picture}" }
+      .col-10.offset-2
+        %strong.pt-2= participant.username.capitalize
+        %p.small
+          = conversation.created_at.to_formatted_s(:short)
+          - if conversation.is_unread?(current_user)
+            %span.badge.badge-pill.badge-success= t '.new_message'

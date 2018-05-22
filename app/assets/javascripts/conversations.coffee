@@ -53,10 +53,11 @@ $ ->
       '</p>'
     )
 
+    removeLeftMenu() if mobileView()
     $('#conversation-form :input').prop("disabled", false);
     App.message.unsubscribe() if App.message
 
-    $(document).unbind()
+    $(document).unbind('.myEvents')
     App.Message.create(conversationId)
 
     $.ajax(
@@ -87,3 +88,17 @@ $ ->
       App.Message.messages_to_bottom()
     .fail (xhr, status, error) ->
       console.log(error)
+
+  $('.left-menu-toggle-icon').click ->
+    removeLeftMenu()
+
+  removeLeftMenu = () ->
+    $('#left-menu').fadeToggle ->
+      $('.chat').toggleClass('col-lg-12')
+      $('.chat').toggleClass('col-sm-12')
+
+
+  mobileView = () ->
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+      return true
+    return false
