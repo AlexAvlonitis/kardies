@@ -29,7 +29,7 @@ $ ->
           App.message.unsubscribe() if App.message
           $('#messages').empty()
           $('#conversation-form :input').prop("disabled", true);
-          $("a[data-conversation-id=#{conversationId}]").fadeOut()
+          $("li[data-conversation-id=#{conversationId}]").fadeOut()
       .fail (xhr, status, error) ->
         errors = JSON.parse(xhr.responseText).errors
         e = ''

@@ -1,13 +1,13 @@
 - if conversation.participants.count > 1
   - participant = remove_current_user(conversation)
 
-  %li.list-group-item.m-1
+  %li.list-group-item.m-1{ 'data-conversation-id' => conversation.id }
     .row
       .col-2
         = link_to conversation_path(conversation), class: "delete-convo", 'data-conversation-id': conversation.id, title: "#{t '.delete'}" do
           = fa_icon "times"
       .col-10.offset-2
-        = link_to conversation_path(conversation), class: 'get-convo', 'data-conversation-id': conversation.id do
+        = link_to conversation_path(conversation), class: 'get-convo' do
           .pic-round-xs.lazy{ "data-src" => "#{participant.profile_picture}" }
       .col-10.offset-2
         %strong.pt-2= participant.username.capitalize
