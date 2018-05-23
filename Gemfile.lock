@@ -33,6 +33,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_model_serializers (0.10.7)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activejob (5.1.6)
       activesupport (= 5.1.6)
       globalid (>= 0.3.6)
@@ -107,6 +112,8 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    case_transform (0.2)
+      activesupport
     chewy (0.10.1)
       activesupport (>= 4.0)
       elasticsearch (>= 2.0.0)
@@ -184,6 +191,7 @@ GEM
     jquery-slick-rails (1.8.1)
       railties (>= 3.1)
     json (2.1.0)
+    jsonapi-renderer (0.2.0)
     jwt (1.5.6)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
@@ -421,6 +429,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  active_model_serializers
   acts_as_votable (~> 0.10.0)
   aws-sdk-s3 (~> 1)
   bootstrap (~> 4.1.1)

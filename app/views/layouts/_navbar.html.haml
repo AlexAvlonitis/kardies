@@ -29,9 +29,8 @@
           = link_to get_personalities_path, class: "nav-link" do
             = fa_icon "flask"
             = t '.personalities'
-        %li.nav-item.dropdown.ml-2
-          #navbarDropdownMenuLink.nav-link{ 'data-toggle' => "dropdown", 'aria-haspopup' => "true", 'aria-expanded' => "false" }
-            .profile-pic-round-xs.lazy{ "data-src" => "#{current_user.profile_picture}" }
+        %li.nav-item.dropdown
+          %a.profile-pic-round-xs.lazy.btn.btn-secondary.nav-item{ id: 'navbarDropdownMenuLink', 'data-toggle' => "dropdown", 'aria-haspopup' => "true", 'aria-expanded' => "false", "data-src" => "#{current_user.profile_picture}", role: 'button', href: '#' }
           .dropdown-menu{ 'aria-labelledby' => "navbarDropdownMenuLink" }
             = link_to edit_user_registration_path, class: "dropdown-item" do
               = fa_icon "cogs"
@@ -40,6 +39,7 @@
               = link_to admin_application_index_path, class: "dropdown-item" do
                 = fa_icon "key"
                 = t '.admin'
+            .dropdown-divider
             = link_to destroy_user_session_path, method: :delete, class: "dropdown-item red-text" do
               = fa_icon "power-off"
               = t '.sign_out'

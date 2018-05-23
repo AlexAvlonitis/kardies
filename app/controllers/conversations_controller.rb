@@ -8,8 +8,17 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    redirect_to conversations_path if @conversation.is_deleted?(current_user)
-    @conversation.mark_as_read(current_user) if @conversation.is_unread?(current_user)
+    if @conversation.is_deleted?(current_user)
+      render json: { data: 'convo deleted' }, status: 402
+      return
+    end
+    mark_as_read
+
+    messages = []
+    @conversation.receipts_for(current_user).each do |receipt|
+      messages << receipt.message
+    end
+    render json: messages, status: 201
   end
 
   def reply
@@ -34,9 +43,7 @@ class ConversationsController < ApplicationController
 
   def get_messages
     messages = @mailbox.inbox + @mailbox.sentbox
-    conversations = messages.flatten.uniq(&:id) # remove duplicate IDs
-    @conversations =
-      Kaminari.paginate_array(conversations).page params[:page]
+    @conversations = messages.flatten.uniq(&:id) # remove duplicate IDs
   end
 
   def get_conversation
@@ -45,5 +52,11 @@ class ConversationsController < ApplicationController
 
   def delete_conversation_notifications
     current_user.conversation_notifications.destroy_all
+  end
+
+  def mark_as_read
+    if @conversation.is_unread?(current_user)
+      @conversation.mark_as_read(current_user)
+    end
   end
 end

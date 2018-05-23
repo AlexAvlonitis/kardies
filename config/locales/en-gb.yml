@@ -171,6 +171,7 @@ en-gb:
       messages: "Messages"
       sent: "Outbox"
       trash: "Recycle Bin"
+      send_message: "Send"
     show:
       send_message: "Send"
       send_message_placeholder: "Type your message..."

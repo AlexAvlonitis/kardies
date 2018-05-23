@@ -1,17 +1,18 @@
 - if conversation.participants.count > 1
-  - participant = do_not_show_current_user(conversation)
-  %tr
-    %td
-      = link_to conversation_path(conversation) do
-        .pic-round-sm.lazy{ "data-src" => "#{participant.profile_picture}" }
-    %td
-      %strong.pt-2= participant.username.capitalize
-      %p.small
-        = conversation.created_at.to_formatted_s(:short)
-        - if conversation.is_unread?(current_user)
-          %span.badge.badge-pill.badge-success= t '.new_message'
-    %td
-      = link_to conversation_path(conversation),
-          class: "btn btn-danger delete-convo",
-          title: "#{t '.delete'}" do
-        = fa_icon "trash"
+  - participant = remove_current_user(conversation)
+  %li.conversations.m-1{ 'data-conversation-id' => conversation.id }
+    .d-flex
+      .d-inline-block.align-self-center.m-1
+        = link_to conversation_path(conversation), class: 'get-convo' do
+          .pic-round-xs.lazy{ "data-src" => "#{participant.profile_picture}" }
+
+      .d-inline-block.align-self-center.m-1
+        = link_to conversation_path(conversation), class: 'get-convo align-self-center d-inline-block' do
+          %strong= participant.username.capitalize.truncate(13)
+        %p.small
+          - if conversation.is_unread?(current_user)
+            %span.badge.badge-pill.badge-success= t '.new_message'
+
+      .d-inline-block.align-self-center.m-1.ml-auto
+        = link_to conversation_path(conversation), class: "delete-convo btn btn-outline-light", 'data-conversation-id': conversation.id, title: "#{t '.delete'}" do
+          = fa_icon "times"

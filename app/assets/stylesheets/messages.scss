@@ -1,26 +1,30 @@
 .ui {
-	margin: 2px auto 10px auto;
-	height: 45rem ;
-	background-color: #fff;
+	background-color: $white;
 	border-radius: 3px;
 	flex-direction: row;
 	display: flex;
 	overflow: hidden;
 
-	.left-menu {
-		width: 29%;
-		padding: 0.5% 1%;
-		height: 100%;
+	#left-menu {
+		height: 645px;
+		min-width: 250px;
+    max-width: 250px;
+
 		background: #434753;
+		overflow-y: scroll;
 	}
 
-	.chatbox_ad {
-		margin-top: 10px;
+	.toggle-left-menu {
+		z-index: 1;
+		background: $whitesmoke;
+
+		a {
+			color: $fbblue;
+		}
 	}
 
 	.chat {
 		width: 100%;
-		height: 100%;
 		background: $whitesmoke;
 
 		.info {
@@ -48,19 +52,13 @@
 		margin: 0;
 	}
 
-	.avatar>img {
-		border-radius: 50%;
-		border: 3px solid #696c75;
-	}
-	.top{
-		height: 70px;
-	}
 	.messages {
-		height: 530px;
+		height: 500px;
+		width: 100%;
 		list-style: none;
 		border: 2px solid #fff;
-		border-left: none;
-		border-right: none;
+		border: none;
+		padding-left: 0px;
 
 		li {
 			margin: 10px;
@@ -77,15 +75,6 @@
 			.name {
 				font-weight: 600;
 				position: relative;
-
-				&:after {
-					content: '';
-					position: absolute;
-					height: 8px;
-					width: 8px;
-					border-radius: 50%;
-					top: 6px;
-				}
 			}
 			.time {
 				color: #b7bccf;
@@ -113,16 +102,7 @@
 				}
 			}
 		}
-		li.friend-message {
-			.name {
-				margin-left: 20px;
-
-				&:after{
-				background-color: #62bf6e;
-				left: -20px;
-				top: 6px;
-				}
-			}
+		li.myself{
 			.message {
 				background-color: #62bf6e;
 				float: left;
@@ -133,18 +113,9 @@
 				}
 			}
 		}
-		li.myself {
+		li.friend-message {
 			.head {
 				text-align: right;
-			}
-			.name {
-				margin-right: 20px;
-
-				&:after {
-					background-color: #7bc4ef;
-					right: -20px;
-					top: 6px;
-				}
 			}
 			.message {
 				background-color: #7bc4ef;
@@ -156,17 +127,19 @@
 				}
 			}
 		}
+
 		.write-form {
-			height: 150px;
+			width: 100%;
+
 			textarea {
-				height:75px;
-				margin: 17px 5%;
-				width: 90%;
+				height: 75px;
+				width: 100%;
 				outline: none;
 				padding: 15px;
 				border: none;
 				border-radius: 3px;
 				resize: none;
+				margin: 10px 0 10px 0;
 
 				&:before {
 					content: '';
@@ -183,19 +156,4 @@
 			display: inline-block;
 			width: 100%;
 		}
-		.send {
-			color: #7ac5ef;
-			text-transform: uppercase;
-			font-weight: 700;
-			float: right;
-			margin-right: 5%;
-			cursor: pointer;
-			user-select:none;
-		}
-}
-
-@media all and (max-width: 800px) {
-	.left-menu {
-		display: none;
-	}
 }

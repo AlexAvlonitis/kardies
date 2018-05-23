@@ -1,12 +1,22 @@
 .container
-  .row
-    .col.bg-white.effect2.margin-3
-      %table.table
-        %thead
-          %tr
-            %th
-              %small
-                %strong= t '.sender'
-        %tbody
-          = render partial: 'conversation', collection: @conversations
-      = paginate @conversations, window: 1
+  .ui.effect3
+    #left-menu
+      %ul.list-group
+        = render partial: 'conversation', collection: @conversations
+    .toggle-left-menu.p-2
+      = link_to '#', class: 'left-menu-toggle-icon' do
+        = fa_icon 'bars'
+    .chat
+      %ul#messages.messages
+        - if @conversation
+          - @conversation.receipts_for(current_user).each do |receipt|
+            = render partial: 'conversations/message', locals: { receipt: receipt }
+      .write-form
+        = form_tag '', method: :post, id: 'conversation-form', class: 'form-inline' do
+          .col-sm-12
+            = text_area_tag 'body', nil, cols: 3, class: 'form-control conversation-message',
+                                                  placeholder: "#{t 'conversations.show.send_message_placeholder'}",
+                                                  "data-behaviour" => "message_speaker"
+          .col-sm-12
+            = button_tag class: "btn btn-primary pull-right mb-1", id: "send-message-button" do
+              = t '.send_message'

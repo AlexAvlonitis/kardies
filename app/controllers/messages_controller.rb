@@ -21,7 +21,7 @@ class MessagesController < ApplicationController
       ).conversation
       flash[:success] = t '.sent'
     end
-    redirect_to conversation_path(conversation)
+    redirect_to conversations_path
     add_conversation_notification
     conversation_notification_email
   end
