@@ -1,22 +1,24 @@
 .get-convo {
-  color: $black;
+  color: $white;
 }
 
 .get-convo:hover {
-  color: $black;
+  color: $white;
   text-decoration: none;
-  border: none;
-  .row {
-    background: $fbblue;
-    color: $white;
-  }
 }
 
 .delete-convo {
-  position: absolute;
   color: $orange;
+  padding: 0.2rem 0.5rem;
+  border: solid 1px $white;
+  border-radius: 3px;
 }
 
 .delete-convo:hover {
   color: $orange;
+}
+
+.conversations {
+  color: $white;
+  position: relative;
 }

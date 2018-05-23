@@ -1,5 +1,4 @@
 .ui {
-	margin: 0 auto 10px auto;
 	background-color: $white;
 	border-radius: 3px;
 	flex-direction: row;
@@ -54,7 +53,7 @@
 	}
 
 	.messages {
-		height: 550px;
+		height: 500px;
 		width: 100%;
 		list-style: none;
 		border: 2px solid #fff;
@@ -76,15 +75,6 @@
 			.name {
 				font-weight: 600;
 				position: relative;
-
-				&:after {
-					content: '';
-					position: absolute;
-					height: 8px;
-					width: 8px;
-					border-radius: 50%;
-					top: 6px;
-				}
 			}
 			.time {
 				color: #b7bccf;
@@ -112,16 +102,7 @@
 				}
 			}
 		}
-		li.friend-message {
-			.name {
-				margin-left: 20px;
-
-				&:after{
-				background-color: #62bf6e;
-				left: -20px;
-				top: 6px;
-				}
-			}
+		li.myself{
 			.message {
 				background-color: #62bf6e;
 				float: left;
@@ -132,18 +113,9 @@
 				}
 			}
 		}
-		li.myself {
+		li.friend-message {
 			.head {
 				text-align: right;
-			}
-			.name {
-				margin-right: 20px;
-
-				&:after {
-					background-color: #7bc4ef;
-					right: -20px;
-					top: 6px;
-				}
 			}
 			.message {
 				background-color: #7bc4ef;

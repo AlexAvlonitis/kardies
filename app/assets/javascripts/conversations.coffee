@@ -46,11 +46,13 @@ $ ->
     e.preventDefault()
     url = this.href
     conversationId = this.pathname.split('/')[2]
+    username = $('.container-fluid').attr('data-username')
 
     $('#messages').html(
-      '<p>' +
-        'Παρακαλώ περιμένετε...' +
-      '</p>'
+      '<div class="d-flex justify-content-center">' +
+        '<div class="loader">' +
+        '</div>' +
+      '</div>'
     )
 
     removeLeftMenu() if mobileView()
@@ -67,21 +69,26 @@ $ ->
     )
     .done (data) ->
       $('#messages').empty()
+      date = new Date();
       for d in data
+        messageHeader = whosWho(username, d.sender.username)
+
         $('#messages').append(
-          '<li class="friend-message">' +
+          messageHeader +
             '<div class="head">' +
-              '<span class="time">' +
-                d.created_at +
-              '</span>' +
-              '<span class="name">' +
+              '<div class="name">' +
                 '<img src="' +
                   d.sender.profile_picture +
                 '" class="icon-size"/>' +
-              '</span>' +
+              '</div>' +
+              '<div class="time">' +
+                date.toDateString(d.created_at) +
+              '</div>' +
             '</div>' +
             '<div class="message">' +
-              d.body +
+              '<p>' +
+                d.body +
+              '</p>' +
             '</div>' +
           '</li>'
           )
@@ -89,14 +96,17 @@ $ ->
     .fail (xhr, status, error) ->
       console.log(error)
 
+  whosWho = (current_user_username, participant_username) ->
+    if current_user_username == participant_username
+      return '<li class="myself">'
+    else
+      return '<li class="friend-message">'
+
   $('.left-menu-toggle-icon').click ->
     removeLeftMenu()
 
   removeLeftMenu = () ->
-    $('#left-menu').fadeToggle ->
-      $('.chat').toggleClass('col-lg-12')
-      $('.chat').toggleClass('col-sm-12')
-
+    $('#left-menu').fadeToggle()
 
   mobileView = () ->
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
