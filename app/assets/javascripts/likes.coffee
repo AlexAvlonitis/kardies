@@ -1,8 +1,16 @@
 $ ->
 
-  $('.card-deck').on "click", ".like-link", (event) ->
-    username = this.id
-    url = this.href
+  $('.card-deck').on "click", ".like-link", () ->
+    that = this
+    toggleLikeIcon(that)
+
+  $("#profile-pic-panel").on "click", ".like-link", () ->
+    that = this
+    toggleLikeIcon(that)
+
+  toggleLikeIcon = (that) ->
+    username = that.id
+    url = that.href
 
     $.ajax(
       url,

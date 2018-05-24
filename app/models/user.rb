@@ -94,6 +94,10 @@ class User < ApplicationRecord
     user_detail.profile_picture.url(size)
   end
 
+  def self.picture_from_url(url)
+    url ? open(url) : nil
+  end
+
   def profile_picture_exists?
     user_detail.profile_picture.exists?
   end
@@ -138,7 +142,7 @@ class User < ApplicationRecord
 
   def self.create_user(auth)
     email = auth.info.email
-    profile_picture = auth.info.image
+    profile_picture = picture_from_url(auth.info.image)
     password = Devise.friendly_token[0, 20]
     username = create_username(auth.info.email)
     User.create(
