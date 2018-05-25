@@ -7,9 +7,9 @@ module Admin
     def create
       blocked_email = BlockedEmail.create(blocked_email_params)
       if blocked_email.save
-        render json: { message: blocked_email }, status: 200
+        render json: { message: blocked_email }, status: :ok
       else
-        render json: { errors: blocked_email.errors }, status: 402
+        render json: { errors: blocked_email.errors }, status: :internal_server_error
       end
     end
 
@@ -17,9 +17,9 @@ module Admin
       blocked_email = BlockedEmail.find(blocked_email_params[:id])
       begin
         blocked_email.destroy
-        render json: { message: "success" }, status: 200
-      rescue => e
-        render json: { errors: e }, status: 402
+        render json: { message: 'success' }, status: :ok
+      rescue StandardError => e
+        render json: { errors: e }, status: :internal_server_error
       end
     end
 

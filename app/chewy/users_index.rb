@@ -8,7 +8,7 @@ class UsersIndex < Chewy::Index
   }
 
   def self.confirmed
-    filter(exists: {field: 'confirmed_at'})
+    filter(exists: { field: 'confirmed_at' })
   end
 
   define_type User.includes(:user_detail) do

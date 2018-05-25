@@ -1,5 +1,4 @@
 class Search
-
   def initialize(query, current_user)
     @query = query
     @current_user = current_user
@@ -48,6 +47,6 @@ class Search
   end
 
   def must_not_be_current_user
-    { must_not: [{term: {username: current_user.username}}]}
+    { must_not: [{ term: { username: current_user.username } }] }
   end
 end

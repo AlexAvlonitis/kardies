@@ -3,9 +3,9 @@ class PicturesController < ApplicationController
     picture = current_user.gallery.pictures.find(params[:id])
     begin
       picture.destroy
-      render json: { status: "success" }, status: 200
-    rescue => e
-      render json: { errors: e }, status: 402
+      render json: { status: 'success' }, status: :ok
+    rescue StandardError => e
+      render json: { errors: e }, status: :internal_server_error
     end
   end
 end

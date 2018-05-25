@@ -5,7 +5,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.persisted?
       sign_in_process
     else
-      session["devise.facebook_data"] = omniauth_values
+      session['devise.facebook_data'] = omniauth_values
       redirect_to new_user_registration_url
     end
   end
@@ -18,9 +18,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def sign_in_process
     sign_in_and_redirect @user, event: :authentication
-    if is_navigational_format?
-      set_flash_message(:notice, :success, kind: "Facebook")
-    end
+    set_flash_message(:notice, :success, kind: 'Facebook') if is_navigational_format?
   end
 
   def omniauth_values

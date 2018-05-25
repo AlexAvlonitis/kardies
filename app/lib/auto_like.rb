@@ -13,7 +13,7 @@ class AutoLike
   attr_reader :current_user
 
   def nini_user
-    @nini_user ||= User.find_by(email: "ni_ni9001@hotmail.com")
+    @nini_user ||= User.find_by(email: 'ni_ni9001@hotmail.com')
   end
 
   def add_vote_notification

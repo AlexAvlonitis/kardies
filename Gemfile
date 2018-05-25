@@ -15,20 +15,25 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
-gem "jquery-fileupload-rails"
-gem 'simple_form'
-gem 'acts_as_votable', '~> 0.10.0'
 gem 'active_model_serializers'
+gem 'acts_as_votable', '~> 0.10.0'
 gem 'aws-sdk-s3', '~> 1'
 gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap-filestyle-rails'
 gem 'chewy'
 gem 'devise'
+gem 'es6-promise-rails'
 gem 'font-awesome-rails'
 gem 'greek-cities'
 gem 'haml', git: 'https://github.com/haml/haml'
+gem 'holder_rails'
+gem 'jquery-fileupload-rails'
+gem 'jquery-rails'
+gem 'jquery-slick-rails'
 gem 'kaminari'
 gem 'mailboxer'
+gem 'mailgun_rails'
+gem 'nouislider-rails'
 gem 'omniauth-facebook'
 gem 'paperclip', '~> 6.0'
 gem 'pry-rails'
@@ -36,16 +41,11 @@ gem 'pundit'
 gem 'rack-attack'
 gem 'redis', '~> 3.3'
 gem 'redis-rails'
+gem 'simple_form'
 gem 'sitemap_generator'
+gem 'swipebox'
 gem 'toastr-rails'
 gem 'validates_email_format_of'
-gem 'bootstrap-filestyle-rails'
-gem 'es6-promise-rails'
-gem 'nouislider-rails'
-gem 'mailgun_rails'
-gem "jquery-slick-rails"
-gem 'holder_rails'
-gem 'swipebox'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
@@ -60,8 +60,8 @@ group :development, :test do
 end
 
 group :test do
-  gem 'shoulda-matchers', '~> 3.1'
   gem 'database_cleaner'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
@@ -69,8 +69,6 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'web-console'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'capistrano'
   gem 'capistrano-nginx'
   gem 'capistrano-rails'
@@ -79,6 +77,8 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano-upload-config'
   gem 'capistrano3-puma'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'sshkit-sudo'
 end
 

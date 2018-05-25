@@ -9,7 +9,7 @@ class ConversationsController < ApplicationController
 
   def show
     if @conversation.is_deleted?(current_user)
-      render json: { data: 'convo deleted' }, status: 402
+      render json: { data: 'convo deleted' }, status: :internal_server_error
       return
     end
     mark_as_read
@@ -18,7 +18,7 @@ class ConversationsController < ApplicationController
     @conversation.receipts_for(current_user).each do |receipt|
       messages << receipt.message
     end
-    render json: messages, status: 201
+    render json: messages, status: :created
   end
 
   def reply
@@ -27,12 +27,10 @@ class ConversationsController < ApplicationController
   end
 
   def destroy
-    begin
-      @conversation.mark_as_deleted(current_user)
-      render json: @conversation, status: 201
-    rescue StandardError => e
-      render json: { errors: e.message }, status: 422
-    end
+    @conversation.mark_as_deleted(current_user)
+    render json: @conversation, status: :created
+  rescue StandardError => e
+    render json: { errors: e.message }, status: :unprocessable_entity
   end
 
   private
@@ -55,8 +53,6 @@ class ConversationsController < ApplicationController
   end
 
   def mark_as_read
-    if @conversation.is_unread?(current_user)
-      @conversation.mark_as_read(current_user)
-    end
+    @conversation.mark_as_read(current_user) if @conversation.is_unread?(current_user)
   end
 end

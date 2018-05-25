@@ -16,9 +16,9 @@ class AboutsController < ApplicationController
 
   def save_about
     if @about.update(about_params)
-      render json: @about, status: 200
+      render json: @about, status: :ok
     else
-      render json: { errors: @about.errors }, status: 402
+      render json: { errors: @about.errors }, status: :internal_server_error
     end
   end
 end

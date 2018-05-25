@@ -63,9 +63,9 @@ class User < ApplicationRecord
         state: current_user.state
       }
     ).except_user(current_user)
-    .confirmed
-    .order("RAND()")
-    .limit(4)
+                          .confirmed
+                          .order('RAND()')
+                          .limit(4)
   end
 
   def self.get_by_gender(current_user, gender_of_interest)
@@ -74,9 +74,9 @@ class User < ApplicationRecord
         gender: gender_of_interest
       }
     ).except_user(current_user)
-    .confirmed
-    .order("RAND()")
-    .limit(4)
+                          .confirmed
+                          .order('RAND()')
+                          .limit(4)
   end
 
   delegate :city, to: :user_detail
@@ -116,7 +116,7 @@ class User < ApplicationRecord
       params.delete(:password_confirmation) if params[:password_confirmation].blank?
     end
 
-    result = update_attributes(params, *options)
+    result = update(params, *options)
     clean_up_passwords
     result
   end

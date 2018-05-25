@@ -24,7 +24,7 @@ module ApplicationHelper
     content_for :"meta_#{tag}", text
   end
 
-  def yield_meta_tag(tag, default_text= DEFAULT_DESCRIPTION)
+  def yield_meta_tag(tag, default_text = DEFAULT_DESCRIPTION)
     content_for?(:"meta_#{tag}") ? content_for(:"meta_#{tag}") : default_text
   end
 
@@ -43,8 +43,8 @@ module ApplicationHelper
     flash_messages.join('/n').html_safe
   end
 
-  DEFAULT_DESCRIPTION = "Γνωριμίες Ελλάδα, το νέο απολύτως δωρεάν 100% " \
-                        "Ελληνικό site γνωριμιών. Γίνε κι εσύ μέλος σήμερα " \
-                        "για να γνωρίσεις τον επόμενο έρωτά σου. Γιατί όλοι " \
-                        "έχουν δικαίωμα στην αγάπη!"
+  DEFAULT_DESCRIPTION = 'Γνωριμίες Ελλάδα, το νέο απολύτως δωρεάν 100% ' \
+                        'Ελληνικό site γνωριμιών. Γίνε κι εσύ μέλος σήμερα ' \
+                        'για να γνωρίσεις τον επόμενο έρωτά σου. Γιατί όλοι ' \
+                        'έχουν δικαίωμα στην αγάπη!'.freeze
 end

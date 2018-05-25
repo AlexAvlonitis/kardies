@@ -18,6 +18,7 @@ AllCops:
     - 'config/**/*'
     - 'app/presenters/**/*'
     - 'db/**/*'
+    - 'bin/**/*'
 
 Metrics/ClassLength:
   Max: 1500
