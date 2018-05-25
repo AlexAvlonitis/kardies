@@ -53,7 +53,7 @@
 	}
 
 	.messages {
-		height: 500px;
+		height: 460px;
 		width: 100%;
 		list-style: none;
 		border: 2px solid #fff;
@@ -61,7 +61,7 @@
 		padding-left: 0px;
 
 		li {
-			margin: 10px;
+			margin: 20px 10px 10px 10px;
 			transition: all .5s;
 
 			&:after {
@@ -80,50 +80,20 @@
 				color: #b7bccf;
 			}
 			.message {
-				margin-top: 20px;
-				color: #fff;
+				margin-top: 5px;
+				color: $black;
 				font-size: 15px;
 				border-radius: 5px;
-				padding: 0 1rem;
 				line-height: 25px;
-				max-width: 500px;
+				width: 100%;
 				word-wrap: break-word;
 				position: relative;
-
-				&:before {
-					content: '';
-					position: absolute;
-					width: 0px;
-					height: 0px;
-					top: -12px;
-					border-bottom: 12px solid #62bf6e;
-					border-left: 10px solid transparent;
-					border-right: 10px solid transparent;
-				}
 			}
 		}
-		li.myself{
-			.message {
-				background-color: #62bf6e;
-				float: left;
-
-				&:before {
-					left: 16px;
-					border-bottom-color: #62bf6e;
-				}
-			}
-		}
-		li.friend-message {
-			.head {
-				text-align: right;
-			}
-			.message {
-				background-color: #7bc4ef;
-				float: right;
-					&:before {
-						right: 16px;
-						border-bottom-color: #7bc4ef;
-					}
+			li.message-bubble{
+				.message {
+					background-color: $white;
+					padding: 0.5rem;
 				}
 			}
 		}
@@ -148,7 +118,7 @@
 			}
 		}
 		.avatar>img {
-			border-color: #62bf6e;
+			border-color: $aluminium;
 			margin: 10px;
 			margin-right: 5px;
 		}

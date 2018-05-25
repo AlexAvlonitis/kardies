@@ -71,15 +71,15 @@ $ ->
       $('#messages').empty()
       date = new Date();
       for d in data
-        messageHeader = whosWho(username, d.sender.username)
-
         $('#messages').append(
-          messageHeader +
+          '<li class="message-bubble">' +
             '<div class="head">' +
               '<div class="name">' +
-                '<img src="' +
-                  d.sender.profile_picture +
-                '" class="icon-size"/>' +
+                '<a href="/users/' + d.sender.username + '">' +
+                  '<img src="' +
+                    d.sender.profile_picture +
+                  '" class="icon-size"/>' +
+                '</a>' +
               '</div>' +
               '<div class="time">' +
                 date.toDateString(d.created_at) +
@@ -95,12 +95,6 @@ $ ->
       App.Message.messages_to_bottom()
     .fail (xhr, status, error) ->
       console.log(error)
-
-  whosWho = (current_user_username, participant_username) ->
-    if current_user_username == participant_username
-      return '<li class="myself">'
-    else
-      return '<li class="friend-message">'
 
   $('.left-menu-toggle-icon').click ->
     removeLeftMenu()

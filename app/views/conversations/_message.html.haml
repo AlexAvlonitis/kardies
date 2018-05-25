@@ -1,19 +1,11 @@
 - message = receipt.message if defined? receipt
-- conversation = @conversation || conversation
 
-- if message.sender == conversation.participants[0]
-  %li.myself
-    .head
-      .name= image_tag message.sender.profile_picture, class: "icon-size"
-      .time= message.created_at.strftime("%a %B %-d %Y")
+%li.message-bubble
+  .name
+    = link_to user_path(message.sender) do
+      = image_tag message.sender.profile_picture, class: "icon-size"
+  .time
+    = message.created_at.strftime("%a %B %-d %Y")
 
-    .message
-      %p= message.body
-- else
-  %li.friend-message
-    .head
-      .name= image_tag message.sender.profile_picture, class: "icon-size"
-      .time= message.created_at.strftime("%a %B %-d %Y")
-
-    .message
-      %p= message.body
+  .message
+    %p= message.body
