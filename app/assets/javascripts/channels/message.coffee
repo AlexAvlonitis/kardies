@@ -38,7 +38,7 @@ $ ->
           event.preventDefault()
 
     submitForm = (conversationId) ->
-      $('#conversation-form').on 'submit.myEvents', (e) ->
+      $(document).on 'submit.myEvents', '#conversation-form', (e) ->
         e.preventDefault()
         messageValue = $('.conversation-message').val()
         unless sanitizeInput(messageValue) == ""
