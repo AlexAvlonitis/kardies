@@ -1,364 +1,406 @@
-.row.justify-content-center
-  .col-lg-10.col-md-12.col-sm-12.bg-white.effect2.m-3.p-4
-    %h1.text-center.orange-text Τέστ Προσωπικότητας
-    %p.text-center
-      Κάντε το παρακάτω τέστ και μοιραστείτε κομμάτι της προσωπικοτητάς σας
-      %strong#current-user-name #{current_user.username}
-    %hr
-    .alert.alert-warning.text-center
-      %small
-        Για κάθε ερώτηση επιλέξτε μία απο τις δύο απαντήσεις, αν δεν σας ταιριάζει καμία απάντηση,
-        επιλέξτε αυτή που σας ταιριάζει περισσότερο. Δεν υπάρχουν σωστές ή λάθος απαντήσεις, απλά απαντήστε όπως πιστεύετε.
-        Το αποτέλεσμα θα καταγραφεί στο προφίλ σας, όπου όλοι οι χρήστες θα έχουν το δικαίωμα να το διαβάσουν.
-    = form_tag personalities_path, method: :post, class: 'my-2', id: 'personalities-form' do
-      %ol
-        .form-group
-          %strong
-            %li Προτιμώ
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '1', 'a', false, class: 'form-check-input'
-              Να λύνω νέα περίπλοκα προβλήματα
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '1', 'b', false, class: 'form-check-input'
-              Να δουλέυω πάνω σε κάτι που ήδη ξέρω
-        .form-group
-          %strong
-            %li Μου αρέσει
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '2', 'a', false, class: 'form-check-input'
-              Να δουλεύω μόνος/η σε ήσυχο μέρος
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '2', 'b', false, class: 'form-check-input'
-              Να βρίσκομαι μέσα στη δράση
-        .form-group
-          %strong
-            %li Θέλω να είμαι αφεντικό
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '3', 'a', false, class: 'form-check-input'
-              Που εφαρμόζει όρους και προϋποθέσεις ανεξαρτήτως ατόμου
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '3', 'b', false, class: 'form-check-input'
-              Που λαμβάνει υπ'όψιν προσωπικά προβλήματα και κάνει εξαιρέσεις
-        .form-group
-          %strong
-            %li Όταν δουλεύω πάνω σε κάτι
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '4', 'a', false, class: 'form-check-input'
-              Θέλω να το τελειώσω
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '4', 'b', false, class: 'form-check-input'
-              Το αφήνω μισο τελειωμένο για τυχόν αλλαγές
-        .form-group
-          %strong
-            %li Όταν παίρνω αποφάσεις, το πιο σηματικό είναι να
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '5', 'a', false, class: 'form-check-input'
-              Έιναι λογικές με τεκμηριομένα δεδομένα
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '5', 'b', false, class: 'form-check-input'
-              Σκεφτώ αν πληγώσω κάποιον/α πρώτα
-        .form-group
-          %strong
-            %li Για να λύσω ένα νέο θέμα, συνήθως
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '6', 'a', false, class: 'form-check-input'
-              Το σκέφτομαι συνέχεια και σχεδιάζω πριν προχωρήσω
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '6', 'b', false, class: 'form-check-input'
-              Ξεκινάω κατ'ευθείαν και σκέφτομαι καθώς το λύνω
-        .form-group
-          %strong
-            %li Για την επίλυση προβλήματος, προτιμώ
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '7', 'a', false, class: 'form-check-input'
-              Να χρησιμοποιώ μεθόδους που έχουν δουλέψει στο παρελθόν
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '7', 'b', false, class: 'form-check-input'
-              Να δοκιμάζω καινούριους μεθόδους
-        .form-group
-          %strong
-            %li Στην δουλειά μου, προτιμώ
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '8', 'a', false, class: 'form-check-input'
-              Να δουλεύω πάνω σε πολλά πράγματα, μαθαίνοντας όσα πιο πολλά μπορώ
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '8', 'b', false, class: 'form-check-input'
-              Να δουλεύω πάνω σε ένα συγκεκριμένο αντικείμενο που με κρατάει απασχολημένο
-        .form-group
-          %strong
-            %li Συνήθως
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '9', 'a', false, class: 'form-check-input'
-              Προσχεδιάζω όταν θέλω να κάνω κάτι, και με ενοχλεί όταν αλλάζουν τα πλάνα μου
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '9', 'b', false, class: 'form-check-input'
-              Αποφεύγω τα σχέδια, αφήνω τα πράγματα όπως έρθουν
-        .form-group
-          %strong
-            %li Όταν συζητάω γιά ένα πρόβλημα με κάποιον, μου είναι εύκολο
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '10', 'a', false, class: 'form-check-input'
-              Να καταλάβω τη γενική εικόνα του θέματος
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '10', 'b', false, class: 'form-check-input'
-              Να καταλάβω όλες τις λεπτομέρειες του θέματος
-        .form-group
-          %strong
-            %li Όταν με καλούν στο σπίτι ή στη δουλειά, συνήθως
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '11', 'a', false, class: 'form-check-input'
-              Το θεωρώ σαν ενόχληση
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '11', 'b', false, class: 'form-check-input'
-              Δεν με ενοχλεί να απαντήσω
-        .form-group
-          %strong
-            %li Ποιά λέξη σε περιγράφει περισσότερο
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '12', 'a', false, class: 'form-check-input'
-              Αναλυτικός/ή
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '12', 'b', false, class: 'form-check-input'
-              Ενθουσιώδης
-        .form-group
-          %strong
-            %li Όταν έχω μια εργασία να τελειώσω, προτιμώ
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '13', 'a', false, class: 'form-check-input'
-              Να την κάνω σταθερά και με συνέπεια
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '13', 'b', false, class: 'form-check-input'
-              Να δουλεύω με πολύ ενέργεια με αρκετά διαλείμματα
-        .form-group
-          %strong
-            %li Όταν συζητάω με κάποιον για κάποιο θέμα, προσπαθώ
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '14', 'a', false, class: 'form-check-input'
-              Να καταλάβω βάση των προσωπικών μου εμπειριών
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '14', 'b', false, class: 'form-check-input'
-              Να καταλάβω αναλύοντας με ανοιχτό μυαλό
-        .form-group
-          %strong
-            %li Όταν μου έρχεται μια ιδέα
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '15', 'a', false, class: 'form-check-input'
-              Απλά την κάνω πράξη
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '15', 'b', false, class: 'form-check-input'
-              Προτιμώ να την αναλύσω πιο πολύ πρωτού ενεργήσω
-        .form-group
-          %strong
-            %li Όταν δουλεύω πάνω σε κάτι, προτιμώ
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '16', 'a', false, class: 'form-check-input'
-              Σχεδιάζω 'κλειστά' ώστε ο τελικός στόχος να είναι καθαρός
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '16', 'b', false, class: 'form-check-input'
-              Σχεδιάζω 'ανοιχτά' ώστε να μπορώ να προσθέσω πράγματα αν χρειαστεί
-        .form-group
-          %strong
-            %li Όταν διαβάζω κάτι, συνήθως
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '17', 'a', false, class: 'form-check-input'
-              Είμαι συγκεντρωμένος/η σε αυτό που διαβάζω και δεν αποσπάται η προσοχή μου
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '17', 'b', false, class: 'form-check-input'
-              Λέξεις και προτάσεις μου δημιουργούν ιδέες και φαντασίες
-        .form-group
-          %strong
-            %li Όταν πρέπει να πάρω μια απόφαση στα γρήγορα, συνήθως
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '18', 'a', false, class: 'form-check-input'
-              Δεν νιώθω άνετα και θα προτιμούσα να είχα περισσότερο χρόνο
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '18', 'b', false, class: 'form-check-input'
-              Δεν έχω πρόβλημα με γρήγορες αποφάσεις
-        .form-group
-          %strong
-            %li Σε μία συνάντηση με πολλούς ανθρώπους
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '19', 'a', false, class: 'form-check-input'
-              Μιλάω άνετα με όλους και δεν σκέφτομαι ιδιαίτερα το τι θα πώ
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '19', 'b', false, class: 'form-check-input'
-              Πριν μιλήσω σκέφτομαι καλά το τι θα πώ
-        .form-group
-          %strong
-            %li Στη δουλειά, προτιμώ να αφιερώνω το χρόνο μου σε θέματα που αφορούν
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '20', 'a', false, class: 'form-check-input'
-              Νέες ιδέες
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '20', 'b', false, class: 'form-check-input'
-              Άλλους ανθρώπους
-        .form-group
-          %strong
-            %li Όταν με συμβουλεύουν, με ενοχλεί πιο πολύ οταν
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '21', 'a', false, class: 'form-check-input'
-              Μου προτείνουν περίεργες ιδέες/λύσεις
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '21', 'b', false, class: 'form-check-input'
-              Μου λένε σωστά πράγματα αλλά πάρα πολύ ώρα
-        .form-group
-          %strong
-            %li Είμαι
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '22', 'a', false, class: 'form-check-input'
-              Πρωινό άτομο
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '22', 'b', false, class: 'form-check-input'
-              Νυχτοπούλι
-        .form-group
-          %strong
-            %li Ένα νέο ραντεβού, προτιμώ
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '23', 'a', false, class: 'form-check-input'
-              Να είναι απρόβλεπτο χωρίς ιδιαίτερο σχεδιασμό
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '23', 'b', false, class: 'form-check-input'
-              Να το έχω σχεδιάσει απο πριν
-        .form-group
-          %strong
-            %li Προτιμώ οι άνθρωποι να
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '24', 'a', false, class: 'form-check-input'
-              Δείχνουν όλα τα συναισθήματά τους
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '24', 'b', false, class: 'form-check-input'
-              Είναι πιο συγκρατημένοι
-        .form-group
-          %strong
-            %li Θα προτιμούσα να δουλεύω για μία εταιρεία που
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '25', 'a', false, class: 'form-check-input'
-              Θα εξασκούσα το μυαλό μου
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '25', 'b', false, class: 'form-check-input'
-              Θα εργαζόμουν για να βοηθήσω να εκπληρωθεί ο στόχος της
-        .form-group
-          %strong
-            %li Τα σαββατοκύριακα, προτιμώ
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '26', 'a', false, class: 'form-check-input'
-              Να σχεδιάζω το τι θα κάνω
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '26', 'b', false, class: 'form-check-input'
-              Να κάνω ότι τύχει
-        .form-group
-          %strong
-            %li Είμαι περισσότερο
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '27', 'a', false, class: 'form-check-input'
-              Εξωστρεφής
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '27', 'b', false, class: 'form-check-input'
-              Εσωστρεφής
-        .form-group
-          %strong
-            %li Θα προτιμούσα το ταίρι μου να
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '28', 'a', false, class: 'form-check-input'
-              Έχει νέες ιδέες
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '28', 'b', false, class: 'form-check-input'
-              Είναι Πρακτικός/ή'
-        .form-group
-          %strong
-            %li Παρακάτω επιλέξτε τις λέξεις που σας ταιριάζουν περισσότερο
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '29', 'a', false, class: 'form-check-input'
-              Κοινωνικός/ή
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '29', 'b', false, class: 'form-check-input'
-              Θεωρητικός/ή
-        .form-group
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '30', 'a', false, class: 'form-check-input'
-              Εξυπνάδα
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '30', 'b', false, class: 'form-check-input'
-              Πρακτικότητα
-        .form-group
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '31', 'a', false, class: 'form-check-input'
-              Οργανωτικός/ή
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '31', 'b', false, class: 'form-check-input'
-              Ευπροσάρμοστος/η
-        .form-group
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '32', 'a', false, class: 'form-check-input'
-              Δραστήριος/ια
-          .form-check
-            %label.form-check-label
-              = radio_button_tag '32', 'b', false, class: 'form-check-input'
-              Συγκεντρωμένος/η
-        .form-group
-          = submit_tag 'Δείτε τα αποτελέσματα',
-              class: 'btn btn-primary btn-block',
-              id: 'personalities-submit'
+.container
+  .row.justify-content-center
+    .col-12.bg-white.effect2.m-3.p-4
+      %h1.text-center.orange-text Τέστ Προσωπικότητας
+      %p.text-center
+        Κάντε το παρακάτω τέστ και μοιραστείτε κομμάτι της προσωπικοτητάς σας
+        %strong#current-user-name #{current_user.username}
+      %hr
+      .alert.alert-info.text-center
+        %small
+          Για κάθε ερώτηση επιλέξτε μία απο τις δύο απαντήσεις, αν δεν σας ταιριάζει καμία απάντηση,
+          επιλέξτε αυτή που σας ταιριάζει περισσότερο. Δεν υπάρχουν σωστές ή λάθος απαντήσεις, απλά απαντήστε όπως πιστεύετε.
+          Το αποτέλεσμα θα καταγραφεί στο προφίλ σας, όπου όλοι οι χρήστες θα έχουν το δικαίωμα να το διαβάσουν.
+
+      .row.justify-content-center
+        .col-lg-6.col-md-9.col-sm-12
+          = form_tag personalities_path, method: :post, class: 'my-2', id: 'personalities-form' do
+            %ol
+              .form-group
+                %li
+                  %h4.orange-text Προτιμώ
+                .inputGroup
+                  = radio_button_tag '1', 'a'
+                  %label{ for: '1_a' }
+                    Να λύνω νέα περίπλοκα προβλήματα
+                .inputGroup
+                  = radio_button_tag '1', 'b'
+                  %label{ for: '1_b' }
+                    Να δουλέυω πάνω σε κάτι που ήδη ξέρω
+
+              .form-group
+                %li
+                  %h4.orange-text Μου αρέσει
+                .inputGroup
+                  = radio_button_tag '2', 'a'
+                  %label{ for: '2_a' }
+                    Να δουλεύω μόνος/η σε ήσυχο μέρος
+                .inputGroup
+                  = radio_button_tag '2', 'b'
+                  %label{ for: '2_b' }
+                    Να βρίσκομαι μέσα στη δράση
+
+              .form-group
+                %li
+                  %h4.orange-text Θέλω να είμαι αφεντικό
+                .inputGroup
+                  = radio_button_tag '3', 'a'
+                  %label{ for: '3_a' }
+                    Που εφαρμόζει όρους και προϋποθέσεις ανεξαρτήτως ατόμου
+                .inputGroup
+                  = radio_button_tag '3', 'b'
+                  %label{ for: '3_b' }
+                    Που λαμβάνει υπ'όψιν προσωπικά προβλήματα και κάνει εξαιρέσεις
+
+              .form-group
+                %li
+                  %h4.orange-text Όταν δουλεύω πάνω σε κάτι
+                .inputGroup
+                  = radio_button_tag '4', 'a'
+                  %label{ for: '4_a' }
+                    Θέλω να το τελειώσω
+                .inputGroup
+                  = radio_button_tag '4', 'b'
+                  %label{ for: '4_b' }
+                    Το αφήνω μισο τελειωμένο για τυχόν αλλαγές
+
+              .form-group
+                %li
+                  %h4.orange-text Όταν παίρνω αποφάσεις, το σημαντικότερο είναι να...
+                .inputGroup
+                  = radio_button_tag '5', 'a'
+                  %label{ for: '5_a' }
+                    Έιναι λογικές με τεκμηριομένα δεδομένα
+                .inputGroup
+                  = radio_button_tag '5', 'b'
+                  %label{ for: '5_b' }
+                    Σκεφτώ αν πληγώσω κάποιον/α πρώτα
+
+              .form-group
+                %li
+                  %h4.orange-text Για να λύσω ένα νέο θέμα, συνήθως
+                .inputGroup
+                  = radio_button_tag '6', 'a'
+                  %label{ for: '6_a' }
+                    Το σκέφτομαι συνέχεια και σχεδιάζω πριν προχωρήσω
+                .inputGroup
+                  = radio_button_tag '6', 'b'
+                  %label{ for: '6_b' }
+                    Ξεκινάω κατ'ευθείαν και σκέφτομαι καθώς το λύνω
+
+              .form-group
+                %li
+                  %h4.orange-text Για την επίλυση προβλήματος, προτιμώ
+                .inputGroup
+                  = radio_button_tag '7', 'a'
+                  %label{ for: '7_a' }
+                    Να χρησιμοποιώ μεθόδους που έχουν δουλέψει στο παρελθόν
+                .inputGroup
+                  = radio_button_tag '7', 'b', false, class: 'form-check-input'
+                  %label{ for: '7_b' }
+                    Να δοκιμάζω καινούριους μεθόδους
+
+              .form-group
+                %li
+                  %h4.orange-text Στην δουλειά μου, προτιμώ
+                .inputGroup
+                  = radio_button_tag '8', 'a'
+                  %label{ for: '8_a' }
+                    Να δουλεύω πάνω σε πολλά πράγματα, μαθαίνοντας όσα πιο πολλά μπορώ
+                .inputGroup
+                  = radio_button_tag '8', 'b'
+                  %label{ for: '8_b' }
+                    Να δουλεύω πάνω σε ένα συγκεκριμένο αντικείμενο που με κρατάει απασχολημένο
+
+              .form-group
+                %li
+                  %h4.orange-text Συνήθως
+                .inputGroup
+                  = radio_button_tag '9', 'a'
+                  %label{ for: '9_a' }
+                    Προσχεδιάζω όταν θέλω να κάνω κάτι, και με ενοχλεί όταν αλλάζουν τα πλάνα μου
+                .inputGroup
+                  = radio_button_tag '9', 'b'
+                  %label{ for: '9_b' }
+                    Αποφεύγω τα σχέδια, αφήνω τα πράγματα όπως έρθουν
+
+              .form-group
+                %li
+                  %h4.orange-text Όταν συζητάω γιά ένα πρόβλημα με κάποιον, μου είναι εύκολο
+                .inputGroup
+                  = radio_button_tag '10', 'a'
+                  %label{ for: '10_a' }
+                    Να καταλάβω τη γενική εικόνα του θέματος
+                .inputGroup
+                  = radio_button_tag '10', 'b'
+                  %label{ for: '10_b' }
+                    Να καταλάβω όλες τις λεπτομέρειες του θέματος
+
+              .form-group
+                %li
+                  %h4.orange-text Όταν με καλούν στο σπίτι ή στη δουλειά, συνήθως
+                .inputGroup
+                  = radio_button_tag '11', 'a'
+                  %label{ for: '11_a' }
+                    Το θεωρώ σαν ενόχληση
+                .inputGroup
+                  = radio_button_tag '11', 'b'
+                  %label{ for: '11_b' }
+                    Δεν με ενοχλεί να απαντήσω
+
+              .form-group
+                %li
+                  %h4.orange-text Ποιά λέξη σε περιγράφει περισσότερο
+                .inputGroup
+                  = radio_button_tag '12', 'a'
+                  %label{ for: '12_a' }
+                    Αναλυτικός/ή
+                .inputGroup
+                  = radio_button_tag '12', 'b'
+                  %label{ for: '12_b' }
+                    Ενθουσιώδης
+
+              .form-group
+                %li
+                  %h4.orange-text Όταν έχω μια εργασία να τελειώσω, προτιμώ
+                .inputGroup
+                  = radio_button_tag '13', 'a'
+                  %label{ for: '13_a' }
+                    Να την κάνω σταθερά και με συνέπεια
+                .inputGroup
+                  = radio_button_tag '13', 'b'
+                  %label{ for: '13_b' }
+                    Να δουλεύω με πολύ ενέργεια με αρκετά διαλείμματα
+
+              .form-group
+                %li
+                  %h4.orange-text Όταν συζητάω με κάποιον για κάποιο θέμα, προσπαθώ
+                .inputGroup
+                  = radio_button_tag '14', 'a'
+                  %label{ for: '14_a' }
+                    Να καταλάβω βάση των προσωπικών μου εμπειριών
+                .inputGroup
+                  = radio_button_tag '14', 'b'
+                  %label{ for: '14_b' }
+                    Να καταλάβω αναλύοντας με ανοιχτό μυαλό
+
+              .form-group
+                %li
+                  %h4.orange-text Όταν μου έρχεται μια ιδέα
+                .inputGroup
+                  = radio_button_tag '15', 'a'
+                  %label{ for: '15_a' }
+                    Απλά την κάνω πράξη
+                .inputGroup
+                  = radio_button_tag '15', 'b'
+                  %label{ for: '15_b' }
+                    Προτιμώ να την αναλύσω πιο πολύ πρωτού ενεργήσω
+
+              .form-group
+                %li
+                  %h4.orange-text Όταν δουλεύω πάνω σε κάτι, προτιμώ
+                .inputGroup
+                  = radio_button_tag '16', 'a'
+                  %label{ for: '16_a' }
+                    Σχεδιάζω 'κλειστά' ώστε ο τελικός στόχος να είναι καθαρός
+                .inputGroup
+                  = radio_button_tag '16', 'b'
+                  %label{ for: '16_b' }
+                    Σχεδιάζω 'ανοιχτά' ώστε να μπορώ να προσθέσω πράγματα αν χρειαστεί
+
+              .form-group
+                %li
+                  %h4.orange-text Όταν διαβάζω κάτι, συνήθως
+                .inputGroup
+                  = radio_button_tag '17', 'a'
+                  %label{ for: '17_a' }
+                    Είμαι συγκεντρωμένος/η σε αυτό που διαβάζω και δεν αποσπάται η προσοχή μου
+                .inputGroup
+                  = radio_button_tag '17', 'b'
+                  %label{ for: '17_b' }
+                    Λέξεις και προτάσεις μου δημιουργούν ιδέες και φαντασίες
+
+              .form-group
+                %li
+                  %h4.orange-text Όταν πρέπει να πάρω μια απόφαση στα γρήγορα, συνήθως
+                .inputGroup
+                  = radio_button_tag '18', 'a'
+                  %label{ for: '18_a' }
+                    Δεν νιώθω άνετα και θα προτιμούσα να είχα περισσότερο χρόνο
+                .inputGroup
+                  = radio_button_tag '18', 'b'
+                  %label{ for: '18_b' }
+                    Δεν έχω πρόβλημα με γρήγορες αποφάσεις
+
+              .form-group
+                %li
+                  %h4.orange-text Σε μία συνάντηση με πολλούς ανθρώπους
+                .inputGroup
+                  = radio_button_tag '19', 'a'
+                  %label{ for: '19_a' }
+                    Μιλάω άνετα με όλους και δεν σκέφτομαι ιδιαίτερα το τι θα πώ
+                .inputGroup
+                  = radio_button_tag '19', 'b'
+                  %label{ for: '19_b' }
+                    Πριν μιλήσω σκέφτομαι καλά το τι θα πώ
+
+              .form-group
+                %li
+                  %h4.orange-text Στη δουλειά, προτιμώ να αφιερώνω το χρόνο μου σε θέματα που αφορούν
+                .inputGroup
+                  = radio_button_tag '20', 'a'
+                  %label{ for: '20_a' }
+                    Νέες ιδέες
+                .inputGroup
+                  = radio_button_tag '20', 'b'
+                  %label{ for: '20_b' }
+                    Άλλους ανθρώπους
+
+              .form-group
+                %li
+                  %h4.orange-text Όταν με συμβουλεύουν, με ενοχλεί πιο πολύ οταν
+                .inputGroup
+                  = radio_button_tag '21', 'a'
+                  %label{ for: '21_a' }
+                    Μου προτείνουν περίεργες ιδέες/λύσεις
+                .inputGroup
+                  = radio_button_tag '21', 'b'
+                  %label{ for: '21_b' }
+                    Μου λένε σωστά πράγματα αλλά πάρα πολύ ώρα
+
+              .form-group
+                %li
+                  %h4.orange-text Είμαι
+                .inputGroup
+                  = radio_button_tag '22', 'a'
+                  %label{ for: '22_a' }
+                    Πρωινό άτομο
+                .inputGroup
+                  = radio_button_tag '22', 'b'
+                  %label{ for: '22_b' }
+                    Νυχτοπούλι
+
+              .form-group
+                %li
+                  %h4.orange-text Ένα νέο ραντεβού, προτιμώ
+                .inputGroup
+                  = radio_button_tag '23', 'a'
+                  %label{ for: '23_a' }
+                    Να είναι απρόβλεπτο χωρίς ιδιαίτερο σχεδιασμό
+                .inputGroup
+                  = radio_button_tag '23', 'b'
+                  %label{ for: '23_b' }
+                    Να το έχω σχεδιάσει απο πριν
+
+              .form-group
+                %li
+                  %h4.orange-text Προτιμώ οι άνθρωποι να
+                .inputGroup
+                  = radio_button_tag '24', 'a'
+                  %label{ for: '24_a' }
+                    Δείχνουν όλα τα συναισθήματά τους
+                .inputGroup
+                  = radio_button_tag '24', 'b'
+                  %label{ for: '24_b' }
+                    Είναι πιο συγκρατημένοι
+
+              .form-group
+                %li
+                  %h4.orange-text Θα προτιμούσα να δουλεύω για μία εταιρεία που
+                .inputGroup
+                  = radio_button_tag '25', 'a'
+                  %label{ for: '25_a' }
+                    Θα εξασκούσα το μυαλό μου
+                .inputGroup
+                  = radio_button_tag '25', 'b'
+                  %label{ for: '25_b' }
+                    Θα εργαζόμουν για να βοηθήσω να εκπληρωθεί ο στόχος της
+
+              .form-group
+                %li
+                  %h4.orange-text Τα σαββατοκύριακα, προτιμώ
+                .inputGroup
+                  = radio_button_tag '26', 'a'
+                  %label{ for: '26_a' }
+                    Να σχεδιάζω το τι θα κάνω
+                .inputGroup
+                  = radio_button_tag '26', 'b'
+                  %label{ for: '26_b' }
+                    Να κάνω ότι τύχει
+
+              .form-group
+                %li
+                  %h4.orange-text Είμαι περισσότερο
+                .inputGroup
+                  = radio_button_tag '27', 'a'
+                  %label{ for: '27_a' }
+                    Εξωστρεφής
+                .inputGroup
+                  = radio_button_tag '27', 'b'
+                  %label{ for: '27_b' }
+                    Εσωστρεφής
+
+              .form-group
+                %li
+                  %h4.orange-text Θα προτιμούσα το ταίρι μου να
+                .inputGroup
+                  = radio_button_tag '28', 'a'
+                  %label{ for: '28_a' }
+                    Έχει νέες ιδέες
+                .inputGroup
+                  = radio_button_tag '28', 'b'
+                  %label{ for: '28_b' }
+                    Είναι Πρακτικός/ή'
+
+              .form-group
+                %li
+                  %h4.orange-text Παρακάτω επιλέξτε τις λέξεις που σας ταιριάζουν περισσότερο
+                α.
+                .inputGroup
+                  = radio_button_tag '29', 'a'
+                  %label{ for: '29_a' }
+                    Κοινωνικός/ή
+                .inputGroup
+                  = radio_button_tag '29', 'b'
+                  %label{ for: '29_b' }
+                    Θεωρητικός/ή
+
+              .form-group
+                β.
+                .inputGroup
+                  = radio_button_tag '30', 'a'
+                  %label{ for: '30_a' }
+                    Εξυπνάδα
+                .inputGroup
+                  = radio_button_tag '30', 'b'
+                  %label{ for: '30_b' }
+                    Πρακτικότητα
+
+              .form-group
+                γ.
+                .inputGroup
+                  = radio_button_tag '31', 'a'
+                  %label{ for: '31_a' }
+                    Οργανωτικός/ή
+                .inputGroup
+                  = radio_button_tag '31', 'b'
+                  %label{ for: '31_b' }
+                    Ευπροσάρμοστος/η
+
+              .form-group
+                δ.
+                .inputGroup
+                  = radio_button_tag '32', 'a'
+                  %label{ for: '32_a' }
+                    Δραστήριος/ια
+                .inputGroup
+                  = radio_button_tag '32', 'b'
+                  %label{ for: '32_b' }
+                    Συγκεντρωμένος/η
+
+              .form-group
+                %hr
+                .row.justify-content-center
+                  = submit_tag 'Δείτε τα αποτελέσματα',
+                      class: 'btn btn-primary btn-lg',
+                      id: 'personalities-submit'
