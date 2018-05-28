@@ -11,3 +11,4 @@ $ ->
       'dismiss': 'OK'
       'link': 'Μάθετε περισσότερα '
       'href': '/terms#cookies'
+    'position': 'bottom-right'
