@@ -1,7 +1,5 @@
 .row
-  .col
-    .container.top-search.effect2
-      = render partial: 'search'
+  = render partial: 'search'
 .row.justify-content-center
   .card-deck.justify-content-center
     - if ! @users.map {|f| f}.blank?

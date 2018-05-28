@@ -5,7 +5,7 @@
 }
 
 .noUi-connect {
-  background-color: $slider-blue;
+  background-color: $orange;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -20,10 +20,29 @@ input[type=number] {
 .top-search {
   padding: 1rem;
   padding-bottom: 0;
-  background-color: $light_grey;
+  background-color: $teal;
   margin-bottom: 1rem;
+  color: $white;
+  font-weight: bold;
+
+  hr {
+    background-color: $white;
+  }
+
+  h3 {
+    color: $white;
+    font-weight: bold;
+  }
 
   .filters {
     margin-top: 3rem;
+  }
+
+  .btn {
+    color: $white;
+  }
+
+  .btn:hover {
+    color: $orange;
   }
 }
