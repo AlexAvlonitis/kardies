@@ -1,15 +1,13 @@
 .card-deck {
   margin: 0;
-  padding-left: 50px;
-  padding-right: 50px;
 }
 
 .card {
+  margin: 1rem 0px;
   background-color: $white;
   min-width: 250px;
   max-width: 250px;
   text-align: center;
-  position: relative;
 
   .card-text {
     font-size: small;

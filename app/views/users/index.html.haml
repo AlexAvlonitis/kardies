@@ -1,24 +1,26 @@
-.row
-  = render partial: 'search'
-.row.justify-content-center
-  .card-deck.justify-content-center
-    - if ! @users.map {|f| f}.blank?
-      - @users.each do |user|
-        - present user do |user_presenter|
-          = render partial: 'card',
-              locals: {user: user, user_presenter: user_presenter}
-    - else
-      %h4= t '.no_results'
+.container
+  .row
+    = render partial: 'search'
+  .row.justify-content-center
+    .card-deck.justify-content-center
+      - if ! @users.map {|f| f}.blank?
+        - @users.each do |user|
+          - present user do |user_presenter|
+            = render partial: 'card',
+                locals: {user: user, user_presenter: user_presenter}
+      - else
+        %h4= t '.no_results'
 
-.row.justify-content-center
-  .page-load-status
-    %p.infinite-scroll-request= image_tag("ajax-loader.gif")
-    %strong.infinite-scroll-last= t '.end_content'
-    %strong.infinite-scroll-error= t '.no_pages'
+  .row.justify-content-center
+    .m-2
+      .page-load-status
+        %p.infinite-scroll-request= image_tag("ajax-loader.gif")
+        %strong.infinite-scroll-last= t '.end_content'
+        %strong.infinite-scroll-error= t '.no_pages'
 
-.row.justify-content-center
-  = paginate @users, window: 1
+  .row.justify-content-center
+    = paginate @users, window: 1
 
-  %button.view-more-button.btn.btn-outline-primary.mb-3= t '.more'
+    %button.view-more-button.btn.btn-outline-primary.mb-3= t '.more'
 
-= render partial: 'messages/message_modal'
+  = render partial: 'messages/message_modal'
