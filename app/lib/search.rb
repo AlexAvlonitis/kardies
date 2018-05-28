@@ -43,7 +43,7 @@ class Search
   end
 
   def age_range
-    { age: { gt: query.age_from, lt: query.age_to } }
+    { age: { gte: query.age_from, lte: query.age_to } }
   end
 
   def must_not_be_current_user
