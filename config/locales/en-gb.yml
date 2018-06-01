@@ -3,6 +3,7 @@ en-gb:
     index:
       my_hearts: "My hearts"
       hearts_number: "Number of hearts"
+      sent_heart: "User %{username} sent you a heart!"
   contacts:
     index:
       contact: 'Contact'

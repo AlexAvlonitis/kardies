@@ -269,6 +269,11 @@ table tr:nth-of-type(even) {
   height: 50px;
 }
 
+.profile-pic-square-xs {
+  @extend .pic-round-xs;
+  border-radius: 0%;
+}
+
 .logo {
   max-width: 300px;
 }

@@ -3,6 +3,7 @@ el:
     index:
       my_hearts: "Οι καρδιές μου"
       hearts_number: "Αριθμός καρδιών"
+      sent_heart: "Ο χρήστης %{username} σας έστειλε καρδιά!"
   contacts:
     index:
       contact: 'Επικοινωνία'

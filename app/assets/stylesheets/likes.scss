@@ -3,8 +3,20 @@
   font-weight: bold;
   color: $white;
   padding: 2rem;
+  max-height: 400px;
 
   hr {
     background-color: $white;
+  }
+}
+
+#like-list {
+  max-height: 500px;
+  min-height: 300px;
+  overflow: scroll;
+
+  a {
+    text-decoration: none;
+    color: $black;
   }
 }

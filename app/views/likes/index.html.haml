@@ -1,12 +1,17 @@
 .row.justify-content-center
-  .col-lg-6.bg-white.effect3.m-3.p-4
+  #like-list.col-lg-6.bg-white.effect3.m-3.p-4
     %h1.strong.orange-text
       = t '.my_hearts'
-    %hr
-    .row
+    %ul.list-group
       - @likes.each do |user|
-        = link_to user_path(user) do
-          .profile-pic-round-sm.m-2.lazy{ "data-src" => "#{user.profile_picture}" }
+        .li.list-group-item
+          .d-flex.flex-row
+            .d-inline-block
+              = link_to user_path(user) do
+                .profile-pic-square-xs.mr-3.lazy{ "data-src" => "#{user.profile_picture}" }
+            .d-inline-block.d-flex.align-items-center
+              %p
+                = t(".sent_heart", username: user.username)
 
   #suggested_people.col-lg-5.effect3.m-3
     = render partial: 'suggested_people/list',
