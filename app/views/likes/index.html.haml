@@ -1,17 +1,29 @@
 .row.justify-content-center
-  #like-list.col-lg-6.bg-white.effect3.m-3.p-4
+  .col-lg-6.bg-white.effect3.m-3.p-4
     %h1.strong.orange-text
       = t '.my_hearts'
-    %ul.list-group
+    %ul#like-list.list-group
       - @likes.each do |user|
-        .li.list-group-item
+        %li#user-heart.list-group-item
           .d-flex.flex-row
             .d-inline-block
               = link_to user_path(user) do
-                .profile-pic-square-xs.mr-3.lazy{ "data-src" => "#{user.profile_picture}" }
+                .profile-pic-square-xs.mr-3{ style: "background-image: url(#{user.profile_picture}" }
             .d-inline-block.d-flex.align-items-center
               %p
                 = t(".sent_heart", username: user.username)
+
+    .row.justify-content-center
+      .m-2
+        .page-load-status
+          %p.infinite-scroll-request= image_tag("ajax-loader.gif")
+          %strong.infinite-scroll-last= t 'users.index.end_content'
+          %strong.infinite-scroll-error= t 'users.index.no_pages'
+
+    .row.justify-content-center
+      = paginate @likes, window: 1
+
+      %button.view-more-button.btn.btn-outline-primary= t 'users.index.more'
 
   #suggested_people.col-lg-5.effect3.m-3
     = render partial: 'suggested_people/list',

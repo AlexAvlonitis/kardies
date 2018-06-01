@@ -53,6 +53,7 @@ class LikesController < ApplicationController
   end
 
   def all_likes_sorted
-    @likes ||= current_user.votes_for.limit(20).order(created_at: :desc).voters
+    likes = current_user.votes_for.order(created_at: :desc).voters
+    @likes ||= Kaminari.paginate_array(likes).page(params[:page])
   end
 end

@@ -11,12 +11,16 @@
 }
 
 #like-list {
-  max-height: 500px;
+  max-height: 400px;
   min-height: 300px;
   overflow: scroll;
 
   a {
     text-decoration: none;
     color: $black;
+  }
+
+  li:hover {
+    background-color: $whitesmoke;
   }
 }

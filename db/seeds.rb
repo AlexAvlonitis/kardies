@@ -5,7 +5,7 @@ Chewy.strategy(:atomic) do
 end
 
 Chewy.strategy(:atomic) do
-  User.create(
+  nini = User.create(
     username: 'nini',
     email: 'ni_ni9001@hotmail.com',
     password: 'password',
@@ -19,7 +19,7 @@ Chewy.strategy(:atomic) do
   )
 
   100.times do |index|
-    User.create(
+    u = User.create(
       username: "test_#{index}",
       email: "test_#{index}@test.com",
       password: 'password',
@@ -31,6 +31,8 @@ Chewy.strategy(:atomic) do
         gender: 'male'
       }
     )
+
+    nini.liked_by u
   end
 end
 
