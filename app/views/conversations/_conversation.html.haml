@@ -1,6 +1,6 @@
 - if conversation.participants.count > 1
   - participant = remove_current_user(conversation)
-  %li.conversations.m-1{ 'data-conversation-id' => conversation.id }
+  %li.conversations{ 'data-conversation-id' => conversation.id }
     .d-flex
       .d-inline-block.align-self-center.m-1
         = link_to conversation_path(conversation), class: 'get-convo' do
