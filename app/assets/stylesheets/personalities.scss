@@ -84,3 +84,10 @@
   background-color: $light_blue;
   text-shadow: 1px 1px $white;
 }
+
+@media (max-width: 800px) {
+  .display-4 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+}

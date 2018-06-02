@@ -1,20 +1,17 @@
 .row.justify-content-center
   .col-12.bg-white.effect3.p-4
-    %h1.text-center.orange-text Τέστ Προσωπικότητας
+    %h1.display-4.text-center= t '.test_header'
     %p.text-center
-      Κάντε το παρακάτω τέστ και μοιραστείτε κομμάτι της προσωπικοτητάς σας
+      = t '.test_subheader'
       %strong#current-user-name #{current_user.username}
     %hr
     .alert.alert-info.text-center
-      %small
-        Για κάθε ερώτηση επιλέξτε μία απο τις δύο απαντήσεις, αν δεν σας ταιριάζει καμία απάντηση,
-        επιλέξτε αυτή που σας ταιριάζει περισσότερο. Δεν υπάρχουν σωστές ή λάθος απαντήσεις, απλά απαντήστε όπως πιστεύετε.
-        Το αποτέλεσμα θα καταγραφεί στο προφίλ σας, όπου όλοι οι χρήστες θα έχουν το δικαίωμα να το διαβάσουν.
+      %small= t '.test_banner'
 
     .row.justify-content-center
       .col-lg-6.col-md-9.col-sm-12
         = form_tag personalities_path, method: :post, class: 'my-2', id: 'personalities-form' do
-          %ol
+          %ol.list-group
             - PERSONALITY_QUESTIONS.each do |number, q|
               = render partial: 'personalities/question', locals: { number: number, q: q }
 
