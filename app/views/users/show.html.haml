@@ -1,22 +1,21 @@
 - present @user do |user_presenter|
-  .container
-    #message-modal
+  #message-modal
 
-    .row.justify-content-center
-      #profile-pic-panel.col-lg-4.p-4.effect2.text-center.bg-white
-        = render partial: 'profile_pic_panel',
-            locals: { user_presenter: user_presenter }
+  .row.justify-content-center
+    #profile-pic-panel.col-lg-4.p-4.effect2.text-center.bg-white
+      = render partial: 'profile_pic_panel',
+          locals: { user_presenter: user_presenter }
 
-      .col-lg-8.p-4.effect2.bg-white
-        = render partial: 'details_panel',
-            locals: { user_presenter: user_presenter }
+    .col-lg-8.p-4.effect2.bg-white
+      = render partial: 'details_panel',
+          locals: { user_presenter: user_presenter }
 
-    = render partial: 'personalities_panel',
-        locals: { user: @user, user_presenter: user_presenter }
+  = render partial: 'personalities_panel',
+      locals: { user: @user, user_presenter: user_presenter }
 
-    .row.justify-content-center
-      .col-12.p-4.effect2.text-center.bg-white
-        = render partial: 'gallery_panel',
-            locals: { user_presenter: user_presenter }
+  .row.justify-content-center
+    .col-12.p-4.effect2.text-center.bg-white
+      = render partial: 'gallery_panel',
+          locals: { user_presenter: user_presenter }
 
   = render partial: 'messages/message_modal'

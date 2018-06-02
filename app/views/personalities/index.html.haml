@@ -1,81 +1,80 @@
-.container
-  .row.justify-content-center
-    .col-12.bg-white.effect3.m-3.p-4
-      %h1.text-center.orange-text Τέστ Προσωπικότητας
-      %p.text-center
-        Κάντε το παρακάτω τέστ και μοιραστείτε κομμάτι της προσωπικοτητάς σας
-        %strong#current-user-name #{current_user.username}
-      %hr
-      .alert.alert-info.text-center
-        %small
-          Για κάθε ερώτηση επιλέξτε μία απο τις δύο απαντήσεις, αν δεν σας ταιριάζει καμία απάντηση,
-          επιλέξτε αυτή που σας ταιριάζει περισσότερο. Δεν υπάρχουν σωστές ή λάθος απαντήσεις, απλά απαντήστε όπως πιστεύετε.
-          Το αποτέλεσμα θα καταγραφεί στο προφίλ σας, όπου όλοι οι χρήστες θα έχουν το δικαίωμα να το διαβάσουν.
+.row.justify-content-center
+  .col-12.bg-white.effect3.p-4
+    %h1.text-center.orange-text Τέστ Προσωπικότητας
+    %p.text-center
+      Κάντε το παρακάτω τέστ και μοιραστείτε κομμάτι της προσωπικοτητάς σας
+      %strong#current-user-name #{current_user.username}
+    %hr
+    .alert.alert-info.text-center
+      %small
+        Για κάθε ερώτηση επιλέξτε μία απο τις δύο απαντήσεις, αν δεν σας ταιριάζει καμία απάντηση,
+        επιλέξτε αυτή που σας ταιριάζει περισσότερο. Δεν υπάρχουν σωστές ή λάθος απαντήσεις, απλά απαντήστε όπως πιστεύετε.
+        Το αποτέλεσμα θα καταγραφεί στο προφίλ σας, όπου όλοι οι χρήστες θα έχουν το δικαίωμα να το διαβάσουν.
 
-      .row.justify-content-center
-        .col-lg-6.col-md-9.col-sm-12
-          = form_tag personalities_path, method: :post, class: 'my-2', id: 'personalities-form' do
-            %ol
-              - PERSONALITY_QUESTIONS.each do |number, q|
-                = render partial: 'personalities/question', locals: { number: number, q: q }
+    .row.justify-content-center
+      .col-lg-6.col-md-9.col-sm-12
+        = form_tag personalities_path, method: :post, class: 'my-2', id: 'personalities-form' do
+          %ol
+            - PERSONALITY_QUESTIONS.each do |number, q|
+              = render partial: 'personalities/question', locals: { number: number, q: q }
 
-              .form-group
-                %li
-                  %h4.orange-text Παρακάτω επιλέξτε τις λέξεις που σας ταιριάζουν περισσότερο
-                α.
-                .inputGroup
-                  = radio_button_tag '29', 'a'
-                  %label{ for: '29_a' }
-                    .col-11
-                      Κοινωνικός/ή
-                .inputGroup
-                  = radio_button_tag '29', 'b'
-                  %label{ for: '29_b' }
-                    .col-11
-                      Θεωρητικός/ή
+            .form-group
+              %li
+                %h4.orange-text Παρακάτω επιλέξτε τις λέξεις που σας ταιριάζουν περισσότερο
+              α.
+              .inputGroup
+                = radio_button_tag '29', 'a'
+                %label{ for: '29_a' }
+                  .col-11
+                    Κοινωνικός/ή
+              .inputGroup
+                = radio_button_tag '29', 'b'
+                %label{ for: '29_b' }
+                  .col-11
+                    Θεωρητικός/ή
 
-              .form-group
-                β.
-                .inputGroup
-                  = radio_button_tag '30', 'a'
-                  %label{ for: '30_a' }
-                    .col-11
-                      Εξυπνάδα
-                .inputGroup
-                  = radio_button_tag '30', 'b'
-                  %label{ for: '30_b' }
-                    .col-11
-                      Πρακτικότητα
+            .form-group
+              β.
+              .inputGroup
+                = radio_button_tag '30', 'a'
+                %label{ for: '30_a' }
+                  .col-11
+                    Εξυπνάδα
+              .inputGroup
+                = radio_button_tag '30', 'b'
+                %label{ for: '30_b' }
+                  .col-11
+                    Πρακτικότητα
 
-              .form-group
-                γ.
-                .inputGroup
-                  = radio_button_tag '31', 'a'
-                  %label{ for: '31_a' }
-                    .col-11
-                      Οργανωτικός/ή
-                .inputGroup
-                  = radio_button_tag '31', 'b'
-                  %label{ for: '31_b' }
-                    .col-11
-                      Ευπροσάρμοστος/η
+            .form-group
+              γ.
+              .inputGroup
+                = radio_button_tag '31', 'a'
+                %label{ for: '31_a' }
+                  .col-11
+                    Οργανωτικός/ή
+              .inputGroup
+                = radio_button_tag '31', 'b'
+                %label{ for: '31_b' }
+                  .col-11
+                    Ευπροσάρμοστος/η
 
-              .form-group
-                δ.
-                .inputGroup
-                  = radio_button_tag '32', 'a'
-                  %label{ for: '32_a' }
-                    .col-11
-                      Δραστήριος/ια
-                .inputGroup
-                  = radio_button_tag '32', 'b'
-                  %label{ for: '32_b' }
-                    .col-11
-                      Συγκεντρωμένος/η
+            .form-group
+              δ.
+              .inputGroup
+                = radio_button_tag '32', 'a'
+                %label{ for: '32_a' }
+                  .col-11
+                    Δραστήριος/ια
+              .inputGroup
+                = radio_button_tag '32', 'b'
+                %label{ for: '32_b' }
+                  .col-11
+                    Συγκεντρωμένος/η
 
-              .form-group
-                %hr
-                .row.justify-content-center
-                  = submit_tag 'Δείτε τα αποτελέσματα',
-                      class: 'btn btn-primary btn-lg',
-                      id: 'personalities-submit'
+            .form-group
+              %hr
+              .row.justify-content-center
+                = submit_tag 'Δείτε τα αποτελέσματα',
+                    class: 'btn btn-primary btn-lg',
+                    id: 'personalities-submit'
