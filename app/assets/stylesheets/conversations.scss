@@ -20,9 +20,8 @@
 
 .conversations {
   color: $white;
-  position: relative;
 }
 
 .conversations:hover {
-  background-color: $primary_blue;
+  border-left: 4px solid $white;
 }
