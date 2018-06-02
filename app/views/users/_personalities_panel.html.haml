@@ -1,10 +1,9 @@
 - if user.personality_type
   .row.justify-content-center
-    .col-lg-11.my-2.p-4.effect2.text-center.bg-lightblue
+    #personality_type.col-lg-11.my-2.p-4.effect2.text-center
       %h3
         %strong
           Τύπος προσωπικότητας:
           %span.orange-text= user.personality_type
       %hr
-      %p
-        = personalities_detail(user.personality_type)
+      %p= personalities_detail(user.personality_type)
