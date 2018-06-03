@@ -1,7 +1,7 @@
 - if conversation.participants.count > 1
   - participant = remove_current_user(conversation)
   %li.conversations{ 'data-conversation-id' => conversation.id }
-    .d-flex
+    .d-flex.my-2
       .d-inline-block.align-self-center.m-1
         = link_to conversation_path(conversation), class: 'get-convo' do
           .pic-round-xs{ style: "background-image: url(#{participant.profile_picture})" }
