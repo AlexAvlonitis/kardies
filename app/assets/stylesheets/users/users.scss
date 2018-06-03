@@ -193,3 +193,10 @@
 .page-load-status {
   display: none; /* hidden by default */
 }
+
+#reportModal {
+  .modal-header {
+    background-color: $red;
+    color: $white;
+  }
+}
