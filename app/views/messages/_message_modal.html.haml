@@ -2,7 +2,7 @@
   .modal-dialog{role: "document"}
     .modal-content
       .modal-header
-        %h5#messageModal.modal-title= t '.send_message'
+        .modal-title= t '.send_message'
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
           %span{"aria-hidden" => "true"} &times;
       .modal-body
@@ -14,4 +14,4 @@
 
             = hidden_field_tag "message[username]"
             %hr
-            = submit_tag "#{t '.send'}", class: 'btn btn-primary float-right'
+            = submit_tag "#{t '.send'}", class: 'btn btn-outline-primary float-right'
