@@ -16,7 +16,7 @@
 
 - unless @user == current_user
   %p
-    = link_to nil, class: "btn btn-sm nice-blue-bg btn-round-lg", "data-toggle" => "modal", "data-target" => "#messageModal", "data-whatever" => "#{@user.username}" do
+    = link_to nil, class: "btn btn-sm nice-blue-bg btn-round-lg", "data-toggle" => "modal", "data-target" => "#messageModal", "data-username" => "#{@user.username}", "data-profile-pic" => "#{@user.profile_picture}" do
       = fa_icon "comment-o"
       = t '.send_message'
   %p

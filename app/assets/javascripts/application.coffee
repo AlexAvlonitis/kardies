@@ -12,7 +12,6 @@
 # //
 #= require sweetalert2
 #= require jquery
-#= require tether
 #= require bootstrap
 #= require holder
 #= require jquery_ujs
