@@ -4,7 +4,7 @@
     .d-flex
       .d-inline-block.align-self-center.m-1
         = link_to conversation_path(conversation), class: 'get-convo' do
-          .pic-round-xs.lazy{ "data-src" => "#{participant.profile_picture}" }
+          .pic-round-xs{ style: "background-image: url(#{participant.profile_picture})" }
 
       .d-inline-block.align-self-center.m-1
         = link_to conversation_path(conversation), class: 'get-convo align-self-center d-inline-block' do

@@ -41,7 +41,7 @@ class ConversationsController < ApplicationController
 
   def get_messages
     messages = @mailbox.inbox + @mailbox.sentbox
-    @conversations = messages.flatten.uniq(&:id) # remove duplicate IDs
+    @conversations = messages.flatten.uniq(&:id)
   end
 
   def get_conversation
