@@ -17,9 +17,9 @@ $ ->
 		append: '#user-heart',
 		history: false,
 		hideNav: '.pagination',
-		button: '.view-more-button',
-		scrollThreshold: false,
+		scrollThreshold: 200,
 		status: '.page-load-status',
 		checkLastPage: '.page-next',
-		loadOnScroll: false
+		elementScroll: '#like-list',
+		loadOnScroll: true
 	});
