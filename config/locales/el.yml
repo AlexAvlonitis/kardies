@@ -194,6 +194,7 @@ el:
       sent: "Εξερχόμενα"
       trash: "Κάδος ανακύκλωσης"
       send_message: "Αποστολή"
+      delete_all: 'Διαγραφή όλων'
     show:
       send_message: "Αποστολή"
       send_message_placeholder: "Πληκτρολογήστε το μήνυμά σας..."

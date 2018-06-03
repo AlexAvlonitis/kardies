@@ -1,5 +1,10 @@
 .ui.effect3
   #left-menu
+    .top
+      = link_to "#{t '.delete_all'}", delete_all_conversations_path,
+                                      class: 'btn btn-outline-danger btn-sm m-1',
+                                      id: 'delete-all-convos'
+      %hr
     %ul.list-group
       = render partial: 'conversation', collection: @conversations
   .toggle-left-menu.p-2

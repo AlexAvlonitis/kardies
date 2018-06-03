@@ -106,3 +106,43 @@ $ ->
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
       return true
     return false
+
+
+  $("#delete-all-convos").click (e) ->
+    e.preventDefault()
+    that = $(this)
+    url = this.href
+
+    swal(
+      text: 'Όλα τα μηνύματα θα διαγραφούν!'
+      type: 'warning'
+      showCancelButton: true
+      confirmButtonColor: '#3085d6'
+      cancelButtonColor: '#d33'
+      confirmButtonText: 'OK'
+      cancelButtonText: 'Ακύρωση'
+    ).then ->
+      $.ajax(
+        url,
+        type: "DELETE"
+        dataType: "json"
+      )
+      .done ->
+        swal(
+          text: "Όλα τα μηνύματα διαγράφηκαν επιτυχώς"
+          type: "success"
+        ).then ->
+          App.message.unsubscribe() if App.message
+          $('#messages').empty()
+          $('#conversation-form :input').prop("disabled", true);
+          $("li[data-conversation-id]").fadeOut()
+      .fail (xhr, status, error) ->
+        errors = JSON.parse(xhr.responseText).errors
+        e = ''
+        for error of errors
+          if errors.hasOwnProperty(error)
+            e += ", #{errors[error][0]}"
+        swal(
+          text: "Κάτι πήγε στραβά#{e}"
+          type: 'warning'
+        )

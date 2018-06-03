@@ -39,11 +39,12 @@ Rails.application.routes.draw do
     member do
       post :reply
     end
+    delete :delete_all, on: :collection
   end
 
   get "likes", to: "likes#index", as: :my_likes
   get 'cities/:state', to: 'places#cities'
-  get 'messages/:username/new', to: 'messages#new',    as: :new_message
+  get 'messages/:username/new', to: 'messages#new', as: :new_message
   get 'terms', to: 'terms#index', as: :terms
 
   post 'messages', to: 'messages#create', as: :messages

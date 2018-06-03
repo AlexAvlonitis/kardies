@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :get_mailbox, :get_messages
-  before_action :get_conversation, except: :index
+  before_action :get_conversation, except: [:index, :delete_all]
 
   def index
     @conversations
@@ -9,7 +9,7 @@ class ConversationsController < ApplicationController
 
   def show
     if @conversation.is_deleted?(current_user)
-      render json: { data: 'convo deleted' }, status: :internal_server_error
+      render json: { data: 'convo deleted' }, status: :unprocessable_entity
       return
     end
     mark_as_read
@@ -29,6 +29,15 @@ class ConversationsController < ApplicationController
   def destroy
     @conversation.mark_as_deleted(current_user)
     render json: @conversation, status: :created
+  rescue StandardError => e
+    render json: { errors: e.message }, status: :unprocessable_entity
+  end
+
+  def delete_all
+    @conversations.each do |conversation|
+      conversation.mark_as_deleted(current_user)
+    end
+    render json: { message: 'deleted' }, status: :ok
   rescue StandardError => e
     render json: { errors: e.message }, status: :unprocessable_entity
   end
