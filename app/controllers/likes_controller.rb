@@ -8,27 +8,36 @@ class LikesController < ApplicationController
   end
 
   def like
-    begin
-      if current_user.voted_for? @user
-        delete_vote_notification
-        @user.unliked_by current_user
-        render json: { "heart": 'fa-heart-o' }, status: 201
-        return
-      end
-
-      if ! current_user.voted_for? @user
-        @user.liked_by current_user
-        add_vote_notification
-        send_notification_email
-        render json: { "heart": 'fa-heart' }, status: 201
-        return
-      end
-    rescue
-      render json: { errors: @user.errors }, status: 422
+    if UserBlockedCheck.call(current_user, @user)
+      render json: { errors: "#{t ('users.show.blocked_user')}" }, status: :forbidden
+      return
     end
+    send_unlike
+    send_like
+  rescue
+    render json: { errors: @user.errors }, status: 422
   end
 
   private
+
+  def send_unlike
+    if current_user.voted_for? @user
+      delete_vote_notification
+      @user.unliked_by current_user
+      render json: { "heart": 'fa-heart-o' }, status: :ok
+      return
+    end
+  end
+
+  def send_like
+    if ! current_user.voted_for? @user
+      @user.liked_by current_user
+      add_vote_notification
+      send_notification_email
+      render json: { "heart": 'fa-heart' }, status: :ok
+      return
+    end
+  end
 
   def add_vote_notification
     @add_vote_notification ||= AddVoteNotification.new(@user, current_user).add

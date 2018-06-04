@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180127231450) do
+ActiveRecord::Schema.define(version: 20180603191523) do
 
   create_table "abouts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 20180127231450) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "domain"
+  end
+
+  create_table "blocked_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.integer "blocked_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blocked_user_id"], name: "index_blocked_users_on_blocked_user_id"
+    t.index ["user_id"], name: "index_blocked_users_on_user_id"
   end
 
   create_table "contacts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

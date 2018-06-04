@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    show_only_if_profile_pic_exists
+    only_if_profile_pic_exists
+    only_if_not_blocked
   end
 
   private
@@ -37,11 +38,19 @@ class UsersController < ApplicationController
     current_user.search_criteria.last
   end
 
-  def show_only_if_profile_pic_exists
+  def only_if_profile_pic_exists
     return if @user == current_user
     unless current_user.profile_picture_exists?
       redirect_to users_path
       flash[:error] = t '.profile_pic_needed'
+    end
+  end
+
+  def only_if_not_blocked
+    user_blocked = UserBlockedCheck.call(current_user, @user)
+    if user_blocked
+      redirect_to users_path
+      flash[:error] = t '.blocked_user'
     end
   end
 end

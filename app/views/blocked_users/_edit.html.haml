@@ -1,0 +1,13 @@
+#show-blocked-users-form.dark-gray-text
+  %h2.mb-4.pull-left= t 'users.edit.blocked_users'
+  = fa_icon "chevron-circle-down 2x", class: 'blocked-users-toggle-icon pull-right'
+.clearfix
+%ul#blocked-users-form.list-group
+  - @blocked_users.each do |blocked_user|
+    %li.list-group-item
+      = image_tag blocked_user.profile_picture, class: "pic-round-sm d-inline-block"
+      = blocked_user.username
+      = link_to "#{t 'users.edit.remove_from_list'}",
+          blocked_user_path(blocked_user.id),
+          method: :delete,
+          class: "btn btn-secondary pull-right unblock-user"

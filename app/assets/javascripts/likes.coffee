@@ -20,8 +20,9 @@ $ ->
     .done (data) ->
       $("#" + username).html('<i class="fa ' + data.heart + '"></i>')
     .fail (xhr, status, error) ->
+      error = xhr.responseJSON.errors
       swal(
-        text: "Κάτι πήγε στραβά #{error}"
+        text: error
         type: 'warning'
       )
     return false

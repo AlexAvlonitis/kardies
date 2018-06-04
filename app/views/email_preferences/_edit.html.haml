@@ -1,5 +1,5 @@
 #show-email-preferences-form.dark-gray-text
-  %h2.orange-text.mb-4.pull-left= t '.email_notifications'
+  %h2.mb-4.pull-left= t '.email_notifications'
   = fa_icon "chevron-circle-down 2x", class: 'email-toggle-icon pull-right'
 .clearfix
 = form_for @email_preferences, html: { method: :put, id: "email-preferences-form" } do |f|

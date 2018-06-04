@@ -31,14 +31,12 @@ Rails.application.routes.draw do
   end
 
   resources :reports, param: :username, only: [:create, :show]
+  resources :blocked_users, param: :id, only: [:create, :destroy]
   resources :search_criteria, only: [:new, :create]
   resources :contacts, only: [:index, :create]
   resources :email_preferences, only: [:edit, :update]
 
   resources :conversations, only: [:index, :show, :destroy] do
-    member do
-      post :reply
-    end
     delete :delete_all, on: :collection
   end
 

@@ -1,5 +1,5 @@
 #show-abouts-form.dark-gray-text
-  %h2.orange-text.pull-left= t '.details'
+  %h2.pull-left= t '.details'
   = fa_icon "chevron-circle-down 2x", class: 'abouts-toggle-icon pull-right'
 .clearfix
 = simple_form_for @about, url: about_url, html: { method: :put, id: "abouts-form" } do |f|

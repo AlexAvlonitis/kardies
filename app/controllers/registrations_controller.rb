@@ -1,7 +1,9 @@
 class RegistrationsController < Devise::RegistrationsController
   respond_to :json
-  before_action :set_user_about, only: %i[edit update]
-  before_action :set_user_email_preferences, only: %i[edit update]
+  before_action :set_user_about,
+                :set_user_email_preferences,
+                :set_user_blocked_users,
+                only: %i[edit update]
 
   def new
     super do
@@ -50,5 +52,11 @@ class RegistrationsController < Devise::RegistrationsController
   def set_user_email_preferences
     @email_preferences =
       current_user.email_preference || current_user.build_email_preference
+  end
+
+  def set_user_blocked_users
+    @blocked_user_ids ||= current_user.blocked_users.map(&:blocked_user_id)
+
+    @blocked_users ||= User.find(@blocked_user_ids)
   end
 end
