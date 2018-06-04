@@ -21,11 +21,6 @@ class ConversationsController < ApplicationController
     render json: messages, status: :created
   end
 
-  def reply
-    current_user.reply_to_conversation(@conversation, params[:body])
-    redirect_to conversation_path(@conversation)
-  end
-
   def destroy
     @conversation.mark_as_deleted(current_user)
     render json: @conversation, status: :created

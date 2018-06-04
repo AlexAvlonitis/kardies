@@ -1,5 +1,5 @@
 #show-gallery-form.dark-gray-text
-  %h2.orange-text.mb-4.pull-left= t '.gallery'
+  %h2.mb-4.pull-left= t '.gallery'
   = fa_icon "chevron-circle-down 2x", class: 'gallery-toggle-icon pull-right'
 .clearfix
 = form_tag gallery_path, method: :put, id: 'gallery-form' do |f|

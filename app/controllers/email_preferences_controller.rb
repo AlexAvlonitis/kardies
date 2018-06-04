@@ -5,7 +5,7 @@ class EmailPreferencesController < ApplicationController
     if @email_preferences.update(email_preferences_params)
       render json: @email_preferences, status: :ok
     else
-      render json: { errors: @email_preferences.errors }, status: :internal_server_error
+      render json: { errors: @email_preferences.errors }, status: :unprocessable_entity
     end
   end
 

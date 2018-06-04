@@ -23,6 +23,11 @@ class ApplicationController < ActionController::Base
     redirect_to users_path
   end
 
+  def block_and_redirect
+    flash[:error] = t 'users.show.blocked_user'
+    redirect_to users_path
+  end
+
   private
 
   def user_not_authorized

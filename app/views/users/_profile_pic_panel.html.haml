@@ -30,8 +30,14 @@
       = t '.send_like'
 
   %hr
-  = link_to report_path(@user), class: "btn btn-sm btn-outline-danger", "data-toggle" => "modal", "data-target" => "#reportModal", "data-whatever" => "#{@user.username}" do
-    = fa_icon "frown-o"
-    = t 'users.index.report'
+  .row
+    .col-6
+      = link_to report_path(@user), class: "btn btn-sm btn-outline-danger pull-left", "data-toggle" => "modal", "data-target" => "#reportModal", "data-whatever" => "#{@user.username}" do
+        = t 'users.index.report'
+    .col-6
+      = form_tag blocked_users_path, id: 'block-user' do
+        = hidden_field_tag :blocked_user_id, @user.id
+        = submit_tag "#{t ('users.index.block')}",
+            class: 'btn btn-outline-danger btn-sm pull-right'
 
 = render partial: 'reports/report_modal'

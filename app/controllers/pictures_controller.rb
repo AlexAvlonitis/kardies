@@ -5,7 +5,7 @@ class PicturesController < ApplicationController
       picture.destroy
       render json: { status: 'success' }, status: :ok
     rescue StandardError => e
-      render json: { errors: e }, status: :internal_server_error
+      render json: { errors: e }, status: :unprocessable_entity
     end
   end
 end

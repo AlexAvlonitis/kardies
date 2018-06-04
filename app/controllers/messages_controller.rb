@@ -1,9 +1,11 @@
 class MessagesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
+  after_action :add_conversation_notification, :conversation_notification_email
 
   def create
     @recipient ||= User.find_by(username: params[:message][:username])
     redirect_to users_path if @recipient == current_user
+    return block_and_redirect if UserBlockedCheck.call(current_user, @recipient)
     send_message
   end
 
@@ -22,8 +24,6 @@ class MessagesController < ApplicationController
       flash[:success] = t '.sent'
     end
     redirect_to conversations_path
-    add_conversation_notification
-    conversation_notification_email
   end
 
   def add_conversation_notification
