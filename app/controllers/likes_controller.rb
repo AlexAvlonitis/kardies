@@ -12,8 +12,8 @@ class LikesController < ApplicationController
       render json: { errors: "#{t ('users.show.blocked_user')}" }, status: :forbidden
       return
     end
-    send_unlike
-    send_like
+    return send_unlike if current_user.voted_for? @user
+    return send_like unless current_user.voted_for? @user
   rescue
     render json: { errors: @user.errors }, status: 422
   end
@@ -21,22 +21,16 @@ class LikesController < ApplicationController
   private
 
   def send_unlike
-    if current_user.voted_for? @user
-      delete_vote_notification
-      @user.unliked_by current_user
-      render json: { "heart": 'fa-heart-o' }, status: :ok
-      return
-    end
+    delete_vote_notification
+    @user.unliked_by current_user
+    render json: { "heart": 'fa-heart-o' }, status: :ok
   end
 
   def send_like
-    if ! current_user.voted_for? @user
-      @user.liked_by current_user
-      add_vote_notification
-      send_notification_email
-      render json: { "heart": 'fa-heart' }, status: :ok
-      return
-    end
+    @user.liked_by current_user
+    add_vote_notification
+    send_notification_email
+    render json: { "heart": 'fa-heart' }, status: :ok
   end
 
   def add_vote_notification
