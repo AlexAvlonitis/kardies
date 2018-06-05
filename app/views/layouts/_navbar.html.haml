@@ -30,7 +30,7 @@
             = fa_icon "flask"
             = t '.personalities'
         %li.nav-item.dropdown
-          %a.profile-pic-round-xs.lazy.btn.btn-secondary.nav-item{ id: 'navbarDropdownMenuLink', 'data-toggle' => "dropdown", 'aria-haspopup' => "true", 'aria-expanded' => "false", "data-src" => "#{current_user.profile_picture}", role: 'button', href: '#' }
+          %a#navbarDropdownMenuLink.profile-pic-round-xs.btn.btn-secondary.nav-item{ 'data-toggle' => "dropdown", 'aria-haspopup' => "true", 'aria-expanded' => "false",  style: "background-image: url(#{current_user.profile_picture}", role: 'button', href: '#' }
           .dropdown-menu{ 'aria-labelledby' => "navbarDropdownMenuLink" }
             = link_to edit_user_registration_path, class: "dropdown-item" do
               = fa_icon "cogs"

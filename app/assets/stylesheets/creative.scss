@@ -88,9 +88,10 @@ header .header-content .header-content-inner hr {
 }
 header .header-content .header-content-inner p {
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.7);
+  color: $white;
   font-size: 16px;
   margin-bottom: 50px;
+  text-shadow: 0.5px 0.5px $black;
 }
 @media (min-width: 768px) {
   header {

@@ -5,8 +5,7 @@
         = t 'home.index.login'
   .header-content
     .header-content-inner
-      = link_to root_path do
-        = image_tag 'kardies-logo-original.png', class: "logo mb-4"
+      = image_tag 'kardies-logo-original.png', class: "logo mb-4"
       %h1.white-text{ id: "homeHeading" }= t '.kardies-text'
       %hr.custom
       %p= t '.kardies-subtext'
@@ -21,4 +20,4 @@
       .col-lg-8.mx-auto.text-center
         %h2.section-heading= t '.kardies-bottom'
         %hr.light
-        %p.home-p.text-faded= t '.kardies-subbottom'
+        %p.home-p= t '.kardies-subbottom'
