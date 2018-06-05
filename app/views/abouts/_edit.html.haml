@@ -2,24 +2,41 @@
   %h2.pull-left= t '.details'
   = fa_icon "chevron-circle-down 2x", class: 'abouts-toggle-icon pull-right'
 .clearfix
-= simple_form_for @about, url: about_url, html: { method: :put, id: "abouts-form" } do |f|
+= form_for @about, url: about_url, html: { method: :put, id: "abouts-form" } do |f|
   %hr
-  = f.input :job,
-      label: "#{t 'users.details_panel.job'}",
-      error_html: { class: 'red-text' }
-  = f.input :hobby,
-      label: "#{t 'users.details_panel.hobby'}",
-      error_html: { class: 'red-text' }
-  = f.input :relationship_status,
-      label: "#{t 'users.details_panel.relationship_status'}",
-      error_html: { class: 'red-text' }
-  = f.input :looking_for,
-      label: "#{t 'users.details_panel.looking_for'}",
-      error_html: { class: 'red-text' }
-  = f.input :description,
-      label: "#{t 'users.details_panel.about_me'}",
-      input_html: { rows: 10, onkeyup: "countChar()", id: 'abouts-description'},
-      error_html: { class: 'red-text' }
+  .row
+    .col-xs-12.col-sm-5.col-md-5
+      %strong.pull-right= t 'users.details_panel.job'
+    .col-xs-12.col-sm-7.col-md-7
+      = f.text_field :job, class: "form-control form-control-lg"
+      %p.error= show_errors(current_user, :job)
+  .row
+    .col-xs-12.col-sm-5.col-md-5
+      %strong.pull-right= t 'users.details_panel.hobby'
+    .col-xs-12.col-sm-7.col-md-7
+      = f.text_field :hobby, class: "form-control form-control-lg"
+      %p.error= show_errors(current_user, :hobby)
+  .row
+    .col-xs-12.col-sm-5.col-md-5
+      %strong.pull-right= t 'users.details_panel.relationship_status'
+    .col-xs-12.col-sm-7.col-md-7
+      = f.text_field :relationship_status, class: "form-control form-control-lg"
+      %p.error= show_errors(current_user, :relationship_status)
+  .row
+    .col-xs-12.col-sm-5.col-md-5
+      %strong.pull-right= t 'users.details_panel.looking_for'
+    .col-xs-12.col-sm-7.col-md-7
+      = f.text_field :looking_for, class: "form-control form-control-lg"
+      %p.error= show_errors(current_user, :looking_for)
+  .row
+    .col-xs-12.col-sm-5.col-md-5
+      %strong.pull-right= t 'users.details_panel.about_me'
+    .col-xs-12.col-sm-7.col-md-7
+      = f.text_area :description, class: "form-control form-control-lg",
+                                  onkeyup: 'countChar()',
+                                  id: 'abouts-description',
+                                  rows: 4
+      %p.error= show_errors(current_user, :description)
   %strong.pull-right{ id: 'charNum' }
 
   = f.submit "#{t '.save'}",

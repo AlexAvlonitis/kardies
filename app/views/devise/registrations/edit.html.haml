@@ -1,23 +1,23 @@
-.row.justify-content-center.mb-4
-  .col-lg-9.col-sm-12.bg-lightblue.effect2.p-4
-    = render partial: 'my_profile'
-
-.row.justify-content-center.mb-4
-  .col-lg-9.col-sm-12.bg-white.effect2.p-4
-    = render partial: 'edit_form'
-
-.row.justify-content-center.mb-4
-  .col-lg-9.col-sm-12.bg-white.effect2.p-4
-    = render partial: 'abouts/edit'
-
-.row.justify-content-center.mb-4
-  .col-lg-9.col-sm-12.bg-white.effect2.p-4
-    = render partial: 'galleries/edit'
-
-.row.justify-content-center.mb-4
-  .col-lg-9.col-sm-12.bg-white.effect2.p-4
-    = render partial: 'email_preferences/edit'
-
-.row.justify-content-center.mb-4
-  .col-lg-9.col-sm-12.bg-white.effect2.p-4
-    = render partial: 'blocked_users/edit'
+.col-12.bg-white.effect2
+  .row.justify-content-center
+    .col.bg-teal.effect2.p-4
+      = render partial: 'my_profile'
+  .row.justify-content-center
+    .col.p-4
+      = render partial: 'edit_form'
+  %hr
+  .row.justify-content-center
+    .col.p-4
+      = render partial: 'abouts/edit'
+  %hr
+  .row.justify-content-center
+    .col.p-4
+      = render partial: 'galleries/edit'
+  %hr
+  .row.justify-content-center
+    .col.p-4
+      = render partial: 'email_preferences/edit'
+  %hr
+  .row.justify-content-center
+    .col.p-4
+      = render partial: 'blocked_users/edit'
