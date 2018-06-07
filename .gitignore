@@ -24,3 +24,8 @@
 Dockerfile
 /config/database.production.yml
 /config/secrets.production.yml
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity
