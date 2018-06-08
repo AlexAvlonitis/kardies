@@ -18,7 +18,9 @@ class AboutsController < ApplicationController
     if @about.update(about_params)
       render json: @about, status: :ok
     else
-      render json: { errors: @about.errors }, status: :internal_server_error
+      render json: { errors: @about.errors }, status: :unprocessable_entity
     end
+  rescue StandardError => e
+    render json: { errors: e }, status: :internal_server_error
   end
 end
