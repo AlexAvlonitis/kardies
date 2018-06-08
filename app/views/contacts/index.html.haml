@@ -13,13 +13,18 @@
         %p= t '.contact_description'
 
     .row.justify-content-center
-      .col-lg-6.col-sm-12.mx-auto.whitesmoke-bg.effect2.my-5
+      .col-lg-5.col-sm-12.mx-auto.whitesmoke-bg.effect2.my-5.p-4
         %h3.orange-text= t '.contact'
-        = simple_form_for @contact, method: :post do |f|
-          = f.input :name, class: 'form-control', placeholder: "#{t '.name_placeholder'}", label: "#{t '.name'}"
-          = f.input :email, class: 'form-control', placeholder: "#{t '.email_placeholder'}", label: "#{t '.email'}"
-          = f.input :subject, class: 'form-control', placeholder: "#{t 'messages.new.subject'}", label: "#{t 'messages.new.subject'}"
-          = f.input :description, class: 'form-control', placeholder: "#{t 'messages.new.message_placeholder'}", label: "#{t 'messages.new.message'}"
+        = form_for @contact, method: :post do |f|
+          .form-group
+            = f.text_field :name, class: 'form-control', placeholder: "#{t '.name_placeholder'}"
+            %p.error= show_errors(@contact, :name)
+          .form-group
+            = f.email_field :email, class: 'form-control', placeholder: "#{t '.email_placeholder'}"
+          .form-group
+            = f.text_field :subject, class: 'form-control', placeholder: "#{t 'messages.new.subject'}"
+          .form-group
+            = f.text_area :description, class: 'form-control', placeholder: "#{t 'messages.new.message_placeholder'}"
 
           = f.submit "#{t 'messages.new.send'}", class: 'btn btn-primary btn-block btn-sm'
           = link_to "#{t 'abouts.edit.back'}", :back

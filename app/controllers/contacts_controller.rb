@@ -13,10 +13,10 @@ class ContactsController < ApplicationController
 
     if @contact.save
       flash[:success] = t '.contact_sent'
-      redirect_to root_path
     else
-      render :index
+      flash[:error] = @contact.errors.full_messages[0]
     end
+    redirect_to contacts_path
   end
 
   private
