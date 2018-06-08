@@ -85,4 +85,7 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  Paperclip::Attachment.default_options[:path] =
+    "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
 end
