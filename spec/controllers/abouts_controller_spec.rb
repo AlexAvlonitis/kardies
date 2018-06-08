@@ -17,8 +17,8 @@ RSpec.describe AboutsController, type: :controller do
       it "doesn't update abouts" do
         bad_params = { hello: 'world' }
 
-        put :update, params: bad_params
-        assert_response :internal_server_error
+        expect { put :update, params: bad_params }
+          .to raise_error(ActionController::ParameterMissing)
       end
     end
   end

@@ -20,7 +20,5 @@ class AboutsController < ApplicationController
     else
       render json: { errors: @about.errors }, status: :unprocessable_entity
     end
-  rescue StandardError => e
-    render json: { errors: e }, status: :internal_server_error
   end
 end
