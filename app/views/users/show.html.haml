@@ -1,20 +1,20 @@
 - present @user do |user_presenter|
   #message-modal
 
-  .row.justify-content-center.mb-2
-    #profile-pic-panel.col-lg-4.p-4.effect2.text-center.bg-white
+  .row.justify-content-center.mt-2
+    #profile-pic-panel.col-lg-4.p-4.my-1.effect2.text-center.bg-white
       = render partial: 'profile_pic_panel',
           locals: { user_presenter: user_presenter }
 
-    .col-lg-8.p-4.effect2.bg-white
+    .col-lg-8.p-4.my-1.effect2.bg-white
       = render partial: 'details_panel',
           locals: { user_presenter: user_presenter }
 
   = render partial: 'personalities_panel',
       locals: { user: @user, user_presenter: user_presenter }
 
-  .row.justify-content-center.mt-2
-    .col-12.p-4.effect2.text-center.bg-white
+  .row.justify-content-center
+    .col-12.p-4.effect2.text-center.bg-white.my-1
       = render partial: 'gallery_panel',
           locals: { user_presenter: user_presenter }
 
