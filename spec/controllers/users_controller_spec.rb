@@ -21,20 +21,34 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context 'when the current_user does not have a picture' do
-      it "can't view other profiles" do
+      before do
         @user.user_detail.update!(profile_picture: nil)
+      end
 
+      it "can't view other profiles" do
         req = get :show, params: { username: user2.username }
         expect(req).to redirect_to(users_path)
+      end
+
+      it "can view his own profile" do
+        req = get :show, params: { username: @user.username }
+        expect(req).not_to redirect_to(users_path)
       end
     end
 
     context 'when the user is blocked' do
-      it "can't view the profile" do
+      before do
         @user.blocked_users.build(blocked_user_id: user2.id).save!
+      end
 
+      it "can't view the profile" do
         req = get :show, params: { username: user2.username }
         expect(req).to redirect_to(users_path)
+      end
+
+      it "can view his own profile" do
+        req = get :show, params: { username: @user.username }
+        expect(req).not_to redirect_to(users_path)
       end
     end
   end
