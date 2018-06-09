@@ -79,6 +79,11 @@ body {
   text-shadow: 1px 1px $dark_gray;
 }
 
+.white-text-bs {
+  color: $white;
+  text-shadow: -0.5px -0.5px $fbblue;
+}
+
 .light-grey-bg {
   background-color: $light_grey;
 }

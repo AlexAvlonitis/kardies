@@ -23,6 +23,6 @@
     .row.justify-content-center
       = paginate @likes, window: 1
 
-  #suggested_people.col-lg-5.effect3.mx-3.mb-3
+  #suggested_people.col-lg-5.effect3.white-text-bs.mx-3.mb-3
     = render partial: 'suggested_people/list',
         locals: { users: @suggested_users }
