@@ -19,14 +19,13 @@
 
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
+    = javascript_pack_tag 'application'
 
   %body
     = show_flash_message
 
     - if user_signed_in?
-      = render 'layouts/navbar'
-      .container{ 'data-username': current_user.username }
-        = yield
+      = react_component 'kardies_app', { current_user: current_user }
     - else
       = yield
       = render 'layouts/footer'
