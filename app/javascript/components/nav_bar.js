@@ -22,44 +22,44 @@ export default class NavBar extends Component {
             <ul className="navbar-nav ml-auto">
               <li className="nav-item border-bottom-nav-link" id="users">
                 <a className="nav-link" href="/users">
-                  <i className="fa fa-users"></i>
+                  <i className="fa fa-users mr-1"></i>
                   Μέλη
                 </a>
               </li>
               <li className="nav-item" id="likes">
                 <a className="nav-link" href="/likes">
-                  <i className="fa fa-heart"></i>
+                  <i className="fa fa-heart mr-1"></i>
                   Καρδιές
                 </a>
               </li>
               <li className="nav-item" id="conversations">
                 <a className="nav-link" href="/conversations">
-                  <i className="fa fa-envelope"></i>
+                  <i className="fa fa-envelope mr-1"></i>
                   Μηνύματα
                 </a>
               </li>
               <li className="nav-item" id="personalities">
                 <a className="nav-link" href="/test-prosopikotitas">
-                  <i className="fa fa-flask"></i>
+                  <i className="fa fa-flask mr-1"></i>
                   Προσωπικότητα
                 </a>
               </li>
               <li className="nav-item dropdown">
-                <a aria-expanded="false" aria-haspopup="true" className="profile-pic-round-xs btn btn-secondary nav-item" data-toggle="dropdown" href="#" id="navbarDropdownMenuLink" role="button">
-                  <img src="https://imisi-production.s3.amazonaws.com/user_details/profile_pictures/000/000/001/thumb/alex.png?1509848572"/>
+                <a aria-expanded="false" aria-haspopup="true" className="nav-item" data-toggle="dropdown" href="#" id="navbarDropdownMenuLink" role="button">
+                  <img src="https://imisi-production.s3.amazonaws.com/user_details/profile_pictures/000/000/001/thumb/alex.png?1509848572" className="profile-pic-round-xs"/>
                 </a>
                 <div aria-labelledby="navbarDropdownMenuLink" className="dropdown-menu">
                   <a className="dropdown-item" href="/user/edit">
-                    <i className="fa fa-cogs"></i>
+                    <i className="fa fa-cogs mr-1"></i>
                     Ρυθμίσεις
                   </a>
                   <a className="dropdown-item" href="/admin/application/index">
-                    <i className="fa fa-key"></i>
+                    <i className="fa fa-key mr-1"></i>
                     <span className="translation_missing" title="translation missing: el.layouts.navbar.admin">Admin</span>
                   </a>
                   <div className="dropdown-divider"></div>
                   <a className="dropdown-item red-text" rel="nofollow" data-method="delete" href="/user/sign_out">
-                    <i className="fa fa-power-off"></i>
+                    <i className="fa fa-power-off mr-1"></i>
                     Αποσύνδεση
                   </a>
                 </div>

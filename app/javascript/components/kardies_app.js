@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import NavBar from './nav_bar'
-import PropTypes from 'prop-types'
+import UsersIndex from './users/users_index'
 
 export default class KardiesApp extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class KardiesApp extends Component {
       <div>
         <NavBar />
         <div className="container">
-          <p> hello { this.props.current_user.username } </p>
+          <UsersIndex />
         </div>
       </div>
     )
