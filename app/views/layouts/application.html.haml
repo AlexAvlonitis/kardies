@@ -19,13 +19,13 @@
 
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
-    = javascript_pack_tag 'application'
 
   %body
     = show_flash_message
 
     - if user_signed_in?
-      = react_component 'kardies_app', { current_user: current_user }
+      #root
+        = javascript_pack_tag 'main'
     - else
       = yield
       = render 'layouts/footer'
