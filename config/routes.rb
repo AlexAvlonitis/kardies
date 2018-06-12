@@ -24,6 +24,12 @@ Rails.application.routes.draw do
     post 'undo_admin/:username', to: "users#undo_admin", as: :undo_admin
   end
 
+  namespace :api, defaults: { format: :json } do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+      resources :users, only: :index
+    end
+  end
+
   resources :users, param: :username, only: [:index, :show] do
     member do
       put "like", to: "likes#like"

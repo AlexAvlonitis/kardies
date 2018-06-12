@@ -1,15 +1,29 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Card from './card';
 
-export default class CardDeck extends Component {
-  constructor(props) {
-    super(props);
-  }
+class CardDeck extends Component {
+  renderCard(user) {
+   return (
+     <li key={user.username}>
+      { user.username }
+    </li>
+   );
+ }
 
   render() {
-    return(
+    return (
       <div className="card-deck justify-content-center">
-        Card deck
+        <ul>
+          { this.props.users.map(this.renderCard) }
+        </ul>
       </div>
-    )
+    );
   }
 }
+
+function mapStateToProps({ users }) {
+  return { users };
+}
+
+export default connect(mapStateToProps)(CardDeck);

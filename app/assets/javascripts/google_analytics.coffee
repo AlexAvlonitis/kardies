@@ -37,5 +37,3 @@ class @GoogleAnalytics
 
   @analyticsId: ->
     'UA-53357156-4'
-
-GoogleAnalytics.load()
