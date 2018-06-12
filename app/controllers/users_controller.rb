@@ -1,10 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, except: [:index]
-
-  def index
-    @users ||= search_present? ? get_all_indexed_users : get_all_users
-    @search ||= search_criteria
-  end
+  before_action :set_user, only: :show
 
   def show
     return block_and_redirect if UserBlockedCheck.call(current_user, @user)
@@ -16,26 +11,6 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find_by(username: params[:username])
     rescue_error unless @user
-  end
-
-  def search_criteria
-    search_present? ? last_search : SearchCriterium.new
-  end
-
-  def search_present?
-    current_user.search_criteria.present?
-  end
-
-  def get_all_users
-    User.get_all.except_user(current_user).confirmed.page(params[:page])
-  end
-
-  def get_all_indexed_users
-    User.search(last_search, current_user).page(params[:page]).objects
-  end
-
-  def last_search
-    current_user.search_criteria.last
   end
 
   def only_if_profile_pic_exists

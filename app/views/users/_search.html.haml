@@ -8,13 +8,6 @@
     .row
       .form-group.col-md-5
         .form-group
-          = select_tag :state, options_for_select(GC.states, @search.state),
-                               include_blank: "#{t '.state'}",
-                               class: 'state-selection form-control form-control-lg custom-select'
-        .form-group
-          = select_tag :gender, options_for_select(gender_types, @search.gender),
-                                class: 'form-control form-control-lg custom-select',
-                                include_blank: "#{t '.gender'}"
 
       .form-group.col-md-5
         .form-group
@@ -23,26 +16,15 @@
         .row
           .form-group.col-6
             %label.small= "#{t '.age'} #{t '.age_from'}: "
-            = number_field_tag :age_from,
-                @search.age_from,
-                class: 'form-control form-control-lg',
-                id: "slider-limit-value-min"
 
           .form-group.col-6
             %label.small= "#{t '.age'} #{t '.age_to'}: "
-            = number_field_tag :age_to,
-                @search.age_to,
-                class: 'form-control form-control-lg',
-                id: "slider-limit-value-max"
+
 
       .form-group.col-md-2
         .form-group
           %p= t ".online_now"
           %label.switch
-            -if @search.is_signed_in
-              = check_box_tag :is_signed_in, @search.is_signed_in, true
-            -else
-              = check_box_tag :is_signed_in, 'true', false
             %span.slider.round
 
     .row.justify-content-center

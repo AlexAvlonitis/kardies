@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :users, only: :index
+      get 'cities/:state', to: 'places#cities'
+      get 'states', to: 'places#states'
     end
   end
 
@@ -47,7 +49,6 @@ Rails.application.routes.draw do
   end
 
   get "likes", to: "likes#index", as: :my_likes
-  get 'cities/:state', to: 'places#cities'
   get 'messages/:username/new', to: 'messages#new', as: :new_message
   get 'terms', to: 'terms#index', as: :terms
 
