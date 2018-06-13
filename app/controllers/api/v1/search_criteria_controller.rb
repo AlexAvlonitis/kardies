@@ -4,8 +4,8 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def create
-        @search_criteria ||= current_user.search_criteria.build(search_criteria_params)
-        @search_criteria ||= SearchCriterium.normalize_params(search_criteria)
+        search_criteria = current_user.search_criteria.build(search_criteria_params)
+        @search_criteria = SearchCriterium.normalize_params(search_criteria)
         if @search_criteria.save
           render_searched_users
         else
@@ -16,10 +16,12 @@ module Api
       private
 
       def render_searched_users
-        @users ||= User.search(@search_criteria, current_user)
-                       .page(params[:page])
-                       .objects
-        render json: @users, status: :ok
+        users = User.search(@search_criteria, current_user)
+                    .page(params[:page])
+                    .objects
+
+        users.compact!
+        render json: users, status: :ok
       end
 
       def search_criteria_params

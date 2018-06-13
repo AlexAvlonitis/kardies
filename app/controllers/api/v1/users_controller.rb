@@ -2,8 +2,10 @@ module Api
   module V1
     class UsersController < ApiController
       def index
-        @users ||= search_present? ? get_all_indexed_users : get_all_users
-        render json: @users, status: :ok
+        users = search_present? ? get_all_indexed_users : get_all_users
+
+        users.compact!
+        render json: users, status: :ok
       end
 
       private
