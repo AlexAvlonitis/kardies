@@ -6,7 +6,6 @@ import CardDeck from './card_deck';
 import Search from './search';
 
 class UsersIndex extends Component {
-
   componentDidMount() {
     this.props.getUsers()
   }

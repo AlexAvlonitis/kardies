@@ -2,15 +2,25 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getSearchUsers } from '../../redux/actions/action_get_search_users';
+import { clearResults } from '../../redux/actions/action_clear_search_results';
 import { getStates } from '../../redux/actions/action_get_states';
 
 class Search extends Component {
   componentDidMount = () => {
     this.props.getStates();
+    this.props.clearResults()
   }
 
   renderPlaces = (state) => {
     return <option key={state[1]} value={state[1]}>{state[0]}</option>
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+
+    this.props.getSearchUsers(data);
+
   }
 
   render() {
@@ -20,7 +30,7 @@ class Search extends Component {
           Αναζήτηση
           <i className="fa search-icon fa-search-minus"/>
         </h3>
-        <form id="search" action="/search_criteria" method="post">
+        <form id="search" action="/api/search" method="post" onSubmit={ this.handleSubmit } >
           <hr />
           <div className="row">
             <div className="form-group col-md-5">
@@ -59,9 +69,9 @@ class Search extends Component {
           <div className="row justify-content-center">
             <div className="form-group col-md-5">
               <input name="commit"
+                     id='search-submit'
                      value="Αναζήτηση"
                      className="btn btn-outline-light btn-lg btn-block"
-                     data-disable-with="Αναζήτηση"
                      type="submit" />
             </div>
           </div>
@@ -73,7 +83,11 @@ class Search extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    ...bindActionCreators({ getSearchUsers, getStates }, dispatch)
+    ...bindActionCreators({
+      getSearchUsers,
+      getStates,
+      clearResults
+    }, dispatch)
   }
 }
 

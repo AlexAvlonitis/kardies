@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :users, only: :index
+
+      post '/search', to: 'search_criteria#create', as: :search
       get 'cities/:state', to: 'places#cities'
       get 'states', to: 'places#states'
     end
@@ -40,7 +42,6 @@ Rails.application.routes.draw do
 
   resources :reports, param: :username, only: [:create, :show]
   resources :blocked_users, param: :id, only: [:create, :destroy]
-  resources :search_criteria, only: [:new, :create]
   resources :contacts, only: [:index, :create]
   resources :email_preferences, only: [:edit, :update]
 

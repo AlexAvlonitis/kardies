@@ -9,10 +9,14 @@ class CardDeck extends Component {
     );
   }
 
+  renderEmpty = () => {
+    return <p> empty </p>
+  }
+
   render() {
     return (
       <div className="card-deck justify-content-center">
-        { this.props.users.map(this.renderCard) }
+        { this.props.users.results.length > 0 ? this.props.users.results.map(this.renderCard) : this.renderEmpty() }
       </div>
     );
   }
