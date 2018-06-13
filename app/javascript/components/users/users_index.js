@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getUsers } from '../../redux/actions/action_get_users';
+import { getUsers } from '../../redux/actions/users';
 import CardDeck from './card_deck';
 import Search from './search';
 

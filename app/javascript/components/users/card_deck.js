@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Loader from 'react-loader-spinner'
 import Card from './card';
 
 class CardDeck extends Component {
@@ -10,13 +11,25 @@ class CardDeck extends Component {
   }
 
   renderEmpty = () => {
-    return <p> empty </p>
+    return <p> Δοκιμάστε άλλη Αναζήτηση </p>
+  }
+
+  renderLoader = () => {
+    return (
+      <div class="col-12 text-center">
+        <Loader type="Hearts" color="red" height={80} width={80} />
+      </div>
+    )
   }
 
   render() {
     return (
       <div className="card-deck justify-content-center">
-        { this.props.users.results.length > 0 ? this.props.users.results.map(this.renderCard) : this.renderEmpty() }
+        { this.props.users.isFetching ? this.renderLoader() : null }
+
+          { this.props.users.results.length === 0 ? this.renderEmpty() :
+              this.props.users.results.map(this.renderCard)
+          }
       </div>
     );
   }

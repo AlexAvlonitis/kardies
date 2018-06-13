@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getSearchUsers } from '../../redux/actions/action_get_search_users';
-import { clearResults } from '../../redux/actions/action_clear_search_results';
+import { getSearchUsers } from '../../redux/actions/search';
+import { clearResults } from '../../redux/actions/search';
 import { getStates } from '../../redux/actions/action_get_states';
 
 class Search extends Component {
@@ -20,7 +20,6 @@ class Search extends Component {
     const data = new FormData(e.target);
 
     this.props.getSearchUsers(data);
-
   }
 
   render() {
