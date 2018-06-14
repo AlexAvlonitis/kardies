@@ -27,7 +27,7 @@ class Search extends Component {
       <div className="top-search effect3 white-text-bs">
         <h3 className="text-center p-2" id="search-collapse">
           Αναζήτηση
-          <i className="fa search-icon fa-search-minus"/>
+          <i className="fa search-icon fa-search-minus ml-2"/>
         </h3>
         <form id="search" action="/api/search" method="post" onSubmit={ this.handleSubmit } >
           <hr />
@@ -50,6 +50,29 @@ class Search extends Component {
                   <option value="female">Γυναίκα</option>
                   <option value="other">Άλλο</option>
                 </select>
+              </div>
+            </div>
+            <div className="form-group col-md-5">
+              <div className="form-group">
+                <div id="slider-range" />
+              </div>
+              <div className="row">
+                <div className="form-group col-md-6">
+                  <label className="small"> Ηλικία από: </label>
+                  <input name="age_from"
+                         id="slider-limit-value-min"
+                         value="18"
+                         className="form-control form-control-lg"
+                         type="number" />
+                </div>
+                <div className="form-group col-md-6">
+                  <label className="small"> Ηλικία μέχρι: </label>
+                  <input name="age_to"
+                         id="slider-limit-value-max"
+                         value="99"
+                         className="form-control form-control-lg"
+                         type="number" />
+                </div>
               </div>
             </div>
             <div className="form-group col-md-2">

@@ -16,7 +16,7 @@ class CardDeck extends Component {
 
   renderLoader = () => {
     return (
-      <div class="col-12 text-center">
+      <div className="col-12 text-center">
         <Loader type="Hearts" color="red" height={80} width={80} />
       </div>
     )
@@ -27,9 +27,9 @@ class CardDeck extends Component {
       <div className="card-deck justify-content-center">
         { this.props.users.isFetching ? this.renderLoader() : null }
 
-          { this.props.users.results.length === 0 ? this.renderEmpty() :
-              this.props.users.results.map(this.renderCard)
-          }
+        { this.props.users.results.length === 0 ? this.renderEmpty() :
+            this.props.users.results.map(this.renderCard)
+        }
       </div>
     );
   }
