@@ -1,11 +1,18 @@
-import { FETCH_STATES } from '../actions/action_get_states';
+import {
+  CLEARING_STATES,
+  FETCHING_STATES,
+  FETCHED_STATES,
+} from '../actions/states';
 
-let initialState = [];
-
-export default (state = initialState, action) => {
+export default (state = { allStates: [], isFetching: false }, action) => {
   switch (action.type) {
-  case FETCH_STATES:
-    return [...state, ...action.payload]
+
+  case FETCHING_STATES:
+    return Object.assign({}, state, { isFetching: true})
+
+  case FETCHED_STATES:
+    return Object.assign({}, state, { allStates: action.payload, isFetching: false })
+
   default:
     return state;
   }

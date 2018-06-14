@@ -2,17 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getSearchUsers } from '../../redux/actions/search';
-import { clearResults } from '../../redux/actions/search';
-import { getStates } from '../../redux/actions/action_get_states';
+import { getStates } from '../../redux/actions/states';
 
 class Search extends Component {
-  componentDidMount = () => {
-    this.props.getStates();
-    this.props.clearResults()
-  }
-
   renderPlaces = (state) => {
     return <option key={state[1]} value={state[1]}>{state[0]}</option>
+  }
+
+  handleClick = (e) => {
+    this.props.getStates();
   }
 
   handleSubmit = (e) => {
@@ -36,9 +34,10 @@ class Search extends Component {
               <div className="form-group">
                 <select name="state"
                         id="state"
-                        className="state-selection form-control form-control-lg custom-select">
+                        className="state-selection form-control form-control-lg custom-select"
+                        onClick={this.handleClick}>
                   <option value="">Ελλάδα</option>
-                  { this.props.states.map(this.renderPlaces) }
+                  { this.props.states.allStates.map(this.renderPlaces) }
                 </select>
               </div>
               <div className="form-group">
@@ -61,7 +60,7 @@ class Search extends Component {
                   <label className="small"> Ηλικία από: </label>
                   <input name="age_from"
                          id="slider-limit-value-min"
-                         value="18"
+                         defaultValue="18"
                          className="form-control form-control-lg"
                          type="number" />
                 </div>
@@ -69,7 +68,7 @@ class Search extends Component {
                   <label className="small"> Ηλικία μέχρι: </label>
                   <input name="age_to"
                          id="slider-limit-value-max"
-                         value="99"
+                         defaultValue="99"
                          className="form-control form-control-lg"
                          type="number" />
                 </div>
@@ -81,7 +80,7 @@ class Search extends Component {
                 <label className="switch">
                   <input name="is_signed_in"
                          id="is_signed_in"
-                         value="true"
+                         defaultValue="true"
                          type="checkbox" />
                   <span className="slider round" />
                 </label>
@@ -92,7 +91,7 @@ class Search extends Component {
             <div className="form-group col-md-5">
               <input name="commit"
                      id='search-submit'
-                     value="Αναζήτηση"
+                     defaultValue="Αναζήτηση"
                      className="btn btn-outline-light btn-lg btn-block"
                      type="submit" />
             </div>
@@ -107,8 +106,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     ...bindActionCreators({
       getSearchUsers,
-      getStates,
-      clearResults
+      getStates
     }, dispatch)
   }
 }

@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
-
+import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 export default class NavBar extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return(
       <nav className="navbar navbar-expand-md navbar-dark bg-orange">
@@ -21,16 +17,16 @@ export default class NavBar extends Component {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item border-bottom-nav-link" id="users">
-                <a className="nav-link" href="/users">
-                  <i className="fa fa-users mr-1"></i>
+                <Link className="nav-link" to="/users">
+                  <i className="fa fa-users mr-1" />
                   Μέλη
-                </a>
+                </Link>
               </li>
               <li className="nav-item" id="likes">
-                <a className="nav-link" href="/likes">
-                  <i className="fa fa-heart mr-1"></i>
+                <Link className="nav-link" to="/likes">
+                  <i className="fa fa-heart mr-1" />
                   Καρδιές
-                </a>
+                </Link>
               </li>
               <li className="nav-item" id="conversations">
                 <a className="nav-link" href="/conversations">

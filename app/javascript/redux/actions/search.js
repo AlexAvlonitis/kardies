@@ -1,6 +1,5 @@
 import fetch from 'cross-fetch';
 
-export const CLEARING_RESULTS = 'CLEARING RESULTS';
 export const FETCHING_RESULTS = 'FETCHING RESULTS';
 export const FETCHED_RESULTS = 'FETCHED RESULTS';
 
@@ -14,12 +13,6 @@ export const fetchedResults = (users) => {
   return {
     type: FETCHED_RESULTS,
     payload: users
-  }
-}
-
-export const clearResults = () => {
-  return {
-    type: CLEARING_RESULTS
   }
 }
 
