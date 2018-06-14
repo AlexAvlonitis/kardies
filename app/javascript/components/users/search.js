@@ -3,8 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getSearchUsers } from '../../redux/actions/search';
 import { getStates } from '../../redux/actions/states';
+import Slider from '../../libraries/no_ui_slider'
 
 class Search extends Component {
+  componentDidMount() {
+    Slider.call()
+  }
+
   renderPlaces = (state) => {
     return <option key={state[1]} value={state[1]}>{state[0]}</option>
   }
