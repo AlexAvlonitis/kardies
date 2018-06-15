@@ -42,7 +42,7 @@ export default class Card extends Component {
             </div>
           </div>
           <div className="card-text text-left pl-2">
-            <p>{ this.props.user.user_detail.city }</p>
+            <p>{ this.props.user.user_detail.city } - { this.props.user.user_detail.state }</p>
           </div>
           <div className="card-footer">
             <span className="message">
