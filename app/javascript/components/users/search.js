@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getSearchUsers } from '../../redux/actions/search';
+import { clearingResults } from '../../redux/actions/search';
 import { getStates } from '../../redux/actions/states';
 import Slider from '../../libraries/no_ui_slider'
 
@@ -20,8 +21,9 @@ class Search extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
+    this.props.clearingResults();
 
+    const data = new FormData(e.target);
     this.props.getSearchUsers(data);
   }
 
@@ -118,7 +120,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     ...bindActionCreators({
       getSearchUsers,
-      getStates
+      getStates,
+      clearingResults
     }, dispatch)
   }
 }
