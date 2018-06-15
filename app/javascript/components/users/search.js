@@ -25,6 +25,12 @@ class Search extends Component {
     this.props.getSearchUsers(data);
   }
 
+  renderLoader = () => {
+    return (
+      <option>Loading...</option>
+    )
+  }
+
   render() {
     return(
       <div className="top-search effect3 white-text-bs">
@@ -42,6 +48,7 @@ class Search extends Component {
                         className="state-selection form-control form-control-lg custom-select"
                         onClick={this.handleClick}>
                   <option value="">Ελλάδα</option>
+                  { this.props.states.isFetching ? this.renderLoader() : null }
                   { this.props.states.allStates.map(this.renderPlaces) }
                 </select>
               </div>

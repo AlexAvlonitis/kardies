@@ -1,5 +1,4 @@
 import {
-  CLEARING_STATES,
   FETCHING_STATES,
   FETCHED_STATES,
 } from '../actions/states';
