@@ -13,6 +13,16 @@ export default class Card extends Component {
     }
   }
 
+  openModal = (e) => {
+    e.preventDefault();
+    let profile_picture = this.props.user.profile_picture;
+    let username = this.props.user.username;
+
+    if (typeof this.props.openModal === 'function') {
+      this.props.openModal(username, profile_picture);
+    }
+  }
+
   render() {
     return(
       <div className="card effect1 my-4">
@@ -46,7 +56,7 @@ export default class Card extends Component {
           </div>
           <div className="card-footer">
             <span className="message">
-              <a className="icon-round-message" data-toggle="modal" data-target="#messageModal" data-username={ this.props.user.username } data-profile-pic={this.props.user.profile_picture} href="/users">
+              <a className="icon-round-message" href="/users" onClick={this.openModal}>
                 <i className="fa fa-comment-o"></i>
               </a>
             </span>
