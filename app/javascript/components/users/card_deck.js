@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getUsers } from '../../redux/actions/users';
 import Loader from 'react-loader-spinner'
 import Card from './card';
 
 class CardDeck extends Component {
+  componentDidMount() {
+    this.props.getUsers();
+  }
+
   renderCard(user) {
     return (
       <Card key={user.username} user={user}/>
@@ -39,4 +45,8 @@ function mapStateToProps({ users }) {
   return { users };
 }
 
-export default connect(mapStateToProps)(CardDeck);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ getUsers }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardDeck);

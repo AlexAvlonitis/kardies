@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getUsers } from '../../redux/actions/users';
 import CardDeck from './card_deck';
 import Search from './search';
 
-class UsersIndex extends Component {
-  componentDidMount() {
-    this.props.getUsers()
-  }
-
+export default class UsersIndex extends Component {
   render() {
     return(
       <div>
@@ -23,9 +16,3 @@ class UsersIndex extends Component {
     );
   }
 }
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getUsers }, dispatch);
-}
-
-export default connect(null, mapDispatchToProps)(UsersIndex);
