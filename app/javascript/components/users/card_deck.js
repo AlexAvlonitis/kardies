@@ -36,11 +36,9 @@ class CardDeck extends Component {
   renderMoreButton = () => {
     return (
       <div className="row justify-content-center">
-        <button
-          className="btn btn-outline-primary mb-3"
-          onClick={this.fetchMore}
-        >
-          More
+        <button className="btn btn-outline-primary mb-3"
+                onClick={this.fetchMore} >
+          Περισσότερα...
         </button>
       </div>
     )
