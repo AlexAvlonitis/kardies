@@ -95,6 +95,10 @@ class User < ApplicationRecord
     user_detail.profile_picture.url(size)
   end
 
+  def profile_picture_medium
+    user_detail.profile_picture.url(:medium)
+  end
+
   def self.picture_from_url(url)
     url ? open(url) : nil
   end

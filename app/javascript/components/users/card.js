@@ -20,7 +20,8 @@ export default class Card extends Component {
           <div className="float-left" />
           <div className="card-bg"
             style={{display: 'block',
-            backgroundImage: `url(${this.props.user.profile_picture})`}} />
+            backgroundImage: `url(${this.props.user.profile_picture_medium})`}}
+          />
         </div>
         <div className="card-block">
           <div className="card-title">

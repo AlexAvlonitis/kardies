@@ -2,6 +2,29 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
 export default class NavBar extends Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      user: {
+        username: '',
+        profile_picture: ''
+      }
+    }
+  }
+
+  componentDidMount() {
+    let profile_picture = document.getElementById("root").getAttribute('data-profile-picture');
+    let username = document.getElementById("root").getAttribute('data-username');
+
+    this.setState({
+      user: {
+        username: username,
+        profile_picture: profile_picture
+      }
+    });
+  }
+
   render() {
     return(
       <nav className="navbar navbar-expand-md navbar-dark bg-orange">
@@ -42,7 +65,7 @@ export default class NavBar extends Component {
               </li>
               <li className="nav-item dropdown">
                 <a aria-expanded="false" aria-haspopup="true" className="nav-item" data-toggle="dropdown" href="#" id="navbarDropdownMenuLink" role="button">
-                  <img src="https://imisi-production.s3.amazonaws.com/user_details/profile_pictures/000/000/001/thumb/alex.png?1509848572" className="profile-pic-round-xs"/>
+                  <img src={this.state.user.profile_picture} className="profile-pic-round-xs"/>
                 </a>
                 <div aria-labelledby="navbarDropdownMenuLink" className="dropdown-menu">
                   <a className="dropdown-item" href="/user/edit">
