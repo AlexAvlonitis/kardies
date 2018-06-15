@@ -14,13 +14,6 @@
                 = t(".sent_heart", username: user.username)
 
     .row.justify-content-center
-      .m-2
-        .page-load-status
-          %p.infinite-scroll-request= image_tag("ajax-loader.gif")
-          %strong.infinite-scroll-last= t 'users.index.end_content'
-          %strong.infinite-scroll-error= t 'users.index.no_pages'
-
-    .row.justify-content-center
       = paginate @likes, window: 1
 
   #suggested_people.col-lg-5.effect3.mx-3.mb-3

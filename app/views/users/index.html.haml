@@ -3,15 +3,4 @@
 .row.justify-content-center
   .card-deck.justify-content-center
 
-.row.justify-content-center
-  .m-2
-    .page-load-status
-      %p.infinite-scroll-request= image_tag("ajax-loader.gif")
-      %strong.infinite-scroll-last= t '.end_content'
-      %strong.infinite-scroll-error= t '.no_pages'
-
-.row.justify-content-center
-
-  %button.view-more-button.btn.btn-outline-primary.mb-3= t '.more'
-
 = render partial: 'messages/message_modal'
