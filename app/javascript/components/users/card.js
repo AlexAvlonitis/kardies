@@ -23,6 +23,14 @@ export default class Card extends Component {
     }
   }
 
+  renderHeartIcon = () => {
+    if(this.props.user.like === true) {
+      return <i className="fa fa-heart faa-pulse faa-fast" />
+    } else {
+      return <i className="fa fa-heart-o faa-pulse faa-fast" />
+    }
+  }
+
   render() {
     return(
       <div className="card effect1 my-4">
@@ -62,7 +70,7 @@ export default class Card extends Component {
             </span>
             <span className="like">
               <a className="icon-round-like like-link faa-parent animated-hover" id={ this.props.user.username } rel="nofollow" data-method="put" href={`/users/${this.props.user.username}/like`}>
-                <i className="fa fa-heart-o faa-pulse faa-fast" />
+                { this.renderHeartIcon() }
               </a>
             </span>
           </div>

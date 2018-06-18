@@ -52,7 +52,11 @@ class CardDeck extends Component {
 
   renderCard = (user) => {
     return (
-      <Card key={user.username} user={user} openModal={this.openModal}/>
+      <Card
+        key={user.username}
+        user={user}
+        openModal={this.openModal}
+      />
     );
   }
 
