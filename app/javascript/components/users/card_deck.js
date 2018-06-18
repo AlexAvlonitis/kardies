@@ -5,20 +5,7 @@ import { getUsers } from '../../redux/actions/users';
 import { clearingResults } from '../../redux/actions/search';
 import Loader from 'react-loader-spinner'
 import Card from './card';
-import Modal from 'react-modal';
-
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
-
-Modal.setAppElement('#root')
+import MessageModal from './message_modal';
 
 class CardDeck extends Component {
   constructor(props) {
@@ -88,48 +75,16 @@ class CardDeck extends Component {
     this.props.getUsers(this.state.page);
   }
 
-  renderModal = () => {
-    return (
-      <Modal
-        isOpen={this.state.modalIsOpen}
-        onAfterOpen={this.afterOpenModal}
-        onRequestClose={this.closeModal}
-        style={customStyles}
-        contentLabel="Example Modal">
-
-        <div className="row">
-          <div className='modal-head col-12'>
-            <button className="close pull-right" onClick={this.closeModal}>
-              <span>&times;</span>
-            </button>
-            <div className="profile-pic-round-sm m-2"
-                 style={{ display: "block", backgroundImage: `url(${this.state.user.profile_picture})`}}/>
-            <p>
-              Αποστολή μηνύματος:
-              <strong> { this.state.user.username }</strong>
-            </p>
-          </div>
-        </div>
-        <div className="row">
-          <div className='col-12'>
-            <div className="form-group">
-              <form action="/messages" method="post">
-                <textarea name="message[body]" id="message_body" cols="5" className="form-control" required="required" placeholder="Γράψτε το μήνυμά σας"/>
-                <input name="message[username]" id="message_username" value={this.state.user.username} type="hidden"/>
-                <hr />
-                <input name="commit" value="Αποστολή" className="btn btn-outline-primary float-right" data-disable-with="Αποστολή" type="submit"/>
-              </form>
-            </div>
-          </div>
-        </div>
-      </Modal>
-    )
-  }
-
   render() {
     return (
       <div>
-        { this.renderModal()}
+        <MessageModal
+          modalIsOpen={this.state.modalIsOpen}
+          username={this.state.user.username}
+          profile_picture={this.state.user.profile_picture}
+          closeModal={this.closeModal}
+        />
+
         <div className="card-deck justify-content-center">
           { this.props.users.isFetching ? this.renderLoader() : null }
 
