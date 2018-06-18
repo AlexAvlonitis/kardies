@@ -72,7 +72,7 @@ export default class Card extends Component {
               </a>
             </span>
             <span className="like">
-              <a className="icon-round-like like-link faa-parent animated-hover" id={ this.props.user.username } rel="nofollow" data-method="put" href={`/users/${this.props.user.username}/like`}>
+              <a className="icon-round-like like-link faa-parent animated-hover" id={ this.props.user.username } rel="nofollow" data-method="put" href={`/api/users/${this.props.user.username}/like`}>
                 { this.renderHeartIcon() }
               </a>
             </span>

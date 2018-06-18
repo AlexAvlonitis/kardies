@@ -26,7 +26,11 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      resources :users, param: :username, only: [:index, :show]
+      resources :users, param: :username, only: [:index, :show] do
+        member do
+          put "like", to: "likes#like"
+        end
+      end
 
       post '/search', to: 'search_criteria#create', as: :search
       get 'cities/:state', to: 'places#cities'
@@ -34,11 +38,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, param: :username, only: [:index, :show] do
-    member do
-      put "like", to: "likes#like"
-    end
-  end
+  resources :users, param: :username, only: [:index, :show]
 
   resources :reports, param: :username, only: [:create, :show]
   resources :blocked_users, param: :id, only: [:create, :destroy]
