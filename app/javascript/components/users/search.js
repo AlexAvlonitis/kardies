@@ -71,7 +71,7 @@ class Search extends Component {
               </div>
               <div className="row">
                 <div className="form-group col-md-6">
-                  <label className="small"> Ηλικία από: </label>
+                  <label> Ηλικία από: </label>
                   <input name="age_from"
                          id="slider-limit-value-min"
                          defaultValue="18"
@@ -79,7 +79,7 @@ class Search extends Component {
                          type="number" />
                 </div>
                 <div className="form-group col-md-6">
-                  <label className="small"> Ηλικία μέχρι: </label>
+                  <label> Ηλικία μέχρι: </label>
                   <input name="age_to"
                          id="slider-limit-value-max"
                          defaultValue="99"

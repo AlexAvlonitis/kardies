@@ -1,14 +1,27 @@
 module Api
   module V1
     class UsersController < ApiController
+      before_action :set_user, only: :show
+
       def index
         users = search_present? ? get_all_indexed_users : get_all_users
-
         users.compact!
+
         render json: users, status: :ok
       end
 
+      def show
+        return block_and_render(t 'users.show.blocked_user') if UserBlockedCheck.call(current_user, @user)
+        return block_and_render('You need a profile pic') unless profile_pic_exists?
+        render json: @user, status: :ok
+      end
+
       private
+
+      def set_user
+        @user = User.find_by(username: params[:username])
+        rescue_error unless @user
+      end
 
       def search_present?
         current_user.search_criteria.present?
@@ -24,6 +37,11 @@ module Api
 
       def last_search
         current_user.search_criteria.last
+      end
+
+      def profile_pic_exists?
+        return if @user == current_user
+        current_user.profile_picture_exists?
       end
     end
   end

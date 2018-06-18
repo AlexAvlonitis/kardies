@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 export default class Card extends Component {
   genderType(gender) {
@@ -36,10 +37,12 @@ export default class Card extends Component {
       <div className="card effect1 my-4">
         <div className="card-img-top">
           <div className="float-left" />
-          <div className="card-bg"
-            style={{display: 'block',
-            backgroundImage: `url(${this.props.user.profile_picture_medium})`}}
-          />
+          <Link to={`/users/${this.props.user.username}`}>
+            <div className="card-bg"
+              style={{display: 'block',
+              backgroundImage: `url(${this.props.user.profile_picture_medium})`}}
+            />
+          </Link>
         </div>
         <div className="card-block">
           <div className="card-title">

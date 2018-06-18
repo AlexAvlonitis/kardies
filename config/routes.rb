@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      resources :users, only: :index
+      resources :users, param: :username, only: [:index, :show]
 
       post '/search', to: 'search_criteria#create', as: :search
       get 'cities/:state', to: 'places#cities'

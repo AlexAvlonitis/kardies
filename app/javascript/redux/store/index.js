@@ -6,6 +6,6 @@ import logger from 'redux-logger';
 export default () => {
   return createStore(
     reducer,
-    applyMiddleware(logger, thunkMiddleware)
+    applyMiddleware(thunkMiddleware, logger)
   );
 }
