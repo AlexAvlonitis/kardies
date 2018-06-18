@@ -40,7 +40,7 @@ module Api
       end
 
       def profile_pic_exists?
-        return if @user == current_user
+        return true if @user == current_user
         current_user.profile_picture_exists?
       end
     end

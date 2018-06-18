@@ -86,10 +86,9 @@ class CardDeck extends Component {
         />
 
         <div className="card-deck justify-content-center">
-          { this.props.users.isFetching ? this.renderLoader() : null }
-
-          { this.props.users.results.length === 0 ? this.renderEmpty() :
-              this.props.users.results.map(this.renderCard) }
+          { this.props.users.isFetching ? this.renderLoader() :
+              (this.props.users.results.length === 0 ? this.renderEmpty() :
+              this.props.users.results.map(this.renderCard)) }
         </div>
         { this.renderMoreButton() }
       </div>

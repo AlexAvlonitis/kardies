@@ -1,6 +1,6 @@
 module Api
   module V1
-    class LikesController < ApplicationController
+    class LikesController < ApiController
       before_action :set_user, only: :like
 
       def index

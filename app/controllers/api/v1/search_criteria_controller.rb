@@ -1,8 +1,6 @@
 module Api
   module V1
     class SearchCriteriaController < ApiController
-      skip_before_action :verify_authenticity_token
-
       def create
         search_criteria = current_user.search_criteria.build(search_criteria_params)
         @search_criteria = SearchCriterium.normalize_params(search_criteria)

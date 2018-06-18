@@ -50,8 +50,8 @@ class Search extends Component {
                         className="state-selection form-control form-control-lg custom-select"
                         onClick={this.handleClick}>
                   <option value="">Ελλάδα</option>
-                  { this.props.states.isFetching ? this.renderLoader() : null }
-                  { this.props.states.allStates.map(this.renderPlaces) }
+                  { this.props.states.isFetching ? this.renderLoader() :
+                    this.props.states.allStates.map(this.renderPlaces) }
                 </select>
               </div>
               <div className="form-group">

@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
+import fetch from 'cross-fetch';
 import { Link } from "react-router-dom";
 
 export default class Card extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      heartIcon: null
+    }
+  }
+
   genderType(gender) {
     if (gender == "male") {
       return <i className="fa fa-male gender"></i>
@@ -25,11 +34,32 @@ export default class Card extends Component {
   }
 
   renderHeartIcon = () => {
+    if(this.state.heartIcon !== null) {
+      return <i className={`fa ${this.state.heartIcon} faa-pulse faa-fast`} />
+    }
+
     if(this.props.user.like === true) {
       return <i className="fa fa-heart faa-pulse faa-fast" />
     } else {
       return <i className="fa fa-heart-o faa-pulse faa-fast" />
     }
+  }
+
+  sendHeart = (e) => {
+    e.preventDefault()
+    const postData = (url) => {
+      return fetch(url, {
+        method: 'PUT'
+      })
+      .then(response => response.json())
+    }
+
+    let like_url = `/api/users/${this.props.user.username}/like`
+
+    postData(like_url)
+      .then(res => {
+        this.setState({heartIcon: res.heart})
+      })
   }
 
   render() {
@@ -72,7 +102,11 @@ export default class Card extends Component {
               </a>
             </span>
             <span className="like">
-              <a className="icon-round-like like-link faa-parent animated-hover" id={ this.props.user.username } rel="nofollow" data-method="put" href={`/api/users/${this.props.user.username}/like`}>
+              <a
+                className="icon-round-like like-link faa-parent animated-hover"
+                href=''
+                onClick={ this.sendHeart }
+              >
                 { this.renderHeartIcon() }
               </a>
             </span>
