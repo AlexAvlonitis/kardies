@@ -19,7 +19,7 @@ export default (state = { results: [], isFetching: true, user: {} }, action) => 
     return Object.assign({}, state, { user: action.payload, isFetching: false });
 
   case CLEARING_RESULTS:
-    return Object.assign({}, state, { results: [], user: [], isFetching: true });
+    return Object.assign({}, state, { results: [], isFetching: true});
 
   default:
     return state;

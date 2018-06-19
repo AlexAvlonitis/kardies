@@ -43,6 +43,7 @@ class CardDeck extends Component {
         key={user.username}
         user={user}
         openModal={this.openModal}
+        clearResults={this.props.clearingResults}
       />
     );
   }

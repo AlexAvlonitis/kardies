@@ -58,8 +58,13 @@ export default class Card extends Component {
 
     postData(like_url)
       .then(res => {
+        console.log(res)
         this.setState({heartIcon: res.heart})
       })
+  }
+
+  clearResults = () => {
+    this.props.clearResults()
   }
 
   render() {
@@ -67,7 +72,7 @@ export default class Card extends Component {
       <div className="card effect1 my-4">
         <div className="card-img-top">
           <div className="float-left" />
-          <Link to={`/users/${this.props.user.username}`}>
+          <Link to={`/users/${this.props.user.username}`} onClick={this.clearResults}>
             <div className="card-bg"
               style={{display: 'block',
               backgroundImage: `url(${this.props.user.profile_picture_medium})`}}

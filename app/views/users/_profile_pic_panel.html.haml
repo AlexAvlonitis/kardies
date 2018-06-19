@@ -1,43 +1,12 @@
-.row.justify-content-center
-  .gallery.mt-2
-    = link_to @user.profile_picture(:original), class: 'swipebox' do
-      .profile-pic{ style: "background-image: url(#{@user.profile_picture(:medium)})"}
 
-%h3.mt-2
-  %strong.narrow= "#{@user.username.capitalize} - #{@user.age}"
-  = user_presenter.online_status
-
-%p= user_presenter.display_city_info
-
-- if current_user == @user
-  = link_to edit_user_registration_path, class: "btn btn-primary btn-round-lg" do
-    = fa_icon 'gears'
-    = t '.edit_profile'
-
-- unless @user == current_user
-  %p
-    = link_to nil, class: "btn btn-sm nice-blue-bg btn-round-lg", "data-toggle" => "modal", "data-target" => "#messageModal", "data-username" => "#{@user.username}", "data-profile-pic" => "#{@user.profile_picture}" do
-      = fa_icon "comment-o"
-      = t '.send_message'
-  %p
-  - if ! current_user.voted_for? @user
-    = link_to like_user_path(@user), method: :put, remote: true, class: 'like-link btn btn-sm btn-danger btn-round-lg animated-hover', id: "#{@user.username}" do
-      = fa_icon "heart-o"
-      = t '.send_like'
-  - else
-    = link_to like_user_path(@user), method: :put, remote: true, class: 'like-link btn btn-sm btn-danger btn-round-lg animated-hover', id: "#{@user.username}" do
-      = fa_icon "heart"
-      = t '.send_like'
-
-  %hr
-  .row
-    .col-6
-      = link_to report_path(@user), class: "btn btn-sm btn-outline-danger pull-left", "data-toggle" => "modal", "data-target" => "#reportModal", "data-whatever" => "#{@user.username}" do
-        = t 'users.index.report'
-    .col-6
-      = form_tag blocked_users_path, id: 'block-user' do
-        = hidden_field_tag :blocked_user_id, @user.id
-        = submit_tag "#{t ('users.index.block')}",
-            class: 'btn btn-outline-danger btn-sm pull-right'
+.row
+  .col-6
+    = link_to report_path(@user), class: "btn btn-sm btn-outline-danger pull-left", "data-toggle" => "modal", "data-target" => "#reportModal", "data-whatever" => "#{@user.username}" do
+      = t 'users.index.report'
+  .col-6
+    = form_tag blocked_users_path, id: 'block-user' do
+      = hidden_field_tag :blocked_user_id, @user.id
+      = submit_tag "#{t ('users.index.block')}",
+          class: 'btn btn-outline-danger btn-sm pull-right'
 
 = render partial: 'reports/report_modal'

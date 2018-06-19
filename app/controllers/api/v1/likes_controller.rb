@@ -16,8 +16,8 @@ module Api
         end
         return send_unlike if current_user.voted_for? @user
         return send_like unless current_user.voted_for? @user
-      rescue
-        render json: { errors: @user.errors }, status: 422
+      rescue StandardError => e
+        render json: { errors: e }, status: 422
       end
 
       private

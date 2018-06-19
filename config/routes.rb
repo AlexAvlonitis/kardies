@@ -32,9 +32,10 @@ Rails.application.routes.draw do
         end
       end
 
-      post '/search', to: 'search_criteria#create', as: :search
+      post '/search', to: 'search_criteria#create'
       get 'cities/:state', to: 'places#cities'
       get 'states', to: 'places#states'
+      get "likes", to: "likes#index"
     end
   end
 
@@ -49,7 +50,6 @@ Rails.application.routes.draw do
     delete :delete_all, on: :collection
   end
 
-  get "likes", to: "likes#index", as: :my_likes
   get 'messages/:username/new', to: 'messages#new', as: :new_message
   get 'terms', to: 'terms#index', as: :terms
 

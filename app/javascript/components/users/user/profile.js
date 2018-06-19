@@ -9,13 +9,11 @@ import ProfilePicPanel from './profile_pic_panel';
 
 class UserProfile extends Component {
   componentDidMount() {
-    console.log("=======> Mounted")
     let paramsUsername = this.props.match.params.userName
     this.props.getUser(paramsUsername);
   }
 
   renderProfilePicPanel = () => {
-    console.log("====Loading: " + this.props.loading)
     return (
       <ProfilePicPanel
         profilePicture={ this.props.user.profile_picture }

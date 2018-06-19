@@ -4,7 +4,10 @@ export default class ProfilePicPanel extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { currentUsername: '' }
+    this.state = {
+      currentUsername: '',
+      heartIcon: null
+    }
   }
 
   componentDidMount = () => {
@@ -32,16 +35,41 @@ export default class ProfilePicPanel extends Component {
           </a>
         </p>
         <p>
-          <a className="like-link btn btn-sm btn-danger btn-round-lg animated-hover" id={this.props.userName} href={`/api/users/${this.props.userName}/like`}>
+          <button
+            className="btn btn-sm btn-danger btn-round-lg animated-hover"
+            onClick={this.sendHeart}
+          >
             { this.renderHeartIcon() }
             Αποστολή καρδιάς
-          </a>
+          </button>
         </p>
       </div>
     )
   }
 
+  sendHeart = (e) => {
+    e.preventDefault()
+    const postData = (url) => {
+      return fetch(url, {
+        method: 'PUT'
+      })
+      .then(response => response.json())
+    }
+
+    let like_url = `/api/users/${this.props.userName}/like`
+
+    postData(like_url)
+      .then(res => {
+        console.log(res)
+        this.setState({heartIcon: res.heart})
+      })
+  }
+
   renderHeartIcon = () => {
+    if(this.state.heartIcon !== null) {
+      return <i className={`fa ${this.state.heartIcon} mr-1`} />
+    }
+
     if(this.props.like === true) {
       return <i className="fa fa-heart mr-1" />
     } else {
@@ -73,6 +101,7 @@ export default class ProfilePicPanel extends Component {
         </p>
         { (this.state.currentUsername == this.props.userName) ?
             this.renderCurrentUserSettings() : this.renderUserSettings() }
+        <hr/>
       </div>
     );
   }
