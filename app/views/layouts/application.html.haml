@@ -17,18 +17,9 @@
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
 
-  %body
-    = show_flash_message
-
-    - if user_signed_in?
-      #root{ data: { username: current_user.username,
-                     id: current_user.id,
-                     profile_picture: current_user.profile_picture } }
+    %body
+      %span#root
         = javascript_pack_tag 'main'
-    - else
-      = yield
-      = render 'layouts/footer'
-    .loading-modal
 
   - if Rails.env.production?
     = javascript_tag "GoogleAnalytics.load()"

@@ -4,21 +4,22 @@ import NavBar from './nav_bar'
 import UsersIndex from './users/users_index'
 import KardiesIndex from './kardies/kardies_index'
 import UserProfile from './users/user/profile'
+import Home from './home/home_index'
 
 export default class KardiesApp extends Component {
   render() {
     return(
       <Router>
-        <div>
+        <Switch>
+          <Route path="/" component={Home} />
           <NavBar />
+
           <div className="container">
-            <Switch>
-              <Route path="/users/:userName" component={UserProfile} />
-              <Route path="/users" component={UsersIndex} />
-              <Route path="/likes" component={KardiesIndex} />
-            </Switch>
+            <Route path="/users" component={UsersIndex} />
+            <Route path="/users/:userName" component={UserProfile} />
+            <Route path="/likes" component={KardiesIndex} />
           </div>
-        </div>
+        </Switch>
       </Router>
     )
   }
