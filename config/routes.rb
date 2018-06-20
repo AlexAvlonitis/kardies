@@ -3,9 +3,10 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  devise_for :user, controllers: { registrations: 'registrations',
-                                   sessions: 'sessions',
-                                   omniauth_callbacks: 'omniauth_callbacks' }
+  use_doorkeeper do
+    # No need to register client application
+    skip_controllers :applications, :authorized_applications
+  end
 
   get '/google24de39283b44c66d.html',
     to: proc { |env| [200, {}, ["google-site-verification: google24de39283b44c66d.html"]] }
@@ -26,6 +27,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+      devise_for :user
+
       resources :users, param: :username, only: [:index, :show] do
         member do
           put "like", to: "likes#like"

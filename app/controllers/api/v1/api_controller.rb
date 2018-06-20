@@ -1,8 +1,6 @@
 module Api
   module V1
     class ApiController < ApplicationController
-      skip_before_action :verify_authenticity_token
-
       def block_and_render(error)
         e = error
         render json: { errors: e }, status: :unauthorized

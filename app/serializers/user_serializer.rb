@@ -4,6 +4,6 @@ class UserSerializer < ActiveModel::Serializer
   attributes :username, :profile_picture, :profile_picture_medium, :like
 
   def like
-    current_user.voted_for? object
+    current_user.voted_for? object if current_user
   end
 end

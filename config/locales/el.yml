@@ -263,6 +263,8 @@ el:
             current_password:
               blank: "Πρέπει να επαληθεύσετε τον κωδικό σας"
               invalid: "Λάθος κωδικός"
+            user_detail:
+              blank: "Συμπληρώστε όλα τα πεδία"
         user_detail:
           attributes:
             state:

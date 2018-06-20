@@ -80,6 +80,11 @@ class User < ApplicationRecord
                           .limit(4)
   end
 
+  def self.find_for_authentication(tainted_conditions)
+    user = find_first_by_auth_conditions(tainted_conditions)
+    user if user && user.confirmed?
+  end
+
   delegate :city, to: :user_detail
   delegate :state, to: :user_detail
   delegate :gender, to: :user_detail

@@ -11,7 +11,10 @@ module Api
 
       def like
         if UserBlockedCheck.call(current_user, @user)
-          render json: { errors: "#{t ('users.show.blocked_user')}" }, status: :forbidden
+          render json: {
+              errors: "#{t ('users.show.blocked_user')}"
+            },
+            status: :forbidden
           return
         end
         return send_unlike if current_user.voted_for? @user
@@ -36,7 +39,8 @@ module Api
       end
 
       def add_vote_notification
-        @add_vote_notification ||= AddVoteNotification.new(@user, current_user).add
+        @add_vote_notification ||=
+          AddVoteNotification.new(@user, current_user).add
       end
 
       def set_user
