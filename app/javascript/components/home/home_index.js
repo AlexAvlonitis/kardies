@@ -8,7 +8,7 @@ export default class HomeIndex extends Component {
         <header>
           <div className="row justify-content-end mr-4">
             <div className="mt-4">
-              <a href="/login" className="btn btn-orange">
+              <a href="/users/login" className="btn btn-orange">
                 Σύνδεση
               </a>
             </div>

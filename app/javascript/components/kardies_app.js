@@ -5,13 +5,15 @@ import UsersIndex from './users/users_index'
 import KardiesIndex from './kardies/kardies_index'
 import UserProfile from './users/user/profile'
 import Home from './home/home_index'
+import Login from './home/login'
 
 export default class KardiesApp extends Component {
   render() {
     return(
       <Router>
         <Switch>
-          <Route path="/" component={Home} />
+          <Route exact path="/" component={Home} />
+          <Route path="/users/login" component={Login} />
           <NavBar />
 
           <div className="container">

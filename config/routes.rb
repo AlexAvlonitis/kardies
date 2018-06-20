@@ -42,7 +42,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, param: :username, only: [:index, :show]
+  resources :users, param: :username, only: [:index, :show] do
+    collection do
+      get 'login'
+    end
+  end
 
   resources :reports, param: :username, only: [:create, :show]
   resources :blocked_users, param: :id, only: [:create, :destroy]
