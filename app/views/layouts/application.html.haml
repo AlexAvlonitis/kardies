@@ -18,8 +18,6 @@
     = javascript_include_tag 'application'
 
     %body
-      %span#root
-        = javascript_pack_tag 'main'
 
   - if Rails.env.production?
     = javascript_tag "GoogleAnalytics.load()"

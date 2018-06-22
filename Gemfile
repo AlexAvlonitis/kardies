@@ -40,7 +40,6 @@ gem 'paperclip', '~> 6.0'
 gem 'pry-rails'
 gem 'pundit'
 gem 'rack-attack'
-gem 'react-rails'
 gem 'redis', '~> 3.3'
 gem 'redis-rails'
 gem 'simple_form'
@@ -48,7 +47,6 @@ gem 'sitemap_generator'
 gem 'swipebox'
 gem 'toastr-rails'
 gem 'validates_email_format_of'
-gem 'webpacker'
 
 group :development, :test do
   gem 'byebug', platform: :mri
