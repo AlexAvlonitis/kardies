@@ -14,5 +14,16 @@ module Travelhub
     config.i18n.default_locale = :el
     config.autoload_paths += %W(#{config.root}/lib)
     config.middleware.use Rack::Attack
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'localhost:3000', '127.0.0.1:3000'
+        resource(
+          '*',
+          headers: :any,
+          methods: [:get, :post, :delete, :put, :patch, :options, :head]
+        )
+      end
+    end
   end
 end
