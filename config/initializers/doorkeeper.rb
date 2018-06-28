@@ -9,7 +9,7 @@ Doorkeeper.configure do
     end
   end
 
-  access_token_expires_in 5.days
+  access_token_expires_in 1.day
 
   grant_flows %w(password)
 
@@ -47,7 +47,7 @@ Doorkeeper.configure do
 
   # Reuse access token for the same resource owner within an application (disabled by default)
   # Rationale: https://github.com/doorkeeper-gem/doorkeeper/issues/383
-  # reuse_access_token
+  reuse_access_token
 
   # Issue access tokens with refresh token (disabled by default)
   # use_refresh_token

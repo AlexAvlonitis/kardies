@@ -31,6 +31,9 @@ class User < ApplicationRecord
   has_one :email_preference, dependent: :destroy
   has_many :conversation_notifications, dependent: :destroy
   accepts_nested_attributes_for :user_detail
+  has_many :access_tokens, class_name: "Doorkeeper::AccessToken",
+                           foreign_key: :resource_owner_id,
+                           dependent: :delete_all
 
   # Validations
   validates :user_detail,
