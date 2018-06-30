@@ -1,5 +1,5 @@
 class UserDetailSerializer < ActiveModel::Serializer
-  attributes :city, :state, :age
+  attributes :city, :state, :age, :gender
 
   def city
     GC.get_city_name(object.state, object.city)

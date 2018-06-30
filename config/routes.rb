@@ -43,7 +43,7 @@ Rails.application.routes.draw do
       resources :abouts,                    only: :update
       resources :messages,                  only: :create
       resources :like,                      only: :index
-      resources :search_criteria,           only: :create
+      resources :search_criteria,           only: :create, path: :search
       resources :pictures,                  only: :destroy
       resources :conversations, only: [:index, :show, :destroy] do
         delete :delete_all, on: :collection
@@ -51,6 +51,7 @@ Rails.application.routes.draw do
 
       get 'cities/:state',         to: 'places#cities'
       get 'states',                to: 'places#states'
+      get 'me',                    to: 'api#me'
     end
   end
 
