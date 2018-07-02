@@ -12,12 +12,10 @@ module Api
 
       def show
         if UserBlockedCheck.call(current_user, @user)
-          return block_and_render(t 'users.show.blocked_user')
+          return block_and_render(t('users.show.blocked_user'))
         end
 
-        unless profile_pic_exists?
-          return block_and_render('You need a profile pic')
-        end
+        return block_and_render('You need a profile pic') unless profile_pic_exists?
         render json: @user, status: :ok
       end
 

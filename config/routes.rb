@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
-  root 'users#index'
-
   use_doorkeeper do
     # No need to register client application
     skip_controllers :applications, :authorized_applications
@@ -16,16 +14,16 @@ Rails.application.routes.draw do
       devise_for :user
 
       namespace :admin do
-        resources :reports, only: :index
         resources :users, param: :username, only: [:index, :show]
-        resources :contacts, only: :index
-        resources :conversations, only: :show
-        resources :blocked_emails, only: [:index, :destroy, :create]
+        resources :reports,                 only: :index
+        resources :contacts,                only: :index
+        resources :conversations,           only: :show
+        resources :blocked_emails,          only: [:index, :destroy, :create]
 
         delete 'delete_user/:username', to: "users#admin_destroy", as: :destroy
-        post 'unblock_user/:username', to: "users#admin_unblock", as: :unblock
-        post 'create_admin/:username', to: "users#create_admin", as: :create_admin
-        post 'undo_admin/:username', to: "users#undo_admin", as: :undo_admin
+        post 'unblock_user/:username',  to: "users#admin_unblock", as: :unblock
+        post 'create_admin/:username',  to: "users#create_admin", as: :create_admin
+        post 'undo_admin/:username',    to: "users#undo_admin", as: :undo_admin
       end
 
       resources :users, param: :username, only: [:index, :show] do
@@ -44,15 +42,14 @@ Rails.application.routes.draw do
       resources :like,                      only: :index
       resources :search_criteria,           only: :create, path: :search
       resources :pictures,                  only: :destroy
+
       resources :conversations, only: [:index, :show, :destroy] do
         delete :delete_all, on: :collection
       end
 
-      get 'cities/:state',         to: 'places#cities'
-      get 'states',                to: 'places#states'
-      get 'me',                    to: 'api#me'
+      get 'cities/:state', to: 'places#cities'
+      get 'states',        to: 'places#states'
+      get 'me',            to: 'api#me'
     end
   end
-
-  get 'terms', to: 'terms#index', as: :terms
 end

@@ -14,8 +14,8 @@ class MessageBroadcastJob < ApplicationJob
 
   def self.render_blocked(conversation)
     render_blocked = ApplicationController
-                      .renderer
-                      .render(partial: 'conversations/blocked')
+                     .renderer
+                     .render(partial: 'conversations/blocked')
 
     ActionCable.server.broadcast(
       "conversation_#{conversation.id}",

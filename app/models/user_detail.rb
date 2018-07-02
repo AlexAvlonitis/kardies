@@ -1,7 +1,7 @@
 class UserDetail < ApplicationRecord
   belongs_to :user
 
-  VALID_IMAGES_REGEX = /^image\/(jpeg|jpg|png|gif|tiff)$/
+  VALID_IMAGES_REGEX ||= /^image\/(jpeg|jpg|png|gif|tiff)$/
 
   update_index('users#user') { self }
 

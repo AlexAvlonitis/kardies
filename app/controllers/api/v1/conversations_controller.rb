@@ -2,7 +2,7 @@ module Api
   module V1
     class ConversationsController < ApiController
       before_action :get_mailbox, :get_messages
-      before_action :get_conversation, except: [:index, :delete_all]
+      before_action :get_conversation, except: %i[index delete_all]
 
       def index
         @conversations

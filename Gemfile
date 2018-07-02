@@ -2,39 +2,19 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1'
-# Mysql
 gem 'mysql2'
-# Use Puma as the app server
 gem 'puma', '~> 3.0'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-# Use jquery as the JavaScript library
+
 gem 'active_model_serializers'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'aws-sdk-s3', '~> 1'
-gem 'bootstrap', '~> 4.1.1'
-gem 'bootstrap-filestyle-rails'
 gem 'chewy'
 gem 'devise'
 gem 'doorkeeper'
-gem 'es6-promise-rails'
-gem 'font-awesome-rails'
 gem 'greek-cities'
-gem 'haml', git: 'https://github.com/haml/haml'
-gem 'holder_rails'
-gem 'jquery-fileupload-rails'
-gem 'jquery-rails'
-gem 'jquery-slick-rails'
 gem 'kaminari'
 gem 'mailboxer'
 gem 'mailgun_rails'
-gem 'nouislider-rails'
 gem 'omniauth-facebook'
 gem 'paperclip', '~> 6.0'
 gem 'pry-rails'
@@ -44,8 +24,6 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'redis', '~> 3.3'
 gem 'redis-rails'
 gem 'sitemap_generator'
-gem 'swipebox'
-gem 'toastr-rails'
 gem 'validates_email_format_of'
 
 group :development, :test do

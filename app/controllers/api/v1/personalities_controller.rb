@@ -4,7 +4,7 @@ module Api
       def index; end
 
       def create
-        personality_type = Personalities::Test.build(params).execute
+        personality_type = ::Personalities::Test.build(params).execute
         current_user.user_detail.update(personality_type: personality_type)
 
         render json: { data: personality_type }, status: :created
