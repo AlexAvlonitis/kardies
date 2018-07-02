@@ -1,9 +1,0 @@
-- if Rails.env.production?
-  = javascript_include_tag "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", async: true
-  / kardies_ad
-  %ins.adsbygoogle.kardies_ad{ style: "display:block", "data-ad-client" => "ca-pub-6929844255027064", "data-ad-slot" => "5874213874", "data-ad-format" => "auto" }
-  :javascript
-    (adsbygoogle = window.adsbygoogle || []).push({});
-- else
-  .ad-fake-container
-    %p This is an Ad

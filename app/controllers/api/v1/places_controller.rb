@@ -7,14 +7,14 @@ module Api
       end
 
       def cities
-        @cities ||= GC.cities(params[:state]).to_json
+        @cities ||= GC.cities(place_params).to_json
         render json: @cities, status: :ok
       end
 
       private
 
       def place_params
-        params.require(:place).permit(:state)
+        params.permit(:state)
       end
     end
   end

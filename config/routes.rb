@@ -16,7 +16,6 @@ Rails.application.routes.draw do
       devise_for :user
 
       namespace :admin do
-        get 'application/index', to: 'homes#index'
         resources :reports, only: :index
         resources :users, param: :username, only: [:index, :show]
         resources :contacts, only: :index

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :doorkeeper_authorize!
   respond_to :json
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from ::Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def current_user
     @current_user ||= current_resource_owner

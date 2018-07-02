@@ -1,6 +1,6 @@
 module Api
   module V1
-    class ApiController < ApplicationController
+    class ApiController < ::ApplicationController
       def me
         respond_with current_resource_owner
       end
