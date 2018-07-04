@@ -8,7 +8,7 @@ module Api
         current_user.user_detail.update(personality_type: personality_type)
 
         render json: { data: personality_type }, status: :created
-      rescue StandardError => e
+      rescue ::StandardError => e
         render json: { error: e }, status: :unprocessable_entity
       end
     end

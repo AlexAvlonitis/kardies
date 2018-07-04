@@ -11,7 +11,7 @@ module Api
       end
 
       def show
-        if UserBlockedCheck.call(current_user, @user)
+        if ::UserBlockedCheck.call(current_user, @user)
           return block_and_render(t('users.show.blocked_user'))
         end
 
@@ -22,7 +22,7 @@ module Api
       private
 
       def set_user
-        @user = User.find_by(username: params[:username])
+        @user = ::User.find_by(username: params[:username])
         rescue_error unless @user
       end
 
@@ -31,11 +31,11 @@ module Api
       end
 
       def get_all_users
-        User.get_all.except_user(current_user).confirmed.page(params[:page])
+        ::User.get_all.except_user(current_user).confirmed.page(params[:page])
       end
 
       def get_all_indexed_users
-        User.search(last_search, current_user).page(params[:page]).objects
+        ::User.search(last_search, current_user).page(params[:page]).objects
       end
 
       def last_search

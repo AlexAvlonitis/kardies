@@ -9,7 +9,7 @@ module Api
       private
 
       def about_params
-        params.require(:about).permit(allow_params)
+        params.permit(allow_params)
       end
 
       def allow_params

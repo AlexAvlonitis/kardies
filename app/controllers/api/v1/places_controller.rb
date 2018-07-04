@@ -2,12 +2,12 @@ module Api
   module V1
     class PlacesController < ApiController
       def states
-        @states ||= GC.states
+        @states ||= ::GC.states
         render json: @states, status: :ok
       end
 
       def cities
-        @cities ||= GC.cities(place_params).to_json
+        @cities ||= ::GC.cities(place_params).to_json
         render json: @cities, status: :ok
       end
 

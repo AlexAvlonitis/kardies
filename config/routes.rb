@@ -33,13 +33,13 @@ Rails.application.routes.draw do
       end
       resources :reports, param: :username, only: [:create, :show]
       resources :blocked_users, param: :id, only: [:create, :destroy]
-      resources :contacts,                  only: [:index, :create]
       resources :personalities,             only: [:index, :create]
+      resources :contacts,                  only: :create
       resources :email_preferences,         only: :update
       resources :galleries,                 only: :update
       resources :abouts,                    only: :update
       resources :messages,                  only: :create
-      resources :like,                      only: :index
+      resources :likes,                      only: :index
       resources :search_criteria,           only: :create, path: :search
       resources :pictures,                  only: :destroy
 

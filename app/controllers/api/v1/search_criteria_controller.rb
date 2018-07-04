@@ -3,7 +3,7 @@ module Api
     class SearchCriteriaController < ApiController
       def create
         search_criteria = current_user.search_criteria.build(search_criteria_params)
-        @search_criteria = SearchCriterium.normalize_params(search_criteria)
+        @search_criteria = ::SearchCriterium.normalize_params(search_criteria)
         if @search_criteria.save
           render_searched_users
         else
@@ -14,9 +14,9 @@ module Api
       private
 
       def render_searched_users
-        users = User.search(@search_criteria, current_user)
-                    .page(params[:page])
-                    .objects
+        users = ::User.search(@search_criteria, current_user)
+                      .page(params[:page])
+                      .objects
 
         users.compact!
         render json: users, status: :ok
