@@ -9,7 +9,7 @@ module Api
       end
 
       def cities
-        @cities ||= ::GC.cities(place_params).to_json
+        @cities ||= ::GC.cities(place_params.values.first).to_json
         render json: @cities, status: :ok
       end
 
