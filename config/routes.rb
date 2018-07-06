@@ -47,7 +47,6 @@ Rails.application.routes.draw do
         delete :delete_all, on: :collection
       end
 
-      get 'cities/:state', to: 'places#cities'
       get 'states',        to: 'places#states'
       get 'me',            to: 'api#me'
     end

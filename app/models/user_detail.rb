@@ -19,8 +19,7 @@ class UserDetail < ApplicationRecord
                        size: { in: 0..5.megabytes },
                        content_type: { content_type: VALID_IMAGES_REGEX }
 
-  validates :city,
-            :age,
+  validates :age,
             :gender,
             :state,
             presence: true

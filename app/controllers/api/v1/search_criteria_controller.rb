@@ -27,7 +27,7 @@ module Api
       end
 
       def allowed_params
-        %i[state city gender age_from age_to is_signed_in]
+        %i[state gender age_from age_to is_signed_in]
       end
     end
   end

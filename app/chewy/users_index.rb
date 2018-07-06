@@ -15,7 +15,6 @@ class UsersIndex < Chewy::Index
     field :username, :email, :confirmed_at
     field :is_signed_in, type: :boolean
     field :state, value: ->(user) { user.user_detail.state }
-    field :city, value: ->(user) { user.user_detail.city }
     field :age, value: ->(user) { user.user_detail.age }
     field :gender, value: ->(user) { user.user_detail.gender }
     field :created, type: 'date', include_in_all: false,

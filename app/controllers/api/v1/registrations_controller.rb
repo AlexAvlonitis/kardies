@@ -34,7 +34,7 @@ module Api
         [
           :username, :email, :password, :password_confirmation,
           user_detail_attributes: %i[
-            id city state gender age profile_picture
+            id state gender age profile_picture
           ]
         ]
       end

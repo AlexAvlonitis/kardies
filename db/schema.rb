@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180620100218) do
+ActiveRecord::Schema.define(version: 2018_07_06_131617) do
 
-  create_table "abouts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "abouts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.string "job"
     t.string "hobby"
@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["user_id"], name: "index_abouts_on_user_id"
   end
 
-  create_table "blocked_emails", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "blocked_emails", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "domain"
   end
 
-  create_table "blocked_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "blocked_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "blocked_user_id"
     t.datetime "created_at", null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["user_id"], name: "index_blocked_users_on_user_id"
   end
 
-  create_table "contacts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "contacts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.string "subject", null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "conversation_notifications", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "conversation_notifications", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.integer "receiver_id"
     t.boolean "received"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["user_id"], name: "index_conversation_notifications_on_user_id"
   end
 
-  create_table "email_preferences", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "email_preferences", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.boolean "likes", default: true
     t.boolean "messages", default: true
@@ -69,14 +69,14 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["user_id"], name: "index_email_preferences_on_user_id"
   end
 
-  create_table "galleries", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "galleries", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_galleries_on_user_id"
   end
 
-  create_table "mailboxer_conversation_opt_outs", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "mailboxer_conversation_opt_outs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "unsubscriber_type"
     t.integer "unsubscriber_id"
     t.integer "conversation_id"
@@ -84,13 +84,13 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["unsubscriber_id", "unsubscriber_type"], name: "index_mailboxer_conversation_opt_outs_on_unsubscriber_id_type"
   end
 
-  create_table "mailboxer_conversations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "mailboxer_conversations", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "subject", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "mailboxer_notifications", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "mailboxer_notifications", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "type"
     t.text "body"
     t.string "subject", default: ""
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["type"], name: "index_mailboxer_notifications_on_type"
   end
 
-  create_table "mailboxer_receipts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "mailboxer_receipts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "receiver_type"
     t.integer "receiver_id"
     t.integer "notification_id", null: false
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
   end
 
-  create_table "oauth_access_grants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "oauth_access_grants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "resource_owner_id", null: false
     t.bigint "application_id", null: false
     t.string "token", null: false
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
   end
 
-  create_table "oauth_access_tokens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "oauth_access_tokens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "resource_owner_id"
     t.bigint "application_id"
     t.string "token", null: false
@@ -159,7 +159,7 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
   end
 
-  create_table "oauth_applications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "oauth_applications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "uid", null: false
     t.string "secret", null: false
@@ -170,14 +170,14 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
-  create_table "personalities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "personalities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "code"
     t.text "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "pictures", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "pictures", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "picture_file_name"
     t.string "picture_content_type"
     t.integer "picture_file_size"
@@ -188,7 +188,7 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["gallery_id"], name: "index_pictures_on_gallery_id"
   end
 
-  create_table "reports", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "reports", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "reason"
     t.text "description"
     t.integer "reporter_id"
@@ -198,7 +198,7 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
-  create_table "search_criteria", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "search_criteria", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.string "state"
     t.string "city"
@@ -211,9 +211,8 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["user_id"], name: "index_search_criteria_on_user_id"
   end
 
-  create_table "user_details", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "user_details", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
-    t.string "city", default: "athina-ATT", null: false
     t.string "gender", default: "female", null: false
     t.string "age", default: "30", null: false
     t.string "profile_picture_file_name"
@@ -225,7 +224,7 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["user_id"], name: "index_user_details_on_user_id"
   end
 
-  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "username", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -256,7 +255,7 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  create_table "vote_notifications", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "vote_notifications", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.integer "voted_by_id"
     t.boolean "vote"
@@ -266,7 +265,7 @@ ActiveRecord::Schema.define(version: 20180620100218) do
     t.index ["voted_by_id"], name: "index_vote_notifications_on_voted_by_id"
   end
 
-  create_table "votes", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "votes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "votable_type"
     t.integer "votable_id"
     t.string "voter_type"

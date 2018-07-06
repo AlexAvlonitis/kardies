@@ -88,7 +88,6 @@ class User < ApplicationRecord
     user if user && user.confirmed?
   end
 
-  delegate :city, to: :user_detail
   delegate :state, to: :user_detail
   delegate :gender, to: :user_detail
   delegate :hobby, to: :about, allow_nil: true
@@ -168,7 +167,6 @@ class User < ApplicationRecord
       user_detail_attributes: {
         profile_picture: profile_picture,
         state: 'att',
-        city: 'athina-ATT',
         age: 30,
         gender: 'female'
       }
