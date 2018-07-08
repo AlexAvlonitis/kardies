@@ -5,21 +5,12 @@ module Api
       before_action :set_user_about,
                     :set_user_email_preferences,
                     :set_user_blocked_users,
-                    only: %i[edit update]
-
-      def create
-        join_username
-        super
-      end
+                    only: %i[update]
 
       private
 
       def sign_up_params
-        params.permit(allow_params)
-      end
-
-      def join_username
-        params[:username] = params[:username].split(' ').join('_')
+        params.require(:user).permit(allow_params)
       end
 
       def update_resource(resource, params)
@@ -34,7 +25,7 @@ module Api
         [
           :username, :email, :password, :password_confirmation,
           user_detail_attributes: %i[
-            id state gender age profile_picture
+            state gender age profile_picture
           ]
         ]
       end

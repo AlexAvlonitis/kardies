@@ -230,7 +230,7 @@ el:
   activerecord:
     errors:
       messages:
-        record_invalid: "Κάτι πήγε στραβά, δοκιμάστε ξανά"
+        record_invalid: "Κάτι πήγε στραβά, δοκιμάστε ξανά χωρίς κενά και μόνο λατινικούς χαρακτήρες στο ψευδώνυμο"
       models:
         contact:
           attributes:

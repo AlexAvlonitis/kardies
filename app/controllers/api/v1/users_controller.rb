@@ -5,7 +5,6 @@ module Api
 
       def index
         users = search_present? ? get_all_indexed_users : get_all_users
-        users.compact!
 
         render json: users, status: :ok
       end
