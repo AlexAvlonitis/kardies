@@ -22,7 +22,11 @@ module Api
 
       def set_user
         @user = ::User.find_by(username: params[:username])
-        rescue_error unless @user
+        unless @user
+          return render json: {
+              errors: "O χρήστης #{params[:username]} δεν υπάρχει"
+            }, status: :not_found
+        end
       end
 
       def search_present?
