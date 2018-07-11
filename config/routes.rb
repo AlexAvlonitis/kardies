@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
   use_doorkeeper do
-    # No need to register client application
     skip_controllers :applications, :authorized_applications
   end
 
@@ -31,15 +30,15 @@ Rails.application.routes.draw do
           put "like", to: "likes#like"
         end
       end
-      resources :reports, param: :username, only: [:create, :show]
       resources :blocked_users, param: :id, only: [:create, :destroy]
       resources :personalities,             only: [:index, :create]
+      resources :reports, param: :username, only: :create
       resources :contacts,                  only: :create
       resources :email_preferences,         only: :update
       resources :galleries,                 only: :update
       resources :abouts,                    only: :update
       resources :messages,                  only: :create
-      resources :likes,                      only: :index
+      resources :likes,                     only: :index
       resources :search_criteria,           only: :create, path: :search
       resources :pictures,                  only: :destroy
 

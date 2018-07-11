@@ -6,11 +6,9 @@ module Api
         report = reportee.reports.new(report_params)
 
         if report.save
-          flash[:success] = t '.sent'
-          redirect_to user_path(reportee)
+          render json: report, status: :ok
         else
-          flash[:alert] = t '.not_sent'
-          render 'show'
+          render json: { errors: report.errors.full_messages }, status: :unprocessable_entity
         end
       end
 
