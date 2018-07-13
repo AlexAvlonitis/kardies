@@ -15,14 +15,17 @@ module Api
           return block_and_render(t('users.show.blocked_user'))
         end
 
-        return block_and_render('You need a profile pic') unless profile_pic_exists?
+        unless profile_pic_exists?
+          return block_and_render('You need a profile pic')
+        end
+
         render json: @user, status: :ok
       end
 
       private
 
       def set_user
-        @user = ::User.find_by(username: params[:username])
+        @user = User.find_by(username: params[:username])
         unless @user
           return render json: {
               errors: "O χρήστης #{params[:username]} δεν υπάρχει"

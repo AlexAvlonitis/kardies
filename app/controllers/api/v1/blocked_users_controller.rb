@@ -16,7 +16,7 @@ module Api
         if user
           render json: user, status: :ok
         else
-          render json: { errors: 'user does not exist' }, status: :unprocessable_entity
+          render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
         end
       rescue StandardError => e
         render json: { errors: e }, status: :internal_server_error
