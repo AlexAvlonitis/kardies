@@ -6,7 +6,7 @@ module Api
       def index
         current_user.vote_notifications.destroy_all
         all_likes_sorted
-        suggested_users
+        render json: @likes, status: :ok
       end
 
       def like
@@ -59,10 +59,6 @@ module Api
 
       def send_notification_email
         ::HeartsNotificationEmail.new(@user).send
-      end
-
-      def suggested_users
-        @suggested_users ||= ::SuggestedUsers.new(current_user).process
       end
 
       def all_likes_sorted
