@@ -31,7 +31,7 @@ Rails.application.routes.draw do
         end
       end
       resources :blocked_users, param: :id, only: [:create, :destroy]
-      resources :personalities,             only: [:index, :create]
+      resources :personalities,             only: :create
       resources :reports, param: :username, only: :create
       resources :contacts,                  only: :create
       resources :email_preferences,         only: :update
@@ -46,8 +46,8 @@ Rails.application.routes.draw do
         delete :delete_all, on: :collection
       end
 
-      get 'states',        to: 'places#states'
-      get 'me',            to: 'api#me'
+      get 'states', to: 'places#states'
+      get 'me',     to: 'api#me'
     end
   end
 end
