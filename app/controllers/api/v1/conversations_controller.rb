@@ -3,10 +3,10 @@ module Api
     class ConversationsController < ApiController
       before_action :get_mailbox, :get_messages
       before_action :get_conversation, except: %i[index delete_all]
+      after_action :delete_conversation_notifications, only: :index
 
       def index
-        @conversations
-        delete_conversation_notifications
+        render json: @conversations, status: :ok
       end
 
       def show
