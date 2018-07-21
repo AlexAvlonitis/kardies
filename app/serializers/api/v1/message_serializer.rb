@@ -4,6 +4,10 @@ module Api
       belongs_to :sender
 
       attributes :body, :created_at
+
+      def created_at
+        object.created_at.strftime('%m/%d/%y %H:%M')
+      end
     end
   end
 end
