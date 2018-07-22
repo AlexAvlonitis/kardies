@@ -3,7 +3,7 @@ module Api
     class MessageSerializer < ActiveModel::Serializer
       belongs_to :sender
 
-      attributes :body, :created_at
+      attributes :id, :body, :created_at
 
       def created_at
         object.created_at.strftime('%m/%d/%y %H:%M')
