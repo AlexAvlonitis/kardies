@@ -7,10 +7,15 @@ module Api
       attributes :username,
                  :profile_picture,
                  :profile_picture_medium,
-                 :like
+                 :like,
+                 :email
 
       def like
         current_user.voted_for? object if current_user
+      end
+
+      def email
+        current_user === object ? object.email : nil
       end
     end
   end
