@@ -1,13 +1,42 @@
 module Api
   module V1
     class RegistrationsController < ::Devise::RegistrationsController
-      skip_before_action :doorkeeper_authorize!
-      before_action :set_user_about,
-                    :set_user_email_preferences,
-                    :set_user_blocked_users,
-                    only: %i[update]
+      skip_before_action :authenticate_scope!
+      skip_before_action :doorkeeper_authorize!, only: :create
+
+      def update
+        self.resource = current_user
+
+        if resource.respond_to?(:unconfirmed_email)
+          prev_unconfirmed_email = resource.unconfirmed_email
+        end
+
+        resource_updated = resource.update(account_update_params)
+        yield resource if block_given?
+        if resource_updated
+          if is_flashing_format?
+            flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
+              :update_needs_confirmation : :updated
+              set_flash_message :notice, flash_key
+          end
+          bypass_sign_in resource, scope: resource_name
+          respond_with resource
+        else
+          clean_up_passwords resource
+          set_minimum_password_length
+          respond_with resource
+        end
+      end
 
       private
+
+      def current_user
+        @current_user ||= current_resource_owner
+      end
+
+      def current_resource_owner
+        User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+      end
 
       def sign_up_params
         params.require(:user).permit(allow_params)
@@ -28,21 +57,6 @@ module Api
             state gender age profile_picture
           ]
         ]
-      end
-
-      def set_user_about
-        @about = current_user.about || current_user.build_about
-      end
-
-      def set_user_email_preferences
-        @email_preferences =
-          current_user.email_preference || current_user.build_email_preference
-      end
-
-      def set_user_blocked_users
-        @blocked_user_ids ||= current_user.blocked_users.map(&:blocked_user_id)
-
-        @blocked_users ||= User.find(@blocked_user_ids)
       end
     end
   end
