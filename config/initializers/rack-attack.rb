@@ -10,7 +10,10 @@ class Rack::Attack
   # ActiveSupport::Cache::Store
 
   # Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
-  Rack::Attack.cache.store = ActiveSupport::Cache::RedisStore.new('redis://localhost:6379/1/cache', { expires_in: 60.minutes })
+  Rack::Attack.cache.store =
+    ActiveSupport::Cache::RedisStore.new(
+      'redis://localhost:6379/1/cache', { expires_in: 60.minutes }
+    )
 
   ### Throttle Spammy Clients ###
 
@@ -71,8 +74,10 @@ class Rack::Attack
   # believing that they've successfully broken your app (or you just want to
   # customize the response), then uncomment these lines.
   self.throttled_response = lambda do |env|
-   [ 503,  # status
+   [
+     503,  # status
      {},   # headers
-     ['Too many requests, you better watch out!']] # body
+     ['Too many requests, you better watch out!'] # body
+   ]
   end
 end

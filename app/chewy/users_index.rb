@@ -18,6 +18,6 @@ class UsersIndex < Chewy::Index
     field :age, value: ->(user) { user.user_detail.age }
     field :gender, value: ->(user) { user.user_detail.gender }
     field :created, type: 'date', include_in_all: false,
-                    value: -> { created_at } # value proc for source object context
+                    value: -> { created_at }
   end
 end

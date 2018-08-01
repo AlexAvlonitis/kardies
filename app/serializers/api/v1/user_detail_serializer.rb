@@ -1,7 +1,8 @@
 module Api
   module V1
     class UserDetailSerializer < ActiveModel::Serializer
-      attributes :state,
+      attributes :id,
+                 :state,
                  :state_code,
                  :age,
                  :gender,

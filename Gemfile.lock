@@ -104,7 +104,7 @@ GEM
       mime-types (>= 1.16)
     case_transform (0.2)
       activesupport
-    chewy (0.10.1)
+    chewy (5.0.0)
       activesupport (>= 4.0)
       elasticsearch (>= 2.0.0)
       elasticsearch-dsl
@@ -133,7 +133,7 @@ GEM
       elasticsearch-transport (= 6.1.0)
     elasticsearch-api (6.1.0)
       multi_json
-    elasticsearch-dsl (0.1.5)
+    elasticsearch-dsl (0.1.6)
     elasticsearch-transport (6.1.0)
       faraday
       multi_json
@@ -381,7 +381,7 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano-upload-config
   capistrano3-puma
-  chewy (~> 0)
+  chewy (~> 5)
   database_cleaner
   devise
   doorkeeper

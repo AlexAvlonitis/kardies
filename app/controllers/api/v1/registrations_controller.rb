@@ -10,28 +10,26 @@ module Api
         if resource.respond_to?(:unconfirmed_email)
           prev_unconfirmed_email = resource.unconfirmed_email
         end
-
-        resource_updated = resource.update(account_update_params)
-        yield resource if block_given?
-        if resource_updated
+        if resource.update(account_update_params)
           if is_flashing_format?
             flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
               :update_needs_confirmation : :updated
               set_flash_message :notice, flash_key
           end
           bypass_sign_in resource, scope: resource_name
-          respond_with resource
+          render json: resource, status: :ok
         else
           clean_up_passwords resource
           set_minimum_password_length
-          respond_with resource
+          render json: resource.errors.full_messages,
+                 status: :unprocessable_entity
         end
       end
 
       private
 
       def current_user
-        @current_user ||= current_resource_owner
+        current_resource_owner
       end
 
       def current_resource_owner
@@ -53,8 +51,8 @@ module Api
       def allow_params
         [
           :username, :email, :password, :password_confirmation,
-          user_detail_attributes: %i[
-            state gender age profile_picture
+          user_detail_attributes: [
+            :id, :state, :gender, :age, :profile_picture
           ]
         ]
       end
