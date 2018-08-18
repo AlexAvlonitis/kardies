@@ -30,13 +30,14 @@ Rails.application.routes.draw do
           put "like", to: "likes#like"
         end
       end
+      put :about, to: "abouts#update"
+
       resources :blocked_users, param: :id, only: [:create, :destroy]
       resources :personalities,             only: :create
       resources :reports, param: :username, only: :create
       resources :contacts,                  only: :create
       resources :email_preferences,         only: :update
       resources :galleries,                 only: :update
-      resources :abouts,                    only: :update
       resources :messages,                  only: :create
       resources :likes,                     only: :index
       resources :search_criteria,           only: :create, path: :search

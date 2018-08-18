@@ -2,14 +2,14 @@ module Api
   module V1
     class AboutsController < ApiController
       def update
-        @about = current_user.build_about
+        @about = current_user.about
         save_about
       end
 
       private
 
       def about_params
-        params.permit(allow_params)
+        params.require(:about).permit(allow_params)
       end
 
       def allow_params
@@ -18,9 +18,9 @@ module Api
 
       def save_about
         if @about.update(about_params)
-          render json: @about, status: :ok
+          render json: current_user, status: :ok
         else
-          render json: { errors: @about.errors }, status: :internal_server_error
+          render json: @about.errors.full_messages, status: :unprocessable_entity
         end
       end
     end
