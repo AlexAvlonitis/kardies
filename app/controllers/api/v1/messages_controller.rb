@@ -6,8 +6,13 @@ module Api
 
       def create
         @recipient ||= User.find_by(username: params[:message][:username])
-        redirect_to users_path if @recipient == current_user
-        return block_and_redirect if UserBlockedCheck.call(current_user, @recipient)
+        if @recipient == current_user
+          render json: { error: 'δεν μπορείτε να στείλετε μήνυμα στον εαυτό σας' }, status: :forbidden
+          return
+        end
+        if UserBlockedCheck.call(current_user, @recipient)
+          return block_and_render('Ο χρήστης σας έχει μπλοκάρει')
+        end
         send_message
       end
 
@@ -23,9 +28,8 @@ module Api
             params[:message][:body],
             current_user.username
           ).conversation
-          flash[:success] = t '.sent'
         end
-        redirect_to conversations_path
+        render json: { data: 'μήνυμα εστάλει' }, status: :ok
       end
 
       def add_conversation_notification
