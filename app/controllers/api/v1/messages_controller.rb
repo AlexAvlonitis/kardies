@@ -27,6 +27,10 @@ module Api
 
       private
 
+      def message_params
+        params.permit(:recipient, :body)
+      end
+
       def send_message
         conversation = find_existing_conversation
         if conversation && !conversation_deleted?(conversation)
@@ -38,7 +42,6 @@ module Api
             current_user.username
           ).conversation
         end
-        MessageBroadcastJob.perform_later(conversation)
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
       end
 
@@ -49,7 +52,7 @@ module Api
       end
 
       def conversation_notification_email
-        @conversation_notification_email ||=
+        @conversation_notification_email =
           ConversationsNotificationEmail.new(@recipient).send_email
       end
 
