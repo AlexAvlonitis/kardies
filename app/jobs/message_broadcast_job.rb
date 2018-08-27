@@ -6,28 +6,19 @@ class MessageBroadcastJob < ApplicationJob
   end
 
   def broadcast(conversation)
+    serialized_message =
+      Api::V1::MessageSerializer.new(conversation.messages.last).as_json
+
     ActionCable.server.broadcast(
       "conversation_#{conversation.id}",
-      message: render_message(conversation)
+      message: serialized_message
     )
   end
 
   def self.render_blocked(conversation)
-    render_blocked = ApplicationController
-                     .renderer
-                     .render(partial: 'conversations/blocked')
-
     ActionCable.server.broadcast(
       "conversation_#{conversation.id}",
-      message: render_blocked
+      message: 'Υπάρχει αποκλεισμός απο τον χρήστη'
     )
-  end
-
-  def render_message(conversation)
-    ApplicationController
-      .renderer
-      .render(partial: 'conversations/message',
-              locals: { message: conversation.messages.last,
-                        conversation: conversation })
   end
 end

@@ -3,15 +3,21 @@ module ApplicationCable
     identified_by :current_user
 
     def connect
-      self.current_user = find_verified_user
-      logger.add_tags 'ActionCable', current_user.username
+      self.current_user = authenticate!
     end
 
     protected
 
-    def find_verified_user
-      User.find_by(id: cookies.signed['user_id']) ||
-        reject_unauthorized_connection
+    def authenticate!
+      user = User.find_by(id: access_token.try(:resource_owner_id))
+
+      user || reject_unauthorized_connection
+    end
+
+    def access_token
+      @access_token ||= Doorkeeper::AccessToken.by_token(
+        request.query_parameters[:token]
+      )
     end
   end
 end

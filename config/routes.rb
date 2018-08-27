@@ -31,6 +31,8 @@ Rails.application.routes.draw do
         end
       end
       put :about, to: "abouts#update"
+      post :messages, to: "messages#create"
+      post :message_reply, to: "messages#reply"
 
       resources :blocked_users, param: :id, only: [:create, :destroy]
       resources :personalities,             only: :create
@@ -38,7 +40,6 @@ Rails.application.routes.draw do
       resources :contacts,                  only: :create
       resources :email_preferences,         only: :update
       resources :galleries,                 only: :update
-      resources :messages,                  only: :create
       resources :likes,                     only: :index
       resources :search_criteria,           only: :create, path: :search
       resources :pictures,                  only: :destroy
