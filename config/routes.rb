@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         end
       end
       put :about, to: "abouts#update"
+      put :email_preference, to: "email_preferences#update"
       post :messages, to: "messages#create"
       post :message_reply, to: "messages#reply"
 
@@ -38,7 +39,6 @@ Rails.application.routes.draw do
       resources :personalities,             only: :create
       resources :reports, param: :username, only: :create
       resources :contacts,                  only: :create
-      resources :email_preferences,         only: :update
       resources :galleries,                 only: :update
       resources :likes,                     only: :index
       resources :search_criteria,           only: :create, path: :search

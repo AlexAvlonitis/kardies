@@ -5,20 +5,18 @@ module Api
 
       def update
         if @email_preferences.update(email_preferences_params)
-          render json: @email_preferences, status: :ok
+          render json: current_user, status: :ok
         else
-          render json: { errors: @email_preferences.errors }, status: :unprocessable_entity
+          render json: @email_preferences.errors.full_messages, status: :unprocessable_entity
         end
       end
 
       private
 
       def set_email_preferences
-        @email_preferences = if current_user.email_preference
-                               current_user.email_preference
-                             else
-                               current_user.build_email_preference
-                             end
+        @email_preferences = current_user.email_preference ?
+                             current_user.email_preference :
+                             current_user.build_email_preference
       end
 
       def email_preferences_params

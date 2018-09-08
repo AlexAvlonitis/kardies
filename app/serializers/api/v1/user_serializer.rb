@@ -7,6 +7,7 @@ module Api
 
       has_one :user_detail
       has_one :about
+      has_one :email_preference
 
       attributes :username,
                  :profile_picture,
