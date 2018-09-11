@@ -25,6 +25,7 @@ class User < ApplicationRecord
   has_one :user_detail, dependent: :destroy
   has_one :email_preference, dependent: :destroy
   has_one :gallery, dependent: :destroy
+  has_many :pictures, through: :gallery
   has_many :reports, dependent: :destroy
   has_many :search_criteria, dependent: :destroy
   has_many :vote_notifications, dependent: :destroy

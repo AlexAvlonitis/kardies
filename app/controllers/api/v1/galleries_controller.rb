@@ -12,20 +12,17 @@ module Api
       end
 
       def save_gallery
-        unless params[:picture]
-          render json: { errors: 'picture required' }, status: 402
+        if params[:picture].try(:empty?)
+          render json: { errors: 'Χρειάζεται φωτογραφία' }, status: :unprocessable_entity
           return
         end
 
-        unless current_user.gallery
-          Gallery.create(user: current_user)
-        end
+        Gallery.create(user: current_user) unless current_user.gallery
 
-        begin
-          pic = current_user.gallery.pictures.create(picture: params[:picture])
-          render json: { "url": pic.picture.url }, status: 200
-        rescue => e
-          render json: { errors: e + 'hhhey' }, status: 402
+        if pic = current_user.gallery.pictures.create(picture: params[:picture])
+          render json: current_user, status: :ok
+        else
+          render json: pic.errors.full_messages, status: :unprocessable_entity
         end
       end
     end

@@ -25,7 +25,8 @@ module Api
       private
 
       def set_user
-        @user = User.find_by(username: params[:username])
+        @user = User.includes(:gallery, :pictures, :user_detail, :about, :votes)
+                    .find_by(username: params[:username])
         unless @user
           return render json: {
               errors: "O χρήστης #{params[:username]} δεν υπάρχει"

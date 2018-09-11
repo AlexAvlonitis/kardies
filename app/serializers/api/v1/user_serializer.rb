@@ -8,6 +8,7 @@ module Api
       has_one :user_detail
       has_one :about
       has_one :email_preference
+      has_many :pictures, through: :gallery
 
       attributes :username,
                  :profile_picture,
@@ -15,6 +16,10 @@ module Api
                  :like,
                  :like_date,
                  :email
+
+      def profile_picture
+        object.profile_picture(:original)
+      end
 
       def like
         current_user.voted_for? object if current_user
