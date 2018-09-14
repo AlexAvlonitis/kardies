@@ -38,13 +38,15 @@ Rails.application.routes.draw do
       post :messages,      to: "messages#create"
       post :message_reply, to: "messages#reply"
 
-      resources :blocked_users, param: :id, only: [:create, :destroy]
-      resources :personalities,             only: :create
-      resources :reports, param: :username, only: :create
-      resources :contacts,                  only: :create
-      resources :likes,                     only: :index
-      resources :search_criteria,           only: :create, path: :search
-      resources :pictures,                  only: :destroy
+      delete :blocked_users, to: "blocked_users#destroy"
+
+      resources :blocked_users,   only: [:create, :index]
+      resources :personalities,   only: :create
+      resources :reports,         only: :create
+      resources :contacts,        only: :create
+      resources :likes,           only: :index
+      resources :search_criteria, only: :create, path: :search
+      resources :pictures,        only: :destroy
 
       resources :conversations, only: [:index, :show, :destroy] do
         delete :delete_all, on: :collection

@@ -2,9 +2,13 @@ module Api
   module V1
     class ReportsController < ApiController
       def create
-        reportee = ::User.find_by(username: params[:report][:username])
-        report = reportee.reports.new(report_params)
+        reportee = ::User.find_by(username: params[:username])
+        unless reportee
+          render json: { errors: 'Κάτι πήγε στραβά' }, status: :unprocessable_entity
+          return
+        end
 
+        report = reportee.reports.new(report_params)
         if report.save
           render json: report, status: :ok
         else
@@ -15,8 +19,7 @@ module Api
       private
 
       def report_params
-        params.require(:report)
-              .permit(:reason, :description)
+        params.permit(:reason, :description)
               .merge(reporter_id: current_user.id)
       end
     end

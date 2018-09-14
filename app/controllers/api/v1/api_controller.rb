@@ -6,7 +6,7 @@ module Api
       end
 
       def current_user
-        @current_user ||= current_resource_owner
+        @current_user = current_resource_owner
       end
 
       def block_and_render(error)

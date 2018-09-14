@@ -6,7 +6,7 @@ module Api
       attributes :id
 
       def participants
-        object.participants.reject { |user| current_user == user }.first
+        object.participants.reject { |user| scope == user }.first
       end
     end
   end

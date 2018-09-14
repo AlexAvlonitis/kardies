@@ -22,16 +22,17 @@ module Api
       end
 
       def like
-        current_user.voted_for? object if current_user
+        scope.voted_for? object
       end
 
       def like_date
-        like_time = find_user_like
-        distance_of_time_in_words(like_time.updated_at, to_time) if like_time
+        user_like_updated_at = user_like.updated_at
+
+        distance_of_time_in_words(user_like_updated_at, to_time) if user_like_updated_at
       end
 
       def email
-        current_user === object ? object.email : nil
+        scope === object ? object.email : nil
       end
 
       private
@@ -40,8 +41,8 @@ module Api
         Time.now
       end
 
-      def find_user_like
-        object.votes.find_by(votable_id: current_user.id)
+      def user_like
+        object.votes.find_by(votable_id: scope.id)
       end
     end
   end

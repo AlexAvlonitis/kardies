@@ -12,7 +12,7 @@ module Api
 
       def show
         if ::UserBlockedCheck.call(current_user, @user)
-          return block_and_render(t('users.show.blocked_user'))
+          return block_and_render(I18n.t('users.show.blocked_user'))
         end
 
         unless profile_pic_exists?
