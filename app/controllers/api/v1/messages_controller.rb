@@ -1,7 +1,6 @@
 module Api
   module V1
     class MessagesController < ApiController
-      skip_before_action :verify_authenticity_token, only: :create
       after_action :add_conversation_notification,
                    :conversation_notification_email,
                    only: :create
@@ -12,7 +11,7 @@ module Api
           render json: { error: 'δεν μπορείτε να στείλετε μήνυμα στον εαυτό σας' }, status: :forbidden
           return
         end
-        if UserBlockedCheck.call(current_user, @recipient)
+        if ::UserBlockedCheck.call(current_user, @recipient)
           return block_and_render('Ο χρήστης σας έχει μπλοκάρει')
         end
         send_message
@@ -21,7 +20,7 @@ module Api
       def reply
         conversation = find_existing_conversation
         current_user.reply_to_conversation(conversation, params[:body])
-        MessageBroadcastJob.perform_later(conversation)
+        MessageBroadcastJob.perform_later(conversation, current_user)
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
       end
 
@@ -46,9 +45,11 @@ module Api
       end
 
       def add_conversation_notification
-        ConversationNotification.create(user_id: @recipient.id,
-                                        receiver_id: current_user.id,
-                                        received: true)
+        ConversationNotification.create(
+          user_id: @recipient.id,
+          receiver_id: current_user.id,
+          received: true
+        )
       end
 
       def conversation_notification_email
@@ -58,9 +59,7 @@ module Api
 
       def find_existing_conversation
         conversation_id = params[:conversation_id]
-        if conversation_id
-          return Mailboxer::Conversation.find(conversation_id)
-        end
+        return Mailboxer::Conversation.find(conversation_id) if conversation_id
 
         Mailboxer::Conversation
           .between(current_user, @recipient)

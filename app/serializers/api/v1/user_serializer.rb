@@ -26,9 +26,10 @@ module Api
       end
 
       def like_date
-        user_like_updated_at = user_like.updated_at
+        voter = user_like
+        return unless voter
 
-        distance_of_time_in_words(user_like_updated_at, to_time) if user_like_updated_at
+        distance_of_time_in_words(voter.updated_at, to_time)
       end
 
       def email

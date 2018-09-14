@@ -6,7 +6,7 @@ module Api
       attributes :id, :body, :created_at
 
       def created_at
-        object.created_at.strftime('%m/%d/%y %H:%M')
+        object.created_at.strftime('%d/%m/%y | %H:%M')
       end
     end
   end
