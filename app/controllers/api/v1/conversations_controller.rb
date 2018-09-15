@@ -26,16 +26,14 @@ module Api
       def destroy
         @conversation.mark_as_deleted(current_user)
         render json: @conversation, status: :created
-      rescue StandardError => e
+      rescue ActiveRecord::RecordNotFound => e
         render json: { errors: e.message }, status: :unprocessable_entity
       end
 
       def delete_all
-        @conversations.each do |conversation|
-          conversation.mark_as_deleted(current_user)
-        end
-        render json: { message: 'deleted' }, status: :ok
-      rescue StandardError => e
+        @conversations.each { |convo| convo.mark_as_deleted(current_user) }
+        render json: { message: 'Οι συνομηλίες διαγράφηκαν' }, status: :ok
+      rescue ActiveRecord::RecordNotFound => e
         render json: { errors: e.message }, status: :unprocessable_entity
       end
 
@@ -59,7 +57,8 @@ module Api
       end
 
       def mark_as_read
-        @conversation.mark_as_read(current_user) if @conversation.is_unread?(current_user)
+        return unless @conversation.is_unread?(current_user)
+        @conversation.mark_as_read(current_user)
       end
     end
   end
