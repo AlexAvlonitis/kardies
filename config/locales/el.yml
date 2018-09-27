@@ -139,6 +139,7 @@ el:
       blocked_user: 'Ενέργεια απαγορεύθηκε, υπάρχει αποκλεισμός απο την μεριά σας ή τη μεριά του χρήστη'
       galleries: "Δημιουργία άλμπουμ"
       password_sent: 'Εάν το email είναι σωστό, σε μερικά λεπτά θα λάβετε οδηγίες αλλαγής κωδικού'
+      password_changed: 'Ο κωδικός σας άλλαξε επιτυχώς'
     edit:
       blocked_users: 'Αποκλεισμένοι χρήστες'
       remove_from_list: 'Αφαίρεση απο την λίστα'
@@ -362,6 +363,8 @@ el:
               invalid: "Λάθος κωδικός"
             user_detail:
               blank: "Συμπληρώστε όλα τα πεδία"
+            reset_password_token:
+              invalid: "To token δεν είναι σωστό, ξαναδοκιμάστε να κάνετε reset τον κωδικό σας"
         user_detail:
           attributes:
             state:
