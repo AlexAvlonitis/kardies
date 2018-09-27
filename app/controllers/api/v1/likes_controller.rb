@@ -11,16 +11,17 @@ module Api
 
       def like
         if ::UserBlockedCheck.call(current_user, @user)
-          render json: {
-              errors: "#{t ('users.show.blocked_user')}"
-            },
+          render(
+            json: { errors: "#{I18n.t ('users.show.blocked_user')}" },
             status: :forbidden
+          )
           return
         end
         return send_unlike if current_user.voted_for? @user
         return send_like unless current_user.voted_for? @user
-      rescue ::StandardError => e
-        render json: { errors: e }, status: 422
+      rescue ::StandardError => _e
+        logger.error(_e)
+        render json: 'Κάτι πήγε στραβά', status: 422
       end
 
       private

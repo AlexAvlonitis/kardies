@@ -21,8 +21,8 @@ Rails.application.routes.draw do
 
         delete 'delete_user/:username', to: "users#admin_destroy", as: :destroy
         post 'unblock_user/:username',  to: "users#admin_unblock", as: :unblock
-        post 'create_admin/:username',  to: "users#create_admin", as: :create_admin
-        post 'undo_admin/:username',    to: "users#undo_admin", as: :undo_admin
+        post 'create_admin/:username',  to: "users#create_admin",  as: :create_admin
+        post 'undo_admin/:username',    to: "users#undo_admin",    as: :undo_admin
       end
 
       resources :users, param: :username, only: [:index, :show] do

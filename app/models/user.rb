@@ -11,8 +11,7 @@ class User < ApplicationRecord
   acts_as_votable
   acts_as_voter
   acts_as_messageable
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+
   devise :database_authenticatable, :registerable, :timeoutable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: [:facebook]
