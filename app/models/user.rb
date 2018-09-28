@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :timeoutable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :omniauthable, omniauth_providers: [:facebook]
+         :confirmable
 
   scope :except_user, ->(user) { where.not(id: user) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
@@ -48,7 +48,8 @@ class User < ApplicationRecord
   validates_email_format_of :email, message: 'Λάθος email'
 
   def self.from_omniauth(auth)
-    user = find_by(provider: auth.provider, uid: auth.uid)
+    return if auth.blank?
+    user = find_by(provider: 'facebook', uid: auth[:userID])
     user || create_user(auth)
   end
 
@@ -153,13 +154,13 @@ class User < ApplicationRecord
   end
 
   def self.create_user(auth)
-    email = auth.info.email
-    profile_picture = picture_from_url(auth.info.image)
+    email = auth[:email]
+    profile_picture = picture_from_url(auth[:picture]['data']['url'])
     password = Devise.friendly_token[0, 20]
-    username = create_username(auth.info.email)
+    username = create_username(auth[:email])
     User.create(
-      provider: auth.provider,
-      uid: auth.uid,
+      provider: 'facebook',
+      uid: auth[:userID],
       email: email,
       password: password,
       username: username,

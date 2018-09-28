@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 
       post :messages,      to: "messages#create"
       post :message_reply, to: "messages#reply"
+      post :omniauths,     to: "omniauths#facebook"
 
       delete :blocked_users, to: "blocked_users#destroy"
 
