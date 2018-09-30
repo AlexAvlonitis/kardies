@@ -6,16 +6,15 @@ class User < ApplicationRecord
   after_create :send_welcome_mail
   after_create :auto_like
 
-  ALPHANUMERIC_REGEX = /\A[a-z0-9A-Z\_]*\Z/
+  ALPHANUMERIC_REGEX ||= /\A[a-z0-9A-Z\_]*\Z/
 
   acts_as_votable
   acts_as_voter
   acts_as_messageable
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+
   devise :database_authenticatable, :registerable, :timeoutable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :omniauthable, omniauth_providers: [:facebook]
+         :confirmable
 
   scope :except_user, ->(user) { where.not(id: user) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
@@ -23,14 +22,18 @@ class User < ApplicationRecord
   # Relations
   has_one :about, dependent: :destroy
   has_one :user_detail, dependent: :destroy
+  has_one :email_preference, dependent: :destroy
   has_one :gallery, dependent: :destroy
+  has_many :pictures, through: :gallery
   has_many :reports, dependent: :destroy
   has_many :search_criteria, dependent: :destroy
   has_many :vote_notifications, dependent: :destroy
   has_many :blocked_users, dependent: :destroy
-  has_one :email_preference, dependent: :destroy
   has_many :conversation_notifications, dependent: :destroy
   accepts_nested_attributes_for :user_detail
+  has_many :access_tokens, class_name: 'Doorkeeper::AccessToken',
+                           foreign_key: :resource_owner_id,
+                           dependent: :delete_all
 
   # Validations
   validates :user_detail,
@@ -45,7 +48,8 @@ class User < ApplicationRecord
   validates_email_format_of :email, message: 'Λάθος email'
 
   def self.from_omniauth(auth)
-    user = find_by(provider: auth.provider, uid: auth.uid)
+    return if auth.blank?
+    user = find_by(provider: 'facebook', uid: auth[:userID])
     user || create_user(auth)
   end
 
@@ -80,7 +84,11 @@ class User < ApplicationRecord
                           .limit(4)
   end
 
-  delegate :city, to: :user_detail
+  def self.find_for_authentication(tainted_conditions)
+    user = find_first_by_auth_conditions(tainted_conditions)
+    user if user && user.confirmed?
+  end
+
   delegate :state, to: :user_detail
   delegate :gender, to: :user_detail
   delegate :hobby, to: :about, allow_nil: true
@@ -93,6 +101,10 @@ class User < ApplicationRecord
 
   def profile_picture(size = :thumb)
     user_detail.profile_picture.url(size)
+  end
+
+  def profile_picture_medium
+    user_detail.profile_picture.url(:medium)
   end
 
   def self.picture_from_url(url)
@@ -142,13 +154,13 @@ class User < ApplicationRecord
   end
 
   def self.create_user(auth)
-    email = auth.info.email
-    profile_picture = picture_from_url(auth.info.image)
+    email = auth[:email]
+    profile_picture = picture_from_url(auth[:picture]['data']['url'])
     password = Devise.friendly_token[0, 20]
-    username = create_username(auth.info.email)
+    username = create_username(auth[:email])
     User.create(
-      provider: auth.provider,
-      uid: auth.uid,
+      provider: 'facebook',
+      uid: auth[:userID],
       email: email,
       password: password,
       username: username,
@@ -156,7 +168,6 @@ class User < ApplicationRecord
       user_detail_attributes: {
         profile_picture: profile_picture,
         state: 'att',
-        city: 'athina-ATT',
         age: 30,
         gender: 'female'
       }

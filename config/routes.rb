@@ -1,69 +1,60 @@
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
-  root 'home#index'
-
-  devise_for :user, controllers: { registrations: 'registrations',
-                                   sessions: 'sessions',
-                                   omniauth_callbacks: 'omniauth_callbacks' }
+  use_doorkeeper do
+    skip_controllers :applications, :authorized_applications
+  end
 
   get '/google24de39283b44c66d.html',
     to: proc { |env| [200, {}, ["google-site-verification: google24de39283b44c66d.html"]] }
 
-  namespace :admin do
-    get 'application/index', to: 'homes#index'
-    resources :reports, only: :index
-    resources :users, param: :username, only: [:index, :show]
-    resources :contacts, only: :index
-    resources :conversations, only: :show
-    resources :blocked_emails, only: [:index, :destroy, :create]
+  namespace :api, defaults: { format: :json } do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+      devise_for :user
 
-    delete 'delete_user/:username', to: "users#admin_destroy", as: :destroy
-    post 'unblock_user/:username', to: "users#admin_unblock", as: :unblock
-    post 'create_admin/:username', to: "users#create_admin", as: :create_admin
-    post 'undo_admin/:username', to: "users#undo_admin", as: :undo_admin
-  end
+      namespace :admin do
+        resources :users, param: :username, only: [:index, :show]
+        resources :reports,                 only: :index
+        resources :contacts,                only: :index
+        resources :conversations,           only: :show
+        resources :blocked_emails,          only: [:index, :destroy, :create]
 
-  resources :users, param: :username, only: [:index, :show] do
-    member do
-      put "like", to: "likes#like"
+        delete 'delete_user/:username', to: "users#admin_destroy", as: :destroy
+        post 'unblock_user/:username',  to: "users#admin_unblock", as: :unblock
+        post 'create_admin/:username',  to: "users#create_admin",  as: :create_admin
+        post 'undo_admin/:username',    to: "users#undo_admin",    as: :undo_admin
+      end
+
+      resources :users, param: :username, only: [:index, :show] do
+        member do
+          put "like", to: "likes#like"
+        end
+      end
+
+      put :about,            to: "abouts#update"
+      put :email_preference, to: "email_preferences#update"
+      put :galleries,        to: "galleries#update"
+
+      post :messages,      to: "messages#create"
+      post :message_reply, to: "messages#reply"
+      post :omniauths,     to: "omniauths#facebook"
+
+      delete :blocked_users, to: "blocked_users#destroy"
+
+      resources :blocked_users,   only: [:create, :index]
+      resources :personalities,   only: :create
+      resources :reports,         only: :create
+      resources :contacts,        only: :create
+      resources :likes,           only: :index
+      resources :search_criteria, only: :create, path: :search
+      resources :pictures,        only: :destroy
+
+      resources :conversations, only: [:index, :show, :destroy] do
+        delete :delete_all, on: :collection
+      end
+
+      get 'states', to: 'places#states'
+      get 'me',     to: 'api#me'
     end
   end
-
-  resources :reports, param: :username, only: [:create, :show]
-  resources :blocked_users, param: :id, only: [:create, :destroy]
-  resources :search_criteria, only: [:new, :create]
-  resources :contacts, only: [:index, :create]
-  resources :email_preferences, only: [:edit, :update]
-
-  resources :conversations, only: [:index, :show, :destroy] do
-    delete :delete_all, on: :collection
-  end
-
-  get "likes", to: "likes#index", as: :my_likes
-  get 'cities/:state', to: 'places#cities'
-  get 'messages/:username/new', to: 'messages#new', as: :new_message
-  get 'terms', to: 'terms#index', as: :terms
-
-  post 'messages', to: 'messages#create', as: :messages
-
-  # removed IDs
-  get 'about/edit', to: 'abouts#edit',   as: :edit_about
-  put 'about',      to: 'abouts#update', as: :about
-
-  get 'gallery/edit', to: 'galleries#edit',   as: :edit_gallery
-  put 'gallery',      to: 'galleries#update', as: :gallery
-
-  delete 'delete_picture/:id', to: "pictures#destroy", as: :destroy_picture
-
-  get 'email_preferences/edit', to: 'email_preferences#edit',   as: :edit_email_preferences
-  put 'email_preferences',      to: 'email_preferences#update', as: :email_preferences
-
-  get 'test-prosopikotitas', to: 'personalities#index', as: :get_personalities
-  post 'test-prosopikotitas', to: 'personalities#create', as: :personalities
-
-  # seo
-  get 'site-gnorimion', to: "gnorimies#site_gnorimion"
-  get 'gnorimies-gamou', to: "gnorimies#gnorimies_gamou"
-  get 'gnorimies-athina', to: "gnorimies#gnorimies_athina"
 end

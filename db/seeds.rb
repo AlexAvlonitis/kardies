@@ -12,7 +12,6 @@ Chewy.strategy(:atomic) do
     confirmed_at: Time.now,
     user_detail_attributes: {
       state: 'att',
-      city: 'athina-ATT',
       age: 30,
       gender: 'female'
     }
@@ -26,7 +25,6 @@ Chewy.strategy(:atomic) do
       confirmed_at: Time.now,
       user_detail_attributes: {
         state: 'att',
-        city: 'athina-ATT',
         age: 30,
         gender: 'male'
       }

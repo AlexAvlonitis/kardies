@@ -1,7 +1,7 @@
 class UserDetail < ApplicationRecord
   belongs_to :user
 
-  VALID_IMAGES_REGEX = /^image\/(jpeg|jpg|png|gif|tiff)$/
+  VALID_IMAGES_REGEX ||= /^image\/(jpeg|jpg|png|gif|tiff)$/
 
   update_index('users#user') { self }
 
@@ -19,8 +19,7 @@ class UserDetail < ApplicationRecord
                        size: { in: 0..5.megabytes },
                        content_type: { content_type: VALID_IMAGES_REGEX }
 
-  validates :city,
-            :age,
+  validates :age,
             :gender,
             :state,
             presence: true

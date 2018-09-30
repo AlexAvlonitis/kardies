@@ -11,14 +11,6 @@ class SearchCriteriaCalculator
     end
   end
 
-  def city
-    if @user.search_criteria.present? && @user.search_criteria.last.city
-      @user.search_criteria.last.city
-    else
-      ''
-    end
-  end
-
   def gender
     if @user.search_criteria.present? && @user.search_criteria.last.gender
       @user.search_criteria.last.gender
@@ -54,7 +46,6 @@ class SearchCriteriaCalculator
   def jsonfy
     all_values = {}
     all_values[:state] = state
-    all_values[:city] = city
     all_values[:gender] = gender
     all_values[:age_from] = age_from
     all_values[:age_to] = age_to

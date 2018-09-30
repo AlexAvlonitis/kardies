@@ -1,9 +1,0 @@
-.text-center
-  %h1= t '.suggested_people_header'
-  %small= t '.suggested_people_description'
-%hr
-.row.justify-content-center
-  - users.each do |user|
-    - if user.try(:profile_picture)
-      = link_to user_path(user) do
-        .profile-pic-round-sm.m-2.lazy{ "data-src" => "#{user.profile_picture}" }
