@@ -1,5 +1,5 @@
-<p>Welcome <%= @email %>!</p>
+<p>Καλώς ήλθαστε στην παρέα μας <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Κάντε κλίκ στον παρακάτω σύνδεσμο για να ενεργοποιήσετε τον λογαριασμό σας.</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to 'Επιβεβαίωση λογαριασμού', "#{ENV['FRONTEND_URL']}/confirmation?confirmation_token=#{@token}" %></p>

@@ -4,6 +4,19 @@ module Api
       skip_before_action :authenticate_scope!
       skip_before_action :doorkeeper_authorize!, only: :create
 
+      def create
+        build_resource(sign_up_params)
+
+        resource.save
+        if resource.persisted?
+          render json: { message: 'signup successfull' }, status: :ok
+        else
+          clean_up_passwords resource
+          set_minimum_password_length
+          respond_with resource
+        end
+      end
+
       def update
         self.resource = current_user
 
