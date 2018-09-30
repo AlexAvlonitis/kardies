@@ -13,7 +13,7 @@ module Api
           )
           render json: user_token(user).as_json, status: :ok
         else
-          render json: { errors: 'Κάτι πήγε στραβά, ξαναπροσπαθήστε σε λίγα λεπτά' }, status: :forbidden
+          render json: @user.errors.full_messages, status: :forbidden
         end
       end
 
