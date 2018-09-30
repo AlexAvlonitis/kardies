@@ -32,5 +32,5 @@ namespace :deploy do
   before 'check:linked_files', 'config:push'
   before 'check:linked_files', 'puma:config'
   before 'deploy:migrate', 'deploy:db:create'
-  after 'puma:smart_restart'
+  after 'puma:smart_restart', 'rails:restart'
 end
