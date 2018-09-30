@@ -4,7 +4,7 @@ FactoryBot.define do
     email 'asd@asd.com'
     password 'asdasdasd'
     admin false
-    user_detail
     confirmed_at DateTime.now
+    user_detail
   end
 end

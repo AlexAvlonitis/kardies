@@ -1,35 +1,55 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  let(:user) { FactoryBot.create(:user) }
-  let(:user2) do
-    FactoryBot.create(:user, username: 'zxc', email: 'zxc@zxc.com')
-  end
+  login_user
 
-  before do
-    allow_any_instance_of(User).to receive(:auto_like) { true }
-    allow_any_instance_of(User).to receive(:send_welcome_mail) { true }
+  let(:user2) do
+    FactoryBot.build_stubbed(:user, username: 'user2', email: 'user2@test.com')
   end
 
   describe 'GET #index' do
-    before do
-      sign_in user
-      get :index
-    end
-
     it "renders the index template" do
+      get :index
       assert_response :success
     end
   end
 
   describe 'GET #show' do
-    before do
-      sign_in user
-      get :show, params: { username: user.username }
+    it "renders the #show view" do
+      get :show, params: { username: 'asd' }
+      assert_response :success
     end
 
-    it "renders the #show view" do
-      assert_response :success
+    context 'when the current_user does not have a picture' do
+      before do
+        @user.user_detail.update!(profile_picture: nil)
+      end
+
+      it "can't view other profiles" do
+        req = get :show, params: { username: user2.username }
+        expect(req).to redirect_to(users_path)
+      end
+
+      it "can view his own profile" do
+        req = get :show, params: { username: @user.username }
+        expect(req).not_to redirect_to(users_path)
+      end
+    end
+
+    context 'when the user is blocked' do
+      before do
+        @user.blocked_users.build(blocked_user_id: user2.id).save!
+      end
+
+      it "can't view the profile" do
+        req = get :show, params: { username: user2.username }
+        expect(req).to redirect_to(users_path)
+      end
+
+      it "can view his own profile" do
+        req = get :show, params: { username: @user.username }
+        expect(req).not_to redirect_to(users_path)
+      end
     end
   end
 end
