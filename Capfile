@@ -1,10 +1,7 @@
 require 'capistrano/setup'
 require 'capistrano/deploy'
-require 'capistrano/nginx'
 require 'capistrano/puma'
 install_plugin Capistrano::Puma
-require 'capistrano/puma/nginx'
-install_plugin Capistrano::Puma::Nginx
 require 'capistrano/rbenv'
 require 'capistrano/rails'
 require 'capistrano/rails/db'

@@ -41,7 +41,6 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'web-console'
   gem 'capistrano'
-  gem 'capistrano-nginx'
   gem 'capistrano-rails'
   gem 'capistrano-rails-console'
   gem 'capistrano-rails-db'
