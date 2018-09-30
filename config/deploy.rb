@@ -11,7 +11,8 @@ set :rbenv_ruby, '2.3.1'
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all # default value
-##
+
+set :nginx_use_ssl, true
 
 set :user, 'deployer'
 set :application, 'travelhub'
@@ -32,4 +33,5 @@ namespace :deploy do
   before 'check:linked_files', 'config:push'
   before 'check:linked_files', 'puma:config'
   before 'deploy:migrate', 'deploy:db:create'
+  after 'puma:smart_restart', 'nginx:restart'
 end
