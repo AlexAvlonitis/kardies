@@ -13,12 +13,17 @@ module Api
       attributes :username,
                  :profile_picture,
                  :profile_picture_medium,
+                 :profile_picture_thumb,
                  :like,
                  :like_date,
                  :email
 
       def profile_picture
         object.profile_picture(:original)
+      end
+
+      def profile_picture_thumb
+        object.profile_picture(:thumb)
       end
 
       def like
