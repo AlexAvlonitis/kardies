@@ -386,7 +386,7 @@ DEPENDENCIES
   pundit
   rack-attack
   rack-cors
-  rails (~> 5.1)
+  rails (~> 5.2)
   redis (~> 4.0)
   redis-rails
   rspec-rails

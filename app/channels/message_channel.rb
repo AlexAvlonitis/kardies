@@ -7,5 +7,9 @@ class MessageChannel < ApplicationCable::Channel
     stream_from "conversation_#{params[:conversation_id]}"
   end
 
-  def unsubscribed; end
+  def unsubscribed
+
+  rescue StandardError => _e
+    logger.fatal(actioncable: _e)
+  end
 end

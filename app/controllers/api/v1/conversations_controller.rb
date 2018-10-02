@@ -40,7 +40,7 @@ module Api
       private
 
       def get_mailbox
-        @mailbox ||= current_user.mailbox
+        @mailbox = current_user.mailbox
       end
 
       def get_messages
@@ -49,7 +49,7 @@ module Api
       end
 
       def get_conversation
-        @conversation ||= @mailbox.conversations.find(params[:id])
+        @conversation = @mailbox.conversations.find(params[:id])
       end
 
       def delete_conversation_notifications

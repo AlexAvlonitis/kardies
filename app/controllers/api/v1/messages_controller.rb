@@ -6,7 +6,7 @@ module Api
                    only: :create
 
       def create
-        @recipient ||= User.find_by(username: params[:recipient])
+        @recipient = User.find_by(username: params[:recipient])
         if @recipient == current_user
           render json: { error: 'δεν μπορείτε να στείλετε μήνυμα στον εαυτό σας' }, status: :forbidden
           return
