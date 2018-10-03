@@ -34,7 +34,7 @@ module Api
 
       def send_message
         conversation = find_existing_conversation
-        if !conversation_deleted?(conversation)
+        if conversation && !conversation_deleted?(conversation)
           current_user.reply_to_conversation(conversation, params[:body])
         else
           current_user.send_message(
