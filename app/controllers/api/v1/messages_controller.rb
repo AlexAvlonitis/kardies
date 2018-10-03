@@ -1,14 +1,16 @@
 module Api
   module V1
     class MessagesController < ApiController
-      after_action :add_conversation_notification,
-                   :conversation_notification_email,
-                   only: :create
+      after_action :add_conversation_notification,   only: :create
+      after_action :conversation_notification_email, only: :create
 
       def create
         @recipient = User.find_by(username: params[:recipient])
         if @recipient == current_user
-          render json: { error: 'δεν μπορείτε να στείλετε μήνυμα στον εαυτό σας' }, status: :forbidden
+          render(
+            json: { error: 'δεν μπορείτε να στείλετε μήνυμα στον εαυτό σας' },
+            status: :unprocessable_entity
+          )
           return
         end
         if ::UserBlockedCheck.call(current_user, @recipient)
@@ -18,9 +20,9 @@ module Api
       end
 
       def reply
-        conversation = find_existing_conversation
-        current_user.reply_to_conversation(conversation, params[:body])
-        MessageBroadcastJob.perform_later(conversation, current_user)
+        @conversation ||= find_existing_conversation
+        current_user.reply_to_conversation(@conversation, params[:body])
+        MessageBroadcastJob.perform_later(@conversation, current_user)
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
       end
 
@@ -35,7 +37,7 @@ module Api
         if conversation && !conversation_deleted?(conversation)
           current_user.reply_to_conversation(conversation, params[:body])
         else
-          conversation = current_user.send_message(
+          current_user.send_message(
             @recipient,
             params[:body],
             current_user.username
@@ -53,22 +55,23 @@ module Api
       end
 
       def conversation_notification_email
-        @conversation_notification_email =
-          ConversationsNotificationEmail.new(@recipient).send_email
+        Notifications::Conversations.new(@recipient).execute
       end
 
       def find_existing_conversation
-        conversation_id = params[:conversation_id]
-        return Mailboxer::Conversation.find(conversation_id) if conversation_id
-
-        Mailboxer::Conversation
-          .between(current_user, @recipient)
-          .find { |c| c.participants.count == 2 }
+        Services::Messages.find_existing_conversation(
+          params[:conversation_id],
+          current_user,
+          @recipient
+        )
       end
 
       def conversation_deleted?(conversation)
-        conversation.is_deleted?(current_user) ||
-          conversation.is_deleted?(@recipient)
+        Services::Messages.conversation_deleted?(
+          conversation,
+          current_user,
+          @recipient
+        )
       end
     end
   end

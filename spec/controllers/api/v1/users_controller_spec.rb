@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe UsersController, type: :controller do
+RSpec.describe Api::V1::UsersController, type: :controller do
   login_user
 
   let(:user2) do

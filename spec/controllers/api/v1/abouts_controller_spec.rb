@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AboutsController, type: :controller do
+RSpec.describe Api::V1::AboutsController, type: :controller do
   login_user
 
   let(:about_attributes) { FactoryBot.attributes_for(:about) }
