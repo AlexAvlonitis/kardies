@@ -15,7 +15,7 @@ module Notifications
     attr_reader :mailer_klass
 
     def email_allowed?
-      user.email_preference.present? user.email_preference.messages : true
+      user.email_preference.present? ? user.email_preference.messages : true
     end
   end
 end
