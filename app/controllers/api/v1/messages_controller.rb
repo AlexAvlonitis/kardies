@@ -20,9 +20,9 @@ module Api
       end
 
       def reply
-        @conversation ||= find_existing_conversation
-        current_user.reply_to_conversation(@conversation, params[:body])
-        MessageBroadcastJob.perform_later(@conversation, current_user)
+        conversation = find_existing_conversation
+        current_user.reply_to_conversation(conversation, params[:body])
+        MessageBroadcastJob.perform_later(conversation, current_user)
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
       end
 
@@ -34,7 +34,7 @@ module Api
 
       def send_message
         conversation = find_existing_conversation
-        if conversation && !conversation_deleted?(conversation)
+        if !conversation_deleted?(conversation)
           current_user.reply_to_conversation(conversation, params[:body])
         else
           current_user.send_message(
