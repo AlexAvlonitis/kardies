@@ -6,16 +6,7 @@ module Api
 
       def create
         @recipient = User.find_by(username: params[:recipient])
-        if @recipient == current_user
-          render(
-            json: { error: 'δεν μπορείτε να στείλετε μήνυμα στον εαυτό σας' },
-            status: :unprocessable_entity
-          )
-          return
-        end
-        if ::UserBlockedCheck.call(current_user, @recipient)
-          return block_and_render('Ο χρήστης σας έχει μπλοκάρει')
-        end
+        authorize @recipient
         send_message
       end
 

@@ -4,7 +4,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def create?
-    not_owner?
+    !owner? && !blocked?
   end
 
   def authorize_admin?
@@ -21,15 +21,21 @@ class UserPolicy < ApplicationPolicy
 
   private
 
+  def blocked?
+    if UserBlockedCheck.call(user, record)
+      raise Pundit::NotAuthorizedError.new({
+        query: :blocked?,
+        record: record,
+        policy: Pundit.policy(user, record)
+      })
+    end
+  end
+
   def admin?
     user.admin?
   end
 
   def owner?
     record == user
-  end
-
-  def not_owner?
-    record != user
   end
 end
