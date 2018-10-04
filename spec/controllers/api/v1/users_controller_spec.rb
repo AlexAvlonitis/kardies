@@ -16,7 +16,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
   describe 'GET #show' do
     it "renders the #show view" do
-      get :show, format: :json, params: { username: 'asd' }
+      get :show, format: :json, params: { username: @user.username }
       assert_response :success
     end
 
@@ -28,8 +28,10 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       it "can't view other profiles" do
         response = get :show, format: :json, params: { username: user2.username }
 
+        error = 'Πρέπει να έχετε φωτογραφία προφίλ, για να έχετε το δικαίωμα' \
+                ' να βλέπετε άλλα προφίλ.'
         parsed_body = JSON.parse(response.body)
-        expect(parsed_body['errors']).to eq('You need a profile pic')
+        expect(parsed_body['errors']).to eq(error)
       end
 
       it "can view his own profile" do

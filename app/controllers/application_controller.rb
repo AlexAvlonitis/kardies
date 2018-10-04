@@ -6,6 +6,7 @@ class ApplicationController < ActionController::API
   respond_to :json
   protect_from_forgery with: :exception, unless: -> { request.format.json? }
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   private
 
@@ -14,6 +15,12 @@ class ApplicationController < ActionController::API
 
     block_and_render(
       I18n.t("#{policy_name}.#{exception.query}", scope: "pundit", default: :default)
+    )
+  end
+
+  def record_not_found(exception)
+    block_and_render(
+      I18n.t("activerecord.errors.messages.record_not_found")
     )
   end
 end

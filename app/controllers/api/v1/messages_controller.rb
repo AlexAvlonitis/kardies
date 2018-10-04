@@ -5,7 +5,7 @@ module Api
       after_action :conversation_notification_email, only: :create
 
       def create
-        @recipient = User.find_by(username: params[:recipient])
+        @recipient = User.find_by!(username: params[:recipient])
         authorize @recipient
         send_message
       end

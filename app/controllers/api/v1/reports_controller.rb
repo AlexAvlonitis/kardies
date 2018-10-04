@@ -2,7 +2,7 @@ module Api
   module V1
     class ReportsController < ApiController
       def create
-        reportee = ::User.find_by(username: params[:username])
+        reportee = ::User.find_by!(username: params[:username])
         unless reportee
           render json: { errors: 'Κάτι πήγε στραβά' }, status: :unprocessable_entity
           return
