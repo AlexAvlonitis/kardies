@@ -4,10 +4,7 @@ module Api
       before_action :set_user, only: :show
 
       def index
-        users = search_present? ? get_all_indexed_users : get_all_users
-        users.compact! if (users && users.is_a?(Array))
-
-        render json: users, status: :ok
+        render json: all_users, status: :ok
       end
 
       def show
@@ -31,25 +28,13 @@ module Api
         end
       end
 
-      def search_present?
-        current_user.search_criteria.present?
-      end
-
-      def get_all_users
-        ::User.get_all.except_user(current_user).confirmed.page(params[:page])
-      end
-
-      def get_all_indexed_users
-        ::User.search(last_search, current_user).page(params[:page]).objects
-      end
-
-      def last_search
-        current_user.search_criteria.last
-      end
-
       def profile_pic_exists?
         return true if @user == current_user
         current_user.profile_picture_exists?
+      end
+
+      def all_users
+        @all_users ||= Services::Users.new(current_user, params[:page]).all
       end
     end
   end
