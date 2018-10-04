@@ -46,8 +46,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       it "can't view the profile" do
         response = get :show, format: :json, params: { username: user2.username }
 
-        error = "Ενέργεια απαγορεύθηκε, υπάρχει αποκλεισμός απο την μεριά σας" \
-                " ή τη μεριά του χρήστη"
+        error = "Υπάρχει αποκλεισμός από την μεριά σας ή τη μεριά του χρήστη"
         parsed_body = JSON.parse(response.body)
         expect(parsed_body['errors']).to eq(error)
       end

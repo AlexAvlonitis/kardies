@@ -11,9 +11,7 @@ module Api
       end
 
       def show
-        if ::UserBlockedCheck.call(current_user, @user)
-          return block_and_render(I18n.t('users.show.blocked_user'))
-        end
+        authorize @user
 
         unless profile_pic_exists?
           return block_and_render('You need a profile pic')

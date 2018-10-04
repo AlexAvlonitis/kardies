@@ -1,7 +1,7 @@
 module Api
   module V1
     class LikesController < ApiController
-      before_action :set_user, only: :like
+      before_action :set_user, only: :create
 
       def index
         current_user.vote_notifications.destroy_all
@@ -9,16 +9,9 @@ module Api
         render json: @likes, status: :ok
       end
 
-      def like
-        if ::UserBlockedCheck.call(current_user, @user)
-          render(
-            json: { errors: "#{I18n.t ('users.show.blocked_user')}" },
-            status: :forbidden
-          )
-          return
-        end
-        return send_unlike if current_user.voted_for? @user
+      def create
         return send_like unless current_user.voted_for? @user
+        return send_unlike if current_user.voted_for? @user
       rescue ::StandardError => _e
         logger.error(_e)
         render json: 'Κάτι πήγε στραβά', status: 422
@@ -46,11 +39,7 @@ module Api
 
       def set_user
         @user = ::User.find_by(username: params[:username])
-        unless @user
-          return render json: {
-              errors: "O χρήστης #{params[:username]} δεν υπάρχει"
-            }, status: :not_found
-        end
+        authorize @user
       end
 
       def delete_vote_notification
