@@ -4,7 +4,7 @@ module Api
       before_action :set_user, only: :show
 
       def index
-        render json: all_users, status: :ok
+        render json: users.all, status: :ok
       end
 
       def show
@@ -18,8 +18,8 @@ module Api
         authorize @user
       end
 
-      def all_users
-        @all_users ||= Services::Users.new(current_user, params[:page]).all
+      def users
+        @users ||= Services::Users.new(current_user, params[:page])
       end
     end
   end
