@@ -10,7 +10,7 @@ module Api
       end
 
       def create
-        blocked_user = current_user.blocked_users.build(blocked_user_id: @user&.id)
+        blocked_user = current_user.blocked_users.build(blocked_user_id: @user.id)
 
         if blocked_user.save
           render json: blocked_user, status: :ok
@@ -20,19 +20,11 @@ module Api
       end
 
       def destroy
-        unless @user
-          render json: { errors: 'Κάτι πήγε στραβά' }, status: :unprocessable_entity
-          return
-        end
-        blocked_user = current_user.blocked_users
-                                   .find_by(blocked_user_id: @user.id)
+        blocked_user =
+          current_user.blocked_users.find_by!(blocked_user_id: @user.id)
 
-        if blocked_user
-          blocked_user.destroy
-          render json: blocked_user, status: :ok
-        else
-          render json: { errors: 'Κάτι πήγε στραβά' }, status: :unprocessable_entity
-        end
+        blocked_user.destroy
+        render json: blocked_user, status: :ok
       end
 
       private
