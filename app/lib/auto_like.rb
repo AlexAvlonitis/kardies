@@ -17,6 +17,11 @@ class AutoLike
   end
 
   def add_vote_notification
-    AddVoteNotification.new(current_user, nini_user).add
+    VoteNotification
+      .create(
+        user_id: nini_user.id,
+        voted_by_id: current_user.id,
+        vote: true
+      )
   end
 end
