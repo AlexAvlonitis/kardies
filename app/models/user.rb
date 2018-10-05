@@ -150,7 +150,7 @@ class User < ApplicationRecord
   end
 
   def auto_like
-    AutoLike.new(self).like
+    likes.auto_like
   end
 
   def self.create_user(auth)
@@ -172,5 +172,9 @@ class User < ApplicationRecord
         gender: 'female'
       }
     )
+  end
+
+  def likes
+    @likes ||= Services::Likes.new(self)
   end
 end
