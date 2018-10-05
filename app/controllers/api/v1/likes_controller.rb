@@ -4,37 +4,29 @@ module Api
       before_action :set_user, only: :create
 
       def index
-        current_user.vote_notifications.destroy_all
-        all_likes_sorted
-        render json: @likes, status: :ok
+        likes.delete_all_notifications
+        render json: likes.sorted, status: :ok
       end
 
       def create
         return send_like unless current_user.voted_for? @user
         return send_unlike if current_user.voted_for? @user
-      rescue ::StandardError => _e
-        logger.error(_e)
-        render json: 'Κάτι πήγε στραβά', status: 422
       end
 
       private
 
       def send_unlike
-        delete_vote_notification
         @user.unliked_by current_user
+        likes.delete_vote_notification
+
         render json: { "heart": 'fa-heart-o' }, status: :ok
       end
 
       def send_like
         @user.liked_by current_user
-        add_vote_notification
-        send_notification_email
-        render json: { "heart": 'fa-heart' }, status: :ok
-      end
+        likes.add_notifications(@user)
 
-      def add_vote_notification
-        @add_vote_notification ||=
-          ::AddVoteNotification.new(@user, current_user).add
+        render json: { "heart": 'fa-heart' }, status: :ok
       end
 
       def set_user
@@ -42,18 +34,8 @@ module Api
         authorize @user
       end
 
-      def delete_vote_notification
-        vote = ::VoteNotification.find_by(voted_by_id: current_user.id)
-        vote ? vote.destroy! : return
-      end
-
-      def send_notification_email
-        ::HeartsNotificationEmail.new(@user).send
-      end
-
-      def all_likes_sorted
-        likes = current_user.votes_for.order(created_at: :desc).voters
-        @likes ||= ::Kaminari.paginate_array(likes).page(params[:page])
+      def likes
+        @likes ||= Services::Likes.new(current_user, params[:page])
       end
     end
   end

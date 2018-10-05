@@ -6,8 +6,8 @@ module Notifications
     end
 
     def execute
-      return if user.is_signed_in?
-      mailer_klass.message_notification(user).deliver_later if email_allowed?
+      return if user.is_signed_in? && email_allowed?
+      mailer_klass.message_notification(user).deliver_later
     end
 
     private
