@@ -13,7 +13,7 @@ module Services
         return unless conversation
 
         conversation.is_deleted?(current_user) ||
-          conversation.is_deleted?(@recipient)
+          conversation.is_deleted?(recipient)
       end
     end
   end
