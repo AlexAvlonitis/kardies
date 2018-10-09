@@ -15,9 +15,7 @@ module ApplicationCable
     end
 
     def access_token
-      @access_token = Doorkeeper::AccessToken.by_token(
-        request.query_parameters[:token]
-      )
+      Doorkeeper::AccessToken.by_token(request.query_parameters[:token])
     end
   end
 end
