@@ -16,7 +16,8 @@ module Api
                  :profile_picture_thumb,
                  :like,
                  :like_date,
-                 :email
+                 :email,
+                 :is_signed_in
 
       def profile_picture
         object.profile_picture(:original)
