@@ -3,7 +3,11 @@ module Api
     class ConversationSerializer < ActiveModel::Serializer
       has_many :participants
 
-      attributes :id
+      attributes :id, :is_read
+
+      def is_read
+        object.is_read? current_user
+      end
 
       def participants
         object.participants.reject { |user| scope == user }.first
