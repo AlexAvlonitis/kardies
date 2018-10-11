@@ -4,7 +4,7 @@ module Api
       after_action :delete_conversation_notifications, only: :index
 
       def index
-        render json: conversations, status: :ok
+        render json: conversations.all, status: :ok
       end
 
       def show
@@ -14,9 +14,6 @@ module Api
         end
         mark_as_read
 
-        messages = conversation.receipts_for(current_user).map do |receipt|
-          receipt.message
-        end
         render json: messages, status: :created
       end
 
@@ -26,19 +23,11 @@ module Api
       end
 
       def delete_all
-        conversations.each { |convo| convo.mark_as_deleted(current_user) }
+        conversations.delete_all
         render json: { message: 'Οι συνομηλίες διαγράφηκαν' }, status: :ok
       end
 
       private
-
-      def conversations
-        @conversations ||= conversations_service.all
-      end
-
-      def conversation
-        @conversation ||= conversations_service.show(params[:id])
-      end
 
       def delete_conversation_notifications
         current_user.conversation_notifications.destroy_all
@@ -49,8 +38,18 @@ module Api
         conversation.mark_as_read(current_user)
       end
 
-      def conversations_service
-        @conversations_service ||= Services::Conversations.new(current_user)
+      def messages
+        conversation.receipts_for(current_user).map do |receipt|
+          receipt.message
+        end
+      end
+
+      def conversation
+        @conversation ||= conversations.show(params[:id])
+      end
+
+      def conversations
+        @conversations ||= Services::Conversations.new(current_user)
       end
     end
   end

@@ -13,6 +13,12 @@ module Services
       @mailbox.conversations.find(id)
     end
 
+    def delete_all
+      mailbox.conversations.each do |convo|
+        convo.mark_as_deleted(current_user)
+      end
+    end
+
     private
 
     attr_reader :current_user
