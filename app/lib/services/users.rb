@@ -7,7 +7,7 @@ module Services
 
     def all
       users = search_present? ? get_all_indexed_users : get_all_users
-      users.compact! if (users && users.is_a?(Array))
+      users.compact! if users.is_a? Array
       users
     end
 

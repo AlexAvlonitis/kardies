@@ -16,24 +16,25 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  scope :except_user, ->(user) { where.not(id: user) }
-  scope :confirmed, -> { where.not(confirmed_at: nil) }
+  scope :except_user, -> (user) { where.not(id: user) }
+  scope :confirmed,   -> { where.not(confirmed_at: nil) }
 
   # Relations
-  has_one :about, dependent: :destroy
-  has_one :user_detail, dependent: :destroy
-  has_one :email_preference, dependent: :destroy
-  has_one :gallery, dependent: :destroy
-  has_many :pictures, through: :gallery
-  has_many :reports, dependent: :destroy
-  has_many :search_criteria, dependent: :destroy
-  has_many :vote_notifications, dependent: :destroy
-  has_many :blocked_users, dependent: :destroy
+  has_one  :about,                      dependent: :destroy
+  has_one  :user_detail,                dependent: :destroy
+  has_one  :email_preference,           dependent: :destroy
+  has_one  :gallery,                    dependent: :destroy
+  has_many :reports,                    dependent: :destroy
+  has_many :search_criteria,            dependent: :destroy
+  has_many :vote_notifications,         dependent: :destroy
+  has_many :blocked_users,              dependent: :destroy
   has_many :conversation_notifications, dependent: :destroy
+  has_many :pictures, through: :gallery
+  has_many :access_tokens,
+           class_name: 'Doorkeeper::AccessToken',
+           foreign_key: :resource_owner_id,
+           dependent: :delete_all
   accepts_nested_attributes_for :user_detail
-  has_many :access_tokens, class_name: 'Doorkeeper::AccessToken',
-                           foreign_key: :resource_owner_id,
-                           dependent: :delete_all
 
   # Validations
   validates :user_detail,
@@ -54,50 +55,17 @@ class User < ApplicationRecord
   end
 
   def self.search(query, current_user)
-    Search.new(query, current_user).call
+    Search::Users.new(query, current_user).execute
   end
 
   def self.get_all
     includes(:user_detail).order(created_at: :desc)
   end
 
-  def self.get_by_state_and_prefered_gender(current_user, gender_of_interest)
-    includes(:user_detail).where(
-      user_details: {
-        gender: gender_of_interest,
-        state: current_user.state
-      }
-    ).except_user(current_user)
-                          .confirmed
-                          .order('RAND()')
-                          .limit(4)
-  end
-
-  def self.get_by_gender(current_user, gender_of_interest)
-    includes(:user_detail).where(
-      user_details: {
-        gender: gender_of_interest
-      }
-    ).except_user(current_user)
-                          .confirmed
-                          .order('RAND()')
-                          .limit(4)
-  end
-
   def self.find_for_authentication(tainted_conditions)
     user = find_first_by_auth_conditions(tainted_conditions)
     user if user && user.confirmed?
   end
-
-  delegate :state, to: :user_detail
-  delegate :gender, to: :user_detail
-  delegate :hobby, to: :about, allow_nil: true
-  delegate :job, to: :about, allow_nil: true
-  delegate :relationship_status, to: :about, allow_nil: true
-  delegate :looking_for, to: :about, allow_nil: true
-  delegate :description, to: :about, allow_nil: true
-  delegate :age, to: :user_detail, allow_nil: true
-  delegate :personality_type, to: :user_detail
 
   def profile_picture(size = :thumb)
     user_detail.profile_picture.url(size)
