@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       post :omniauths,     to: "omniauths#facebook"
 
       delete :blocked_users, to: "blocked_users#destroy"
+      delete :users,         to: "users#destroy"
 
       resources :blocked_users,   only: [:create, :index]
       resources :personalities,   only: :create

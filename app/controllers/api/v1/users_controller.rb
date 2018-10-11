@@ -11,6 +11,11 @@ module Api
         render json: @user, status: :ok
       end
 
+      def destroy
+        current_user.destroy
+        render json: { message: 'Ο λογαριασμός διαγράφηκε' }, status: :ok
+      end
+
       private
 
       def set_user
