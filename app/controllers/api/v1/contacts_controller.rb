@@ -1,21 +1,30 @@
 module Api
   module V1
     class ContactsController < ApiController
-      def create
-        @contact = ::Contact.new contact_params
+      skip_before_action :doorkeeper_authorize!, only: :create
 
-        if @contact.save
-          flash[:success] = t '.contact_sent'
-          redirect_to root_path
+      def create
+        @contact = ::Contact.new(contact_params)
+
+        recaptcha_valid =
+          recaptcha_client.validate(params[:recaptcha_value])
+
+        if recaptcha_valid && @contact.save
+          render json: { message: 'Ευχαριστούμε!' }, status: :ok
         else
-          render :index
+          render json: { errors: I18n.t('contacts.index.errors') }, status: :unprocessable_entity
         end
       end
 
       private
 
       def contact_params
-        params.permit(:name, :email, :subject, :description)
+        params.require(:contact)
+              .permit(:name, :email, :subject, :description, :recaptcha_value)
+      end
+
+      def recaptcha_client
+        @recaptcha_client ||= Recaptcha::Client.new
       end
     end
   end

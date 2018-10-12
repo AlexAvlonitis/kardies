@@ -15,6 +15,7 @@ el:
       email: 'Email'
       email_placeholder: 'Το email σας'
       contact_description: "Για οποιαδήποτε πληροφορία μην διστάσετε να επικοινωνήσετε μαζί μας"
+      errors: 'Παρακαλούμε συμπληρώστε όλα τα πεδία'
     create:
       contact_sent: 'Το μήνυμά σας στάλθηκε με επιτυχία'
       contact_not_sent: 'Το μήνυμά σας δεν στάλθηκε'

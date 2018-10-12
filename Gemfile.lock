@@ -154,6 +154,8 @@ GEM
     greek-cities (1.1.1)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
+    httparty (0.16.2)
+      multi_xml (>= 0.5.2)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     jmespath (1.4.0)
@@ -197,6 +199,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    multi_xml (0.6.0)
     multipart-post (2.0.0)
     mysql2 (0.5.1)
     mysql2 (0.5.1-x86-mingw32)
@@ -375,6 +378,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   greek-cities
+  httparty
   kaminari
   listen (~> 3.0.5)
   mailboxer

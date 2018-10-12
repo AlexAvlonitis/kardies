@@ -18,6 +18,7 @@ gem 'paperclip', '~> 6.0'
 gem 'pry-rails'
 gem 'pundit'
 gem 'rack-attack'
+gem 'httparty'
 gem 'rack-cors', require: 'rack/cors'
 gem "redis", "~> 4.0"
 gem 'redis-rails'
