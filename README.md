@@ -12,8 +12,15 @@
   * AWS_ACCESS_KEY_ID=aws_id
   * AWS_SECRET_ACCESS_KEY=aws_secret
   * AWS_REGION=aws_region
-  * DBPASS=real_dev_db_password
-  * DBUSER=real_dev_db_username
+  * SECRET_KEY_BASE=random_key
+  * MAILGUN_API_KEY=mailgun_api
+  * EMAIL_DOMAIN=email_domain
+  * FRONTEND_URL=the_url_domain_of_the_frontend
+  * RECAPTCHA_SECRET_KEY=google_recaptch_secret
+  * DBHOST=db_host
+  * DBPASS=db_password
+  * DBUSER=db_username
+
 * ```bundle exec rake db:setup```
 * ```bundle exec puma```
 * Go to http://localhost:3000, login with email: test_0@test.com password: password
