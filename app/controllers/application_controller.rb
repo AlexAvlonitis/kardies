@@ -14,13 +14,13 @@ class ApplicationController < ActionController::API
     policy_name = exception.policy.class.to_s.underscore
 
     block_and_render(
-      I18n.t("#{policy_name}.#{exception.query}", scope: "pundit", default: :default)
+      I18n.t("#{policy_name}.#{exception.query}", scope: 'pundit', default: :default)
     )
   end
 
-  def record_not_found(exception)
+  def record_not_found(_exception)
     block_and_render(
-      I18n.t("activerecord.errors.messages.record_not_found")
+      I18n.t('activerecord.errors.messages.record_not_found')
     )
   end
 end

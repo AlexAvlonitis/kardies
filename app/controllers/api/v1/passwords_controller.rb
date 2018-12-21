@@ -2,7 +2,7 @@ module Api
   module V1
     class PasswordsController < ::Devise::RegistrationsController
       skip_before_action :authenticate_scope!
-      skip_before_action :doorkeeper_authorize!, only: [:create, :update]
+      skip_before_action :doorkeeper_authorize!, only: %i[create update]
 
       def create
         self.resource = resource_class.send_reset_password_instructions(resource_params)
@@ -17,7 +17,7 @@ module Api
         self.resource = resource_class.reset_password_by_token(resource_params)
 
         if resource.errors.empty?
-          render json: { message: I18n.t('users.show.password_changed')}, status: :ok
+          render json: { message: I18n.t('users.show.password_changed') }, status: :ok
         else
           set_minimum_password_length
           render json: { errors: resource.errors.full_messages }, status: :unprocessable_entity

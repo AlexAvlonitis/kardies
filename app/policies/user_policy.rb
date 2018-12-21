@@ -27,22 +27,22 @@ class UserPolicy < ApplicationPolicy
 
   def blocked?
     if Services::UserBlockedCheck.execute(user, record)
-      raise Pundit::NotAuthorizedError.new({
+      raise Pundit::NotAuthorizedError.new(
         query: :blocked?,
         record: record,
         policy: Pundit.policy(user, record)
-      })
+      )
     end
   end
 
   def profile_pic_exists?
     return if record == user
     unless user.profile_picture_exists?
-      raise Pundit::NotAuthorizedError.new({
+      raise Pundit::NotAuthorizedError.new(
         query: :profile_pic_exists?,
         record: record,
         policy: Pundit.policy(user, record)
-      })
+      )
     end
   end
 

@@ -20,11 +20,11 @@ module Api
       private
 
       def omniauth_params
-        params_hash =  {}
-        params_hash.merge!({name: params['name']})
-        params_hash.merge!({email: params['email']})
-        params_hash.merge!({userID: params['userID']})
-        params_hash.merge!({picture: params['picture']})
+        params_hash = {}
+        params_hash[:name] = params['name']
+        params_hash[:email] = params['email']
+        params_hash[:userID] = params['userID']
+        params_hash[:picture] = params['picture']
         params_hash
       end
 

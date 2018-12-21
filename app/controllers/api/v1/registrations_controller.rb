@@ -27,7 +27,7 @@ module Api
           if is_flashing_format?
             flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
               :update_needs_confirmation : :updated
-              set_flash_message :notice, flash_key
+            set_flash_message :notice, flash_key
           end
           bypass_sign_in resource, scope: resource_name
           render json: resource, status: :ok
@@ -64,8 +64,8 @@ module Api
       def allow_params
         [
           :username, :email, :password, :password_confirmation,
-          user_detail_attributes: [
-            :id, :state, :gender, :age, :profile_picture
+          user_detail_attributes: %i[
+            id state gender age profile_picture
           ]
         ]
       end

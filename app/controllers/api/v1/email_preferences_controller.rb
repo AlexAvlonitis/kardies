@@ -14,8 +14,7 @@ module Api
       private
 
       def set_email_preferences
-        @email_preferences = current_user.email_preference ?
-                             current_user.email_preference :
+        @email_preferences = current_user.email_preference ||
                              current_user.build_email_preference
       end
 

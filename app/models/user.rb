@@ -16,7 +16,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  scope :except_user, -> (user) { where.not(id: user) }
+  scope :except_user, ->(user) { where.not(id: user) }
   scope :confirmed,   -> { where.not(confirmed_at: nil) }
 
   # Relations

@@ -39,9 +39,7 @@ module Api
       end
 
       def messages
-        conversation.receipts_for(current_user).map do |receipt|
-          receipt.message
-        end
+        conversation.receipts_for(current_user).map(&:message)
       end
 
       def conversation

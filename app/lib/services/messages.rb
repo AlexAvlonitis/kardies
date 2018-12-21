@@ -8,8 +8,8 @@ module Services
       return Mailboxer::Conversation.find(conversation_id) if conversation_id
 
       conversation = Mailboxer::Conversation
-                      .between(current_user, recipient)
-                      .find { |c| c.participants.count == 2 }
+                     .between(current_user, recipient)
+                     .find { |c| c.participants.count == 2 }
 
       return unless conversation
       return if conversation_deleted?(conversation, recipient)

@@ -1,7 +1,7 @@
 module Api
   module V1
     class BlockedUsersController < ApiController
-      before_action :set_user, only: [:create, :destroy]
+      before_action :set_user, only: %i[create destroy]
 
       def index
         blocked_users = current_user.blocked_users.all

@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.2'
 gem 'mysql2'
 gem 'puma', '~> 3.0'
+gem 'rails', '~> 5.2'
 
 gem 'active_model_serializers'
 gem 'acts_as_votable', '~> 0.10.0'
@@ -11,6 +11,7 @@ gem 'chewy', '~> 5'
 gem 'devise'
 gem 'doorkeeper', '~> 5'
 gem 'greek-cities'
+gem 'httparty'
 gem 'kaminari'
 gem 'mailboxer'
 gem 'mailgun_rails'
@@ -18,9 +19,8 @@ gem 'paperclip', '~> 6.0'
 gem 'pry-rails'
 gem 'pundit'
 gem 'rack-attack'
-gem 'httparty'
 gem 'rack-cors', require: 'rack/cors'
-gem "redis", "~> 4.0"
+gem 'redis', '~> 4.0'
 gem 'redis-rails'
 gem 'validates_email_format_of'
 
@@ -38,8 +38,6 @@ group :test do
 end
 
 group :development do
-  gem 'listen', '~> 3.0.5'
-  gem 'web-console'
   gem 'capistrano'
   gem 'capistrano-nginx'
   gem 'capistrano-rails'
@@ -48,9 +46,11 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano-upload-config'
   gem 'capistrano3-puma'
+  gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'sshkit-sudo'
+  gem 'web-console'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

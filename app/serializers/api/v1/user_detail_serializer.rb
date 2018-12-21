@@ -13,8 +13,6 @@ module Api
         if object.personality_type
           personality = ::Personality.find_by(code: object.personality_type)
           personality.detail if personality
-        else
-          nil
         end
       end
 
