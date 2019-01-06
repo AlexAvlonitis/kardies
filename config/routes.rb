@@ -12,19 +12,6 @@ Rails.application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       devise_for :user
 
-      namespace :admin do
-        resources :users, param: :username, only: [:index, :show]
-        resources :reports,                 only: :index
-        resources :contacts,                only: :index
-        resources :conversations,           only: :show
-        resources :blocked_emails,          only: [:index, :destroy, :create]
-
-        delete 'delete_user/:username', to: "users#admin_destroy", as: :destroy
-        post 'unblock_user/:username',  to: "users#admin_unblock", as: :unblock
-        post 'create_admin/:username',  to: "users#create_admin",  as: :create_admin
-        post 'undo_admin/:username',    to: "users#undo_admin",    as: :undo_admin
-      end
-
       resources :users, param: :username, only: [:index, :show] do
         member do
           put "like", to: "likes#create"
