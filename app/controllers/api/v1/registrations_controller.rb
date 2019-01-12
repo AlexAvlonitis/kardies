@@ -58,16 +58,23 @@ module Api
       end
 
       def account_update_params
-        params.require(:user).permit(allow_params)
+        params.require(:user).permit(allowed_update_params)
+      end
+
+      def allowed_update_params
+        [ :email, :password, :password_confirmation, user_detail_attrs]
       end
 
       def allow_params
-        [
-          :username, :email, :password, :password_confirmation,
+        [ :username, :email, :password, :password_confirmation, user_detail_attrs]
+      end
+
+      def user_detail_attrs
+        {
           user_detail_attributes: %i[
             id state gender age profile_picture
           ]
-        ]
+        }
       end
     end
   end
