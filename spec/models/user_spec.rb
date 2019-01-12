@@ -88,7 +88,7 @@ RSpec.describe User do
         User.from_omniauth(auth)
         user = User.last.username
 
-        expect(user).to match /[a-z]+_[a-z]+\d+/
+        expect(user).to match /[a-z]+_[a-z]/
       end
     end
   end
