@@ -53,4 +53,43 @@ RSpec.describe User do
       expect{subject.save!}.to raise_error(/#{error}/)
     end
   end
+
+  describe 'omniauth' do
+    context 'when signing in from facebook' do
+      let(:auth) do
+        {
+          name: "Joe Roe",
+          email: "joe.roe@gmail.com",
+          userID: "123090234092103",
+          picture: {
+            "data" => {
+              "height" => 200,
+              "is_silhouette" => false,
+              "url" => "https://photopath.local"
+            }
+          }
+        }
+      end
+
+      before do
+        allow_any_instance_of(User).to receive(:auto_like) { true }
+        allow(UserMailer)
+          .to receive_message_chain(:welcome_email, :deliver_later)
+          .and_return(true)
+      end
+
+      it 'does not return the first part of the email' do
+        User.from_omniauth(auth)
+
+        expect(User.last.username).not_to eq 'joe_roe'
+      end
+
+      it 'creates a random username' do
+        User.from_omniauth(auth)
+        user = User.last.username
+
+        expect(user).to match /[a-z]+_[a-z]+\d+/
+      end
+    end
+  end
 end

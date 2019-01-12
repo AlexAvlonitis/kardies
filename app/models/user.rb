@@ -7,6 +7,8 @@ class User < ApplicationRecord
   after_create :auto_like
 
   ALPHANUMERIC_REGEX ||= /\A[a-z0-9A-Z\_]*\Z/
+  USERNAME_LENGTH_LIMIT_MAX = 20
+  USERNAME_LENGTH_LIMIT_MIN = 3
 
   acts_as_votable
   acts_as_voter
@@ -20,15 +22,17 @@ class User < ApplicationRecord
   scope :confirmed,   -> { where.not(confirmed_at: nil) }
 
   # Relations
-  has_one  :about,                      dependent: :destroy
-  has_one  :user_detail,                dependent: :destroy
-  has_one  :email_preference,           dependent: :destroy
-  has_one  :gallery,                    dependent: :destroy
-  has_many :reports,                    dependent: :destroy
-  has_many :search_criteria,            dependent: :destroy
-  has_many :vote_notifications,         dependent: :destroy
-  has_many :blocked_users,              dependent: :destroy
-  has_many :conversation_notifications, dependent: :destroy
+  with_options dependent: :destroy do |assoc|
+    assoc.has_one  :about
+    assoc.has_one  :user_detail
+    assoc.has_one  :email_preference
+    assoc.has_one  :gallery
+    assoc.has_many :reports
+    assoc.has_many :search_criteria
+    assoc.has_many :vote_notifications
+    assoc.has_many :blocked_users
+    assoc.has_many :conversation_notifications
+  end
   has_many :pictures, through: :gallery
   has_many :access_tokens,
            class_name: 'Doorkeeper::AccessToken',
@@ -44,14 +48,14 @@ class User < ApplicationRecord
 
   validates :username, uniqueness: true
   validates :username, format: { with: ALPHANUMERIC_REGEX }
-  validates :username, length: { in: 3..20 }
+  validates :username, length: { in: USERNAME_LENGTH_LIMIT_MIN..USERNAME_LENGTH_LIMIT_MAX }
   validates_with Validators::BlackListValidator
   validates_email_format_of :email, message: 'Λάθος email'
 
   def self.from_omniauth(auth)
     return if auth.blank?
     user = find_by(provider: 'facebook', uid: auth[:userID])
-    user || create_user(auth)
+    user || create(user_params(auth))
   end
 
   def self.search(query, current_user)
@@ -104,15 +108,6 @@ class User < ApplicationRecord
 
   private
 
-  attr_reader :nini_user
-
-  def self.create_username(email)
-    email = email.scan(/\A(.+?)@/).join.tr('.', '_')
-    email_chars_count = email.split('').count
-    return email.slice(0..20) if email_chars_count > 20
-    email
-  end
-
   def send_welcome_mail
     UserMailer.welcome_email(self).deliver_later
   end
@@ -121,12 +116,12 @@ class User < ApplicationRecord
     likes.auto_like
   end
 
-  def self.create_user(auth)
+  def self.user_params(auth)
     email = auth[:email]
-    profile_picture = picture_from_url(auth[:picture]['data']['url'])
+    profile_picture = picture_from_url(auth.dig(:picture, :data, :url))
     password = Devise.friendly_token[0, 20]
-    username = create_username(auth[:email])
-    User.create(
+    username = generate_username
+    {
       provider: 'facebook',
       uid: auth[:userID],
       email: email,
@@ -137,9 +132,26 @@ class User < ApplicationRecord
         profile_picture: profile_picture,
         state: 'att',
         age: 30,
-        gender: 'female'
+        gender: ['female', 'male'].sample
       }
-    )
+    }
+  end
+
+  def self.generate_username
+    root_path = Rails.root.to_s
+    adj_array = noun_array = []
+
+    adjectives = File.open("#{root_path}/lib/adjectives.txt")
+    File.foreach(adjectives) { |line| adj_array << line }
+
+    nouns = File.open("#{root_path}/lib/nouns.txt")
+    File.foreach(nouns) { |line| noun_array << line }
+
+    usr = "#{adj_array.sample.gsub!(/\n/, '')}_" \
+          "#{noun_array.sample.gsub!(/\n/, '')}" \
+          "#{[*0..9].sample(2).join}"
+
+    usr.split('').first(USERNAME_LENGTH_LIMIT_MAX).join
   end
 
   def likes
