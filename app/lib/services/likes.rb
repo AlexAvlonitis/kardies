@@ -15,10 +15,6 @@ module Services
       send_notification_email(user)
     end
 
-    def delete_vote_notification
-      VoteNotification.find_by(voted_by_id: current_user.id)&.destroy
-    end
-
     def delete_all_notifications
       current_user.vote_notifications.destroy_all
     end

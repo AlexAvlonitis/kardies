@@ -9,24 +9,20 @@ module Api
       end
 
       def create
-        return send_like unless current_user.voted_for? @user
-        return send_unlike if current_user.voted_for? @user
+        if current_user.voted_for? @user
+          render json: { errors: 'Έχετε ήδη στείλει καρδιά' }, status: :unprocessable_entity
+        else
+          send_like
+        end
       end
 
       private
-
-      def send_unlike
-        @user.unliked_by current_user
-        likes.delete_vote_notification
-
-        render json: { "heart": 'fa-heart-o' }, status: :ok
-      end
 
       def send_like
         @user.liked_by current_user
         likes.add_notifications(@user)
 
-        render json: { "heart": 'fa-heart' }, status: :ok
+        render json: { message: true }, status: :ok
       end
 
       def set_user
