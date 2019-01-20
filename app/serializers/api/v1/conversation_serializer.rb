@@ -10,6 +10,7 @@ module Api
       end
 
       def participants
+        return unless object.participants.count > 1
         object.participants.reject { |user| scope == user }.first
       end
     end
