@@ -47,7 +47,7 @@ RSpec.describe User do
 
     it 'does not allow username with spaces' do
       error = "Κάτι πήγε στραβά, δοκιμάστε ξανά χωρίς " \
-              "κενά και μόνο λατινικούς χαρακτήρες στο ψευδώνυμο"
+              "κενά και μόνο αγγλικούς χαρακτήρες στο ψευδώνυμο"
       subject.update(username: 'test test')
 
       expect{subject.save!}.to raise_error(/#{error}/)
