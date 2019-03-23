@@ -7,10 +7,9 @@ module Api
 
       def current_user
         if doorkeeper_token
-          @current_user ||=
-            User.find_by(id: doorkeeper_token.resource_owner_id)
-         end
-     end
+          @current_user ||= User.find_by(id: doorkeeper_token.resource_owner_id)
+        end
+      end
 
       def block_and_render(error)
         render json: { errors: error }, status: :unauthorized

@@ -1,10 +1,8 @@
 class ApplicationController < ActionController::API
-  include ActionController::RequestForgeryProtection
   include Pundit
   before_action :doorkeeper_authorize!
 
   respond_to :json
-  protect_from_forgery with: :exception, unless: -> { request.format.json? }
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 

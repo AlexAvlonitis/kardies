@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
   use_doorkeeper do
-    skip_controllers :applications, :authorized_applications
+    skip_controllers :authorizations, :applications, :authorized_applications
   end
 
   get '/google24de39283b44c66d.html',

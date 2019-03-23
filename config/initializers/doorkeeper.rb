@@ -2,6 +2,8 @@ Doorkeeper.configure do
   # Change the ORM that doorkeeper will use (needs plugins)
   orm :active_record
 
+  api_only
+
   resource_owner_from_credentials do |routes|
     user = ::User.find_for_database_authentication(email: params[:email])
     if user && user.valid_for_authentication? { user.valid_password?(params[:password]) }
