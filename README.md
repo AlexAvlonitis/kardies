@@ -5,29 +5,14 @@
 ## How to run locally
 
 * ```bundle install```
-* Create a .env file with the below ENV variables(only the last two need to be real for the tests to pass):
-  * FB_APP_ID=test
-  * FB_APP_SECRET=secret
-  * S3_BUCKET_NAME=s3_aws_bucket
-  * AWS_ACCESS_KEY_ID=aws_id
-  * AWS_SECRET_ACCESS_KEY=aws_secret
-  * AWS_REGION=aws_region
-  * SECRET_KEY_BASE=random_key
-  * MAILGUN_API_KEY=mailgun_api
-  * EMAIL_DOMAIN=email_domain
-  * FRONTEND_URL=the_url_domain_of_the_frontend
-  * RECAPTCHA_SECRET_KEY=google_recaptch_secret
-  * DBHOST=db_host
-  * DBPASS=db_password
-  * DBUSER=db_username
-
+* Copy .env.example file and paste to .env(only the last two need to be real for the tests to pass):
 * ```bundle exec rake db:setup```
 * ```bundle exec puma```
 * Go to http://localhost:3000, login with email: test_0@test.com password: password
 
 **Dependencies/Requirements**
 
-* Ruby 2.3.1 (We use rbenv)
+* Ruby 2.5.3
 * Redis (Not required for Dev environment)
 * Elastic Search 5.6.9
 * Imagemagick

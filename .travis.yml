@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.4.2
+  - 2.5.3
 before_install:
   - wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
   - echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list
