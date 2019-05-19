@@ -11,7 +11,10 @@ module Api
 
       def participants
         return unless object.participants.count > 1
+
         object.participants.reject { |user| scope == user }.first
+      rescue StandardError
+        nil
       end
     end
   end
