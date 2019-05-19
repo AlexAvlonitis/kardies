@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'mysql2'
-gem 'puma', '~> 3.0'
+gem 'puma'
 gem 'rails', '~> 5.2'
 
 gem 'active_model_serializers'
