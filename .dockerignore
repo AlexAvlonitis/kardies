@@ -1,0 +1,10 @@
+.git*
+.DS_Store
+Dockerfile
+README.md
+public/assets
+log/*.log
+tmp/*
+coverage
+spec/reports
+node_modules

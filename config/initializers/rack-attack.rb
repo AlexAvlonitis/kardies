@@ -10,10 +10,11 @@ class Rack::Attack
   # ActiveSupport::Cache::Store
 
   # Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
-  Rack::Attack.cache.store =
+  Rack::Attack.cache.store = ENV['RAILS_ENV'] == 'production' ?
     ActiveSupport::Cache::RedisStore.new(
       'redis://localhost:6379/1/cache', { expires_in: 60.minutes }
-    )
+    ) :
+    ActiveSupport::Cache::MemoryStore.new
 
   ### Throttle Spammy Clients ###
 
