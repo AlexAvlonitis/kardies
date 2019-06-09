@@ -13,7 +13,7 @@ COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
-RUN apt-get update \
+RUN apt-get update -qq \
   && apt-get upgrade -y \
   && apt-get install -y build-essential imagemagick mysql-client apt-transport-https \
   && rm -rf /var/lib/apt/lists/*
@@ -27,8 +27,7 @@ RUN curl -s https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
   && apt-get install -y nodejs
 
-RUN gem install bundler && gem cleanup && bundle install --full-index -j3 \
-  && bundle install --deployment --without development tests
+RUN gem install bundler && gem cleanup && bundle install
 
 # Start the main process.
 CMD ["rails", "server", "-b", "0.0.0.0"]
