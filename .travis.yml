@@ -4,19 +4,25 @@ rvm:
 before_install:
   - wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
   - echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list
+  - gem update --system
+  - gem install bundler
   - sudo apt-get update && sudo apt-get install elasticsearch
   - sudo -i service elasticsearch start
   - until curl --silent -XGET --fail http://localhost:9200; do printf '.'; sleep 1; done
 install:
-  - bundle install --path vendor/bundle
+  - bundle install
 script:
   - bundle exec rake db:setup RAILS_ENV=test
   - bundle exec rspec
+services:
+  - mysql
 branches:
   only:
     - master
 env:
   FB_APP_ID=test
+  DBHOST=localhost
+  DBUSER=root
   FB_APP_SECRET=secret
   S3_BUCKET_NAME=s3_aws_bucket
   AWS_ACCESS_KEY_ID=aws_id
