@@ -1,3 +1,5 @@
+require 'gc'
+
 module Api
   module V1
     class UserDetailSerializer < ActiveModel::Serializer

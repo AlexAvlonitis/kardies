@@ -1,3 +1,5 @@
+require 'gc'
+
 class UserDetail < ApplicationRecord
   belongs_to :user
 
@@ -32,7 +34,7 @@ class UserDetail < ApplicationRecord
 
   validates :state,
             inclusion: {
-              in: GC.states.map { |s| s[1] },
+              in: ::GC.states.map { |s| s[1] },
               message: '%<value>s is not a valid state'
             }
 

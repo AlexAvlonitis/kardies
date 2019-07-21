@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :report do
-    user nil
+    user
   end
 end

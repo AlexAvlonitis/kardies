@@ -1,5 +1,3 @@
 FactoryBot.define do
-  factory :search_criterium do
-    
-  end
+  factory :search_criterium do; end
 end

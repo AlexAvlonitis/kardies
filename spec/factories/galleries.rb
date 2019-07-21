@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :gallery do
-    user nil
+    user
   end
 end

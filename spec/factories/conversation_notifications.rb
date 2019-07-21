@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :conversation_notification do
-    user nil
+    user
   end
 end
