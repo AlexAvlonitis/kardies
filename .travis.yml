@@ -20,6 +20,7 @@ branches:
   only:
     - master
 env:
+  ELASTIC_SEARCH_HOST=http://localhost:9200
   FB_APP_ID=test
   DBHOST=localhost
   DBUSER=root

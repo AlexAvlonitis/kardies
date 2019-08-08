@@ -6,9 +6,7 @@ module Services
     end
 
     def all
-      users = search_present? ? get_all_indexed_users : get_all_users
-      users.compact! if users.is_a? Array
-      users
+      search_present? ? get_all_indexed_users : get_all_users
     end
 
     private
@@ -24,7 +22,9 @@ module Services
     end
 
     def get_all_indexed_users
-      ::User.search(last_search, current_user).page(page).objects
+      Queries::User.new(last_search, current_user)
+        .search(page)
+        .records
     end
 
     def last_search

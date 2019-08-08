@@ -1,11 +1,11 @@
 require 'gc'
 
 class UserDetail < ApplicationRecord
+  include Searchable
+
   belongs_to :user
 
-  VALID_IMAGES_REGEX ||= /^image\/(jpeg|jpg|png|gif|tiff)$/
-
-  update_index('users#user') { self }
+  VALID_IMAGES_REGEX = /^image\/(jpeg|jpg|png|gif|tiff)$/
 
   has_attached_file :profile_picture,
                     source_file_options: { all: '-auto-orient' },

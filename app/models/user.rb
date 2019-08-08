@@ -1,14 +1,37 @@
 class User < ApplicationRecord
   include ActiveModel::Validations
-
-  update_index('users#user') { self }
+  include Searchable
 
   after_create :send_welcome_mail
   after_create :auto_like
 
+  # Elastic Search
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :username, type: 'keyword'
+      indexes :email, type: 'keyword'
+      indexes :confirmed_at, type: 'keyword'
+      indexes :is_signed_in, type: 'boolean'
+      indexes :created_at, type: 'date'
+
+      indexes :user_detail, type: :object do
+        indexes :state, type: 'keyword'
+        indexes :age, type: 'integer'
+        indexes :gender, type: 'keyword'
+      end
+    end
+  end
+
+  def as_indexed_json(options={})
+    self.as_json(
+      only: [:username, :email, :confirmed_at, :is_signed_in, :created_at],
+      include: { user_detail: { only: [:state, :age, :gender] } }
+    )
+  end
+
   ALPHANUMERIC_REGEX ||= /\A[a-z0-9A-Z\_]*\Z/
-  USERNAME_LENGTH_LIMIT_MAX = 20
-  USERNAME_LENGTH_LIMIT_MIN = 3
+  USERNAME_LENGTH_MAX = 20
+  USERNAME_LENGTH_MIN = 3
 
   acts_as_votable
   acts_as_voter
@@ -48,7 +71,7 @@ class User < ApplicationRecord
 
   validates :username, uniqueness: true
   validates :username, format: { with: ALPHANUMERIC_REGEX }
-  validates :username, length: { in: USERNAME_LENGTH_LIMIT_MIN..USERNAME_LENGTH_LIMIT_MAX }
+  validates :username, length: { in: USERNAME_LENGTH_MIN..USERNAME_LENGTH_MAX }
   validates_with Validators::BlackListValidator
   validates_email_format_of :email, message: 'Λάθος email'
 
@@ -56,10 +79,6 @@ class User < ApplicationRecord
     return if auth.blank?
     user = find_by(provider: 'facebook', uid: auth[:userID])
     user || create(user_params(auth))
-  end
-
-  def self.search(query, current_user)
-    Search::Users.new(query, current_user).execute
   end
 
   def self.get_all
@@ -151,7 +170,7 @@ class User < ApplicationRecord
           "#{noun_array.sample.gsub!(/\n/, '')}" \
           "#{[*0..9].sample(2).join}"
 
-    usr.split('').first(USERNAME_LENGTH_LIMIT_MAX).join
+    usr.split('').first(USERNAME_LENGTH_MAX).join
   end
 
   def likes
