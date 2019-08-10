@@ -12,10 +12,11 @@ module Api
       private
 
       def users
-        Queries::User
-          .new(search_criteria, current_user)
-          .search(params[:page])
-          .records
+        user_query.search(params[:page]).records
+      end
+
+      def user_query
+        @user_query ||= Queries::User.build(search_criteria, current_user)
       end
 
       def search_criteria

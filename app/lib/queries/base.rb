@@ -1,8 +1,13 @@
 module Queries
   class Base
-    def initialize(params, current_user)
+    def self.build(params, current_user, query_builder_klass = Queries::Builder)
+      new(params, current_user, query_builder_klass.new)
+    end
+
+    def initialize(params, current_user, query_builder)
       @params = params
       @current_user = current_user
+      @query_builder = query_builder
     end
 
     def search(pagination_number)
@@ -11,7 +16,7 @@ module Queries
 
     private
 
-    attr_reader :params, :current_user
+    attr_reader :params, :current_user, :query_builder
 
     def class_name
       self.class.name.demodulize.constantize
@@ -19,14 +24,26 @@ module Queries
 
     def query
       query_builder
-        .query(bool: { must: musts, must_not: must_nots })
-        .sort(sorts)
-        .filter(filters)
+        .query(bool: { must: must_params, must_not: must_not_params })
+        .sort(sort_params)
+        .filter(filter_params)
         .to_s
     end
 
-    def query_builder
-      @query_builder ||= Queries::Builder.new
+    def must_params
+      []
+    end
+
+    def must_not_params
+      []
+    end
+
+    def sort_params
+      []
+    end
+
+    def filter_params
+      {}
     end
   end
 end

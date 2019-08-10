@@ -3,19 +3,19 @@ module Queries
 
     private
 
-    def sorts
+    def sort_params
       [sort_by_latest]
     end
 
-    def must_nots
+    def must_not_params
       [current_username]
     end
 
-    def musts
+    def must_params
       [state, gender, is_signed_in].compact
     end
 
-    def filters
+    def filter_params
       age_range
     end
 

@@ -6,7 +6,9 @@ module Services
     end
 
     def all
-      search_present? ? get_all_indexed_users : get_all_users
+      return get_all_indexed_users if search_present?
+
+      get_all_users
     end
 
     private
@@ -22,9 +24,11 @@ module Services
     end
 
     def get_all_indexed_users
-      Queries::User.new(last_search, current_user)
-        .search(page)
-        .records
+      user_query.search(page).records
+    end
+
+    def user_query
+      @user_query ||= Queries::User.build(last_search, current_user)
     end
 
     def last_search
