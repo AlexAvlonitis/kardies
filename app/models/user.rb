@@ -86,7 +86,8 @@ class User < ApplicationRecord
   end
 
   def self.find_for_authentication(tainted_conditions)
-    find_first_by_auth_conditions(tainted_conditions)&.confirmed?
+    user = find_first_by_auth_conditions(tainted_conditions)
+    user if user && user.confirmed?
   end
 
   def profile_picture(size = :thumb)
