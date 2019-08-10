@@ -2,16 +2,15 @@ language: ruby
 rvm:
   - 2.6.3
 before_install:
-  - wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-  - echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-6.x.list
   - gem update --system
   - gem install bundler
-  - sudo apt-get update && sudo apt-get install elasticsearch
-  - sudo -i service elasticsearch start
-  - until curl --silent -XGET --fail http://localhost:9200; do printf '.'; sleep 1; done
 install:
+  - wget ${ES_DOWNLOAD_URL}
+  - tar -xzf elasticsearch-${ES_VERSION}.tar.gz
+  - ./elasticsearch-${ES_VERSION}/bin/elasticsearch &
   - bundle install
 script:
+  - wget -q --waitretry=1 --retry-connrefused -T 10 -O - http://localhsot:9200
   - bundle exec rake db:setup RAILS_ENV=test
   - bundle exec rspec
 services:
@@ -20,6 +19,8 @@ branches:
   only:
     - master
 env:
+  ES_VERSION=6.8.2
+  ES_DOWNLOAD_URL=https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.tar.gz
   ELASTIC_SEARCH_HOST=http://localhost:9200
   FB_APP_ID=test
   DBHOST=localhost
