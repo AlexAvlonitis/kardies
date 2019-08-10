@@ -12,7 +12,7 @@ module Api
       private
 
       def users
-        user_query.search(params[:page]).records
+        user_query.search(params[:page]).records.confirmed
       end
 
       def user_query
