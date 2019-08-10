@@ -3,11 +3,9 @@ default: &default
 
 development:
   <<: *default
-  host: 'http://elasticsearch:9200'
 
 test:
   <<: *default
-  host: 'http://localhost:9250'
 
 production:
   <<: *default
