@@ -12,12 +12,12 @@
 
 **Dependencies/Requirements**
 
-* Ruby 2.5.3
-* Redis (Not required for Dev environment)
-* Elastic Search 5.6.9
+* Ruby 2.6.3
+* Redis (Not required for the dev environment)
+* Elastic Search 6.8.2
 * Imagemagick
 * MySQL
-* AWS S3 bucket for uploading pictures. (Not a requirement for Dev environment).
+* AWS S3 bucket
 
 ## Contributing
 
