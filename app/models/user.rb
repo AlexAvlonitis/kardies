@@ -78,7 +78,7 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     return if auth.blank?
     user = find_by(provider: 'facebook', uid: auth[:userID])
-    user || create(user_params(auth))
+    user || FacebookHelper.create_user(auth)
   end
 
   def self.get_all
@@ -86,8 +86,7 @@ class User < ApplicationRecord
   end
 
   def self.find_for_authentication(tainted_conditions)
-    user = find_first_by_auth_conditions(tainted_conditions)
-    user if user && user.confirmed?
+    find_first_by_auth_conditions(tainted_conditions)&.confirmed?
   end
 
   def profile_picture(size = :thumb)
@@ -96,10 +95,6 @@ class User < ApplicationRecord
 
   def profile_picture_medium
     user_detail.profile_picture.url(:medium)
-  end
-
-  def self.picture_from_url(url)
-    url ? open(url) : nil
   end
 
   def profile_picture_exists?
@@ -133,44 +128,6 @@ class User < ApplicationRecord
 
   def auto_like
     likes.auto_like
-  end
-
-  def self.user_params(auth)
-    email = auth[:email]
-    profile_picture = picture_from_url(auth.dig(:picture, :data, :url))
-    password = Devise.friendly_token[0, 20]
-    username = generate_username
-    {
-      provider: 'facebook',
-      uid: auth[:userID],
-      email: email,
-      password: password,
-      username: username,
-      confirmed_at: Time.now,
-      user_detail_attributes: {
-        profile_picture: profile_picture,
-        state: 'att',
-        age: 30,
-        gender: ['female', 'male'].sample
-      }
-    }
-  end
-
-  def self.generate_username
-    root_path = Rails.root.to_s
-    adj_array = noun_array = []
-
-    adjectives = File.open("#{root_path}/lib/adjectives.txt")
-    File.foreach(adjectives) { |line| adj_array << line }
-
-    nouns = File.open("#{root_path}/lib/nouns.txt")
-    File.foreach(nouns) { |line| noun_array << line }
-
-    usr = "#{adj_array.sample.gsub!(/\n/, '')}_" \
-          "#{noun_array.sample.gsub!(/\n/, '')}" \
-          "#{[*0..9].sample(2).join}"
-
-    usr.split('').first(USERNAME_LENGTH_MAX).join
   end
 
   def likes

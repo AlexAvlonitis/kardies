@@ -10,9 +10,10 @@ describe Services::Users do
     FactoryBot.create(:search_criterium, user: current_user)
   end
   let(:search_results) { double(:search_results) }
+  let(:record_results) { double(:records_results, confirmed: true) }
 
   before do
-    allow(search_results).to receive(:records) { true }
+    allow(search_results).to receive(:records) { record_results }
   end
 
   describe '#all' do
