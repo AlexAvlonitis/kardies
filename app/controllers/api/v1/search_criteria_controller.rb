@@ -2,24 +2,26 @@ module Api
   module V1
     class SearchCriteriaController < ApiController
       def create
-        search_criteria = current_user.search_criteria.build(search_criteria_params)
-        @search_criteria = ::SearchCriterium.normalize_params(search_criteria)
-        if @search_criteria.save
-          render_searched_users
+        if search_criteria.save
+          render json: users, status: :ok
         else
-          render json: @search_criteria.errors, status: :unprocessable_entity
+          render json: search_criteria.errors, status: :unprocessable_entity
         end
       end
 
       private
 
-      def render_searched_users
-        users = ::User.search(@search_criteria, current_user)
-                      .page(params[:page])
-                      .objects
+      def users
+        user_query.search(params[:page]).records
+      end
 
-        users.compact!
-        render json: users, status: :ok
+      def user_query
+        @user_query ||= Queries::User.build(search_criteria, current_user)
+      end
+
+      def search_criteria
+        @search_criteria ||=
+          current_user.search_criteria.new(search_criteria_params)
       end
 
       def search_criteria_params

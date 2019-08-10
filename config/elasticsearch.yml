@@ -1,0 +1,13 @@
+default: &default
+  host: 'http://localhost:9200'
+
+development:
+  <<: *default
+  host: 'http://elasticsearch:9200'
+
+test:
+  <<: *default
+  host: 'http://localhost:9250'
+
+production:
+  <<: *default
