@@ -6,6 +6,7 @@ describe FacebookHelper do
   let(:username) { 'tester' }
   let(:email) { 'tester@test.com' }
   let(:image_path) { '/fake/path/test.png' }
+  let(:time) { '13:30' }
   let(:fb_auth) do
     {
       userID: username,
@@ -17,29 +18,31 @@ describe FacebookHelper do
       }
     }
   end
-  let(:expected_params) do
+  let(:expected_hash) do
     {
-      provider: 'facebook',
+      confirmed_at: time,
+      password: /.{20}/,
+      username: /\w{3,20}/,
       uid: username,
       email: email,
-      password: /.{20}/,
-      username: /w{3,20}/,
+      provider: 'facebook',
       user_detail_attributes: {
-        profile_picture: image_path,
-        state: 'att',
+        age: 30,
         gender: /male|female/,
-        age: 30
+        profile_picture: image_path,
+        state: 'att'
       }
     }
   end
 
   before do
-    allow(::User).to receive(:open) { nil }
+    allow(::User).to receive(:open) { image_path }
+    allow(Time).to receive(:now) { time }
   end
 
   context 'When we pass in auth hash from fb' do
     it 'sends correct params to user.create method' do
-      expect(::User).to receive(:create).with(hash_including)
+      expect(::User).to receive(:create).with(hash_including(expected_hash))
 
       subject.call
     end
