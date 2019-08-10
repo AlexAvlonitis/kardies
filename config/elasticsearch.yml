@@ -7,7 +7,7 @@ development:
 
 test:
   <<: *default
-  log: false
+  host: 'http://localhost:9250'
 
 production:
   <<: *default
