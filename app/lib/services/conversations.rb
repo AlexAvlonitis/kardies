@@ -2,7 +2,6 @@ module Services
   class Conversations
     def initialize(current_user)
       @current_user = current_user
-      mailbox
     end
 
     def all
@@ -10,7 +9,7 @@ module Services
     end
 
     def show(id)
-      @mailbox.conversations.find(id)
+      mailbox.conversations.find(id)
     end
 
     def delete_all
@@ -23,13 +22,13 @@ module Services
 
     attr_reader :current_user
 
-    def mailbox
-      @mailbox ||= current_user.mailbox
+    def get_messages
+      messages = mailbox.inbox + mailbox.sentbox
+      messages.flatten.uniq(&:id)
     end
 
-    def get_messages
-      messages = @mailbox.inbox + @mailbox.sentbox
-      messages.flatten.uniq(&:id)
+    def mailbox
+      @mailbox ||= current_user.mailbox
     end
   end
 end
