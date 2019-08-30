@@ -15,7 +15,7 @@ ENTRYPOINT ["entrypoint.sh"]
 
 RUN apt-get update -qq \
   && apt-get upgrade -y \
-  && apt-get install -y build-essential imagemagick mysql-client apt-transport-https \
+  && apt-get install -y build-essential imagemagick mariadb-client apt-transport-https \
   && rm -rf /var/lib/apt/lists/*
 
 RUN curl -s https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
