@@ -26,7 +26,7 @@ Rails.application.configure do
     config.action_controller.perform_caching = true
 
     config.action_cable.mount_path = ('/cable')
-    config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes }
+    config.cache_store = :redis_store, ENV['REDIS_HOST'], { expires_in: 90.minutes }
     config.public_file_server.headers = {
       'Cache-Control' => 'public, max-age=172800'
     }
@@ -67,5 +67,5 @@ Rails.application.configure do
 
   logger           = ActiveSupport::Logger.new(STDOUT)
   logger.formatter = config.log_formatter
-  config.logger = ActiveSupport::TaggedLogging.new(logger)
+  config.logger    = ActiveSupport::TaggedLogging.new(logger)
 end
