@@ -38,7 +38,13 @@ class FacebookHelper
   end
 
   def generate_username
-    trim_username(username)
+    usrname = trim_username(username)
+
+    ::User.find_by(username: usrname) ? generate_username : usrname
+  end
+
+  def trim_username(username)
+    username.split('').first(::User::USERNAME_LENGTH_MAX).join
   end
 
   def username
@@ -54,19 +60,15 @@ class FacebookHelper
   end
 
   def adjectives_file
-    File.open("#{root_path}/lib/adjectives.txt").read
+    @adjectives_file ||= File.open("#{root_path}/lib/adjectives.txt").read
   end
 
   def nouns_file
-    File.open("#{root_path}/lib/nouns.txt").read
+    @nouns_file ||= File.open("#{root_path}/lib/nouns.txt").read
   end
 
   def two_random_numbers
     [*0..9].sample(2).join
-  end
-
-  def trim_username(username)
-    username.split('').first(::User::USERNAME_LENGTH_MAX).join
   end
 
   def root_path
