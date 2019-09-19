@@ -3,10 +3,10 @@
 
 class OnlineStatusChannel < ApplicationCable::Channel
   def subscribed
-    current_user.update!(is_signed_in: true) unless current_user.is_signed_in?
+    current_user.update!(is_signed_in: true) unless current_user.is_signed_in
   end
 
   def unsubscribed
-    current_user.update!(is_signed_in: false) if current_user.is_signed_in?
+    current_user.update!(is_signed_in: false) if current_user.is_signed_in
   end
 end

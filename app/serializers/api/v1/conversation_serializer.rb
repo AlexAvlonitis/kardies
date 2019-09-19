@@ -6,7 +6,7 @@ module Api
       attributes :id, :is_read
 
       def is_read
-        object.is_read? current_user
+        object.is_read?(current_user)
       end
 
       def participants

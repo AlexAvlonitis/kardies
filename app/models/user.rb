@@ -90,6 +90,10 @@ class User < ApplicationRecord
     user if user && user.confirmed?
   end
 
+  def message_email_notification_allowed?
+    email_preference&.messages && !is_signed_in
+  end
+
   def profile_picture(size = :thumb)
     user_detail.profile_picture.url(size)
   end

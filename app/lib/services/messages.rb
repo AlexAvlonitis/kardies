@@ -23,25 +23,8 @@ module Services
         conversation.is_deleted?(recipient)
     end
 
-    def add_notifications(recipient)
-      add_conversation_notification(recipient)
-      conversation_notification_email(recipient)
-    end
-
     private
 
     attr_reader :current_user
-
-    def add_conversation_notification(recipient)
-      ConversationNotification.create(
-        user_id: recipient.id,
-        receiver_id: current_user.id,
-        received: true
-      )
-    end
-
-    def conversation_notification_email(recipient)
-      Notifications::Conversations.new(recipient).execute
-    end
   end
 end

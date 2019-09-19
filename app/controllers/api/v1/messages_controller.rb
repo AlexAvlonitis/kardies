@@ -1,8 +1,8 @@
 module Api
   module V1
     class MessagesController < ApiController
-      before_action :set_user,          only: :create
-      after_action  :add_notifications, only: :create
+      before_action :set_user, only: :create
+      after_action  :add_notifications
 
       def create
         if conversation = existing_conversation
@@ -14,6 +14,8 @@ module Api
             current_user.username
           ).conversation
         end
+        MessageBroadcastJob.perform_later(conversation, current_user)
+
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
       end
 
@@ -21,6 +23,7 @@ module Api
         conversation = existing_conversation
         current_user.reply_to_conversation(conversation, params[:body])
         MessageBroadcastJob.perform_later(conversation, current_user)
+
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
       end
 
@@ -36,7 +39,10 @@ module Api
       end
 
       def add_notifications
-        messages.add_notifications(@recipient)
+        MessagesNotificationsBroadcastJob.perform_later(
+          existing_conversation,
+          current_user
+        )
       end
 
       def existing_conversation

@@ -24,7 +24,7 @@ module Services
     end
 
     def get_all_indexed_users
-      user_query.search(page).records.confirmed
+      user_query.search(page).records.confirmed.compact
     end
 
     def user_query
