@@ -1,7 +1,7 @@
 module Api
   module V1
     class ConversationsController < ApiController
-      after_action :delete_conversation_notifications, only: :index
+      LIMIT_MESSAGES = 50
 
       def index
         render json: conversations.all, status: :ok
@@ -29,17 +29,14 @@ module Api
 
       private
 
-      def delete_conversation_notifications
-        current_user.conversation_notifications.destroy_all
-      end
-
       def mark_as_read
-        return unless conversation.is_unread?(current_user)
+        return if conversation.is_read?(current_user)
+
         conversation.mark_as_read(current_user)
       end
 
       def messages
-        conversation.receipts_for(current_user).map(&:message)
+        conversation.receipts_for(current_user).last(LIMIT_MESSAGES).map(&:message)
       end
 
       def conversation
