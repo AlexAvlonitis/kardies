@@ -5,9 +5,6 @@ describe Services::Messages do
 
   let(:conversation_klass) { Mailboxer::Conversation }
   let(:conversation_notification) { ConversationNotification }
-  let(:conversation_notification_email) do
-    Notifications::Conversations.new(recipient)
-  end
   let(:conversation) { double('conversation') }
   let(:current_user) { double('current_user') }
   let(:recipient) { double('recipient') }
@@ -16,7 +13,6 @@ describe Services::Messages do
     allow(conversation_klass).to receive(:find).with(1) { conversation }
     allow(conversation_klass).to receive_message_chain(:between, :find)
     allow(conversation_notification).to receive(:create) { nil }
-    allow(conversation_notification_email).to receive(:execute) { nil }
   end
 
   describe '#find_existing_conversation' do
