@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  api:
+    build: .
+    container_name: api
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    links:
+      - mysql
+      - elastic_search
+      - redis_cache
+    volumes:
+      - .:/app
+
+  mysql:
+    image: mysql:5.7.26
+    container_name: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - 8002:3306
+    volumes:
+      - mysql_db_volume:/var/lib/mysql
+
+  redis_cache:
+    image: redis:latest
+    container_name: redis_cache
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_cache_volume:/var/lib/redis
+
+  elastic_search:
+    image: elasticsearch:6.8.2
+    container_name: elastic_search
+    ports:
+      - 8004:9200
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.monitoring.enabled=false
+      - xpack.watcher.enabled=false
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+    volumes:
+      - elastic_search_volume:/var/lib/elastic_search
+
+volumes:
+  mysql_db_volume: {}
+  redis_cache_volume: {}
+  elastic_search_volume: {}
