@@ -48,9 +48,7 @@ RSpec.configure do |config|
     end
   end
 
-  config.before(:each) do
-    stub_request(:any, /localhost/).to_return({})
-  end
+  config.before(:each) { stub_request(:any, //).to_return({}) }
 
   Paperclip::Attachment.default_options[:path] =
     "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
