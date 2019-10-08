@@ -1,8 +1,8 @@
 class FacebookHelper
-  GENDERS = ['male', 'female'].freeze
-  FB_PROVIDER = 'facebook'
+  GENDERS = %w[male female].freeze
+  FB_PROVIDER = 'facebook'.freeze
   DEFAULT_AGE = 30
-  DEFAULT_STATE_CODE = 'att'
+  DEFAULT_STATE_CODE = 'att'.freeze
 
   def self.create_user(fb_auth)
     new(fb_auth).call

@@ -13,6 +13,7 @@ module Services
 
       return unless conversation
       return if conversation_deleted?(conversation, recipient)
+
       conversation
     end
 

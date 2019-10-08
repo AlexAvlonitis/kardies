@@ -5,7 +5,7 @@ module Services
       @page = page
     end
 
-    def sorted(options = {created_at: :desc})
+    def sorted(options = { created_at: :desc })
       @likes = current_user.votes_for.order(options).voters
       paginate
     end

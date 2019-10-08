@@ -1,6 +1,5 @@
 module Queries
   class User < Base
-
     private
 
     def sort_params
@@ -20,15 +19,15 @@ module Queries
     end
 
     def state
-      { term: { "user_detail.state" => params.state } } unless params.state.blank?
+      { term: { 'user_detail.state' => params.state } } if params.state.present?
     end
 
     def gender
-      { term: { "user_detail.gender" => params.gender } } unless params.gender.blank?
+      { term: { 'user_detail.gender' => params.gender } } if params.gender.present?
     end
 
     def is_signed_in
-      { term: { is_signed_in: params.is_signed_in } } unless params.is_signed_in.blank?
+      { term: { is_signed_in: params.is_signed_in } } if params.is_signed_in.present?
     end
 
     def sort_by_latest
@@ -38,7 +37,7 @@ module Queries
     def age_range
       {
         range: {
-          "user_detail.age" => { gte: params.age_from, lte: params.age_to }
+          'user_detail.age' => { gte: params.age_from, lte: params.age_to }
         }
       }
     end

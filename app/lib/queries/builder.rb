@@ -1,6 +1,6 @@
 module Queries
   class Builder
-    def initialize()
+    def initialize
       @final_query = {}
     end
 

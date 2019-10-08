@@ -5,7 +5,7 @@ class UserDetail < ApplicationRecord
 
   belongs_to :user
 
-  VALID_IMAGES_REGEX = /^image\/(jpeg|jpg|png|gif|tiff)$/
+  VALID_IMAGES_REGEX = %r{^image/(jpeg|jpg|png|gif|tiff)$}.freeze
 
   has_attached_file :profile_picture,
                     source_file_options: { all: '-auto-orient' },
