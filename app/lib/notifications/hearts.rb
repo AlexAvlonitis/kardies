@@ -7,6 +7,7 @@ module Notifications
 
     def execute
       return unless likes_email_allowed? && user_not_online
+
       mailer_klass.new_hearts_notification(user).deliver_later
     end
 

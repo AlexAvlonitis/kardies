@@ -12,9 +12,9 @@ gem 'doorkeeper', '~> 5'
 gem 'kaminari'
 
 # Elastic Search
-gem "elasticsearch", "~> 6"
-gem "elasticsearch-model"
-gem "elasticsearch-rails"
+gem 'elasticsearch', '~> 6'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 gem 'greek-cities'
 gem 'httparty'

@@ -62,11 +62,11 @@ module Api
       end
 
       def allowed_update_params
-        [ :email, :password, :password_confirmation, user_detail_attrs]
+        [:email, :password, :password_confirmation, user_detail_attrs]
       end
 
       def allow_params
-        [ :username, :email, :password, :password_confirmation, user_detail_attrs]
+        [:username, :email, :password, :password_confirmation, user_detail_attrs]
       end
 
       def user_detail_attrs
