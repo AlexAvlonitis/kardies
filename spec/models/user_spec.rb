@@ -71,24 +71,32 @@ RSpec.describe User do
         }
       end
 
+      let(:fb_user) do
+        FactoryBot.build_stubbed(:user, email: 'random_word', email: auth[:email])
+      end
+
       before do
         allow_any_instance_of(User).to receive(:auto_like) { true }
         allow(UserMailer)
           .to receive_message_chain(:welcome_email, :deliver_later)
           .and_return(true)
+
+        allow(User)
+          .to receive(:find_by)
+          .with(provider: 'facebook', uid: auth[:userID])
+          .and_return(fb_user)
       end
 
       it 'does not return the first part of the email' do
-        User.from_omniauth(auth)
+        user = User.from_omniauth(auth)
 
-        expect(User.last.username).not_to eq 'joe_roe'
+        expect(user.username).not_to eq 'random_word'
       end
 
       it 'creates a random username' do
-        User.from_omniauth(auth)
-        user = User.last.username
+        user = User.from_omniauth(auth)
 
-        expect(user).to match /[a-z]+_[a-z]/
+        expect(user).to eq fb_user
       end
     end
   end
