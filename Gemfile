@@ -6,10 +6,11 @@ gem 'rails', '~> 5.2'
 
 gem 'active_model_serializers'
 gem 'acts_as_votable', '~> 0.10.0'
-gem 'aws-sdk-s3', '~> 1'
+gem 'aws-sdk-s3', require: false
 gem 'devise'
 gem 'doorkeeper', '~> 5'
 gem 'kaminari'
+gem 'mini_magick'
 
 # Elastic Search
 gem 'elasticsearch', '~> 6'
@@ -20,7 +21,6 @@ gem 'greek-cities'
 gem 'httparty'
 gem 'mailboxer'
 gem 'mailgun_rails'
-gem 'paperclip', '~> 6.0'
 gem 'pry-rails'
 gem 'pundit'
 gem 'rack-attack'
