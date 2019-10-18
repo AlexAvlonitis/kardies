@@ -94,16 +94,18 @@ class User < ApplicationRecord
     email_preference&.messages && !is_signed_in
   end
 
-  def profile_picture(size = :thumb)
-    user_detail.profile_picture.url(size)
-  end
-
   def profile_picture_medium
-    user_detail.profile_picture.url(:medium)
+    profile_picture.variant resize: "300x300>" if profile_picture
   end
 
-  def profile_picture_exists?
-    user_detail.profile_picture.exists?
+  def profile_picture_thumb
+    profile_picture.variant resize: "100x100>" if profile_picture
+  end
+
+  def profile_picture
+    return unless user_detail.profile_picture.attached?
+
+    user_detail.profile_picture
   end
 
   def to_param

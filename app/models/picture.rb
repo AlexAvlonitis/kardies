@@ -4,13 +4,7 @@ class Picture < ApplicationRecord
 
   has_many_attached :pictures
 
-  # validates_attachment_content_type :picture, content_type: %r{\Aimage\/.*\Z}
-
-  # validates_attachment :picture,
-  #                      size: { in: 0..5.megabytes },
-  #                      content_type: { content_type: %r{^image\/(jpeg|jpg|png|gif|tiff)$} }
-
   def picture_medium
-    picture.url(:medium)
+    picture.variant resize: "300x300>" if picture.attached?
   end
 end
