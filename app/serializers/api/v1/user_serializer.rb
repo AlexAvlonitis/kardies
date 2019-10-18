@@ -4,6 +4,7 @@ module Api
   module V1
     class UserSerializer < ActiveModel::Serializer
       include ActionView::Helpers::DateHelper
+      include Rails.application.routes.url_helpers
 
       has_one :user_detail
       has_one :about
@@ -20,11 +21,21 @@ module Api
                  :is_signed_in
 
       def profile_picture
-        object.profile_picture(:original)
+        return unless object.profile_picture
+
+        rails_blob_url(object.profile_picture)
+      end
+
+      def profile_picture_medium
+        return unless object.profile_picture
+
+        rails_representation_url(object.profile_picture_medium)
       end
 
       def profile_picture_thumb
-        object.profile_picture(:thumb)
+        return unless object.profile_picture
+
+        rails_representation_url(object.profile_picture_thumb)
       end
 
       def like
