@@ -2,10 +2,10 @@ source 'https://rubygems.org'
 
 gem 'mysql2'
 gem 'puma'
-gem 'rails', '~> 5.2'
+gem 'rails', '~> 6'
 
 gem 'active_model_serializers'
-gem 'acts_as_votable', '~> 0.10.0'
+gem 'acts_as_votable'
 gem 'aws-sdk-s3', '~> 1'
 gem 'devise'
 gem 'doorkeeper', '~> 5'
@@ -13,8 +13,8 @@ gem 'kaminari'
 
 # Elastic Search
 gem 'elasticsearch', '~> 6'
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
+gem 'elasticsearch-model', '~> 6'
+gem 'elasticsearch-rails', '~> 6'
 
 gem 'greek-cities'
 gem 'httparty'
