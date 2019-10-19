@@ -2,6 +2,7 @@
 lock '3.11.2'
 
 set :application, 'travelhub'
+set :branch, 'migrate-to-active-storage'
 set :repo_url, 'git@github.com:AlexAvlonitis/kardies.git'
 
 # rbenv
