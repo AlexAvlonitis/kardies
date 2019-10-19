@@ -9,7 +9,7 @@ module Api
 
         resource.save
         if resource.persisted?
-          render json: { message: 'signup successfull' }, status: :ok
+          render json: { message: 'Εγγραφήκατε επιτυχώς' }, status: :ok
         else
           clean_up_passwords resource
           set_minimum_password_length
@@ -24,6 +24,9 @@ module Api
           prev_unconfirmed_email = resource.unconfirmed_email
         end
         if resource.update(account_update_params)
+          pic = account_update_params.dig(:user_detail_attributes, :profile_picture)
+          resource.user_detail.profile_picture.attach(pic) if pic
+
           if is_flashing_format?
             flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
               :update_needs_confirmation : :updated

@@ -1,15 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.paperclip_defaults = {
-    storage: :s3,
-    s3_protocol: :https,
-    s3_credentials: {
-      bucket: ENV.fetch('S3_BUCKET_NAME'),
-      access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
-      secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
-      s3_region: ENV.fetch('AWS_REGION')
-    }
-  }
+
+  # Store files on amazon.
+  config.active_storage.service = :amazon
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -84,6 +77,8 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
+
+  Rails.application.routes.default_url_options[:host] = 'kardies.gr'
   config.action_mailer.default_url_options = { host: 'kardies.gr' }
 
   # MAILGUN settings

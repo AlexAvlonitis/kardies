@@ -7,19 +7,7 @@ class UserDetail < ApplicationRecord
 
   VALID_IMAGES_REGEX = %r{^image/(jpeg|jpg|png|gif|tiff)$}.freeze
 
-  has_attached_file :profile_picture,
-                    source_file_options: { all: '-auto-orient' },
-                    styles: {
-                      original: '',
-                      medium: '300x300>',
-                      thumb: '100x100>'
-                    },
-                    default_url: '/images/missing.png'
-
-  validates_attachment_content_type :profile_picture, content_type: %r{\Aimage\/.*\Z}
-  validates_attachment :profile_picture,
-                       size: { in: 0..5.megabytes },
-                       content_type: { content_type: VALID_IMAGES_REGEX }
+  has_one_attached :profile_picture
 
   validates :age,
             :gender,
@@ -38,8 +26,9 @@ class UserDetail < ApplicationRecord
               message: '%<value>s is not a valid state'
             }
 
-  validates :age, inclusion: {
-    in: (18..99).map(&:to_s),
-    message: '%<value>s is not a valid age, must be between 18 and 99'
-  }
+  validates :age,
+            inclusion: {
+              in: (18..99).map(&:to_s),
+              message: '%<value>s is not a valid age, must be between 18 and 99'
+            }
 end

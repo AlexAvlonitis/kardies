@@ -4,7 +4,7 @@ lock '3.11.2'
 set :application, 'travelhub'
 set :repo_url, 'git@github.com:AlexAvlonitis/kardies.git'
 
-#RBENV#
+# rbenv
 set :rbenv_type, :user # or :system, depends on your rbenv setup
 set :rbenv_ruby, '2.6.3'
 
