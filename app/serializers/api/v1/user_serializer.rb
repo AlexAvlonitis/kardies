@@ -28,7 +28,7 @@ module Api
       end
 
       def like
-        scope.voted_for? object
+        scope.voted_for?(object) if scope
       end
 
       def like_date

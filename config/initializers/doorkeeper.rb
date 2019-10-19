@@ -15,9 +15,7 @@ Doorkeeper.configure do
 
   grant_flows %w(password)
 
-  skip_authorization do
-    true
-  end
+  skip_authorization { true }
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
   # admin_authenticator do
