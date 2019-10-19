@@ -25,6 +25,7 @@
 /config/secrets.production.yml
 /public/packs
 /public/packs-test
+storage/
 /node_modules
 yarn-debug.log*
 .yarn-integrity
