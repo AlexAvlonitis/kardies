@@ -8,7 +8,7 @@ gem 'active_model_serializers'
 gem 'acts_as_votable'
 gem 'aws-sdk-s3', '~> 1'
 gem 'devise'
-gem 'doorkeeper', '~> 5'
+gem 'doorkeeper', '~> 5.0'
 gem 'kaminari'
 
 # Elastic Search

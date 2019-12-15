@@ -137,8 +137,8 @@ GEM
     diff-lcs (1.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    doorkeeper (5.2.3)
-      railties (>= 5)
+    doorkeeper (5.0.2)
+      railties (>= 4.2)
     dotenv (2.7.5)
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
@@ -399,7 +399,7 @@ DEPENDENCIES
   capistrano3-puma
   database_cleaner
   devise
-  doorkeeper (~> 5)
+  doorkeeper (~> 5.0)
   dotenv-rails
   elasticsearch (~> 6)
   elasticsearch-model (~> 6)
