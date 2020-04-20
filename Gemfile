@@ -44,18 +44,9 @@ group :test do
 end
 
 group :development do
-  gem 'capistrano'
-  gem 'capistrano-nginx'
-  gem 'capistrano-rails'
-  gem 'capistrano-rails-console'
-  gem 'capistrano-rails-db'
-  gem 'capistrano-rbenv'
-  gem 'capistrano-upload-config'
-  gem 'capistrano3-puma'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'sshkit-sudo'
   gem 'web-console'
 end
 
