@@ -16,6 +16,7 @@ RSpec.describe User do
   it { should have_one(:gallery).dependent(:destroy) }
   it { should have_one(:email_preference).dependent(:destroy) }
   it { should have_one(:user_detail).dependent(:destroy) }
+  it { should have_one(:membership).dependent(:destroy) }
   it { should have_one(:about).dependent(:destroy) }
 
   describe 'db persistense' do

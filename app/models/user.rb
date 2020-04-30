@@ -29,7 +29,7 @@ class User < ApplicationRecord
     )
   end
 
-  ALPHANUMERIC_REGEX ||= /\A[a-z0-9A-Z\_]*\Z/
+  ALPHANUMERIC_REGEX  = /\A[a-z0-9A-Z\_]*\Z/
   USERNAME_LENGTH_MAX = 20
   USERNAME_LENGTH_MIN = 3
 
@@ -50,6 +50,7 @@ class User < ApplicationRecord
     assoc.has_one  :user_detail
     assoc.has_one  :email_preference
     assoc.has_one  :gallery
+    assoc.has_one  :membership
     assoc.has_many :reports
     assoc.has_many :search_criteria
     assoc.has_many :vote_notifications
@@ -132,10 +133,10 @@ class User < ApplicationRecord
   end
 
   def auto_like
-    likes.auto_like
+    likes_service.auto_like
   end
 
-  def likes
-    @likes ||= Services::Likes.new(self)
+  def likes_service
+    @likes_service ||= Services::Likes.new(self)
   end
 end

@@ -8,6 +8,7 @@ module Api
       has_one :user_detail
       has_one :about
       has_one :email_preference
+      has_one :membership
       has_many :pictures, through: :gallery
 
       attributes :username,

@@ -316,6 +316,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stripe (5.20.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.0.1)
@@ -380,10 +381,11 @@ DEPENDENCIES
   shoulda-matchers
   spring
   spring-watcher-listen (~> 2.0.0)
+  stripe
   tzinfo-data
   validates_email_format_of
   web-console
   webmock
 
 BUNDLED WITH
-   2.1.2
+   2.1.4
