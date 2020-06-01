@@ -15,7 +15,7 @@ module Services
     end
 
     def create
-      raise Errors::Memberships::DenyError if subscription_id
+      raise Errors::Memberships::DenyError if subscription_active?
 
       subs = Stripe::Subscription.create(
         customer: customer_id || create_customer.id,
@@ -37,7 +37,8 @@ module Services
       end
 
       current_user.membership.update(
-          expiry_date: Time.at(subs.current_period_end)
+          expiry_date: Time.at(subs.current_period_end),
+          active: true
         )
       subs
     end
@@ -50,7 +51,7 @@ module Services
       raise Errors::Memberships::InactiveError unless subscription_id
 
       subscription = Stripe::Subscription.delete(subscription_id)
-      return delete_subscription(subscription) if subscription.status == CANCELED
+      return cancel_subscription(subscription) if subscription.status == CANCELED
 
       raise Errors::Memberships::UndefinedError
     end
@@ -59,9 +60,13 @@ module Services
 
     attr_reader :current_user, :params
 
-    def delete_subscription(subscription)
-      current_user.membership.update(subscription_id: nil, expiry_date: nil)
+    def cancel_subscription(subscription)
+      current_user.membership.update(active: false)
       subscription
+    end
+
+    def subscription_active?
+      current_user&.membership&.active
     end
 
     def subscription_id
