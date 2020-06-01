@@ -18,7 +18,7 @@ module Services
       raise Errors::Memberships::DenyError if subscription_active?
 
       subs = Stripe::Subscription.create(
-        customer: customer_id || create_customer.id,
+        customer: customer,
         items: [
           {
             plan: PAYMENT_PLAN[params[:payment_plan]&.to_sym]
@@ -73,8 +73,43 @@ module Services
       current_user&.membership&.subscription_id
     end
 
+    def customer
+      return create_customer.id unless customer_id
+
+      unless params[:payment_method] == customer_payment_method&.data&.first&.id
+        attach_payment_method
+        update_customer_default_payment_method
+      end
+      customer_id
+    end
+
     def customer_id
       current_user&.membership&.customer_id
+    end
+
+    def update_customer_default_payment_method
+      Stripe::Customer.update(
+        customer_id,
+        {
+          invoice_settings: {
+            default_payment_method: params[:payment_method]
+          }
+        }
+      )
+    end
+
+    def customer_payment_method
+      Stripe::PaymentMethod.list({
+          customer: customer_id,
+          type: 'card',
+        })
+    end
+
+    def attach_payment_method
+      Stripe::PaymentMethod.attach(
+          params[:payment_method],
+          {customer: customer_id},
+        )
     end
 
     def create_customer
@@ -86,12 +121,12 @@ module Services
           }
         )
       store_customer(customer)
+      customer
     end
 
     def store_customer(customer)
       subs = Membership.create(customer_id: customer.id)
       current_user.membership = subs
-      customer
     end
   end
 end
