@@ -42,7 +42,7 @@ module Api
       end
 
       def allowed_params
-        %i[payment_plan payment_method]
+        %i[payment_plan payment_method idempotency_key]
       end
     end
   end

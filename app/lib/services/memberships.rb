@@ -18,13 +18,18 @@ module Services
       raise Errors::Memberships::DenyError if subscription_active?
 
       subs = Stripe::Subscription.create(
-        customer: customer,
-        items: [
-          {
-            plan: PAYMENT_PLAN[params[:payment_plan]&.to_sym]
-          }
-        ],
-        expand: ['latest_invoice.payment_intent']
+        {
+          customer: customer,
+          items: [
+            {
+              plan: PAYMENT_PLAN[params[:payment_plan]&.to_sym]
+            }
+          ],
+          expand: ['latest_invoice.payment_intent']
+        },
+        {
+          idempotency_key: params[:idempotency_key]
+        }
       )
       current_user.membership.update(subscription_id: subs.id)
       subs
