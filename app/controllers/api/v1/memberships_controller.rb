@@ -30,7 +30,15 @@ module Api
 
       def membership_service
         @membership_service ||=
-          Services::Memberships.new(current_user, params)
+          Services::Memberships.new(current_user, membership_params)
+      end
+
+      def membership_params
+        params.permit(allowed_params)
+      end
+
+      def allowed_params
+        %i[payment_plan payment_method]
       end
     end
   end
