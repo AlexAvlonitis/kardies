@@ -15,6 +15,10 @@ module Api
           render json: { errors: e.message }, status: :unprocessable_entity
       end
 
+      def retrieve_membership
+        render_json(membership_service.retrieve_membership)
+      end
+
       def destroy
         render_json(membership_service.cancel)
 

@@ -31,7 +31,7 @@ module Services
     end
 
     def store_membership
-      subs = retrieve_subscription
+      subs = retrieve_membership
       unless subs.customer == current_user.membership.customer_id
         raise Errors::Memberships::PermissionError
       end
@@ -43,7 +43,7 @@ module Services
       subs
     end
 
-    def retrieve_subscription
+    def retrieve_membership
       Stripe::Subscription.retrieve(subscription_id)
     end
 
