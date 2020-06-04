@@ -49,7 +49,7 @@ module Services
     end
 
     def retrieve_membership
-      Stripe::Subscription.retrieve(subscription_id)
+      Stripe::Subscription.retrieve(subscription_id) if subscription_id
     end
 
     def cancel
