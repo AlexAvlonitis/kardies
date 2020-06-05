@@ -4,10 +4,7 @@ module Api
       attributes :active, :expiry_date, :expired
 
       def expired
-        return unless object.subscription_id
-
-        expiry_date_int = object.expiry_date || 0
-        (Time.at(expiry_date_int) < Time.now) ? true : false
+        object.expired?
       end
 
       def expiry_date

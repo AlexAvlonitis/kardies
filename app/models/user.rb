@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   include ActiveModel::Validations
   include Searchable
+  include Heartable
 
   after_create :send_welcome_mail
   after_create :auto_like
