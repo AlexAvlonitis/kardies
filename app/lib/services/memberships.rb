@@ -4,9 +4,9 @@ module Services
   class Memberships
     CANCELED = 'canceled'
     PAYMENT_PLAN = {
-      monthly: 'plan_HBdQUh05ZOv6op',
-      six_months: 'plan_HBdYuxomnTN9l6',
-      yearly: 'plan_HBdYVDluKzQMir'
+      monthly: ENV['MONTHLY_SUBSCRIPTION_PLAN'],
+      six_months: ENV['SIX_MONTHS_SUBSCRIPTION_PLAN'],
+      yearly: ENV['YEARLY_SUBSCRIPTION_PLAN']
     }.freeze
 
     def initialize(current_user, params)
