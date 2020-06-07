@@ -6,7 +6,9 @@ module Api
       end
 
       def current_user
-        @current_user ||= User.find_by(id: doorkeeper_token.resource_owner_id) if doorkeeper_token
+        return unless doorkeeper_token
+
+        @current_user ||= User.find_by(id: doorkeeper_token.resource_owner_id)
       end
 
       def block_and_render(error)
