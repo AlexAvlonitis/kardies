@@ -87,11 +87,6 @@ class User < ApplicationRecord
     includes(:user_detail).order(created_at: :desc)
   end
 
-  def self.find_for_authentication(tainted_conditions)
-    user = find_first_by_auth_conditions(tainted_conditions)
-    user if user && user.confirmed?
-  end
-
   def message_email_notification_allowed?
     email_preference&.messages && !is_signed_in
   end
