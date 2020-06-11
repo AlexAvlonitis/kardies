@@ -21,13 +21,17 @@ RSpec.describe Services::Memberships do
 
   describe '#create' do
     before do
+      allow(ENV).to receive(:[]).with('MONTHLY_SUBSCRIPTION_PLAN').and_return('plan_123')
+      allow(ENV).to receive(:[]).with('SIX_MONTHS_SUBSCRIPTION_PLAN').and_return('plan_six_123')
+      allow(ENV).to receive(:[]).with('YEARLY_SUBSCRIPTION_PLAN').and_return('plan_year_123')
+
       allow(current_user)
         .to receive(:membership)
         .and_return(membership)
 
       allow(membership)
-          .to receive(:active)
-          .and_return(false)
+        .to receive(:active)
+        .and_return(false)
 
       allow(Stripe::PaymentMethod).to receive(:attach) { true }
       allow(Stripe::PaymentMethod).to receive(:list) { customer_payment_method }
@@ -54,21 +58,21 @@ RSpec.describe Services::Memberships do
             .and_return(subscription)
 
           allow(membership)
-           .to receive(:update)
-           .and_return(true)
+            .to receive(:update)
+            .and_return(true)
 
           allow(membership)
-           .to receive(:customer_id)
-           .and_return(1)
+            .to receive(:customer_id)
+            .and_return(1)
         end
 
         it 'create a subscription on stripe' do
           expect(Stripe::Subscription)
             .to receive(:create)
             .with(
-                {
+              {
                 customer: customer.id,
-                items: [{ plan: 'plan_HBdQUh05ZOv6op' }],
+                items: [{ plan: 'plan_123' }],
                 expand: ['latest_invoice.payment_intent']
               },
               { idempotency_key: params[:idempotency_key] }

@@ -3,11 +3,6 @@
 module Services
   class Memberships
     CANCELED = 'canceled'
-    PAYMENT_PLAN = {
-      monthly: ENV['MONTHLY_SUBSCRIPTION_PLAN'],
-      six_months: ENV['SIX_MONTHS_SUBSCRIPTION_PLAN'],
-      yearly: ENV['YEARLY_SUBSCRIPTION_PLAN']
-    }.freeze
 
     def initialize(current_user, params)
       @current_user = current_user
@@ -22,7 +17,7 @@ module Services
           customer: customer,
           items: [
             {
-              plan: PAYMENT_PLAN[params[:payment_plan]&.to_sym]
+              plan: payment_plan(params[:payment_plan])
             }
           ],
           expand: ['latest_invoice.payment_intent']
@@ -132,6 +127,17 @@ module Services
     def store_customer(customer)
       subs = Membership.create(customer_id: customer.id)
       current_user.membership = subs
+    end
+
+    def payment_plan(plan)
+      return unless plan
+
+      plans = {
+        monthly: ENV['MONTHLY_SUBSCRIPTION_PLAN'],
+        six_months: ENV['SIX_MONTHS_SUBSCRIPTION_PLAN'],
+        yearly: ENV['YEARLY_SUBSCRIPTION_PLAN']
+      }
+      plans[plan.to_sym]
     end
   end
 end
