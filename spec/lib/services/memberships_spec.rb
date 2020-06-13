@@ -21,13 +21,10 @@ RSpec.describe Services::Memberships do
   end
 
   before do
-    allow(current_user)
-      .to receive(:membership)
-      .and_return(membership)
+    allow(current_user).to receive(:membership).and_return(membership)
 
-    allow(membership)
-      .to receive(:active)
-      .and_return(false)
+    allow(membership).to receive(:active).and_return(false)
+    allow(membership).to receive(:update) { true }
   end
 
   describe '#create' do
@@ -43,9 +40,7 @@ RSpec.describe Services::Memberships do
 
     context 'When a user\'s membership is already active' do
       it 'raises membership deny error' do
-        allow(membership)
-          .to receive(:active)
-          .and_return(true)
+        allow(membership).to receive(:active) { true }
 
         expect { subject.create }.to raise_error(Errors::Memberships::DenyError)
       end
@@ -53,20 +48,12 @@ RSpec.describe Services::Memberships do
 
     context 'When a the user\'s details are correct' do
       before do
-        allow(Stripe::Subscription)
-          .to receive(:create)
-          .and_return(subscription)
-
-        allow(membership)
-          .to receive(:update)
-          .and_return(true)
+        allow(Stripe::Subscription).to receive(:create).and_return(subscription)
       end
 
       context 'When the customer exists' do
         before do
-          allow(membership)
-            .to receive(:customer_id)
-            .and_return(1)
+          allow(membership).to receive(:customer_id) { 1 }
         end
 
         it 'create a subscription on stripe' do
@@ -148,7 +135,6 @@ RSpec.describe Services::Memberships do
   describe '#store_membership' do
     before do
       allow(membership).to receive(:subscription_id) { '123' }
-      allow(membership).to receive(:update) { true }
 
       allow(Stripe::Subscription)
         .to receive(:retrieve)
@@ -196,6 +182,53 @@ RSpec.describe Services::Memberships do
 
         expect { subject.store_membership }
           .to raise_error(Errors::Memberships::PermissionError)
+      end
+    end
+  end
+
+  describe '#cancel' do
+    before do
+      allow(membership).to receive(:subscription_id) { '123' }
+      allow(subscription).to receive(:status) { 'canceled' }
+
+      allow(Stripe::Subscription).to receive(:delete) { subscription }
+    end
+
+    context 'when a subscription_id exists in the db' do
+      it 'deletes it from Stripe' do
+        expect(Stripe::Subscription)
+          .to receive(:delete)
+          .with('123')
+          .and_return(subscription)
+
+        subject.cancel
+      end
+
+      it 'updates the active flag in the db' do
+        expect(membership)
+          .to receive(:update)
+          .with(active: false)
+          .and_return(true)
+
+        subject.cancel
+      end
+    end
+
+    context 'when a subscription_id does not exist in the db' do
+      it 'raises inactive error' do
+        allow(membership).to receive(:subscription_id) { nil }
+
+        expect { subject.cancel }
+          .to raise_error(Errors::Memberships::InactiveError)
+      end
+    end
+
+    context 'when a subscription from stripe has failed to cancel' do
+      it 'raises an undefined error' do
+        allow(subscription).to receive(:status) { 'active' }
+
+        expect { subject.cancel }
+          .to raise_error(Errors::Memberships::UndefinedError)
       end
     end
   end
