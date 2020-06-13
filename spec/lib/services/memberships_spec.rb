@@ -6,6 +6,7 @@ RSpec.describe Services::Memberships do
   let(:current_user) { double('current_user', email: 'test@test.com') }
   let(:membership) { double('membership') }
   let(:customer) { double('customer', id: 1) }
+  let(:stripe_customer) { double('stripe_customer', id: 2) }
   let(:subscription) { double('subscription', id: 1) }
   let(:customer_payment_method) do
     double('payment_method',
@@ -14,7 +15,7 @@ RSpec.describe Services::Memberships do
   end
   let(:params) do
     {
-      payment_methods: "card",
+      payment_method: "card",
       payment_plan: "monthly"
     }
   end
@@ -51,16 +52,18 @@ RSpec.describe Services::Memberships do
     end
 
     context 'When a the user\'s details are correct' do
+      before do
+        allow(Stripe::Subscription)
+          .to receive(:create)
+          .and_return(subscription)
+
+        allow(membership)
+          .to receive(:update)
+          .and_return(true)
+      end
+
       context 'When the customer exists' do
         before do
-          allow(Stripe::Subscription)
-            .to receive(:create)
-            .and_return(subscription)
-
-          allow(membership)
-            .to receive(:update)
-            .and_return(true)
-
           allow(membership)
             .to receive(:customer_id)
             .and_return(1)
@@ -78,6 +81,63 @@ RSpec.describe Services::Memberships do
               { idempotency_key: params[:idempotency_key] }
             )
             .and_return(subscription)
+
+          subject.create
+        end
+
+        it 'records the subscription_id in the db' do
+          expect(membership)
+            .to receive(:update)
+            .with(subscription_id: subscription.id)
+
+          subject.create
+        end
+      end
+
+      context 'When the customer does not exist' do
+        before do
+          allow(membership)
+            .to receive(:customer_id)
+            .and_return(nil)
+
+          allow(Stripe::Customer)
+            .to receive(:create)
+            .and_return(stripe_customer)
+
+          allow(Membership)
+            .to receive(:create)
+            .and_return(subscription)
+
+          allow(current_user)
+            .to receive(:membership=)
+            .and_return(true)
+        end
+
+        it 'creates a new customer on stripe' do
+          expect(Stripe::Customer)
+            .to receive(:create)
+            .with({
+              payment_method: 'card',
+              email: 'test@test.com',
+              invoice_settings: {
+                default_payment_method: 'card'
+              }
+            })
+            .and_return(stripe_customer)
+
+          subject.create
+        end
+
+        it 'records the stripe_customer_id in db' do
+          expect(Membership)
+            .to receive(:create)
+            .with(customer_id: stripe_customer.id)
+            .and_return(subscription)
+
+          expect(current_user)
+            .to receive(:membership=)
+            .with(subscription)
+            .and_return(true)
 
           subject.create
         end
