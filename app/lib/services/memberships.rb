@@ -32,7 +32,7 @@ module Services
 
     def store_membership
       subs = retrieve_membership
-      unless subs.customer == current_user.membership.customer_id
+      unless subs&.customer == current_user.membership.customer_id
         raise Errors::Memberships::PermissionError
       end
 

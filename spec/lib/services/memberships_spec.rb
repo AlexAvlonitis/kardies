@@ -4,7 +4,7 @@ RSpec.describe Services::Memberships do
   let(:subject) { described_class.new(current_user, params) }
 
   let(:current_user) { double('current_user', email: 'test@test.com') }
-  let(:membership) { double('membership') }
+  let(:membership) { double('membership', customer_id: 1) }
   let(:customer) { double('customer', id: 1) }
   let(:stripe_customer) { double('stripe_customer', id: 2) }
   let(:subscription) { double('subscription', id: 1) }
@@ -20,19 +20,21 @@ RSpec.describe Services::Memberships do
     }
   end
 
+  before do
+    allow(current_user)
+      .to receive(:membership)
+      .and_return(membership)
+
+    allow(membership)
+      .to receive(:active)
+      .and_return(false)
+  end
+
   describe '#create' do
     before do
       allow(ENV).to receive(:[]).with('MONTHLY_SUBSCRIPTION_PLAN').and_return('plan_123')
       allow(ENV).to receive(:[]).with('SIX_MONTHS_SUBSCRIPTION_PLAN').and_return('plan_six_123')
       allow(ENV).to receive(:[]).with('YEARLY_SUBSCRIPTION_PLAN').and_return('plan_year_123')
-
-      allow(current_user)
-        .to receive(:membership)
-        .and_return(membership)
-
-      allow(membership)
-        .to receive(:active)
-        .and_return(false)
 
       allow(Stripe::PaymentMethod).to receive(:attach) { true }
       allow(Stripe::PaymentMethod).to receive(:list) { customer_payment_method }
@@ -40,13 +42,11 @@ RSpec.describe Services::Memberships do
     end
 
     context 'When a user\'s membership is already active' do
-      before do
+      it 'raises membership deny error' do
         allow(membership)
           .to receive(:active)
           .and_return(true)
-      end
 
-      it 'raises membership deny error' do
         expect { subject.create }.to raise_error(Errors::Memberships::DenyError)
       end
     end
@@ -141,6 +141,61 @@ RSpec.describe Services::Memberships do
 
           subject.create
         end
+      end
+    end
+  end
+
+  describe '#store_membership' do
+    before do
+      allow(membership).to receive(:subscription_id) { '123' }
+      allow(membership).to receive(:update) { true }
+
+      allow(Stripe::Subscription)
+        .to receive(:retrieve)
+        .and_return(subscription)
+
+      allow(subscription).to receive(:customer) { 1 }
+      allow(subscription).to receive(:current_period_end) { 7428313 }
+    end
+
+    context 'When a subscription_id already exists in the db' do
+      it 'retrieves the subscription from stripe' do
+        expect(Stripe::Subscription)
+          .to receive(:retrieve)
+          .with('123')
+          .and_return(subscription)
+
+        subject.store_membership
+      end
+
+      it 'stores the expiry date and active flag in the db' do
+        expect(membership)
+          .to receive(:update)
+          .with({
+            expiry_date: Time.at(7428313),
+            active: true
+          })
+          .and_return(true)
+
+        subject.store_membership
+      end
+    end
+
+    context 'When a subscription_id does not exist in the db' do
+      it 'raises a permission error' do
+        allow(membership).to receive(:subscription_id) { nil }
+
+        expect { subject.store_membership }
+          .to raise_error(Errors::Memberships::PermissionError)
+      end
+    end
+
+    context 'When the fetched subscription from stripe belongs to a different customer' do
+      it 'raises a permission error' do
+        allow(subscription).to receive(:customer) { 3290234 }
+
+        expect { subject.store_membership }
+          .to raise_error(Errors::Memberships::PermissionError)
       end
     end
   end
