@@ -10,6 +10,7 @@ nini = User.create(
   email: 'ni_ni9001@hotmail.com',
   password: 'password',
   confirmed_at: Time.now,
+  admin: true,
   user_detail_attributes: {
     state: 'att',
     age: 30,

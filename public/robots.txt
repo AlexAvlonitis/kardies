@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /time
-Disallow: /weather
-Disallow: /tube
-Disallow: /news
