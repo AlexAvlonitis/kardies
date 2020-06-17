@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       put :galleries,        to: "galleries#update"
 
       post :store_membership, to: "memberships#store_membership"
-      post :golden_heart,     to: "likes#golden_like"
+      post :golden_heart,     to: "golden_heart#create"
       post :messages,         to: "messages#create"
       post :message_reply,    to: "messages#reply"
       post :omniauths,        to: "omniauths#facebook"

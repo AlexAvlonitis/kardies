@@ -9,23 +9,9 @@ module Api
       end
 
       def create
-        if current_user.voted_for?(@user)
-          render json: { errors: 'Έχετε ήδη στείλει καρδιά' }, status: :unprocessable_entity
-        else
-          send_like
-        end
-      end
+        return send_like unless current_user.voted_for?(@user)
 
-      def golden_like
-        if current_user.membership && !current_user.membership&.expired?
-          if current_user.golden_hearts.find_by(heartable: @user)
-            return render json: { errors: 'Έχετε ήδη στείλει χρυσή καρδιά' }, status: :unprocessable_entity
-          else
-            return send_golden_like
-          end
-        end
-
-        render json: { errors: 'Δεν είστε χρυσό μέλος' }, status: :forbidden
+        render json: { errors: 'Έχετε ήδη στείλει καρδιά' }, status: :unprocessable_entity
       end
 
       private
@@ -35,13 +21,6 @@ module Api
         likes_service.add_notifications(@user)
 
         render json: { message: true }, status: :ok
-      end
-
-      def send_golden_like
-        ::GoldenHeart.create(hearter: current_user, heartable: @user)
-        likes_service.add_notifications(@user)
-
-        render json: { message: "Χρυσή καρδιά εστάλει!" }, status: :ok
       end
 
       def set_user

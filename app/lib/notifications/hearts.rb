@@ -6,6 +6,12 @@ module Notifications
     end
 
     def execute
+      return if !likes_notifications_allowed? && user_online?
+
+      mailer_klass.new_hearts_notification(user).deliver_later
+    end
+
+    def golden_heart
       return unless likes_email_allowed? && user_not_online
 
       mailer_klass.new_hearts_notification(user).deliver_later
@@ -15,16 +21,14 @@ module Notifications
 
     attr_reader :mailer_klass
 
-    def likes_email_allowed?
-      if user.email_preference.present?
-        user.email_preference.likes
-      else
-        true
-      end
+    def likes_notifications_allowed?
+      return user.email_preference.likes if user.email_preference
+
+      true
     end
 
-    def user_not_online
-      user.is_signed_in ? false : true
+    def user_online?
+      user.is_signed_in
     end
   end
 end
