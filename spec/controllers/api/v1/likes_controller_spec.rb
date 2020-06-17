@@ -13,19 +13,23 @@ RSpec.describe Api::V1::LikesController, type: :controller do
 
   describe '#create' do
     context "when user is liked" do
-      before do
-        allow_any_instance_of(User).to receive(:voted_for?).with(user).and_return(true)
-      end
       it "returns 422 status" do
+        allow_any_instance_of(User)
+          .to receive(:voted_for?)
+          .with(user)
+          .and_return(true)
+
         put :create, params: {username: user.username}
         assert_response :unprocessable_entity
       end
     end
     context "when user is not yet liked" do
-      before do
-        allow_any_instance_of(User).to receive(:voted_for?).with(user).and_return(false)
-      end
       it "returns 200 status" do
+        allow_any_instance_of(User)
+          .to receive(:voted_for?)
+          .with(user)
+          .and_return(false)
+
         put :create, params: {username: user.username}
         assert_response :success
       end

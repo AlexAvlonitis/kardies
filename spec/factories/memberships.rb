@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :membership do
-    user { nil }
+    customer_id { nil }
+    subscription_id { nil }
   end
 end

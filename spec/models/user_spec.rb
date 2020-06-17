@@ -73,7 +73,7 @@ RSpec.describe User do
       end
 
       let(:fb_user) do
-        FactoryBot.build_stubbed(:user, email: 'random_word', email: auth[:email])
+        FactoryBot.build_stubbed(:user, email: auth[:email])
       end
 
       before do

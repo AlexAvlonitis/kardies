@@ -6,5 +6,6 @@ FactoryBot.define do
     admin { false }
     confirmed_at { DateTime.now }
     user_detail
+    membership
   end
 end
