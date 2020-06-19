@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       put :galleries,        to: "galleries#update"
 
       post :store_membership, to: "memberships#store_membership"
+      post :unsubscribe,      to: "cable#unsubscribe"
       post :golden_heart,     to: "golden_heart#create"
       post :messages,         to: "messages#create"
       post :message_reply,    to: "messages#reply"

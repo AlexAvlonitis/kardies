@@ -12,7 +12,7 @@ module Api
       end
 
       def block_and_render(error)
-        render json: { errors: error }, status: :unauthorized
+        render json: { errors: error }, status: :forbidden
       end
     end
   end

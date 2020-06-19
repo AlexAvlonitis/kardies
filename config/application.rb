@@ -32,6 +32,7 @@ module Kardies
         )
       end
     end
+
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
     config.middleware.use Rack::Attack
