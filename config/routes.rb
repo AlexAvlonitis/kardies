@@ -37,7 +37,10 @@ Rails.application.routes.draw do
       resources :memberships,     only: :create
 
       resources :conversations, only: [:index, :show, :destroy] do
-        delete :delete_all, on: :collection
+        collection do
+          delete :delete_all
+          get    :unread
+        end
       end
 
       get :retrieve_membership, to: "memberships#retrieve_membership"

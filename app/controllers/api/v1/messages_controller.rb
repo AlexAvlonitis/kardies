@@ -5,8 +5,8 @@ module Api
       after_action  :add_notifications
 
       def create
-        if conversation = existing_conversation
-          current_user.reply_to_conversation(conversation, params[:body])
+        if existing_conversation
+          current_user.reply_to_conversation(existing_conversation, params[:body])
         else
           current_user.send_message(
             @recipient,
@@ -14,17 +14,21 @@ module Api
             current_user.username
           ).conversation
         end
-        MessageBroadcastJob.perform_later(conversation, current_user)
+        MessageBroadcastJob.perform_later(existing_conversation, current_user)
 
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
+      rescue StandardError => e
+        render json: { error: 'Κάτι πήγε στραβά, δοκιμάστε αργότερα'}, status: :unprocessable_entity
       end
 
+
       def reply
-        conversation = existing_conversation
-        current_user.reply_to_conversation(conversation, params[:body])
-        MessageBroadcastJob.perform_later(conversation, current_user)
+        current_user.reply_to_conversation(existing_conversation, params[:body])
+        MessageBroadcastJob.perform_later(existing_conversation, current_user)
 
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
+      rescue StandardError => e
+        render json: { error: 'Κάτι πήγε στραβά, δοκιμάστε αργότερα'}, status: :unprocessable_entity
       end
 
       private
@@ -35,7 +39,7 @@ module Api
 
       def set_user
         @recipient = User.find_by!(username: params[:recipient])
-        authorize @recipient
+        authorize(@recipient)
       end
 
       def add_notifications
@@ -46,10 +50,10 @@ module Api
       end
 
       def existing_conversation
-        messages.find_existing_conversation(
-          params[:conversation_id],
-          @recipient
-        )
+        @existing_conversation ||= messages.find_existing_conversation(
+            params[:conversation_id],
+            @recipient
+          )
       end
 
       def messages

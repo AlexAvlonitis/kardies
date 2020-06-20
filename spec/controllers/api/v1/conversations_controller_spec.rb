@@ -29,7 +29,7 @@ RSpec.describe Api::V1::ConversationsController, type: :controller do
         response = get :show, format: :json, params: { id: conversation.id }
         error = 'Η συνομιλία έχει διαγραφεί'
         parsed_body = JSON.parse(response.body)
-        expect(parsed_body['data']).to eq(error)
+        expect(parsed_body['message']).to eq(error)
       end
     end
   end

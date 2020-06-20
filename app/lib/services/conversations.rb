@@ -5,11 +5,15 @@ module Services
     end
 
     def all
-      get_messages
+      all_messages
     end
 
     def show(id)
       mailbox.conversations.find(id)
+    end
+
+    def unread
+      mailbox.inbox(unread: true).map { |m| m.id.to_i }
     end
 
     def delete_all
@@ -22,7 +26,7 @@ module Services
 
     attr_reader :current_user
 
-    def get_messages
+    def all_messages
       messages = mailbox.inbox + mailbox.sentbox
       messages.flatten.uniq(&:id)
     end

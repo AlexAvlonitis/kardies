@@ -3,6 +3,6 @@
 
 class MessagesNotificationsChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "messages_notifications_#{params[:current_user_username]}"
+    stream_from "messages_notifications_#{params[:username]}"
   end
 end
