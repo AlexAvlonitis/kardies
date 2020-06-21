@@ -3,6 +3,10 @@ module Api
     class GoldenHeartController < ApiController
       before_action :set_user, only: :create
 
+      def index
+        render json: GoldenHeart.received(current_user), status: :ok
+      end
+
       def create
         if current_user.membership && !current_user.membership&.expired?
           if current_user.golden_hearts.find_by(heartable: @user)
@@ -20,7 +24,7 @@ module Api
 
       def send_golden_like
         GoldenHeart.create(hearter: current_user, heartable: @user)
-        Notifications::Hearts.new(@user, GoldenHeartMailer).golden_heart
+        Notifications::Hearts.new(@user, GoldenHeartMailer).execute
 
         render json: { message: "Χρυσή καρδιά εστάλει!" }, status: :ok
       end

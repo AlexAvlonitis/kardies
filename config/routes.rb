@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       resources :contacts,        only: :create
       resources :likes,           only: [:index, :create]
       resources :golden_users,    only: :index
+      resources :golden_heart,    only: :index
       resources :search_criteria, only: :create, path: :search
       resources :pictures,        only: :destroy
       resources :memberships,     only: :create
