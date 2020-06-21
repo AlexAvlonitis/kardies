@@ -11,12 +11,6 @@ module Notifications
       mailer_klass.new_hearts_notification(user).deliver_later
     end
 
-    def golden_heart
-      return unless likes_email_allowed? && user_not_online
-
-      mailer_klass.new_hearts_notification(user).deliver_later
-    end
-
     private
 
     attr_reader :mailer_klass

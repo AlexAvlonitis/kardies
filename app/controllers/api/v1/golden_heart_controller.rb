@@ -20,7 +20,7 @@ module Api
 
       def send_golden_like
         GoldenHeart.create(hearter: current_user, heartable: @user)
-        Notifications::Hearts.new(@user, GoldenHeartMailer).execute
+        Notifications::Hearts.new(@user, GoldenHeartMailer).golden_heart
 
         render json: { message: "Χρυσή καρδιά εστάλει!" }, status: :ok
       end
