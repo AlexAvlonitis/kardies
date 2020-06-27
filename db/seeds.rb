@@ -34,7 +34,9 @@ nini = User.create(
   nini.liked_by u
 end
 
-PERSONALITIES.each do |personality|
+personalities = YAML.load_file("config/personalities.yml")['personalities']
+
+personalities.each do |personality|
   Personality.create(
     code: personality.first,
     detail: personality.last
