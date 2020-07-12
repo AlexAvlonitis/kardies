@@ -24,7 +24,7 @@ module Kardies
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:3000', '127.0.0.1:3000', 'https://kardies.gr'
+        origins /localhost:\d+/, 'https://kardies.gr', /127.0.0.1:\d+/
         resource(
           '*',
           headers: :any,
