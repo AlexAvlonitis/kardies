@@ -1,14 +1,7 @@
-<% content_for :title do %>
-  Κλείδωμα λογαριασμού
-<% end %>
+<p>Κλείδωμα λογαριασμού, <%= @resource.email %>!</p>
 
-<% content_for :preheader do %>
-  <%= @resource.email %>, Ο λογαριασμός σας κλειδώθηκε στο <a href="https://kardies.gr">kardies.gr</a>
-<% end %>
+<p>Ο λογαριασμός σας κλειδώθηκε λόγου επαναλαμβανομένων αποτυχημένων προσπαθειών.</p>
 
-<% content_for :body do %>
-  <h1>Κλείδωμα λογαριασμού</h1>
-  <p>Ο λογαριασμός σας κλειδώθηκε λόγου επαναλαμβανομένων αποτυχημένων προσπαθειών.</p>
-  <p>Κάντε κλικ στον παρακάτω σύνδεσμο να τον ξεκλειδώσετε:</p>
-  <p><%= link_to 'Ξεκλείδωμα λογαριασμού', unlock_url(@resource, unlock_token: @token) %></p>
-<% end %>
+<p>Κάντε κλικ στον παρακάτω σύνδεσμο για να τον ξεκλειδώσετε:</p>
+
+<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>

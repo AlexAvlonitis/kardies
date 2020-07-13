@@ -1,12 +1,7 @@
-<% content_for :title do %>
-  Ειδοποίηση αλλαγής email
-<% end %>
+<p>Ειδοποίηση αλλαγής email, <%= @email %>!</p>
 
-<% content_for :preheader do %>
-  Το email σας άλλαξε στο <a href="https://kardies.gr">kardies.gr</a>
-<% end %>
-
-<% content_for :body do %>
-  <h1>Το email σας άλλαξε!</h1>
+<% if @resource.try(:unconfirmed_email?) %>
+  <p>Σας στέλνουμε να σας ειδοποιήσουμε ότι το email σας άλλαξε, το νέο σας email είναι: <%= @resource.unconfirmed_email %>.</p>
+<% else %>
   <p>Σας στέλνουμε να σας ειδοποιήσουμε ότι το email σας άλλαξε, το νέο σας email είναι: <%= @resource.email %>.</p>
 <% end %>
