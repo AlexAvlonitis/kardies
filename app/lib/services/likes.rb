@@ -6,8 +6,8 @@ module Services
     end
 
     def sorted(options = { created_at: :desc })
-      @likes = current_user.votes_for.order(options).voters
-      paginate
+      likes = current_user.votes_for.order(options).voters.compact
+      ::Kaminari.paginate_array(likes).page(page)
     end
 
     def add_notifications(user)
@@ -27,10 +27,6 @@ module Services
     private
 
     attr_reader :current_user, :page
-
-    def paginate
-      ::Kaminari.paginate_array(@likes).page(page)
-    end
 
     def send_notification_email(user)
       Notifications::Hearts.new(user).execute

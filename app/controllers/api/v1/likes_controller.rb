@@ -1,7 +1,7 @@
 module Api
   module V1
     class LikesController < ApiController
-      before_action :set_user, except: [:index]
+      before_action :set_user, only: :create
 
       def index
         likes_service.delete_all_notifications
@@ -11,7 +11,7 @@ module Api
       def create
         return send_like unless current_user.voted_for?(@user)
 
-        render json: { errors: 'Έχετε ήδη στείλει καρδιά' }, status: :unprocessable_entity
+        render json: { errors: 'Έχετε ήδη στείλει καρδιά' }, status: :forbidden
       end
 
       private
