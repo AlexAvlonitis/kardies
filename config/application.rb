@@ -22,9 +22,17 @@ module Kardies
     config.i18n.default_locale = :el
     config.autoload_paths += %W(#{config.root}/lib)
 
+    config.web_console.whitelisted_ips = '172.20.0.1'
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins /localhost:\d+/, 'https://kardies.gr', /127.0.0.1:\d+/
+        origins(
+          /localhost:\d+/,
+          'https://kardies.gr',
+          /127.0.0.1:\d+/,
+          /192.168.\d+.\d+:\d+/,
+          /172.\d+.\d+.\d+:\d+/
+        )
         resource(
           '*',
           headers: :any,
