@@ -22,8 +22,6 @@ module Kardies
     config.i18n.default_locale = :el
     config.autoload_paths += %W(#{config.root}/lib)
 
-    config.web_console.whitelisted_ips = '172.20.0.1'
-
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins(
