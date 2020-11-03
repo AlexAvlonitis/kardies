@@ -79,6 +79,7 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     return if auth.blank?
+
     user = find_by(provider: 'facebook', uid: auth[:userID])
     user || FacebookHelper.create_user(auth)
   end
