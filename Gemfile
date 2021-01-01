@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'mysql2'
 gem 'puma'
-gem 'rails', '~> 6'
+gem 'rails'
 
 gem 'active_model_serializers'
 gem 'acts_as_votable'

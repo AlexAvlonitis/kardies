@@ -6,7 +6,7 @@ module Recaptcha
     def validate(recaptcha_value)
       response = request(params.merge({'response' => recaptcha_value}))
 
-      return_response(response)
+      response(response)
     end
 
     private
@@ -17,12 +17,12 @@ module Recaptcha
 
     def request(params)
       self.class.post(RECAPTCHA_URL, body: params)
-    rescue HTTParty::Error, StandardError => _e
+    rescue StandardError
       nil
     end
 
-    def return_response(response)
-      response&.success? ? response['success'] : nil
+    def response(response)
+      response['success'] if response&.success?
     end
   end
 end
