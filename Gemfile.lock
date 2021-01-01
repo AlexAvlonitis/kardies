@@ -42,6 +42,8 @@ GEM
       activemodel (>= 4.1, < 6.2)
       case_transform (>= 0.2)
       jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
+    active_storage_validations (0.9.1)
+      rails (>= 5.2.0)
     activejob (6.0.3.4)
       activesupport (= 6.0.3.4)
       globalid (>= 0.3.6)
@@ -349,6 +351,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  active_storage_validations
   acts_as_votable
   aws-sdk-s3 (~> 1)
   byebug
