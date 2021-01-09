@@ -3,6 +3,7 @@ class User < ApplicationRecord
   include Searchable
   include Heartable
 
+  before_destroy { messages.destroy_all }
   after_create :send_welcome_mail
   after_create :auto_like
 
