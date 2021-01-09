@@ -56,7 +56,6 @@ class User < ApplicationRecord
     assoc.has_many :search_criteria
     assoc.has_many :vote_notifications
     assoc.has_many :blocked_users
-    assoc.has_many :conversation_notifications
   end
   has_many :pictures, through: :gallery
   has_many :access_tokens,

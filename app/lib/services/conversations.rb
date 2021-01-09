@@ -5,7 +5,8 @@ module Services
     end
 
     def all
-      all_messages
+      messages = mailbox.inbox + mailbox.sentbox
+      messages.flatten.uniq(&:id)
     end
 
     def show(id)
@@ -25,11 +26,6 @@ module Services
     private
 
     attr_reader :current_user
-
-    def all_messages
-      messages = mailbox.inbox + mailbox.sentbox
-      messages.flatten.uniq(&:id)
-    end
 
     def mailbox
       @mailbox ||= current_user.mailbox

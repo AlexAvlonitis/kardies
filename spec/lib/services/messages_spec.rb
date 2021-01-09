@@ -4,7 +4,6 @@ describe Services::Messages do
   subject { described_class.new(current_user) }
 
   let(:conversation_klass) { Mailboxer::Conversation }
-  let(:conversation_notification) { ConversationNotification }
   let(:conversation) { double('conversation') }
   let(:current_user) { double('current_user') }
   let(:recipient) { double('recipient') }
@@ -12,7 +11,6 @@ describe Services::Messages do
   before do
     allow(conversation_klass).to receive(:find).with(1) { conversation }
     allow(conversation_klass).to receive_message_chain(:between, :find)
-    allow(conversation_notification).to receive(:create) { nil }
   end
 
   describe '#find_existing_conversation' do

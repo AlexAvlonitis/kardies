@@ -50,10 +50,8 @@ module Api
       end
 
       def existing_conversation
-        @existing_conversation ||= messages.find_existing_conversation(
-            params[:conversation_id],
-            @recipient
-          )
+        @existing_conversation ||=
+          messages.find_existing_conversation(params[:conversation_id], @recipient)
       end
 
       def messages

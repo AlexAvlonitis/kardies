@@ -3,8 +3,8 @@ class MessagesNotificationsBroadcastJob < ApplicationJob
 
   def perform(conversation, current_user)
     recipient = conversation.participants.reject { |user| user == current_user }.first
-
     return unless recipient
+
     add_conversation_notification(conversation, recipient)
     send_email(recipient)
   end

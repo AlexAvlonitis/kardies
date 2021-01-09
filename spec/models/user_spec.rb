@@ -11,7 +11,6 @@ RSpec.describe User do
   it { should have_many(:reports).dependent(:destroy) }
   it { should have_many(:search_criteria).dependent(:destroy) }
   it { should have_many(:vote_notifications).dependent(:destroy) }
-  it { should have_many(:conversation_notifications).dependent(:destroy) }
   it { should have_many(:blocked_users).dependent(:destroy) }
   it { should have_one(:gallery).dependent(:destroy) }
   it { should have_one(:email_preference).dependent(:destroy) }
