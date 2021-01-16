@@ -42,7 +42,7 @@ class UserPolicy < ApplicationPolicy
   def profile_pic_exists?
     return if record == user
 
-    unless user.profile_picture_exists?
+    unless user.profile_picture
       raise Pundit::NotAuthorizedError.new(
         query: :profile_pic_exists?,
         record: record,

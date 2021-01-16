@@ -7,19 +7,13 @@ class UserDetail < ApplicationRecord
 
   VALID_IMAGES_REGEX = %r{^image/(jpeg|jpg|png|gif|tiff)$}.freeze
 
-  has_attached_file :profile_picture,
-                    source_file_options: { all: '-auto-orient' },
-                    styles: {
-                      original: '',
-                      medium: '300x300>',
-                      thumb: '100x100>'
-                    },
-                    default_url: '/images/missing.png'
+  has_one_attached :profile_picture
 
-  validates_attachment_content_type :profile_picture, content_type: %r{\Aimage\/.*\Z}
-  validates_attachment :profile_picture,
-                       size: { in: 0..5.megabytes },
-                       content_type: { content_type: VALID_IMAGES_REGEX }
+  validates :profile_picture, content_type: [:png, :jpg, :jpeg, :gif]
+  validates :profile_picture, size: {
+    less_than: 5.megabytes,
+    message: 'Η φωτογραφία πρέπει να είναι μέχρι 5 MB'
+  }
 
   validates :age,
             :gender,

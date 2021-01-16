@@ -2,18 +2,15 @@ class Picture < ApplicationRecord
   belongs_to :gallery
   belongs_to :user
 
-  has_attached_file :picture, styles: {
-    medium: '300x300>',
-    thumb: '100x100>'
+  has_one_attached :picture
+
+  validates :picture, content_type: [:png, :jpg, :jpeg, :gif]
+  validates :picture, size: {
+    less_than: 5.megabytes,
+    message: 'Η φωτογραφία πρέπει να είναι μέχρι 5 MB'
   }
 
-  validates_attachment_content_type :picture, content_type: %r{\Aimage\/.*\Z}
-
-  validates_attachment :picture,
-                       size: { in: 0..5.megabytes },
-                       content_type: { content_type: %r{^image\/(jpeg|jpg|png|gif|tiff)$} }
-
   def picture_medium
-    picture.url(:medium)
+    picture.variant resize: "300x300>" if picture.attached?
   end
 end

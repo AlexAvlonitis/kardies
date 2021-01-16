@@ -3,6 +3,18 @@ FactoryBot.define do
     state { 'att' }
     age { '32' }
     gender { 'male' }
-    profile_picture { File.new("#{Rails.root}/spec/support/fixtures/images/missing.png") }
+
+    trait :profile_picture do
+      transient do
+        profile_picture { file_fixture("images/missing.png") }
+
+        after :build do |user, evaluator|
+          user_detail.profile_picture.attach(
+            io: evaluator.profile_picture.open,
+            filename: evaluator.profile_picture.basename.to_s,
+          )
+        end
+      end
+    end
   end
 end
