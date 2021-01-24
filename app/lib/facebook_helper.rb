@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class FacebookHelper
   GENDERS = %w[male female].freeze
   FB_PROVIDER = 'facebook'.freeze
@@ -13,7 +15,9 @@ class FacebookHelper
   end
 
   def call
-    ::User.create(user_param_builder)
+    user = ::User.create(user_param_builder)
+    create_profile_picture(user)
+    user
   end
 
   private
@@ -29,7 +33,6 @@ class FacebookHelper
       username: generate_username,
       confirmed_at: time_now,
       user_detail_attributes: {
-        profile_picture: picture_from_url(fb_auth.dig(:picture, :data, :url)),
         state: DEFAULT_STATE_CODE,
         age: DEFAULT_AGE,
         gender: GENDERS.sample
@@ -38,12 +41,12 @@ class FacebookHelper
   end
 
   def generate_username
-    usrname = trim_username(username)
+    trimmed_username = trim_username
 
-    ::User.find_by(username: usrname) ? generate_username : usrname
+    ::User.find_by(username: trimmed_username) ? generate_username : trimmed_username
   end
 
-  def trim_username(username)
+  def trim_username
     username.split('').first(::User::USERNAME_LENGTH_MAX).join
   end
 
@@ -75,8 +78,22 @@ class FacebookHelper
     Rails.root.to_s
   end
 
-  def picture_from_url(url)
-    ::User.send(:open, url) if url
+  def create_profile_picture(user)
+    pic = picture_from_url
+    return unless pic
+
+    user.user_detail.profile_picture.attach(
+      io: pic,
+      filename: pic.meta['x-content-id'],
+      content_type: pic.content_type
+    )
+  end
+
+  def picture_from_url
+    url = fb_auth.dig(:picture, :data, :url)
+    return unless url
+
+    open(url)
   end
 
   def generate_password
