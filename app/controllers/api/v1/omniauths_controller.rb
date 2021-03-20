@@ -25,6 +25,7 @@ module Api
         params_hash[:email] = params['email']
         params_hash[:userID] = params['userID']
         params_hash[:picture] = params['picture']
+        params_hash[:gender] = params['gender']
         params_hash
       end
 
