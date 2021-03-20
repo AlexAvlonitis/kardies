@@ -35,7 +35,7 @@ class FacebookHelper
       user_detail_attributes: {
         state: DEFAULT_STATE_CODE,
         age: DEFAULT_AGE,
-        gender: GENDERS.sample
+        gender: generate_gender
       }
     }
   end
@@ -44,6 +44,10 @@ class FacebookHelper
     trimmed_username = trim_username
 
     ::User.find_by(username: trimmed_username) ? generate_username : trimmed_username
+  end
+
+  def generate_gender
+    fb_auth[:gender].present? ? fb_auth[:gender] : GENDERS.sample
   end
 
   def trim_username

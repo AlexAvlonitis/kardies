@@ -5,17 +5,12 @@ describe FacebookHelper do
 
   let(:username) { 'tester' }
   let(:email) { 'tester@test.com' }
-  let(:image_path) { '/fake/path/test.png' }
   let(:time) { '13:30' }
   let(:fb_auth) do
     {
       userID: username,
       email: email,
-      picture: {
-        data: {
-          url: image_path
-        }
-      }
+      gender: 'female'
     }
   end
   let(:expected_hash) do
@@ -23,13 +18,13 @@ describe FacebookHelper do
       confirmed_at: time,
       password: /.{20}/,
       username: /\w{3,20}/,
-      uid: username,
+      uid: 'tester',
+      password: /\w+/,
       email: email,
       provider: 'facebook',
       user_detail_attributes: {
         age: 30,
-        gender: /male|female/,
-        profile_picture: image_path,
+        gender: 'female',
         state: 'att'
       }
     }
