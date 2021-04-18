@@ -3,10 +3,6 @@ class User < ApplicationRecord
   include Searchable
   include Heartable
 
-  before_destroy { messages.destroy_all }
-  after_create :send_welcome_mail
-  after_create :auto_like
-
   # Elastic Search
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
@@ -81,7 +77,11 @@ class User < ApplicationRecord
     return if auth.blank?
 
     user = find_by(provider: 'facebook', uid: auth[:userID])
-    user || FacebookHelper.create_user(auth)
+    return user if user
+
+    user = FacebookHelper.create_user(auth)
+    user.after_confirmation
+    user
   end
 
   def self.get_all
@@ -125,17 +125,7 @@ class User < ApplicationRecord
     result
   end
 
-  private
-
-  def send_welcome_mail
-    UserMailer.welcome_email(self).deliver_later
-  end
-
-  def auto_like
-    likes_service.auto_like
-  end
-
-  def likes_service
-    @likes_service ||= Services::Likes.new(self)
+  def after_confirmation
+    notify_observers(:after_confirmation)
   end
 end

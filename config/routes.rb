@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       resources :reports,         only: :create
       resources :contacts,        only: :create
       resources :likes,           only: [:index, :create]
+      resources :news,            only: [:index]
       resources :golden_users,    only: :index
       resources :golden_heart,    only: :index
       resources :search_criteria, only: :create, path: :search

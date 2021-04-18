@@ -22,7 +22,7 @@ RSpec.describe User do
     subject { FactoryBot.build(:user) }
 
     before do
-      allow(subject).to receive(:auto_like) { true }
+      allow_any_instance_of(UserObserver).to receive(:auto_like) { true }
       allow(UserMailer)
         .to receive_message_chain(:welcome_email, :deliver_later)
         .and_return(true)
@@ -35,12 +35,12 @@ RSpec.describe User do
 
     context 'callbacks' do
       it 'calls #auto_like after creation' do
-        expect(subject).to receive(:auto_like)
+        expect_any_instance_of(UserObserver).to receive(:auto_like)
         subject.save
       end
 
       it 'calls #send_welcome_mail after creation' do
-        expect(subject).to receive(:send_welcome_mail)
+        expect_any_instance_of(UserObserver).to receive(:send_welcome_mail)
         subject.save
       end
     end
@@ -76,7 +76,7 @@ RSpec.describe User do
       end
 
       before do
-        allow_any_instance_of(User).to receive(:auto_like) { true }
+        allow_any_instance_of(UserObserver).to receive(:auto_like)
         allow(UserMailer)
           .to receive_message_chain(:welcome_email, :deliver_later)
           .and_return(true)
