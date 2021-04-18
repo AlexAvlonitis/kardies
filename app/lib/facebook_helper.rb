@@ -88,7 +88,7 @@ class FacebookHelper
 
     user.user_detail.profile_picture.attach(
       io: pic,
-      filename: pic.meta['x-content-id'],
+      filename: pic.meta['x-needle-checksum'],
       content_type: pic.content_type
     )
   end
