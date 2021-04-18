@@ -2,7 +2,7 @@ module Api
   module V1
     class NewsController < ApiController
       def index
-        news = ::New.all.page(params[:page])
+        news = ::New.all.order(created_at: :desc).page(params[:page])
 
         render json: news, status: :ok
       end
