@@ -1,18 +1,18 @@
 class UserObserver < ActiveRecord::Observer
+  include Rails.application.routes.url_helpers
+
   def after_create(user)
     send_welcome_mail(user)
     auto_like(user)
   end
 
   def after_confirmation(user)
-    New.create(
-      title: "Νέος χρήστης! #{user.username}",
-      body: "Ο/Η #{user.username} έγινε μέλος της παρέας μας!"
+    News::Users::Created.create(
+      meta: {
+        username: user.username,
+        profile_picture: rails_representation_url(user.profile_picture_thumb)
+      }.to_json
     )
-  end
-
-  def before_destroy(user)
-    user.messages.destroy_all
   end
 
   private

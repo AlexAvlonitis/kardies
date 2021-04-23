@@ -2,9 +2,9 @@ require 'action_view'
 
 module Api
   module V1
-    class NewSerializer < ActiveModel::Serializer
+    class News::Users::CreatedSerializer < ActiveModel::Serializer
       include ActionView::Helpers::DateHelper
-      attributes :title, :body, :created_at
+      attributes :meta, :type, :created_at
 
       def created_at
         distance_of_time_in_words(object.created_at, Time.now)
