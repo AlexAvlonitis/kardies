@@ -15,6 +15,14 @@ class UserObserver < ActiveRecord::Observer
     )
   end
 
+  def before_destroy(user)
+    News::Users::Destroyed.create(
+      meta: {
+        username: user.username
+      }.to_json
+    )
+  end
+
   private
 
   def send_welcome_mail(user)
