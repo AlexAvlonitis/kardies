@@ -29,7 +29,7 @@ module Api
       end
 
       def likes_service
-        @likes_service ||= Services::Likes.new(current_user, params[:page])
+        @likes_service ||= LikesService.new(current_user, params[:page])
       end
     end
   end

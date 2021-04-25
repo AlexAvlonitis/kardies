@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Services::FacebookUserCreator do
+describe FacebookUserService do
   subject { described_class.new(fb_auth) }
 
   let(:username) { 'tester' }

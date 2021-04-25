@@ -14,7 +14,7 @@ module Api
             current_user.username
           ).conversation
         end
-        MessageBroadcastJob.perform_later(existing_conversation, current_user)
+        ::MessageBroadcastJob.perform_later(existing_conversation, current_user)
 
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
       rescue StandardError => e
@@ -24,7 +24,7 @@ module Api
 
       def reply
         current_user.reply_to_conversation(existing_conversation, params[:body])
-        MessageBroadcastJob.perform_later(existing_conversation, current_user)
+        ::MessageBroadcastJob.perform_later(existing_conversation, current_user)
 
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
       rescue StandardError => e
@@ -43,7 +43,7 @@ module Api
       end
 
       def add_notifications
-        MessagesNotificationsBroadcastJob.perform_later(
+        ::MessagesNotificationsBroadcastJob.perform_later(
           existing_conversation,
           current_user
         )
@@ -55,7 +55,7 @@ module Api
       end
 
       def messages
-        @messages ||= Services::Messages.new(current_user)
+        @messages ||= MessagesService.new(current_user)
       end
     end
   end

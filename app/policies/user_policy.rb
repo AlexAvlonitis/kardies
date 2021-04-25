@@ -30,7 +30,7 @@ class UserPolicy < ApplicationPolicy
   private
 
   def blocked?
-    if Services::UserBlockedCheck.execute(user, record)
+    if UserBlockedCheckService.execute(user, record)
       raise Pundit::NotAuthorizedError.new(
         query: :blocked?,
         record: record,

@@ -5,7 +5,7 @@ module News
       queue_as :default
 
       def perform(user)
-        News::Users::Created.create(
+        ::News::Users::Created.create(
           meta: {
             username: user.username,
             profile_picture: profile_picture(user)

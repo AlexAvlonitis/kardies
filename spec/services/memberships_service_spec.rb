@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Services::Memberships do
+describe MembershipsService do
   let(:subject) { described_class.new(current_user, params) }
 
   let(:current_user) { double('current_user', email: 'test@test.com') }

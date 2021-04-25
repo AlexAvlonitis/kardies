@@ -34,7 +34,7 @@ module Api
 
       def membership_service
         @membership_service ||=
-          Services::Memberships.new(current_user, membership_params)
+          MembershipsService.new(current_user, membership_params)
       end
 
       def membership_params

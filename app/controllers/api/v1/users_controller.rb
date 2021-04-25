@@ -24,7 +24,7 @@ module Api
       end
 
       def users
-        @users ||= Services::Users.new(current_user, params[:page])
+        @users ||= UsersService.new(current_user, params[:page])
       end
     end
   end

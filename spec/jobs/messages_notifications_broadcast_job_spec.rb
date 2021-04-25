@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe MessagesNotificationsBroadcastJob do
+RSpec.describe ::MessagesNotificationsBroadcastJob do
 
 end

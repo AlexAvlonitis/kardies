@@ -4,7 +4,7 @@ module News
       queue_as :default
 
       def perform(user)
-        News::Users::Destroyed.create(
+        ::News::Users::Destroyed.create(
           meta: {
             username: user.username
           }.to_json

@@ -79,7 +79,7 @@ class User < ApplicationRecord
     user = find_by(provider: 'facebook', uid: auth[:userID])
     return user if user
 
-    Services::FacebookUserCreator.create_user(auth)
+    FacebookUserService.create_user(auth)
   end
 
   def self.get_all

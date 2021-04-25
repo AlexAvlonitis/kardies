@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Services::Messages do
+describe MessagesService do
   subject { described_class.new(current_user) }
 
   let(:conversation_klass) { Mailboxer::Conversation }

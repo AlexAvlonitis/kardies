@@ -48,7 +48,7 @@ module Api
       end
 
       def conversations_service
-        @conversations_service ||= Services::Conversations.new(current_user)
+        @conversations_service ||= ConversationsService.new(current_user)
       end
     end
   end

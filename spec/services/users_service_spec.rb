@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Services::Users do
+describe UsersService do
   subject { described_class.new(current_user, page) }
 
   let(:current_user) { FactoryBot.build_stubbed(:user) }

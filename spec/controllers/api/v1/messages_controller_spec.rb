@@ -61,7 +61,7 @@ RSpec.describe Api::V1::MessagesController, type: :controller do
     it 'enqueues a message broadcast job' do
       expect {
         post :create, format: :json, params: { body: 'hello', recipient: recipient.username }
-      }.to have_enqueued_job(MessageBroadcastJob)
+      }.to have_enqueued_job(::MessageBroadcastJob)
     end
 
     it 'returns success' do
@@ -96,7 +96,7 @@ RSpec.describe Api::V1::MessagesController, type: :controller do
     it 'enqueues a message broadcast job' do
       expect {
         post :create, format: :json, params: { body: 'hello', recipient: recipient.username }
-      }.to have_enqueued_job(MessageBroadcastJob)
+      }.to have_enqueued_job(::MessageBroadcastJob)
     end
 
     it 'returns success' do
