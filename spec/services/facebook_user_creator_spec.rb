@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe FacebookHelper do
+describe Services::FacebookUserCreator do
   subject { described_class.new(fb_auth) }
 
   let(:username) { 'tester' }
@@ -29,15 +29,24 @@ describe FacebookHelper do
       }
     }
   end
+  let(:user) { FactoryBot.build(:user) }
 
   before do
     allow(::User).to receive(:open) { image_path }
     allow(Time).to receive(:now) { time }
+    allow(::User)
+      .to receive(:create)
+      .with(hash_including(expected_hash))
+      .and_return(user)
+    allow(user).to receive(:after_confirmation) { true }
   end
 
   context 'When we pass in auth hash from fb' do
     it 'sends correct params to user.create method' do
-      expect(::User).to receive(:create).with(hash_including(expected_hash))
+      expect(::User)
+        .to receive(:create)
+        .with(hash_including(expected_hash))
+        .and_return(user)
 
       subject.call
     end

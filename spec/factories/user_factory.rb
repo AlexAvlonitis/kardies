@@ -4,7 +4,7 @@ FactoryBot.define do
     email { 'asd@asd.com' }
     password { 'asdasdasd' }
     admin { false }
-    confirmed_at { DateTime.now }
+    confirmed_at { Date.today }
     user_detail
     membership
   end
