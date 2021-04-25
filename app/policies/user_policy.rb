@@ -41,14 +41,13 @@ class UserPolicy < ApplicationPolicy
 
   def profile_pic_exists?
     return if record == user
+    return if user_decorator.profile_picture_attached?
 
-    unless user.profile_picture
-      raise Pundit::NotAuthorizedError.new(
-        query: :profile_pic_exists?,
-        record: record,
-        policy: Pundit.policy(user, record)
-      )
-    end
+    raise Pundit::NotAuthorizedError.new(
+      query: :profile_pic_exists?,
+      record: record,
+      policy: Pundit.policy(user, record)
+    )
   end
 
   def admin?
@@ -57,5 +56,9 @@ class UserPolicy < ApplicationPolicy
 
   def owner?
     record == user
+  end
+
+  def user_decorator
+    @user_decorator ||= UserDecorator.new(user)
   end
 end

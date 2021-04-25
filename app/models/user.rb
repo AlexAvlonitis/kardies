@@ -86,24 +86,6 @@ class User < ApplicationRecord
     includes(:user_detail).order(created_at: :desc)
   end
 
-  def message_email_notification_allowed?
-    email_preference&.messages && !is_signed_in
-  end
-
-  def profile_picture_thumb
-    profile_picture.variant resize: "100x100>" if profile_picture
-  end
-
-  def profile_picture_medium
-    profile_picture.variant resize: "300x300>" if profile_picture
-  end
-
-  def profile_picture
-    return unless user_detail.profile_picture.attached?
-
-    user_detail.profile_picture
-  end
-
   def to_param
     username
   end

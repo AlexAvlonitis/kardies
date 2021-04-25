@@ -4,12 +4,11 @@ module Api
   module V1
     class UserSerializer < ActiveModel::Serializer
       include ActionView::Helpers::DateHelper
-      include Rails.application.routes.url_helpers
 
-      has_one :user_detail
-      has_one :about
-      has_one :email_preference
-      has_one :membership
+      has_one  :user_detail
+      has_one  :about
+      has_one  :email_preference
+      has_one  :membership
       has_many :pictures, through: :gallery
 
       attributes :username,
@@ -21,33 +20,19 @@ module Api
                  :email,
                  :is_signed_in
 
-      def profile_picture
-        return unless object.profile_picture
-
-        rails_blob_url(object.profile_picture)
-      end
-
-      def profile_picture_medium
-        return unless object.profile_picture
-
-        rails_representation_url(object.profile_picture_medium)
-      end
-
-      def profile_picture_thumb
-        return unless object.profile_picture
-
-        rails_representation_url(object.profile_picture_thumb)
-      end
+      delegate :profile_picture,        to: :user_decorator
+      delegate :profile_picture_medium, to: :user_decorator
+      delegate :profile_picture_thumb,  to: :user_decorator
 
       def like
         scope.voted_for?(object) if scope
       end
 
       def like_date
-        voter = user_like
+        voter = voted_by
         return unless voter
 
-        distance_of_time_in_words(voter.updated_at, to_time)
+        distance_of_time_in_words(voter.updated_at, time_now)
       end
 
       def email
@@ -56,12 +41,16 @@ module Api
 
       private
 
-      def to_time
+      def time_now
         Time.now
       end
 
-      def user_like
+      def voted_by
         object.votes.find_by(votable_id: scope.id)
+      end
+
+      def user_decorator
+        @user_decorator ||= UserDecorator.new(object)
       end
     end
   end

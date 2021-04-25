@@ -17,8 +17,12 @@ class MessagesNotificationsBroadcastJob < ApplicationJob
   end
 
   def send_email(recipient)
-    return unless recipient.message_email_notification_allowed?
+    return unless user_decorator(recipient).message_email_notification_allowed?
 
     ::ConversationMailer.message_notification(recipient).deliver_later
+  end
+
+  def user_decorator(user)
+    @user_decorator ||= UserDecorator.new(user)
   end
 end

@@ -1,8 +1,10 @@
+require_relative '../app/models/news/user/destroyed'
+require_relative '../app/models/news/user/created'
+
 User.__elasticsearch__.create_index!(force: true)
 UserDetail.__elasticsearch__.create_index!(force: true)
 
 Personality.destroy_all
-
 User.destroy_all
 
 nini = User.create(

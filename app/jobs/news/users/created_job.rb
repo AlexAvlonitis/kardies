@@ -16,9 +16,11 @@ module News
       private
 
       def profile_picture(user)
-        rails_representation_url(user.profile_picture_thumb)
-      rescue StandardError
-        nil
+        user_decorator(user).profile_picture_thumb
+      end
+
+      def user_decorator(user)
+        @user_decorator ||= UserDecorator.new(user)
       end
     end
   end
