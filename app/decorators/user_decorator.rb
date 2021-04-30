@@ -1,4 +1,4 @@
-class UserDecorator < BaseDecorator
+class UserDecorator < SimpleDelegator
   include Rails.application.routes.url_helpers
 
   def after_create
@@ -7,11 +7,11 @@ class UserDecorator < BaseDecorator
   end
 
   def after_confirmation
-    ::News::User::CreatedJob.perform_later(object)
+    ::News::User::CreatedJob.perform_later(__getobj__)
   end
 
   def before_destroy
-    ::News::User::DestroyedJob.perform_later(object)
+    ::News::User::DestroyedJob.perform_later(__getobj__)
   end
 
   def profile_picture_thumb
@@ -51,14 +51,14 @@ class UserDecorator < BaseDecorator
   end
 
   def send_welcome_mail
-    ::UserMailer.welcome_email(object).deliver_later
+    ::UserMailer.welcome_email(__getobj__).deliver_later
   end
 
   def auto_like
-    likes_service(object).auto_like
+    likes_service(__getobj__).auto_like
   end
 
   def likes_service
-    @likes_service ||= ::LikesService.new(object)
+    @likes_service ||= ::LikesService.new(__getobj__)
   end
 end
