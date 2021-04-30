@@ -1,10 +1,10 @@
 module News
-  module Users
+  module User
     class DestroyedJob < ApplicationJob
       queue_as :default
 
       def perform(user)
-        ::News::Users::Destroyed.create(
+        ::News::User::Destroyed.create(
           meta: {
             username: user.username
           }.to_json

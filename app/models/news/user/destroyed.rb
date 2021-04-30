@@ -1,5 +1,5 @@
 module News
-  module Users
+  module User
     class Destroyed < ::New;end
   end
 end

@@ -21,28 +21,9 @@ RSpec.describe User do
   describe 'db persistense' do
     subject { FactoryBot.build(:user) }
 
-    before do
-      allow_any_instance_of(UserObserver).to receive(:auto_like) { true }
-      allow(UserMailer)
-        .to receive_message_chain(:welcome_email, :deliver_later)
-        .and_return(true)
-    end
-
     context 'uniqueness' do
       it { is_expected.to validate_uniqueness_of(:username) }
       it { is_expected.to validate_uniqueness_of(:email).ignoring_case_sensitivity }
-    end
-
-    context 'callbacks' do
-      it 'calls #auto_like after creation' do
-        expect_any_instance_of(UserObserver).to receive(:auto_like)
-        subject.save
-      end
-
-      it 'calls #send_welcome_mail after creation' do
-        expect_any_instance_of(UserObserver).to receive(:send_welcome_mail)
-        subject.save
-      end
     end
 
     it 'does not allow username with spaces' do
@@ -76,7 +57,6 @@ RSpec.describe User do
       end
 
       before do
-        allow_any_instance_of(UserObserver).to receive(:auto_like)
         allow(UserMailer)
           .to receive_message_chain(:welcome_email, :deliver_later)
           .and_return(true)

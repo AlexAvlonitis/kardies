@@ -11,7 +11,6 @@ gem 'aws-sdk-s3', '~> 1'
 gem 'devise'
 gem 'doorkeeper', '~> 5.4'
 gem 'kaminari'
-gem 'rails-observers'
 
 # Elastic Search
 gem 'elasticsearch', '~> 6'

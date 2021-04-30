@@ -1,5 +1,5 @@
 module News
-  module User
+  module Personality
     class Created < ::New;end
   end
 end

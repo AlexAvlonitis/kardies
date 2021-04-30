@@ -1,11 +1,11 @@
 module News
-  module Users
+  module User
     class CreatedJob < ApplicationJob
       include Rails.application.routes.url_helpers
       queue_as :default
 
       def perform(user)
-        ::News::Users::Created.create(
+        ::News::User::Created.create(
           meta: {
             username: user.username,
             profile_picture: profile_picture(user)

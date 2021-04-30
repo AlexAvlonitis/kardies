@@ -106,6 +106,6 @@ class User < ApplicationRecord
   end
 
   def after_confirmation
-    notify_observers(:after_confirmation)
+    UserDecorator.new(self).after_confirmation
   end
 end

@@ -6,6 +6,7 @@ module Api
 
       def create
         build_resource(sign_up_params)
+        resource = UserDecorator.new(self.resource)
 
         resource.save
         if resource.persisted?
@@ -45,11 +46,9 @@ module Api
       private
 
       def current_user
-        current_resource_owner
-      end
+        return unless doorkeeper_token
 
-      def current_resource_owner
-        User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+        User.find(doorkeeper_token.resource_owner_id)
       end
 
       def sign_up_params

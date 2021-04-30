@@ -22,7 +22,6 @@ module Kardies
     config.api_only = true
     config.i18n.default_locale = :el
     config.autoload_paths += %W(#{config.root}/lib)
-    config.active_record.observers = [:user_observer]
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
