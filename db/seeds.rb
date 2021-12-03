@@ -4,8 +4,9 @@ require_relative '../app/models/news/user/created'
 User.__elasticsearch__.create_index!(force: true)
 UserDetail.__elasticsearch__.create_index!(force: true)
 
-Personality.destroy_all
 User.destroy_all
+Personality.destroy_all
+Report.destroy_all
 
 nini = User.create(
   username: 'nini',
@@ -29,12 +30,21 @@ nini = User.create(
     user_detail_attributes: {
       state: 'att',
       age: 30,
-      gender: 'male'
+      gender: ['male', 'female'].sample
     }
   )
 
   nini.liked_by u
 end
+
+# create a report
+users = User.last(2)
+Report.create(
+  reason: 'not fair',
+  description: 'not playing fair',
+  reporter_id: users.first.id,
+  user_id: users.last.id
+)
 
 personalities = YAML.load_file("config/personalities.yml")['personalities']
 
