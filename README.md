@@ -1,5 +1,5 @@
 ## ![Kardies logo](/logo_cover.jpg)
-
+[![ci](https://github.com/AlexAvlonitis/kardies/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/AlexAvlonitis/kardies/actions/workflows/ci.yml)
 ### An opensource Greek dating website, backend API. [Kardies.gr](https://kardies.gr)
 
 ## How to run locally
