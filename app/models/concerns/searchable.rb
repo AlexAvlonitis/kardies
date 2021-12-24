@@ -6,10 +6,14 @@ module Searchable
 
     after_commit on: [:create] do
       __elasticsearch__.index_document
+    rescue StandardError => e
+      Rails.logger.error e
     end
 
     after_commit on: [:update] do
       __elasticsearch__.index_document
+    rescue StandardError => e
+      Rails.logger.error e
     end
 
     after_commit on: [:destroy] do

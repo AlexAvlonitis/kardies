@@ -19,7 +19,6 @@ describe FacebookUserService do
       password: /.{20}/,
       username: /\w{3,20}/,
       uid: 'tester',
-      password: /\w+/,
       email: email,
       provider: 'facebook',
       user_detail_attributes: {

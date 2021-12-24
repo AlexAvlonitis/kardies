@@ -13,9 +13,9 @@ gem 'doorkeeper', '~> 5.4'
 gem 'kaminari'
 
 # Elastic Search
-gem 'elasticsearch', '~> 6'
-gem 'elasticsearch-model', '~> 6'
-gem 'elasticsearch-rails', '~> 6'
+gem 'elasticsearch', '~> 7'
+gem 'elasticsearch-model', '~> 7'
+gem 'elasticsearch-rails', '~> 7'
 
 gem 'greek-cities'
 gem 'httparty'

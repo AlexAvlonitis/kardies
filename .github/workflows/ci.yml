@@ -23,7 +23,7 @@ jobs:
           --health-retries 10
 
       elasticsearch:
-        image: elasticsearch:6.8.21
+        image: elasticsearch:7.16.2
         options: >-
           -e="discovery.type=single-node"
           --health-cmd="curl http://elasticsearch:9200/_cluster/health"

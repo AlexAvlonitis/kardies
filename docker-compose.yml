@@ -36,7 +36,7 @@ services:
       - redis_cache_volume:/var/lib/redis
 
   elastic_search:
-    image: elasticsearch:6.8.2
+    image: elasticsearch:7.16.1
     container_name: elastic_search
     ports:
       - 8004:9200
