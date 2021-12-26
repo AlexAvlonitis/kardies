@@ -30,7 +30,7 @@ describe UsersService do
       it 'returns indexed users' do
         allow(current_user).to receive(:search_criteria) { [search_criteria] }
 
-        expect_any_instance_of(Queries::User)
+        expect_any_instance_of(Queries::Elastic::User)
           .to receive(:search)
           .with(page)
           .and_return(search_results)

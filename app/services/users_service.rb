@@ -27,7 +27,7 @@ class UsersService
   end
 
   def user_query
-    @user_query ||= Queries::User.build(last_search, current_user)
+    @user_query ||= Queries::Elastic::User.new(last_search, current_user)
   end
 
   def last_search

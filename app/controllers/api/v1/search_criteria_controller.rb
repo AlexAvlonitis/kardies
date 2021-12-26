@@ -16,7 +16,7 @@ module Api
       end
 
       def user_query
-        @user_query ||= Queries::User.build(search_criteria, current_user)
+        @user_query ||= Queries::Elastic::User.new(search_criteria, current_user)
       end
 
       def search_criteria
