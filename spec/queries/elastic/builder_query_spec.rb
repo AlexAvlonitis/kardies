@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Queries::Elastic::Builder do
+describe Elastic::BuilderQuery do
   let(:subject) { described_class.new }
 
   let(:current_user) { FactoryBot.build_stubbed(:user) }
