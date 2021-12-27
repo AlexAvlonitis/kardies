@@ -20,9 +20,9 @@ module Api
                  :email,
                  :is_signed_in
 
-      delegate :profile_picture,        to: :user_decorator
-      delegate :profile_picture_medium, to: :user_decorator
-      delegate :profile_picture_thumb,  to: :user_decorator
+      delegate :profile_picture,        to: :user_presenter
+      delegate :profile_picture_medium, to: :user_presenter
+      delegate :profile_picture_thumb,  to: :user_presenter
 
       def like
         scope.voted_for?(object) if scope
@@ -49,8 +49,8 @@ module Api
         object.votes.find_by(votable_id: scope.id)
       end
 
-      def user_decorator
-        @user_decorator ||= UserDecorator.new(object)
+      def user_presenter
+        @user_presenter ||= UserPresenter.new(object)
       end
     end
   end

@@ -16,11 +16,11 @@ module News
       private
 
       def profile_picture(user)
-        user_decorator(user).profile_picture_thumb
+        user_presenter(user).profile_picture_thumb
       end
 
-      def user_decorator(user)
-        @user_decorator ||= UserDecorator.new(user)
+      def user_presenter(user)
+        @user_presenter ||= UserPresenter.new(user)
       end
     end
   end

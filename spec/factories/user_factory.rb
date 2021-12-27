@@ -5,7 +5,9 @@ FactoryBot.define do
     password { 'asdasdasd' }
     admin { false }
     confirmed_at { Date.today }
+    is_signed_in { true }
     user_detail
     membership
+    email_preference
   end
 end

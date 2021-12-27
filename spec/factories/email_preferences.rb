@@ -3,6 +3,5 @@ FactoryBot.define do
     news { false }
     likes { false }
     messages { false }
-    user
   end
 end

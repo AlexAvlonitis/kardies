@@ -6,25 +6,24 @@ RSpec.describe Api::V1::EmailPreferencesController, type: :controller do
   describe "PUT #update" do
     context "when user has no email preference" do
       it "returns success" do
-        put :update, format: :json, params: {email_preference: {news: true}}
+        put :update, format: :json, params: { email_preference: { news: true } }
 
         assert_response :success
       end
 
       it "creates and return new email preference" do
         email_preference = FactoryBot.attributes_for(:email_preference, news: true, likes: false, messages: false)
-        put :update, format: :json, params: {email_preference: email_preference}
+        put :update, format: :json, params: { email_preference: email_preference}
         parsed_body = JSON.parse(response.body, symbolize_names: true)
 
         expect(parsed_body[:email_preference]).to match(email_preference)
       end
 
-      it "creates new email preference with true when invalid params are passed" do
-        put :update, format: :json, params: {email_preference: {invalid_params: true}}
-
+      it "creates new email preference with false when invalid params are passed" do
+        put :update, format: :json, params: { email_preference: { invalid_params: true } }
         parsed_body = JSON.parse(response.body, symbolize_names: true)
 
-        email_preference = FactoryBot.attributes_for(:email_preference, news: true, likes: true, messages: true)
+        email_preference = FactoryBot.attributes_for(:email_preference)
         expect(parsed_body[:email_preference]).to match(email_preference)
       end
     end
