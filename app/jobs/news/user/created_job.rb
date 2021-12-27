@@ -1,7 +1,6 @@
 module News
   module User
     class CreatedJob < ApplicationJob
-      include Rails.application.routes.url_helpers
       queue_as :default
 
       def perform(user)

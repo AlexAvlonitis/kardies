@@ -7,6 +7,7 @@ Rails.application.configure do
   config.active_storage.service = :test
   # Settings specified here will take precedence over those in config/application.rb.
 
+  Rails.application.routes.default_url_options[:host] = 'localhost:3030'
   config.cache_classes = false
 
   # Do not eager load code on boot. This avoids loading your whole application
