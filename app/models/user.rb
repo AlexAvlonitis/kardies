@@ -3,6 +3,10 @@ class User < ApplicationRecord
   include Searchable
   include Heartable
 
+  acts_as_votable
+  acts_as_voter
+  acts_as_messageable
+
   # Elastic Search
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
@@ -30,10 +34,6 @@ class User < ApplicationRecord
   ALPHANUMERIC_REGEX  = /\A[a-z0-9A-Z\_]*\Z/
   USERNAME_LENGTH_MAX = 20
   USERNAME_LENGTH_MIN = 3
-
-  acts_as_votable
-  acts_as_voter
-  acts_as_messageable
 
   devise :database_authenticatable, :registerable, :timeoutable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -92,17 +92,6 @@ class User < ApplicationRecord
 
   def mailboxer_email(_object)
     email
-  end
-
-  def update_without_password(params, *options)
-    if params[:password].blank?
-      params.delete(:password)
-      params.delete(:password_confirmation) if params[:password_confirmation].blank?
-    end
-
-    result = update(params, *options)
-    clean_up_passwords
-    result
   end
 
   def after_confirmation

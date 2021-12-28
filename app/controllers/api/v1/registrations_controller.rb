@@ -28,11 +28,6 @@ module Api
           pic = account_update_params.dig(:user_detail_attributes, :profile_picture)
           resource.user_detail.profile_picture.attach(pic) if pic
 
-          if is_flashing_format?
-            flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
-              :update_needs_confirmation : :updated
-            set_flash_message :notice, flash_key
-          end
           bypass_sign_in resource, scope: resource_name
           render json: resource, status: :ok
         else
