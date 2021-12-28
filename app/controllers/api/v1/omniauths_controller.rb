@@ -4,37 +4,27 @@ module Api
       skip_before_action :doorkeeper_authorize!
 
       def facebook
-        @user = User.from_omniauth(omniauth_params)
+        user = Users::CreateFacebookUserService.call(params)
 
-        if @user.persisted?
-          user = Doorkeeper::AccessToken.create!(
-            resource_owner_id: @user.id,
+        if user.persisted?
+          access_token = Doorkeeper::AccessToken.create!(
+            resource_owner_id: user.id,
             expires_in: 1.day
           )
-          render json: user_token(user).as_json, status: :ok
+          render json: user_token(access_token).as_json, status: :ok
         else
-          render json: @user.errors.full_messages, status: :forbidden
+          render json: user.errors.full_messages, status: :forbidden
         end
       end
 
       private
 
-      def omniauth_params
-        params_hash = {}
-        params_hash[:name] = params['name']
-        params_hash[:email] = params['email']
-        params_hash[:userID] = params['userID']
-        params_hash[:picture] = params['picture']
-        params_hash[:gender] = params['gender']
-        params_hash
-      end
-
-      def user_token(user)
+      def user_token(access_token)
         {
-          access_token: user.token,
+          access_token: access_token.token,
           type: 'bearer',
-          expires_in: user.expires_in,
-          created_at: user.created_at
+          expires_in: access_token.expires_in,
+          created_at: access_token.created_at
         }
       end
     end

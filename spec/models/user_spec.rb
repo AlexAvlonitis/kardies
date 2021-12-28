@@ -66,18 +66,6 @@ RSpec.describe User do
           .with(provider: 'facebook', uid: auth[:userID])
           .and_return(fb_user)
       end
-
-      it 'does not return the first part of the email' do
-        user = User.from_omniauth(auth)
-
-        expect(user.username).not_to eq 'random_word'
-      end
-
-      it 'creates a random username' do
-        user = User.from_omniauth(auth)
-
-        expect(user).to eq fb_user
-      end
     end
   end
 end

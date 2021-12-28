@@ -73,15 +73,6 @@ class User < ApplicationRecord
   validates_with Validators::BlackListValidator
   validates_email_format_of :email, message: 'Λάθος email'
 
-  def self.from_omniauth(auth)
-    return if auth.blank?
-
-    user = find_by(provider: 'facebook', uid: auth[:userID])
-    return user if user
-
-    FacebookUserService.create_user(auth)
-  end
-
   def self.get_all
     includes(:user_detail).order(created_at: :desc)
   end
