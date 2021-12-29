@@ -22,8 +22,7 @@ module Api
       end
 
       def set_about
-        @about = current_user.about ||
-                 current_user.build_about
+        @about = current_user.about || current_user.build_about
       end
     end
   end
