@@ -10,7 +10,7 @@ RSpec.describe UserDecorator do
     allow(::News::User::DestroyedJob).to receive(:perform_later)
     allow(UserMailer).to receive(:welcome_email) { user_mailer }
     allow(user_mailer).to receive(:deliver_later)
-    allow_any_instance_of(LikesService).to receive(:auto_like)
+    allow(Likes::AutoLikeService).to receive(:call)
   end
 
   describe '#save' do
@@ -22,7 +22,7 @@ RSpec.describe UserDecorator do
     end
 
     it 'calls the auto_like method of the likes service' do
-      expect_any_instance_of(LikesService).to receive(:auto_like)
+      expect(Likes::AutoLikeService).to receive(:call).with(user)
 
       subject.save
     end

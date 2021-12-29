@@ -21,10 +21,6 @@ class UserDecorator < SimpleDelegator
   end
 
   def auto_like
-    likes_service.auto_like
-  end
-
-  def likes_service
-    @likes_service ||= ::LikesService.new(__getobj__)
+    ::Likes::AutoLikeService.call(__getobj__)
   end
 end

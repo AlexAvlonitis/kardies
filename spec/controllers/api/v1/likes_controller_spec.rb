@@ -5,48 +5,106 @@ RSpec.describe Api::V1::LikesController, type: :controller do
   let(:user) { FactoryBot.create(:user, username: 'user1', email: 'user1@test.com') }
   let(:user2) { FactoryBot.create(:user, username: 'user2', email: 'user2@test.com') }
 
+  let(:likes_query_result) { [user2] }
+  let(:likes) do
+    [
+      {
+        'about'  =>  nil,
+        'email' => nil,
+        'email_preference' => {
+          'likes' => false,
+          'messages' => false,
+          'news' => false
+        },
+        'is_signed_in' => true,
+        'like' => false,
+        'like_date' => 'λιγότερο από ένα λεπτό',
+        'membership' => {
+          'active' => nil,
+          'expired' => false,
+          'expiry_date' => nil
+        },
+        'pictures' => [],
+        'profile_picture' => nil,
+        'profile_picture_medium' => nil,
+        'profile_picture_thumb' => nil,
+        'user_detail' => {
+          'age' => user2.user_detail.age,
+          'gender' => user2.user_detail.gender,
+          'id' => user2.user_detail.id,
+          'personality_detail' => nil,
+          'personality_type' => nil,
+          'state' => 'Αττικής',
+          'state_code' => 'att'
+        },
+        'username' => user2.username
+      }
+    ]
+  end
+
+  before do
+    allow(Likes::CreateLikesNotificationsJob).to receive(:perform_later)
+    allow(Likes::DeleteLikesNotificationsJob).to receive(:perform_later)
+  end
+
   describe '#index' do
-    it "renders the index template" do
+    it 'returns the users that liked the current user' do
+      @user.liked_by(user2)
       get :index, params: { page: 1 }
-      assert_response :success
+
+      parsed_body = JSON.parse(response.body)
+      expect(parsed_body).to eq(likes)
     end
 
-    context 'when a user is liked but the voter gets blocked and deleted' do
-      it 'renders index successfully' do
-        post :create, params: { username: user.username }
-        post :create, params: { username: user2.username }
-        BlockedEmail.create(email: user.email)
-        user.destroy
+    it 'deletes all notifications' do
+      expect(Likes::DeleteLikesNotificationsJob)
+        .to receive(:perform_later)
+        .with(@user)
 
-        get :index, params: { page: 1 }
-        assert_response :success
-        expect(@user.votes.size).to eq 1
+      get :index
+    end
+
+    context 'when the user is liked' do
+      context 'and the voter gets deleted' do
+        it 'does not return that user' do
+          @user.liked_by(user)
+          @user.liked_by(user2)
+          user2.destroy
+
+          get :index
+          assert_response :success
+          expect(@user.votes_for.size).to eq 1
+        end
       end
     end
   end
 
   describe '#create' do
-    context "when user is liked" do
-      it "returns 422 status" do
-        allow_any_instance_of(User)
-          .to receive(:voted_for?)
-          .with(user)
-          .and_return(true)
+    context "when the user is already liked" do
+      it "returns 409 status code" do
+        allow_any_instance_of(User).to receive(:voted_for?) { false }
 
         post :create, params: { username: user.username }
-        assert_response :forbidden
+        assert_response :conflict
       end
     end
 
-    context "when user is not yet liked" do
-      it "returns 200 status" do
-        allow_any_instance_of(User)
-          .to receive(:voted_for?)
-          .with(user)
-          .and_return(false)
+    context "when the user is liked for the first time" do
+      before do
+        allow_any_instance_of(User).to receive(:voted_for?) { true }
+      end
 
+      it "returns 200 status" do
         post :create, params: { username: user.username }
         assert_response :success
+      end
+
+      it "calls the create likes notifications job" do
+        expect(Likes::CreateLikesNotificationsJob)
+          .to receive(:perform_later)
+          .with(user, @user)
+
+        post :create, params: { username: user.username }
       end
     end
   end
