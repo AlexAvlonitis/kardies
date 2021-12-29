@@ -1,11 +1,11 @@
 module Personalities
   class Test
-    def self.build(params = {})
+    def self.call(params = {})
       new(
         params,
         Personalities::AnswerValidator.new(params),
         Personalities::ScoreCalculator.new(params)
-      )
+      ).call
     end
 
     def initialize(params, answer_validator, score_calculator)
@@ -14,7 +14,7 @@ module Personalities
       @score_calculator = score_calculator
     end
 
-    def execute
+    def call
       validate_params
       calculate_score
     end
