@@ -13,12 +13,12 @@ module Api
 
       def create
         if current_user.voted_for?(@user)
+          render json: { errors: 'Έχετε ήδη στείλει καρδιά' }, status: :conflict
+        else
           @user.liked_by(current_user)
           create_notification
 
           render json: { message: true }, status: :ok
-        else
-          render json: { errors: 'Έχετε ήδη στείλει καρδιά' }, status: :conflict
         end
       end
 

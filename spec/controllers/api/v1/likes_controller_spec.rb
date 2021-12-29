@@ -82,7 +82,7 @@ RSpec.describe Api::V1::LikesController, type: :controller do
   describe '#create' do
     context "when the user is already liked" do
       it "returns 409 status code" do
-        allow_any_instance_of(User).to receive(:voted_for?) { false }
+        allow_any_instance_of(User).to receive(:voted_for?) { true }
 
         post :create, params: { username: user.username }
         assert_response :conflict
@@ -91,7 +91,7 @@ RSpec.describe Api::V1::LikesController, type: :controller do
 
     context "when the user is liked for the first time" do
       before do
-        allow_any_instance_of(User).to receive(:voted_for?) { true }
+        allow_any_instance_of(User).to receive(:voted_for?) { false }
       end
 
       it "returns 200 status" do
