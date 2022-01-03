@@ -1,5 +1,5 @@
 module Conversations
-  class DeleteAllMessagesService < BaseService
+  class DeleteAllConversationsService < BaseService
     def initialize(current_user)
       @current_user = current_user
       @mailbox = current_user.mailbox

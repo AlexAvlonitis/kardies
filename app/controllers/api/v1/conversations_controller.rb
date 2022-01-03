@@ -11,18 +11,14 @@ module Api
           render json: { message: 'Η συνομιλία έχει διαγραφεί' }, status: :unprocessable_entity
           return
         end
-        conversation_messages =
-          Conversations::GetConversationMessagesService.call(
-            current_user,
-            conversation
-          )
-
-        render json: conversation_messages, status: :ok
+        messages = Messages::GetAllMessagesService.call(current_user, conversation)
+        render json: messages, status: :ok
       end
 
       def unread
-        unread_messages = Conversations::GetUnreadConversationsService.call(current_user.mailbox)
-        render json: unread_messages, status: :ok
+        unread_conversations =
+          Conversations::GetUnreadConversationsService.call(current_user.mailbox)
+        render json: unread_conversations, status: :ok
       end
 
       def destroy
@@ -31,7 +27,7 @@ module Api
       end
 
       def delete_all
-        Conversations::DeleteAllMessagesService.call(current_user)
+        Conversations::DeleteAllConversationsService.call(current_user)
         render json: { message: 'Οι συνομηλίες διαγράφηκαν' }, status: :ok
       end
 

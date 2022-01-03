@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Conversations::DeleteAllMessagesService do
+describe Conversations::DeleteAllConversationsService do
   let(:subject) { described_class.new(current_user) }
 
   let(:current_user) { double(:user, mailbox: mailbox) }
