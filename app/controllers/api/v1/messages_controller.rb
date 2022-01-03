@@ -14,6 +14,7 @@ module Api
           ).conversation
         end
         ::MessageBroadcastJob.perform_later(conversation, current_user)
+        add_notifications
 
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
       rescue StandardError => e
@@ -24,6 +25,7 @@ module Api
       def reply
         current_user.reply_to_conversation(conversation, params[:body])
         ::MessageBroadcastJob.perform_later(conversation, current_user)
+        add_notifications
 
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
       rescue StandardError => e
@@ -39,6 +41,10 @@ module Api
       def set_user
         @recipient = User.find_by!(username: params[:recipient])
         authorize(@recipient)
+      end
+
+      def add_notifications
+        ::MessagesNotificationsBroadcastJob.perform_later(conversation, current_user)
       end
 
       def conversation
