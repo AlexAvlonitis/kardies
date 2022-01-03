@@ -2,11 +2,10 @@ module Api
   module V1
     class MessagesController < ApiController
       before_action :set_user, only: :create
-      after_action  :add_notifications
 
       def create
-        if existing_conversation
-          current_user.reply_to_conversation(existing_conversation, params[:body])
+        if conversation
+          current_user.reply_to_conversation(conversation, params[:body])
         else
           current_user.send_message(
             @recipient,
@@ -14,7 +13,7 @@ module Api
             current_user.username
           ).conversation
         end
-        ::MessageBroadcastJob.perform_later(existing_conversation, current_user)
+        ::MessageBroadcastJob.perform_later(conversation, current_user)
 
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
       rescue StandardError => e
@@ -23,8 +22,8 @@ module Api
 
 
       def reply
-        current_user.reply_to_conversation(existing_conversation, params[:body])
-        ::MessageBroadcastJob.perform_later(existing_conversation, current_user)
+        current_user.reply_to_conversation(conversation, params[:body])
+        ::MessageBroadcastJob.perform_later(conversation, current_user)
 
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
       rescue StandardError => e
@@ -42,20 +41,13 @@ module Api
         authorize(@recipient)
       end
 
-      def add_notifications
-        ::MessagesNotificationsBroadcastJob.perform_later(
-          existing_conversation,
-          current_user
-        )
-      end
-
-      def existing_conversation
-        @existing_conversation ||=
-          messages.find_existing_conversation(params[:conversation_id], @recipient)
-      end
-
-      def messages
-        @messages ||= MessagesService.new(current_user)
+      def conversation
+        @conversation ||=
+          Conversations::FindExistingConversationService.call(
+            current_user,
+            params[:conversation_id],
+            @recipient
+          )
       end
     end
   end
