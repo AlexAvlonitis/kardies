@@ -2,39 +2,33 @@ module Api
   module V1
     class MembershipsController < ApiController
       def create
-        render_json(membership_service.create)
-
-        rescue StandardError => e
-          render json: { errors: e.message }, status: :unprocessable_entity
+        render_json(Memberships::CreateMembershipService.call(current_user, membership_params))
+      rescue StandardError => e
+        render_json({ errors: e.message }, :unprocessable_entity)
       end
 
       def store_membership
-        render_json(membership_service.store_membership)
-
-        rescue StandardError => e
-          render json: { errors: e.message }, status: :unprocessable_entity
+        render_json(Memberships::UpdateMembershipService.call(current_user))
+      rescue StandardError => e
+        render_json({ errors: e.message }, :unprocessable_entity)
       end
 
       def retrieve_membership
-        render_json(membership_service.retrieve_membership)
+        render_json(Memberships::GetMembershipService.call(current_user))
+      rescue StandardError => e
+        render_json({ errors: e.message }, :unprocessable_entity)
       end
 
       def destroy
-        render_json(membership_service.cancel)
-
-        rescue StandardError => e
-          render json: { errors: e.message }, status: :unprocessable_entity
+        render_json(Memberships::CancelMembershipService.call(current_user))
+      rescue StandardError => e
+        render_json({ errors: e.message }, :unprocessable_entity)
       end
 
       private
 
-      def render_json(payload)
-        render json: payload.to_json, status: :ok
-      end
-
-      def membership_service
-        @membership_service ||=
-          MembershipsService.new(current_user, membership_params)
+      def render_json(payload, status = :ok)
+        render json: payload.to_json, status: status
       end
 
       def membership_params
