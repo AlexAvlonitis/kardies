@@ -14,6 +14,7 @@ RSpec.describe Api::V1::ConversationsController, type: :controller do
         participants: {
           email: nil,
           is_signed_in: true,
+          first_sign_in: true,
           like: false,
           like_date: nil,
           profile_picture: nil,
@@ -33,6 +34,7 @@ RSpec.describe Api::V1::ConversationsController, type: :controller do
         sender: {
           email: nil,
           is_signed_in: true,
+          first_sign_in: true,
           like: false,
           like_date: nil,
           profile_picture: nil,

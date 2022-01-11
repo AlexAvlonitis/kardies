@@ -16,6 +16,7 @@ RSpec.describe Api::V1::LikesController, type: :controller do
           'messages' => false,
           'news' => false
         },
+        'first_sign_in' => true,
         'is_signed_in' => true,
         'like' => false,
         'like_date' => 'λιγότερο από ένα λεπτό',

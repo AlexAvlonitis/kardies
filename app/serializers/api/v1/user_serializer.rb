@@ -18,7 +18,8 @@ module Api
                  :like,
                  :like_date,
                  :email,
-                 :is_signed_in
+                 :is_signed_in,
+                 :first_sign_in
 
       delegate :profile_picture,        to: :user_presenter
       delegate :profile_picture_medium, to: :user_presenter
