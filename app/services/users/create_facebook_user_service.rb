@@ -39,7 +39,7 @@ module Users
     attr_reader :auth_params
 
     def create_fb_user(auth_params)
-      user = ::User.create(user_param_builder)
+      user = ::User.create!(user_param_builder)
       create_profile_picture(user)
       user.after_confirmation
       user

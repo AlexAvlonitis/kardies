@@ -15,6 +15,8 @@ module Api
         else
           render json: user.errors.full_messages, status: :forbidden
         end
+      rescue StandardError => e
+        render json: { errors: 'Η σύνδεση ακυρώθηκε' }, status: :unprocessable_entity
       end
 
       private

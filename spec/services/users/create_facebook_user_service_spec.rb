@@ -5,7 +5,7 @@ describe Users::CreateFacebookUserService do
 
   let(:username) { 'tester' }
   let(:email) { 'tester@test.com' }
-  let(:time) { '13:30' }
+  let(:time) { Time.new('12:00') }
   let(:auth_params) do
     {
       userID: username,
@@ -32,7 +32,7 @@ describe Users::CreateFacebookUserService do
 
   before do
     allow(Time).to receive(:now) { time }
-    allow(::User).to receive(:create).and_return(user)
+    allow(::User).to receive(:create!).and_return(user)
     allow(user).to receive(:after_confirmation) { true }
   end
 
@@ -49,7 +49,7 @@ describe Users::CreateFacebookUserService do
       context 'and user does not exist in the db' do
         it 'sends correct params to User#create' do
           expect(::User)
-            .to receive(:create)
+            .to receive(:create!)
             .with(hash_including(expected_hash))
             .and_return(user)
 
