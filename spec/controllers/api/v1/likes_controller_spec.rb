@@ -29,7 +29,7 @@ RSpec.describe Api::V1::LikesController, type: :controller do
         'profile_picture' => nil,
         'profile_picture_medium' => nil,
         'profile_picture_thumb' => nil,
-        'search_criteria' => nil,
+        'search_criterium' => nil,
         'user_detail' => {
           'age' => user2.user_detail.age,
           'gender' => user2.user_detail.gender,
