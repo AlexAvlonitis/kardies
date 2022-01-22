@@ -1,11 +1,13 @@
 module Api
   module V1
     class SearchCriteriaController < ApiController
-      def create
-        if search_criteria.save
+      before_action :set_search_criterium, only: :update
+
+      def update
+        if @search_criterium.update(search_criterium_params)
           render json: users, status: :ok
         else
-          render json: search_criteria.errors, status: :unprocessable_entity
+          render json: @search_criterium.errors, status: :unprocessable_entity
         end
       end
 
@@ -16,20 +18,20 @@ module Api
       end
 
       def user_query
-        @user_query ||= Elastic::UserQuery.new(search_criteria, current_user)
+        @user_query ||= Elastic::UserQuery.new(@search_criterium, current_user)
       end
 
-      def search_criteria
-        @search_criteria ||=
-          current_user.search_criteria.new(search_criteria_params)
-      end
-
-      def search_criteria_params
-        params.permit(allowed_params)
+      def search_criterium_params
+        params.require(:search_criterium).permit(allowed_params)
       end
 
       def allowed_params
         %i[state gender age_from age_to is_signed_in]
+      end
+
+      def set_search_criterium
+        @search_criterium = current_user.search_criterium ||
+          current_user.build_search_criterium
       end
     end
   end

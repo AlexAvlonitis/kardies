@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       put :about,            to: "abouts#update"
       put :email_preference, to: "email_preferences#update"
       put :galleries,        to: "galleries#update"
+      put :search,           to: "search_criteria#update"
 
       post :store_membership, to: "memberships#store_membership"
       post :unsubscribe,      to: "cable#unsubscribe"
@@ -34,7 +35,6 @@ Rails.application.routes.draw do
       resources :news,            only: [:index]
       resources :golden_users,    only: :index
       resources :golden_heart,    only: :index
-      resources :search_criteria, only: :create, path: :search
       resources :pictures,        only: :destroy
       resources :memberships,     only: :create
 

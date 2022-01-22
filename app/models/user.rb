@@ -48,9 +48,9 @@ class User < ApplicationRecord
     assoc.has_one  :user_detail
     assoc.has_one  :email_preference
     assoc.has_one  :gallery
+    assoc.has_one  :search_criterium
     assoc.has_one  :membership
     assoc.has_many :reports
-    assoc.has_many :search_criteria
     assoc.has_many :vote_notifications
     assoc.has_many :blocked_users
   end

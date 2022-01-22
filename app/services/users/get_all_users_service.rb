@@ -6,9 +6,9 @@ module Users
     end
 
     def self.elastic_query(elastic_query_klass, current_user)
-      return if current_user.search_criteria.blank?
+      return if current_user.search_criterium.blank?
 
-      elastic_query_klass.new(current_user.search_criteria.last, current_user)
+      elastic_query_klass.new(current_user.search_criterium, current_user)
     end
 
     def initialize(current_user, page, elastic_query = nil)
