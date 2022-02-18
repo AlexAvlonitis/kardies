@@ -92,7 +92,6 @@ el:
       register_form: 'Φόρμα εγγραφής'
       register_button: "Εγγραφείτε εδώ"
       continue_button: "Συνεχίστε εδώ"
-      fb_sign_in: "Σύνδεση με Facebook"
       first_timer: "Πρώτη φορά στο site μας?"
       pic_upload: "Επιλογή φωτογραφίας"
       or: 'Ή'

@@ -34,38 +34,4 @@ RSpec.describe User do
       expect{subject.save!}.to raise_error(/#{error}/)
     end
   end
-
-  describe 'omniauth' do
-    context 'when signing in from facebook' do
-      let(:auth) do
-        {
-          name: "Joe Roe",
-          email: "joe.roe@gmail.com",
-          userID: "123090234092103",
-          picture: {
-            "data" => {
-              "height" => 200,
-              "is_silhouette" => false,
-              "url" => "https://photopath.local"
-            }
-          }
-        }
-      end
-
-      let(:fb_user) do
-        FactoryBot.build_stubbed(:user, email: auth[:email])
-      end
-
-      before do
-        allow(UserMailer)
-          .to receive_message_chain(:welcome_email, :deliver_later)
-          .and_return(true)
-
-        allow(User)
-          .to receive(:find_by)
-          .with(provider: 'facebook', uid: auth[:userID])
-          .and_return(fb_user)
-      end
-    end
-  end
 end
