@@ -5,7 +5,7 @@ module Api
 
       def update
         if @search_criterium.update(search_criterium_params)
-          render json: users, status: :ok
+          render json: indexed_users, status: :ok
         else
           render json: @search_criterium.errors, status: :unprocessable_entity
         end
@@ -13,12 +13,18 @@ module Api
 
       private
 
-      def users
-        user_query.search(params[:page]).records.confirmed
+      def indexed_users
+        ::User.search(users_query)
+              .page(params[:page])
+              .records
+              .confirmed
       end
 
-      def user_query
-        @user_query ||= Elastic::UserQuery.new(@search_criterium, current_user)
+      def users_query
+        Elastic::UserQuery.call(
+          params: @search_criterium,
+          current_user: current_user
+        )
       end
 
       def search_criterium_params

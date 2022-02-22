@@ -2,11 +2,12 @@ require 'rails_helper'
 
 describe Elastic::UserQuery do
   let(:subject) do
-    described_class.new(search_criteria, current_user, query_builder)
+    described_class.new(query_builder, params)
   end
 
+  let(:params) { { params: search_criteria, current_user: current_user } }
   let(:current_user) { FactoryBot.build_stubbed(:user) }
-  let(:query_builder) { instance_double(Elastic::BuilderQuery) }
+  let(:query_builder) { instance_double(Elastic::QueryBuilder) }
   let(:search_criteria) do
     FactoryBot.build_stubbed(:search_criterium, user: current_user)
   end
@@ -42,7 +43,6 @@ describe Elastic::UserQuery do
       }
     }
   end
-  let(:results_per_page) { 20 }
   let(:query_results) { double(:query_results) }
   let(:must_params) do
     [
@@ -69,16 +69,15 @@ describe Elastic::UserQuery do
     allow(query_builder).to receive(:add_range_filter) { query_builder }
     allow(query_builder).to receive(:add_sort) { query_builder }
     allow(query_builder).to receive(:query) { expected_query }
-    allow(query_results).to receive(:page) { nil }
   end
 
-  describe '#search' do
+  describe '#call' do
     it 'sends add_must_terms to query builder' do
       expect(query_builder)
         .to receive(:add_must_terms)
         .with(must_params)
 
-      subject.search(results_per_page)
+      subject.call
     end
 
     it 'sends add_must_not_terms to query builder' do
@@ -86,7 +85,7 @@ describe Elastic::UserQuery do
         .to receive(:add_must_not_terms)
         .with(must_not_params)
 
-      subject.search(results_per_page)
+      subject.call
     end
 
     it 'sends add_sort to query builder' do
@@ -94,7 +93,7 @@ describe Elastic::UserQuery do
         .to receive(:add_sort)
         .with(sort_params)
 
-      subject.search(results_per_page)
+      subject.call
     end
 
     it 'sends add_range_filter to query builder' do
@@ -102,18 +101,13 @@ describe Elastic::UserQuery do
         .to receive(:add_range_filter)
         .with(range_params)
 
-      subject.search(results_per_page)
+      subject.call
     end
 
     it 'creates a query' do
-      expect(::User)
-        .to receive(:search)
-        .with(expected_query)
-        .and_return(query_results)
+      expect(query_builder).to receive(:query) { expected_query }
 
-      expect(query_results).to receive(:page)
-
-      subject.search(results_per_page)
+      subject.call
     end
   end
 end

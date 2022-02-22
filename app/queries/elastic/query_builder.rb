@@ -1,5 +1,5 @@
 module Elastic
-  class BuilderQuery
+  class QueryBuilder
     attr_reader :query
 
     def initialize

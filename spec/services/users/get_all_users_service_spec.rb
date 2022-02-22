@@ -11,7 +11,7 @@ describe Users::GetAllUsersService do
   let(:search_results) { double(:search_results, records: record_results) }
 
   before do
-    allow(user_elastic_query).to receive(:search) { search_results }
+    allow(User).to receive(:search) { search_results }
   end
 
   describe '#call' do
@@ -27,11 +27,12 @@ describe Users::GetAllUsersService do
 
     context 'When there are search criteria' do
       it 'calls the user elastic query search' do
-        expect(user_elastic_query)
+        expect(User)
           .to receive(:search)
-          .with(page)
+          .with(user_elastic_query)
           .and_return(search_results)
 
+        expect(search_results).to receive(:page).with(page).and_return(search_results)
         expect(search_results).to receive(:records).and_return(record_results)
         expect(record_results).to receive(:confirmed).and_return([])
 

@@ -8,10 +8,13 @@ module Users
     def self.elastic_query(elastic_query_klass, current_user)
       return if current_user.search_criterium.blank?
 
-      elastic_query_klass.new(current_user.search_criterium, current_user)
+      elastic_query_klass.call(
+        params: current_user.search_criterium,
+        current_user: current_user
+      )
     end
 
-    def initialize(current_user, page, elastic_query = nil)
+    def initialize(current_user, page, elastic_query)
       @current_user = current_user
       @elastic_query = elastic_query
       @page = page
@@ -32,7 +35,7 @@ module Users
     end
 
     def elastic_users
-      elastic_query.search(page).records.confirmed.compact
+      ::User.search(elastic_query).page(page).records.confirmed.compact
     end
   end
 end

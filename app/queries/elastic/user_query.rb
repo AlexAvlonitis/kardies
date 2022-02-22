@@ -1,20 +1,16 @@
 module Elastic
   class UserQuery
-    def initialize(params, current_user, query_builder = BuilderQuery.new)
-      @params = params
-      @current_user = current_user
+    def self.call(params)
+      new(QueryBuilder.new, params).call
+    end
+
+    def initialize(query_builder, params)
       @query_builder = query_builder
+      @current_user  = params[:current_user]
+      @params        = params[:params]
     end
 
-    def search(pagination_number)
-      ::User.search(query).page(pagination_number)
-    end
-
-    private
-
-    attr_reader :params, :current_user, :query_builder
-
-    def query
+    def call
       query_builder
         .add_must_terms(must_terms)
         .add_must_not_terms(must_not_terms)
@@ -22,6 +18,10 @@ module Elastic
         .add_range_filter(range_params)
         .query
     end
+
+    private
+
+    attr_reader :params, :current_user, :query_builder
 
     def must_terms
       [
