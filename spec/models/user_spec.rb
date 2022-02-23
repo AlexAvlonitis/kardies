@@ -22,8 +22,8 @@ RSpec.describe User do
     subject { FactoryBot.build(:user) }
 
     context 'uniqueness' do
-      it { is_expected.to validate_uniqueness_of(:username) }
-      it { is_expected.to validate_uniqueness_of(:email).ignoring_case_sensitivity }
+      it { is_expected.to validate_uniqueness_of(:username).case_insensitive }
+      it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
     end
 
     it 'does not allow username with spaces' do
