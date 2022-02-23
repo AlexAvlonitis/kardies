@@ -14,13 +14,14 @@ module Api
       private
 
       def indexed_users
-        ::User.search(users_query)
-              .page(params[:page])
-              .records
-              .confirmed
+        ::User
+          .search(elastic_users_query)
+          .page(params[:page])
+          .records
+          .confirmed
       end
 
-      def users_query
+      def elastic_users_query
         Elastic::UserQuery.call(
           params: @search_criterium,
           current_user: current_user

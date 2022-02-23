@@ -1,11 +1,12 @@
 module Elastic
   class UserQuery
     def self.call(params)
-      new(QueryBuilder.new, params).call
+      query_builder = QueryBuilder.new
+      new(params.merge(query_builder: query_builder)).call
     end
 
-    def initialize(query_builder, params)
-      @query_builder = query_builder
+    def initialize(params)
+      @query_builder = params[:query_builder]
       @current_user  = params[:current_user]
       @params        = params[:params]
     end

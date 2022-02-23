@@ -73,10 +73,6 @@ class User < ApplicationRecord
   validates_with Validators::BlackListValidator
   validates_email_format_of :email, message: 'Λάθος email'
 
-  def self.get_all
-    includes(:user_detail).order(created_at: :desc)
-  end
-
   def to_param
     username
   end

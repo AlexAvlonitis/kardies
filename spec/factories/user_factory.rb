@@ -7,6 +7,7 @@ FactoryBot.define do
     confirmed_at { Date.today }
     is_signed_in { true }
     user_detail
+    search_criterium
     membership
     email_preference
   end

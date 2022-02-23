@@ -1,25 +1,27 @@
 require 'rails_helper'
 
 describe Users::GetAllUsersService do
-  subject { described_class.new(current_user, page, user_elastic_query) }
+  subject { described_class.new(current_user: current_user, page: page) }
 
   let(:current_user) { FactoryBot.build_stubbed(:user) }
-  let(:user_elastic_query) { instance_double(Elastic::UserQuery) }
-  let(:page) { 20 }
   let(:records) { double(:records) }
-  let(:record_results) { double(:record_results, confirmed: []) }
-  let(:search_results) { double(:search_results, records: record_results) }
+  let(:page) { 20 }
 
   before do
-    allow(User).to receive(:search) { search_results }
+    allow(User)
+      .to receive_message_chain(:search, :page, :records, :confirmed, :compact)
+    allow(Users::GetAllUsersQuery)
+      .to receive_message_chain(:call, :except_user, :confirmed, :page)
+    allow(Elastic::UserQuery).to receive(:call)
   end
 
   describe '#call' do
     context 'When there are no search criteria' do
-      let(:user_elastic_query) { nil }
+      let(:current_user) { nil }
 
       it 'returns all users from db' do
-        expect(User).to receive_message_chain(:get_all, :except_user, :confirmed, :page)
+        expect(Users::GetAllUsersQuery)
+          .to receive_message_chain(:call, :except_user, :confirmed, :page)
 
         subject.call
       end
@@ -28,13 +30,14 @@ describe Users::GetAllUsersService do
     context 'When there are search criteria' do
       it 'calls the user elastic query search' do
         expect(User)
-          .to receive(:search)
-          .with(user_elastic_query)
-          .and_return(search_results)
+          .to receive_message_chain(:search, :page, :records, :confirmed, :compact)
 
-        expect(search_results).to receive(:page).with(page).and_return(search_results)
-        expect(search_results).to receive(:records).and_return(record_results)
-        expect(record_results).to receive(:confirmed).and_return([])
+        expect(Elastic::UserQuery)
+          .to receive(:call)
+          .with(
+            params: current_user.search_criterium,
+            current_user: current_user
+          )
 
         subject.call
       end

@@ -1,11 +1,15 @@
 require 'rails_helper'
 
 describe Elastic::UserQuery do
-  let(:subject) do
-    described_class.new(query_builder, params)
-  end
+  let(:subject) { described_class.new(params) }
 
-  let(:params) { { params: search_criteria, current_user: current_user } }
+  let(:params) do
+    {
+      query_builder: query_builder,
+      params: search_criteria,
+      current_user: current_user
+    }
+  end
   let(:current_user) { FactoryBot.build_stubbed(:user) }
   let(:query_builder) { instance_double(Elastic::QueryBuilder) }
   let(:search_criteria) do

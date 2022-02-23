@@ -4,7 +4,6 @@ module Api
       before_action :set_user, only: :show
 
       def index
-        users = Users::GetAllUsersService.call(current_user, params[:page])
         render json: users, status: :ok
       end
 
@@ -21,6 +20,13 @@ module Api
       end
 
       private
+
+      def users
+        Users::GetAllUsersService.call(
+          current_user: current_user,
+          page: params[:page]
+        )
+      end
 
       def set_user
         @user = User.find_by!(username: params[:username])

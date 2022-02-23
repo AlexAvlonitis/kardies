@@ -1,41 +1,46 @@
 module Users
-  class GetAllUsersService
-    def self.call(current_user, page, elastic_query_klass = Elastic::UserQuery)
-      elastic_query = elastic_query(elastic_query_klass, current_user)
-      new(current_user, page, elastic_query).call
-    end
-
-    def self.elastic_query(elastic_query_klass, current_user)
-      return if current_user.search_criterium.blank?
-
-      elastic_query_klass.call(
-        params: current_user.search_criterium,
-        current_user: current_user
-      )
-    end
-
-    def initialize(current_user, page, elastic_query)
-      @current_user = current_user
-      @elastic_query = elastic_query
-      @page = page
+  class GetAllUsersService < BaseService
+    def initialize(params)
+      @current_user = params[:current_user]
+      @page         = params[:page]
     end
 
     def call
-      return elastic_users if elastic_query
+      return elastic_users if search_criterium?
 
-      all_db_users
+      db_users
     end
 
     private
 
-    attr_reader :current_user, :page, :elastic_query
+    attr_reader :current_user, :page
 
-    def all_db_users
-      ::User.get_all.except_user(current_user).confirmed.page(page)
+    def db_users
+      Users::GetAllUsersQuery
+        .call
+        .except_user(current_user)
+        .confirmed
+        .page(page)
     end
 
     def elastic_users
-      ::User.search(elastic_query).page(page).records.confirmed.compact
+      ::User
+        .search(elastic_users_query)
+        .page(page)
+        .records
+        .confirmed
+        .compact
+    end
+
+    def search_criterium?
+      current_user&.search_criterium&.present?
+    end
+
+    def elastic_users_query
+      Elastic::UserQuery.call(
+        params: current_user.search_criterium,
+        current_user: current_user
+      )
     end
   end
 end

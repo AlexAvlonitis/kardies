@@ -6,6 +6,5 @@ FactoryBot.define do
     age_from { 18 }
     age_to { 99 }
     is_signed_in { true }
-    user
   end
 end
