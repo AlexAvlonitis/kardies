@@ -304,7 +304,8 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rexml (3.2.5)
+    rexml (3.3.6)
+      strscan
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -340,6 +341,7 @@ GEM
       sprockets (>= 3.0.0)
     ssrf_filter (1.0.7)
     stripe (5.28.0)
+    strscan (3.1.0)
     thor (1.2.1)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
