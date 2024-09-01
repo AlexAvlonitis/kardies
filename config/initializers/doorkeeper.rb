@@ -17,6 +17,7 @@ Doorkeeper.configure do
   grant_flows %w(password)
 
   skip_authorization { true }
+  skip_client_authentication_for_password_grant true
 
   reuse_access_token
 end
