@@ -1,4 +1,4 @@
-FROM ruby:3.2.0
+FROM ruby:3.3.5
 
 RUN apt-get update -qq && apt-get upgrade -y \
   && apt-get install -y build-essential imagemagick mariadb-client apt-transport-https \

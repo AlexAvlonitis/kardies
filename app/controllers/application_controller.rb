@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  include Pundit
+  include Pundit::Authorization
   before_action :doorkeeper_authorize!
 
   respond_to :json

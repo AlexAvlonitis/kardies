@@ -11,7 +11,7 @@ module Memberships
     def call
       raise Errors::Memberships::InactiveError unless subscription_id
 
-      subscription = delete_subscription(subscription_id)
+      subscription = cancel_subscription(subscription_id)
       if subscription.status == CANCELED
         cancel_local_subscription!
         return subscription

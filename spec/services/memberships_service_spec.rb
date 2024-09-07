@@ -191,13 +191,13 @@ describe MembershipsService do
       allow(membership).to receive(:subscription_id) { '123' }
       allow(subscription).to receive(:status) { 'canceled' }
 
-      allow(Stripe::Subscription).to receive(:delete) { subscription }
+      allow(Stripe::Subscription).to receive(:cancel) { subscription }
     end
 
     context 'when a subscription_id exists in the db' do
-      it 'deletes it from Stripe' do
+      it 'cancels it on Stripe' do
         expect(Stripe::Subscription)
-          .to receive(:delete)
+          .to receive(:cancel)
           .with('123')
           .and_return(subscription)
 

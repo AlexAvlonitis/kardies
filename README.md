@@ -35,9 +35,9 @@ curl --request POST \
 
 **Dependencies/Requirements for manual installation**
 
-* Ruby 2.6.3
+* Ruby 3.3.5
 * Redis (Not required for the dev environment)
-* Elastic Search 6.8.2
+* Elastic Search ~> 7
 * Imagemagick
 * MySQL
 * AWS S3 bucket

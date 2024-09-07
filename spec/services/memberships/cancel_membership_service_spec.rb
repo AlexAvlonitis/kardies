@@ -13,13 +13,13 @@ describe Memberships::CancelMembershipService do
     allow(membership).to receive(:update) { true }
     allow(subscription).to receive(:status) { 'canceled' }
 
-    allow(Stripe::Subscription).to receive(:delete) { subscription }
+    allow(Stripe::Subscription).to receive(:cancel) { subscription }
   end
 
   describe '#call' do
     context 'when a subscription_id exists in the db' do
-      it 'deletes it from Stripe' do
-        expect(Stripe::Subscription).to receive(:delete).with(subscription.id)
+      it 'cancels it from Stripe' do
+        expect(Stripe::Subscription).to receive(:cancel).with(subscription.id)
 
         subject.call
       end

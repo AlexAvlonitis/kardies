@@ -16,7 +16,7 @@ describe Memberships::StripeHelpers do
   before do
     allow(Stripe::Subscription).to receive(:create)
     allow(Stripe::Subscription).to receive(:retrieve)
-    allow(Stripe::Subscription).to receive(:delete)
+    allow(Stripe::Subscription).to receive(:cancel)
     allow(Stripe::PaymentMethod).to receive(:list)
     allow(Stripe::PaymentMethod).to receive(:attach)
     allow(Stripe::Customer).to receive(:update)
@@ -102,11 +102,11 @@ describe Memberships::StripeHelpers do
     end
   end
 
-  describe '#delete_subscription' do
+  describe '#cancel_subscription' do
     specify do
-      expect(Stripe::Subscription).to receive(:delete).with(subscription.id)
+      expect(Stripe::Subscription).to receive(:cancel).with(subscription.id)
 
-      subject.delete_subscription(subscription.id)
+      subject.cancel_subscription(subscription.id)
     end
   end
 end

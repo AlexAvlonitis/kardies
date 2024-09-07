@@ -49,7 +49,7 @@ class MembershipsService
   def cancel
     raise Errors::Memberships::InactiveError unless subscription_id
 
-    subscription = Stripe::Subscription.delete(subscription_id)
+    subscription = Stripe::Subscription.cancel(subscription_id)
     return cancel_subscription(subscription) if subscription.status == CANCELED
 
     raise Errors::Memberships::UndefinedError

@@ -46,8 +46,8 @@ module Memberships
       )
     end
 
-    def delete_subscription(subscription_id)
-      Stripe::Subscription.delete(subscription_id)
+    def cancel_subscription(subscription_id)
+      Stripe::Subscription.cancel(subscription_id)
     end
   end
 end
