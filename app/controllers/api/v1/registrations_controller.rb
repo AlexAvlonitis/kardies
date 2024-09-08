@@ -22,8 +22,9 @@ module Api
         self.resource = current_user
 
         if resource.respond_to?(:unconfirmed_email)
-          prev_unconfirmed_email = resource.unconfirmed_email
+          resource.unconfirmed_email
         end
+
         if resource.update(account_update_params)
           pic = account_update_params.dig(:user_detail_attributes, :profile_picture)
           resource.user_detail.profile_picture.attach(pic) if pic

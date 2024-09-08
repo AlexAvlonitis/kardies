@@ -5,11 +5,10 @@ RSpec.describe UserPresenter do
 
   let(:user_detail) { FactoryBot.build(:user_detail, :profile_picture) }
   let(:email_preference) do
-    FactoryBot.build(:email_preference, messages: email_preference_messages)
+    FactoryBot.create(:email_preference, messages: email_preference_messages)
   end
   let(:user) do
-    FactoryBot.build(
-      :user,
+    FactoryBot.create(:user,
       is_signed_in: is_signed_in,
       user_detail: user_detail,
       email_preference: email_preference

@@ -40,7 +40,6 @@ curl --request POST \
 * Elastic Search ~> 7
 * Imagemagick
 * MySQL
-* AWS S3 bucket
 
 ## Contributing
 
