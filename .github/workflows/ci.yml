@@ -10,7 +10,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: ruby:2.7
+    container: ruby:3.3.5
     services:
       mysql:
         image: mysql:5.7.26
