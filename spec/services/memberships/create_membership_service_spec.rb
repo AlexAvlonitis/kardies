@@ -27,22 +27,26 @@ describe Memberships::CreateMembershipService do
 
   before do
     allow(current_user).to receive(:membership).and_return(membership)
-
     allow(membership).to receive(:active).and_return(false)
     allow(membership).to receive(:update) { true }
+    allow(Stripe::PaymentMethod).to receive(:attach) { true }
+    allow(Stripe::PaymentMethod).to receive(:list) { customer_payment_method }
+    allow(Stripe::Customer).to receive(:update) { true }
+  end
+
+  around do |example|
+    envs = {
+      'MONTHLY_SUBSCRIPTION_PLAN' => 'plan_123',
+      'SIX_MONTHS_SUBSCRIPTION_PLAN' => 'plan_six_123',
+      'YEARLY_SUBSCRIPTION_PLAN' => 'plan_year_123'
+    }
+
+    ClimateControl.modify(**envs) do
+      example.run
+    end
   end
 
   describe '#call' do
-    before do
-      allow(ENV).to receive(:[]).with('MONTHLY_SUBSCRIPTION_PLAN').and_return('plan_123')
-      allow(ENV).to receive(:[]).with('SIX_MONTHS_SUBSCRIPTION_PLAN').and_return('plan_six_123')
-      allow(ENV).to receive(:[]).with('YEARLY_SUBSCRIPTION_PLAN').and_return('plan_year_123')
-
-      allow(Stripe::PaymentMethod).to receive(:attach) { true }
-      allow(Stripe::PaymentMethod).to receive(:list) { customer_payment_method }
-      allow(Stripe::Customer).to receive(:update) { true }
-    end
-
     context 'When a user\'s membership is already active' do
       it 'raises membership deny error' do
         allow(membership).to receive(:active) { true }
@@ -51,7 +55,7 @@ describe Memberships::CreateMembershipService do
       end
     end
 
-    context 'When a the user\'s details are correct' do
+    context 'When the user\'s details are correct' do
       before do
         allow(Stripe::Subscription).to receive(:create).and_return(subscription)
       end
@@ -61,7 +65,7 @@ describe Memberships::CreateMembershipService do
           allow(membership).to receive(:customer_id) { 1 }
         end
 
-        it 'create a subscription on stripe' do
+        it 'creates a subscription on stripe' do
           expect(Stripe::Subscription)
             .to receive(:create)
             .with(
@@ -80,7 +84,7 @@ describe Memberships::CreateMembershipService do
         it 'receives the payment method from stripe' do
           expect(Stripe::PaymentMethod)
             .to receive(:list)
-            .with(customer: customer.id, type: 'card')
+            .with({ customer: customer.id, type: 'card' })
 
           subject.call
         end

@@ -38,6 +38,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'climate_control'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'webmock'
