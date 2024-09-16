@@ -18,10 +18,10 @@ RSpec.describe UserPresenter do
   let(:email_preference_messages) { true }
 
   let(:profile_picture_blob_regex) do
-    /http:\/\/localhost:3030\/rails\/active_storage\/blobs\/.+\/test_image/
+    /rails\/active_storage\/blobs\/.+\/test_image/
   end
   let(:profile_picture_representation_regex) do
-    /http:\/\/localhost:3030\/rails\/active_storage\/representations\/.+\/test_image/
+    /rails\/active_storage\/representations\/.+\/test_image/
   end
 
   describe '#profile_picture' do

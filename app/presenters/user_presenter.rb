@@ -9,20 +9,20 @@ class UserPresenter
     return unless profile_picture_attached?
 
     pic = picture_variant("100x100>")
-    rails_representation_url(pic)
+    rails_representation_url(pic, only_path: true)
   end
 
   def profile_picture_medium
     return unless profile_picture_attached?
 
     pic = picture_variant("300x300>")
-    rails_representation_url(pic)
+    rails_representation_url(pic, only_path: true)
   end
 
   def profile_picture
     return unless profile_picture_attached?
 
-    rails_blob_url(picture_variant)
+    rails_blob_url(picture_variant, only_path: true)
   end
 
   def message_email_notification_allowed?
