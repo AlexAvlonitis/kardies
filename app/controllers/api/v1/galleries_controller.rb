@@ -2,7 +2,7 @@ module Api
   module V1
     class GalleriesController < ApiController
       def update
-        if params[:picture].blank?
+        if gallery_params[:picture].blank?
           render json: { errors: 'Χρειάζεται φωτογραφία' }, status: :unprocessable_entity
           return
         end

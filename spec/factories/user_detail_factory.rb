@@ -7,7 +7,7 @@ FactoryBot.define do
     trait :profile_picture do
       transient do
         profile_picture do
-          File.open('spec/support/fixtures/images/missing.png')
+          File.open('spec/fixtures/files/missing.png')
         end
 
         after :build do |user_detail, evaluator|
