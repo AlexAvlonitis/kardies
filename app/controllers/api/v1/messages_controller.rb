@@ -17,7 +17,7 @@ module Api
         add_notifications
 
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
-      rescue StandardError => e
+      rescue StandardError
         render json: { error: 'Κάτι πήγε στραβά, δοκιμάστε αργότερα'}, status: :unprocessable_entity
       end
 
@@ -28,7 +28,7 @@ module Api
         add_notifications
 
         render json: { data: 'μήνυμα εστάλει' }, status: :ok
-      rescue StandardError => e
+      rescue StandardError
         render json: { error: 'Κάτι πήγε στραβά, δοκιμάστε αργότερα'}, status: :unprocessable_entity
       end
 

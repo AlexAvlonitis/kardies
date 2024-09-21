@@ -12,7 +12,7 @@ class MessagesNotificationsBroadcastJob < ApplicationJob
   def add_conversation_notification(conversation, recipient)
     ::ActionCable.server.broadcast(
       "messages_notifications_#{recipient.username}",
-      conversation_id: conversation.id
+      { conversation_id: conversation.id }
     )
   end
 
