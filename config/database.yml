@@ -9,12 +9,12 @@ default: &default
 
 development:
   <<: *default
-  database: travelhub_development
+  database: kardies_development
 
 test:
   <<: *default
-  database: travelhub_test
+  database: kardies_test
 
 production:
   <<: *default
-  database: travelhub_production
+  database: kardies_production
