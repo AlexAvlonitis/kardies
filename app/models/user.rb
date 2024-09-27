@@ -7,6 +7,36 @@ class User < ApplicationRecord
   acts_as_voter
   acts_as_messageable
 
+  ALPHANUMERIC_REGEX  = /\A[a-z0-9A-Z\_]+\Z/
+  USERNAME_LENGTH_MAX = 20
+  USERNAME_LENGTH_MIN = 3
+
+  scope :except_user, ->(user) { where.not(id: user) }
+  scope :confirmed,   -> { where.not(confirmed_at: nil) }
+
+  devise :database_authenticatable, :registerable, :timeoutable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable
+
+  # Relations
+  with_options dependent: :destroy do |assoc|
+    assoc.has_one  :about
+    assoc.has_one  :user_detail
+    assoc.has_one  :email_preference
+    assoc.has_one  :gallery
+    assoc.has_one  :search_criterium
+    assoc.has_one  :membership
+    assoc.has_many :reports
+    assoc.has_many :vote_notifications
+    assoc.has_many :blocked_users
+  end
+  has_many :pictures, through: :gallery
+  has_many :access_tokens,
+           class_name: 'Doorkeeper::AccessToken',
+           foreign_key: :resource_owner_id,
+           dependent: :delete_all
+  accepts_nested_attributes_for :user_detail
+
   # Elastic Search
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
@@ -31,42 +61,8 @@ class User < ApplicationRecord
     )
   end
 
-  ALPHANUMERIC_REGEX  = /\A[a-z0-9A-Z\_]*\Z/
-  USERNAME_LENGTH_MAX = 20
-  USERNAME_LENGTH_MIN = 3
-
-  devise :database_authenticatable, :registerable, :timeoutable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable
-
-  scope :except_user, ->(user) { where.not(id: user) }
-  scope :confirmed,   -> { where.not(confirmed_at: nil) }
-
-  # Relations
-  with_options dependent: :destroy do |assoc|
-    assoc.has_one  :about
-    assoc.has_one  :user_detail
-    assoc.has_one  :email_preference
-    assoc.has_one  :gallery
-    assoc.has_one  :search_criterium
-    assoc.has_one  :membership
-    assoc.has_many :reports
-    assoc.has_many :vote_notifications
-    assoc.has_many :blocked_users
-  end
-  has_many :pictures, through: :gallery
-  has_many :access_tokens,
-           class_name: 'Doorkeeper::AccessToken',
-           foreign_key: :resource_owner_id,
-           dependent: :delete_all
-  accepts_nested_attributes_for :user_detail
-
   # Validations
-  validates :user_detail,
-            :username,
-            :email,
-            presence: true
-
+  validates :user_detail, :username, :email, presence: true
   validates :username, uniqueness: true
   validates :username, format: { with: ALPHANUMERIC_REGEX }
   validates :username, length: { in: USERNAME_LENGTH_MIN..USERNAME_LENGTH_MAX }
