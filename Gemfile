@@ -7,7 +7,8 @@ gem 'rails'
 gem 'active_model_serializers'
 gem 'active_storage_validations'
 gem 'acts_as_votable'
-gem "aws-sdk-s3", require: false
+gem "aws-sdk-s3",  require: false
+gem "aws-sdk-ses", require: false
 gem 'devise'
 gem 'doorkeeper', '~> 5.4'
 gem 'kaminari'
