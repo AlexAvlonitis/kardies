@@ -78,13 +78,17 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: 'kardies.gr' }
 
-  # MAILGUN settings
-  config.action_mailer.delivery_method = :mailgun
-
-  config.action_mailer.mailgun_settings = {
-    api_key: ENV['MAILGUN_API_KEY'],
-    domain: ENV['EMAIL_DOMAIN']
+  # AWS SES settings
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: ENV['SES_URL'],
+    port: 587,
+    user_name: ENV['SES_USER'],
+    password: ENV['SES_PASSWORD'],
+    authentication: :login,
+    enable_starttls_auto: true
   }
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
