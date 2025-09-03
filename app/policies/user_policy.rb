@@ -7,10 +7,6 @@ class UserPolicy < ApplicationPolicy
     !owner? && !blocked?
   end
 
-  def golden_like?
-    !owner? && !blocked?
-  end
-
   def show?
     !blocked? && !profile_pic_exists?
   end

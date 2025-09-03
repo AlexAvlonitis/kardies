@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   use_doorkeeper do
     skip_controllers :authorizations, :applications, :authorized_applications
@@ -31,7 +32,6 @@ Rails.application.routes.draw do
       resources :contacts,        only: :create
       resources :likes,           only: [:index, :create]
       resources :news,            only: [:index]
-      resources :golden_users,    only: :index
       resources :pictures,        only: :destroy
       resources :memberships,     only: :create
 

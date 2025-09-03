@@ -8,7 +8,6 @@ gem 'active_model_serializers'
 gem 'active_storage_validations'
 gem 'acts_as_votable'
 gem "aws-sdk-s3",  require: false
-gem "aws-sdk-ses", require: false
 gem 'devise'
 gem 'doorkeeper', '~> 5.4'
 gem 'kaminari'
@@ -21,7 +20,6 @@ gem 'elasticsearch-rails', '~> 7'
 gem 'greek-cities'
 gem 'httparty'
 gem 'mailboxer'
-gem 'mailgun_rails'
 gem 'pundit'
 gem 'rack-attack'
 gem 'rack-cors', require: 'rack/cors'
@@ -50,7 +48,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen'
   gem 'web-console'
-  gem 'letter_opener'
+  gem 'letter_opener_web'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
