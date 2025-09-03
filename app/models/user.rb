@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   include ActiveModel::Validations
   include Searchable
-  include Heartable
 
   acts_as_votable
   acts_as_voter

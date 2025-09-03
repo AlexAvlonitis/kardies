@@ -94,17 +94,6 @@ ActiveRecord::Schema.define(version: 2022_02_23_154755) do
     t.index ["user_id"], name: "index_galleries_on_user_id"
   end
 
-  create_table "golden_hearts", charset: "utf8", force: :cascade do |t|
-    t.string "heartable_type"
-    t.bigint "heartable_id"
-    t.string "hearter_type"
-    t.bigint "hearter_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["heartable_type", "heartable_id"], name: "index_golden_hearts_on_heartable_type_and_heartable_id"
-    t.index ["hearter_type", "hearter_id"], name: "index_golden_hearts_on_hearter_type_and_hearter_id"
-  end
-
   create_table "mailboxer_conversation_opt_outs", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "unsubscriber_type"
     t.integer "unsubscriber_id"
