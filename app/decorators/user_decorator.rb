@@ -1,8 +1,11 @@
 class UserDecorator < SimpleDelegator
   def save
-    super
-    send_welcome_mail
-    auto_like
+    result = super
+    if __getobj__.persisted?
+      send_welcome_mail
+      auto_like
+    end
+    result
   end
 
   def after_confirmation
