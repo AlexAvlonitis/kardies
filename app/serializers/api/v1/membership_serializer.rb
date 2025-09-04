@@ -1,7 +1,7 @@
 module Api
   module V1
     class MembershipSerializer < ActiveModel::Serializer
-      attributes :active, :expiry_date, :expired
+      attributes :active, :expiry_date, :expired, :amount, :interval, :interval_count
 
       def expired
         object.expired?

@@ -15,7 +15,8 @@ Rails.application.routes.draw do
       put :galleries,        to: "galleries#update"
       put :search,           to: "search_criteria#update"
 
-      post :store_membership, to: "memberships#store_membership"
+      post :payment_success, to: "memberships#payment_success"
+      post :checkout_session, to: "memberships#checkout_session"
       post :unsubscribe,      to: "cable#unsubscribe"
       post :messages,         to: "messages#create"
       post :message_reply,    to: "messages#reply"

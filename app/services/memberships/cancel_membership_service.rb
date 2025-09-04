@@ -29,7 +29,10 @@ module Memberships
     end
 
     def cancel_local_subscription!
-      current_user.membership.update(active: false)
+      current_user.membership.update(
+        active: false,
+        subscription_id: nil
+      )
     end
   end
 end

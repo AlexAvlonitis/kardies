@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_23_154755) do
-
+ActiveRecord::Schema[7.2].define(version: 2025_09_04_150000) do
   create_table "abouts", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "user_id"
     t.string "job"
@@ -153,15 +152,18 @@ ActiveRecord::Schema.define(version: 2022_02_23_154755) do
     t.datetime "expiry_date"
     t.boolean "active"
     t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "amount"
+    t.string "interval"
+    t.integer "interval_count"
     t.index ["subscription_id"], name: "index_memberships_on_subscription_id"
     t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
   create_table "news", charset: "utf8", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.json "meta"
     t.string "type"
   end

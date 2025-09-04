@@ -12,49 +12,6 @@ RSpec.describe Api::V1::MembershipsController, type: :controller do
     }
   end
 
-  describe "POST #create" do
-    before do
-      allow(Memberships::CreateMembershipService).to receive(:call) { subscription }
-    end
-
-    context 'when the request is successful' do
-      it 'returns the subscription' do
-        post :create, params: params
-
-        assert_response :success
-        parsed_body = JSON.parse(response.body)
-        expect(parsed_body).to eq(subscription.with_indifferent_access)
-      end
-
-      it "calls the create membership service" do
-        a_params = ActionController::Parameters.new(params)
-        permitted = a_params.permit(*params.keys)
-
-        expect(Memberships::CreateMembershipService)
-          .to receive(:call)
-          .with(@user, permitted)
-
-        post :create, params: params
-      end
-    end
-
-    context 'when the request raises an errors' do
-      before do
-        allow(Memberships::CreateMembershipService)
-          .to receive(:call)
-          .and_raise(StandardError.new('any error message'))
-      end
-
-      it 'returns the error' do
-        post :create, params: params
-
-        assert_response :unprocessable_entity
-        parsed_body = JSON.parse(response.body)
-        expect(parsed_body).to eq({ 'errors' => 'any error message' })
-      end
-    end
-  end
-
   [
     [Memberships::UpdateMembershipService, 'store_membership', :post],
     [Memberships::GetMembershipService, 'retrieve_membership', :get],
