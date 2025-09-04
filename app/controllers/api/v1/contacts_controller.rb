@@ -6,10 +6,7 @@ module Api
       def create
         @contact = ::Contact.new(contact_params)
 
-        recaptcha_valid =
-          recaptcha_client.validate(params[:recaptcha_value])
-
-        if recaptcha_valid && @contact.save
+        if @contact.save
           render json: { message: 'Ευχαριστούμε!' }, status: :ok
         else
           render json: { errors: I18n.t('contacts.index.errors') }, status: :unprocessable_entity
@@ -20,11 +17,7 @@ module Api
 
       def contact_params
         params.require(:contact)
-              .permit(:name, :email, :subject, :description, :recaptcha_value)
-      end
-
-      def recaptcha_client
-        @recaptcha_client ||= Recaptcha::Client.new
+              .permit(:name, :email, :subject, :description)
       end
     end
   end

@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'info@kardies.gr'
+  default from: 'no_reply@kardies.gr'
   layout 'mailer'
 end
