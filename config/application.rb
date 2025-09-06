@@ -25,8 +25,19 @@ module Kardies
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        # Allow requests from the frontend domain
-        origins 'localhost:3000', 'localhost:3001', 'localhost:3002', '127.0.0.1:3000', '127.0.0.1:3001', '127.0.0.1:3002'
+        # Allow requests from the frontend domains (hard-coded).
+        allowed = [
+          'http://localhost:3000',
+          'http://localhost:3001',
+          'http://localhost:3002',
+          'http://127.0.0.1:3000',
+          'http://127.0.0.1:3001',
+          'http://127.0.0.1:3002',
+          'https://kardies.gr',
+          'https://www.kardies.gr'
+        ]
+
+        origins(*allowed)
 
         resource(
           '*',
