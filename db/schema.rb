@@ -67,15 +67,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["user_id"], name: "index_blocked_users_on_user_id"
   end
 
-  create_table "contacts", id: :integer, charset: "utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "email", null: false
-    t.string "subject", null: false
-    t.text "description", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "email_preferences", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "user_id"
     t.boolean "likes", default: true

@@ -30,7 +30,6 @@ Rails.application.routes.draw do
       resources :blocked_users,   only: [:create, :index]
       resources :personalities,   only: :create
       resources :reports,         only: :create
-      resources :contacts,        only: :create
       resources :likes,           only: [:index, :create]
       resources :news,            only: [:index]
       resources :pictures,        only: :destroy
