@@ -20,11 +20,12 @@ module Api
                  :like_date,
                  :email,
                  :is_signed_in,
-                 :first_sign_in
+                 :first_sign_in,
+                 :daily_limits,
+                 :is_premium
 
-      delegate :profile_picture,        to: :user_presenter
-      delegate :profile_picture_medium, to: :user_presenter
-      delegate :profile_picture_thumb,  to: :user_presenter
+      delegate :profile_picture, :profile_picture_medium, :profile_picture_thumb,
+               :daily_limits, to: :user_presenter
 
       def like
         scope.voted_for?(object) if scope
@@ -34,18 +35,18 @@ module Api
         voter = voted_by
         return unless voter
 
-        distance_of_time_in_words(voter.updated_at, time_now)
+        distance_of_time_in_words(voter.updated_at, Time.now)
       end
 
       def email
         scope === object ? object.email : nil
       end
 
-      private
-
-      def time_now
-        Time.now
+      def is_premium
+        !!object.premium?
       end
+
+      private
 
       def voted_by
         object.votes.find_by(votable_id: scope.id)

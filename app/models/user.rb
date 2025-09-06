@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include UserActionLimitable
   include ActiveModel::Validations
   include Searchable
 
@@ -28,6 +29,7 @@ class User < ApplicationRecord
     assoc.has_many :reports
     assoc.has_many :vote_notifications
     assoc.has_many :blocked_users
+    assoc.has_many :user_action_limits
   end
   has_many :pictures, through: :gallery
   has_many :access_tokens,
@@ -74,6 +76,10 @@ class User < ApplicationRecord
 
   def mailboxer_email(_object)
     email
+  end
+
+  def premium?
+    membership&.active?
   end
 
   def after_confirmation

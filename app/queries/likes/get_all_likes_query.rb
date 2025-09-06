@@ -9,15 +9,15 @@ module Likes
     end
 
     def call
-      current_user.votes_for.order(newest_likes_first).voters.compact
+      current_user
+        .votes_for
+        .order({ created_at: :desc })
+        .voters
+        .compact
     end
 
     private
 
     attr_reader :current_user
-
-    def newest_likes_first
-      { created_at: :desc }
-    end
   end
 end

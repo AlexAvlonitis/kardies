@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_09_04_150000) do
+ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
   create_table "abouts", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "user_id"
     t.string "job"
@@ -250,6 +250,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_150000) do
     t.index ["user_id"], name: "index_search_criteria_on_user_id"
   end
 
+  create_table "user_action_limits", charset: "utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "action_type", null: false
+    t.integer "count", default: 0, null: false
+    t.datetime "last_reset_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "action_type"], name: "index_user_action_limits_on_user_id_and_action_type_and_period", unique: true
+  end
+
   create_table "user_details", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "user_id"
     t.string "gender", default: "female", null: false
@@ -330,5 +340,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_150000) do
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
   add_foreign_key "pictures", "galleries"
   add_foreign_key "reports", "users"
+  add_foreign_key "user_action_limits", "users"
   add_foreign_key "user_details", "users"
 end
