@@ -10,22 +10,21 @@ services:
       - .env
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     depends_on:
-      - mysql
+      - postgres
       - elastic_search
       - redis_cache
     volumes:
       - .:/app
 
-  mysql:
-    image: mysql:5.7.26
-    container_name: mysql
-    command: --default-authentication-plugin=mysql_native_password
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    command: --default-authentication-plugin=postgres_native_password
     environment:
-      MYSQL_ROOT_PASSWORD: password
-    ports:
-      - 8002:3306
+      POSTGRES_PASSWORD: password
     volumes:
-      - mysql_db_volume:/var/lib/mysql
+      - postgres_volume:/var/lib/postgresql/data
+    restart: unless-stopped
 
   redis_cache:
     image: redis:latest
@@ -50,6 +49,6 @@ services:
       - elastic_search_volume:/var/lib/elastic_search
 
 volumes:
-  mysql_db_volume: {}
+  postgres_volume: {}
   redis_cache_volume: {}
   elastic_search_volume: {}

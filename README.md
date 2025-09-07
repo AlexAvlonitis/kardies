@@ -39,7 +39,7 @@ curl --request POST \
 * Redis (Not required for the dev environment)
 * Elastic Search ~> 7
 * Imagemagick
-* MySQL
+* Postgres
 
 ## Contributing
 
