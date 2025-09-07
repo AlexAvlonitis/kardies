@@ -1,7 +1,9 @@
 module Likes
   class AutoLikeService
+    BOT_USER_ID = 1
+
     def self.call(current_user)
-      bot_user = User.find_by(id: 2)
+      bot_user = User.find_by(id: BOT_USER_ID)
       new(current_user, bot_user).call
     end
 
