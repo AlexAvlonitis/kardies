@@ -20,11 +20,6 @@ RSpec.describe Api::V1::LikesController, type: :controller do
         'is_signed_in' => true,
         'like' => false,
         'like_date' => 'λιγότερο από ένα λεπτό',
-        'membership' => {
-          'active' => nil,
-          'expired' => false,
-          'expiry_date' => nil
-        },
         'pictures' => [],
         'profile_picture' => nil,
         'profile_picture_medium' => nil,

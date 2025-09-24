@@ -8,7 +8,6 @@ FactoryBot.define do
     is_signed_in { true }
     user_detail
     search_criterium
-    membership
     email_preference
   end
 end

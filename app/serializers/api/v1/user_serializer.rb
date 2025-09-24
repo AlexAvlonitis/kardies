@@ -8,7 +8,6 @@ module Api
       has_one  :user_detail
       has_one  :about
       has_one  :email_preference
-      has_one  :membership
       has_one  :search_criterium
       has_many :pictures, through: :gallery
 
@@ -20,9 +19,7 @@ module Api
                  :like_date,
                  :email,
                  :is_signed_in,
-                 :first_sign_in,
-                 :daily_limits,
-                 :is_premium
+                 :first_sign_in
 
       delegate :profile_picture, :profile_picture_medium, :profile_picture_thumb,
                :daily_limits, to: :user_presenter
@@ -40,10 +37,6 @@ module Api
 
       def email
         scope === object ? object.email : nil
-      end
-
-      def is_premium
-        !!object.premium?
       end
 
       private

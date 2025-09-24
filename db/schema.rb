@@ -10,8 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
-  create_table "abouts", id: :integer, charset: "utf8", force: :cascade do |t|
+ActiveRecord::Schema[7.2].define(version: 2025_09_24_204701) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "abouts", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.string "job"
     t.string "hobby"
@@ -23,7 +26,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["user_id"], name: "index_abouts_on_user_id"
   end
 
-  create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
+  create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -33,7 +36,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8", force: :cascade do |t|
+  create_table "active_storage_blobs", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -45,20 +48,20 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8", force: :cascade do |t|
+  create_table "active_storage_variant_records", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "blocked_emails", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "blocked_emails", id: :serial, force: :cascade do |t|
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "domain"
   end
 
-  create_table "blocked_users", charset: "utf8", force: :cascade do |t|
+  create_table "blocked_users", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "blocked_user_id"
     t.datetime "created_at", null: false
@@ -67,7 +70,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["user_id"], name: "index_blocked_users_on_user_id"
   end
 
-  create_table "email_preferences", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "email_preferences", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.boolean "likes", default: true
     t.boolean "messages", default: true
@@ -77,14 +80,14 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["user_id"], name: "index_email_preferences_on_user_id"
   end
 
-  create_table "galleries", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "galleries", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_galleries_on_user_id"
   end
 
-  create_table "mailboxer_conversation_opt_outs", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "mailboxer_conversation_opt_outs", id: :serial, force: :cascade do |t|
     t.string "unsubscriber_type"
     t.integer "unsubscriber_id"
     t.integer "conversation_id"
@@ -92,13 +95,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["unsubscriber_id", "unsubscriber_type"], name: "index_mailboxer_conversation_opt_outs_on_unsubscriber_id_type"
   end
 
-  create_table "mailboxer_conversations", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "mailboxer_conversations", id: :serial, force: :cascade do |t|
     t.string "subject", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "mailboxer_notifications", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "mailboxer_notifications", id: :serial, force: :cascade do |t|
     t.string "type"
     t.text "body"
     t.string "subject", default: ""
@@ -120,7 +123,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["type"], name: "index_mailboxer_notifications_on_type"
   end
 
-  create_table "mailboxer_receipts", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "mailboxer_receipts", id: :serial, force: :cascade do |t|
     t.string "receiver_type"
     t.integer "receiver_id"
     t.integer "notification_id", null: false
@@ -137,29 +140,14 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
   end
 
-  create_table "memberships", charset: "utf8", force: :cascade do |t|
-    t.string "customer_id"
-    t.string "subscription_id"
-    t.datetime "expiry_date"
-    t.boolean "active"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "amount"
-    t.string "interval"
-    t.integer "interval_count"
-    t.index ["subscription_id"], name: "index_memberships_on_subscription_id"
-    t.index ["user_id"], name: "index_memberships_on_user_id"
-  end
-
-  create_table "news", charset: "utf8", force: :cascade do |t|
+  create_table "news", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.json "meta"
     t.string "type"
   end
 
-  create_table "oauth_access_grants", charset: "utf8", force: :cascade do |t|
+  create_table "oauth_access_grants", force: :cascade do |t|
     t.integer "resource_owner_id", null: false
     t.bigint "application_id", null: false
     t.string "token", null: false
@@ -173,7 +161,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
   end
 
-  create_table "oauth_access_tokens", charset: "utf8", force: :cascade do |t|
+  create_table "oauth_access_tokens", force: :cascade do |t|
     t.integer "resource_owner_id"
     t.bigint "application_id"
     t.string "token", null: false
@@ -189,7 +177,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
   end
 
-  create_table "oauth_applications", charset: "utf8", force: :cascade do |t|
+  create_table "oauth_applications", force: :cascade do |t|
     t.string "name", null: false
     t.string "uid", null: false
     t.string "secret", null: false
@@ -200,14 +188,14 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
-  create_table "personalities", charset: "utf8", force: :cascade do |t|
+  create_table "personalities", force: :cascade do |t|
     t.string "code"
     t.text "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "pictures", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "pictures", id: :serial, force: :cascade do |t|
     t.string "picture_file_name"
     t.string "picture_content_type"
     t.integer "picture_file_size"
@@ -218,7 +206,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["gallery_id"], name: "index_pictures_on_gallery_id"
   end
 
-  create_table "reports", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "reports", id: :serial, force: :cascade do |t|
     t.string "reason"
     t.text "description"
     t.integer "reporter_id"
@@ -228,7 +216,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
-  create_table "search_criteria", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "search_criteria", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.string "state"
     t.string "city"
@@ -241,17 +229,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["user_id"], name: "index_search_criteria_on_user_id"
   end
 
-  create_table "user_action_limits", charset: "utf8", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "action_type", null: false
-    t.integer "count", default: 0, null: false
-    t.datetime "last_reset_at", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id", "action_type"], name: "index_user_action_limits_on_user_id_and_action_type_and_period", unique: true
-  end
-
-  create_table "user_details", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "user_details", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.string "gender", default: "female", null: false
     t.string "age", default: "30", null: false
@@ -264,7 +242,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["user_id"], name: "index_user_details_on_user_id"
   end
 
-  create_table "users", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "username", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -296,7 +274,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  create_table "vote_notifications", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "vote_notifications", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.integer "voted_by_id"
     t.boolean "vote"
@@ -306,7 +284,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
     t.index ["voted_by_id"], name: "index_vote_notifications_on_voted_by_id"
   end
 
-  create_table "votes", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "votes", id: :serial, force: :cascade do |t|
     t.string "votable_type"
     t.integer "votable_id"
     t.string "voter_type"
@@ -331,6 +309,5 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_04_160001) do
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
   add_foreign_key "pictures", "galleries"
   add_foreign_key "reports", "users"
-  add_foreign_key "user_action_limits", "users"
   add_foreign_key "user_details", "users"
 end

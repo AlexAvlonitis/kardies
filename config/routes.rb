@@ -15,15 +15,12 @@ Rails.application.routes.draw do
       put :galleries,        to: "galleries#update"
       put :search,           to: "search_criteria#update"
 
-      post :payment_success, to: "memberships#payment_success"
-      post :checkout_session, to: "memberships#checkout_session"
       post :unsubscribe,      to: "cable#unsubscribe"
       post :messages,         to: "messages#create"
       post :message_reply,    to: "messages#reply"
 
       delete :blocked_users, to: "blocked_users#destroy"
       delete :users,         to: "users#destroy"
-      delete :memberships,   to: "memberships#destroy"
 
       resources :users, param: :username, only: [:index, :show]
 
@@ -33,7 +30,6 @@ Rails.application.routes.draw do
       resources :likes,           only: [:index, :create]
       resources :news,            only: [:index]
       resources :pictures,        only: :destroy
-      resources :memberships,     only: :create
 
       resources :conversations, only: [:index, :show, :destroy] do
         collection do
@@ -42,7 +38,6 @@ Rails.application.routes.draw do
         end
       end
 
-      get :retrieve_membership, to: "memberships#retrieve_membership"
       get :states,              to: 'places#states'
       get :me,                  to: 'api#me'
     end

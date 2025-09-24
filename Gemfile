@@ -26,7 +26,6 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'redis', '~> 4.0'
 gem 'redis-rails'
 gem 'validates_email_format_of'
-gem 'stripe'
 
 group :development, :test do
   gem 'dotenv-rails'

@@ -33,18 +33,6 @@ class UserPresenter
     user_model.user_detail.profile_picture.attached?
   end
 
-  # returns a hash with action types as keys and counts/limits as values
-  # output: { message: [1, 20], like: [3, 5], ... } }
-  def daily_limits
-    limits = user_model.user_action_limits.group_by(&:action_type)
-    UserActionLimit::ACTION_LIMITS.keys.each_with_object({}) do |action, hash|
-      limit_record = limits[action]&.first
-      count = limit_record ? limit_record.count : 0
-      limit = limit_record ? limit_record.limit : UserActionLimit::ACTION_LIMITS[action]
-      hash[action] = [count, limit]
-    end
-  end
-
   private
 
   attr_reader :user_model
