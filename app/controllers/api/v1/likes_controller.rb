@@ -18,7 +18,7 @@ module Api
           @user.liked_by(current_user)
           create_notification
 
-          render json: { message: true }, status: :ok
+          render json: { message: true }, status: :created
         end
       end
 

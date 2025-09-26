@@ -2,8 +2,9 @@ require 'action_view'
 
 module Api
   module V1
-    class NewsSerializer < ActiveModel::Serializer
+    class NewSerializer < ActiveModel::Serializer
       include ActionView::Helpers::DateHelper
+
       attributes :meta, :type, :created_at
 
       def created_at
