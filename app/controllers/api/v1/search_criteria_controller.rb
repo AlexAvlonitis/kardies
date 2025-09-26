@@ -33,7 +33,7 @@ module Api
       end
 
       def allowed_params
-        %i[state gender age_from age_to is_signed_in]
+        %i[state gender age_from age_to is_signed_in sort_by]
       end
 
       def set_search_criterium

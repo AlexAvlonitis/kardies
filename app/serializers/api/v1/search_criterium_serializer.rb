@@ -4,6 +4,7 @@ module Api
       belongs_to :user
 
       attributes :state, :gender, :age_from, :age_to, :is_signed_in
+                 :sort_by
     end
   end
 end

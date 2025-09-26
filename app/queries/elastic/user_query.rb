@@ -41,7 +41,7 @@ module Elastic
     end
 
     def sort_params
-      [{ field: 'created_at', value: :desc }]
+      [{ field: 'created_at', value: params.sort_by }]
     end
   end
 end
