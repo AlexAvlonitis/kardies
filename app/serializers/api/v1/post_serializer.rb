@@ -3,7 +3,7 @@ module Api
     class PostSerializer < ActiveModel::Serializer
       belongs_to :user
 
-      attributes :body, :created_at
+      attributes :body, :wall_shared, :created_at
 
       def created_at
         object.created_at.strftime('%d/%m/%y - %H:%M')
