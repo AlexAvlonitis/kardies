@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_09_26_180912) do
+ActiveRecord::Schema[7.2].define(version: 2025_09_27_102445) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,6 +68,17 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_26_180912) do
     t.datetime "updated_at", null: false
     t.index ["blocked_user_id"], name: "index_blocked_users_on_blocked_user_id"
     t.index ["user_id"], name: "index_blocked_users_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "body"
+    t.string "commentable_type", null: false
+    t.bigint "commentable_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "email_preferences", id: :serial, force: :cascade do |t|
@@ -206,6 +217,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_26_180912) do
     t.index ["gallery_id"], name: "index_pictures_on_gallery_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "body"
+    t.boolean "wall_shared", default: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "reports", id: :serial, force: :cascade do |t|
     t.string "reason"
     t.text "description"
@@ -300,6 +320,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_26_180912) do
   end
 
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "users"
   add_foreign_key "galleries", "users"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
@@ -309,6 +330,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_26_180912) do
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
   add_foreign_key "pictures", "galleries"
+  add_foreign_key "posts", "users"
   add_foreign_key "reports", "users"
   add_foreign_key "user_details", "users"
 end

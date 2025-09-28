@@ -17,7 +17,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  # Relations
+  # accociations with dependent destroy
   with_options dependent: :destroy do |assoc|
     assoc.has_one  :about
     assoc.has_one  :user_detail
@@ -27,12 +27,16 @@ class User < ApplicationRecord
     assoc.has_many :reports
     assoc.has_many :vote_notifications
     assoc.has_many :blocked_users
+    assoc.has_many :posts
+    assoc.has_many :comments
   end
+
   has_many :pictures, through: :gallery
   has_many :access_tokens,
            class_name: 'Doorkeeper::AccessToken',
            foreign_key: :resource_owner_id,
            dependent: :delete_all
+
   accepts_nested_attributes_for :user_detail
 
   # Elastic Search
