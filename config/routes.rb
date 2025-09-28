@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       resources :posts,         only: [:index, :create] do
         member do
           post :comment, to: 'posts#create_comment'
+          post :like,    to: 'posts#like_post'
         end
       end
       resources :conversations, only: [:index, :show, :destroy] do
