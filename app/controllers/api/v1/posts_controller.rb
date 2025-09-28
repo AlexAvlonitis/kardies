@@ -17,10 +17,25 @@ module Api
         end
       end
 
+      def create_comment
+        post = Post.find(params[:id])
+        comment = post.comments.build(comment_params.merge(user: current_user))
+
+        if comment.save
+          render json: post, status: :created
+        else
+          render json: { errors: comment.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def post_params
         params.require(:post).permit(:body, :wall_shared)
+      end
+
+      def comment_params
+        params.require(:comment).permit(:body)
       end
     end
   end

@@ -32,7 +32,11 @@ Rails.application.routes.draw do
       resources :likes,         only: [:index, :create]
       resources :news,          only: [:index]
       resources :pictures,      only: :destroy
-      resources :posts,         only: [:index, :create]
+      resources :posts,         only: [:index, :create] do
+        member do
+          post :comment, to: 'posts#create_comment'
+        end
+      end
       resources :conversations, only: [:index, :show, :destroy] do
         collection do
           delete :delete_all
