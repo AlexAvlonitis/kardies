@@ -14,7 +14,7 @@ module Api
         else
           clean_up_passwords resource
           set_minimum_password_length
-          respond_with resource
+          render json: resource, status: :created, serializer: UserFullSerializer
         end
       end
 
@@ -30,7 +30,7 @@ module Api
           resource.user_detail.profile_picture.attach(pic) if pic
 
           bypass_sign_in resource, scope: resource_name
-          render json: resource, status: :ok
+          render json: resource, status: :ok, serializer: UserFullSerializer
         else
           clean_up_passwords resource
           set_minimum_password_length

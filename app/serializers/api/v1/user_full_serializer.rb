@@ -1,0 +1,60 @@
+require 'action_view'
+
+module Api
+  module V1
+    class UserFullSerializer < ActiveModel::Serializer
+      include ActionView::Helpers::DateHelper
+
+      POST_LIMITS = 10
+
+      has_one  :user_detail
+      has_one  :about
+      has_one  :email_preference
+      has_one  :search_criterium
+      has_many :pictures, through: :gallery
+      has_many :posts
+
+      attributes :username,
+                 :profile_picture,
+                 :profile_picture_medium,
+                 :profile_picture_thumb,
+                 :like,
+                 :like_date,
+                 :email,
+                 :is_signed_in,
+                 :first_sign_in
+
+      delegate :profile_picture, :profile_picture_medium, :profile_picture_thumb,
+               :daily_limits, to: :user_presenter
+
+      def like
+        scope.voted_for?(object) if scope
+      end
+
+      def like_date
+        voter = voted_by
+        return unless voter
+
+        distance_of_time_in_words(voter.updated_at, Time.now)
+      end
+
+      def email
+        scope === object ? object.email : nil
+      end
+
+      def posts
+        object.posts.order(created_at: :desc).limit(POST_LIMITS)
+      end
+
+      private
+
+      def voted_by
+        object.votes.find_by(votable_id: scope.id)
+      end
+
+      def user_presenter
+        @user_presenter ||= UserPresenter.new(object)
+      end
+    end
+  end
+end

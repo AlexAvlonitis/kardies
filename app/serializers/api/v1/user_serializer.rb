@@ -6,38 +6,10 @@ module Api
       include ActionView::Helpers::DateHelper
 
       has_one  :user_detail
-      has_one  :about
-      has_one  :email_preference
-      has_one  :search_criterium
-      has_many :pictures, through: :gallery
 
-      attributes :username,
-                 :profile_picture,
-                 :profile_picture_medium,
-                 :profile_picture_thumb,
-                 :like,
-                 :like_date,
-                 :email,
-                 :is_signed_in,
-                 :first_sign_in
+      attributes :username, :profile_picture_medium, :profile_picture_thumb
 
-      delegate :profile_picture, :profile_picture_medium, :profile_picture_thumb,
-               :daily_limits, to: :user_presenter
-
-      def like
-        scope.voted_for?(object) if scope
-      end
-
-      def like_date
-        voter = voted_by
-        return unless voter
-
-        distance_of_time_in_words(voter.updated_at, Time.now)
-      end
-
-      def email
-        scope === object ? object.email : nil
-      end
+      delegate :profile_picture_medium, :profile_picture_thumb, to: :user_presenter
 
       private
 

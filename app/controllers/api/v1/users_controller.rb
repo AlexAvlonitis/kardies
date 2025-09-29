@@ -8,7 +8,7 @@ module Api
       end
 
       def show
-        render json: @user, status: :ok
+        render json: @user, status: :ok, serializer: UserFullSerializer
       end
 
       def destroy

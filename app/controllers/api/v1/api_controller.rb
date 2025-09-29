@@ -2,7 +2,7 @@ module Api
   module V1
     class ApiController < ApplicationController
       def me
-        respond_with current_user
+        render json: current_user, status: :ok, serializer: UserFullSerializer
       end
 
       def current_user
