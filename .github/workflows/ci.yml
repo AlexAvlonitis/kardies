@@ -12,15 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     container: ruby:3.3.5
     services:
-      mysql:
-        image: mysql:5.7.26
+      postgres:
+        image: postgres:16
         env:
-          MYSQL_ROOT_PASSWORD: password
-        options: >-
-          --health-cmd "mysqladmin ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 10
+          POSTGRES_PASSWORD: password
 
       elasticsearch:
         image: elasticsearch:7.16.2
@@ -38,7 +33,7 @@ jobs:
           ELASTIC_SEARCH_HOST: http://elasticsearch:9200
           RAILS_ENV: test
           FB_APP_ID: test
-          DBHOST: mysql
+          DBHOST: postgres
           DBUSER: root
           DBPASS: password
           FB_APP_SECRET: secret
